@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## CS2103T-T08-1
 
-### John Doe
+### Kim Shi Tong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kimshitong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kimshitong)]
+[[portfolio](team/kimshitong.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: UI + Threading
 
-### Jane Doe
+### Mah Chee Teng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cheeggered.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/cheeggered)]
+[[portfolio](team/cheeggered.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI + Data
 
-### Johnny Doe
+### Mounil Sankar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mounilsankar.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/mounilsankar)] 
+[[portfolio](team/mounilsankar.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Tan Jing Xu, Derek
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/derekjxtan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/derekjxtan)]
+[[portfolio](team/derekjxtan.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tang Yang Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yanghengtang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yanghengtang)]
+[[portfolio](team/yanghengtang.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops + Data
