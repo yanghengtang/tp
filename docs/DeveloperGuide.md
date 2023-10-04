@@ -283,32 +283,116 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MediConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 View all patients’ records**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view all patients’ records.
+2.  MediConnect shows the patients’ records.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The command is invalid.
+    * 1a1. MediConnect shows an error message.
+  
+  Use case ends.
+
+**Use case: UC02 View a patient's records**
+
+**MSS**
+
+1.  User requests to view a patient's records.
+2.  MediConnect shows the patient’s record.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command is invalid.
+    * 1a1. MediConnect shows an error message.
+
+  Use case resumes at step 1.
+* 1b. The patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+    
+  Use case ends.
+
+**Use case: UC03 Add a patient**
+
+**MSS**
+
+1.  User requests to add a specific patient to the list
+2.  AddressBook adds the specific patient to the list 
+
+Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to add a patient is invalid.
+    * 1a1. MediConnect shows an error message.    
+
+  Use case resumes at step 1.
+
+* 1b. MediConnect detects that patient to be added already exists in the system
+    * 1b1. MediConnect shows an error message.
 
   Use case ends.
 
+
+**Use case: UC04 Edit a patient’s details/notes**
+
+**MSS**
+
+1.  User requests to edit a specific patient’s details.
+2.  MediConnect shows the current details of the patient to the user.
+3.  User edits the patient’s details.
+4.  MediConnect edits the patient’s details.
+
+Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to edit a patient is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2 MediConnect requests for the correct input.  
+
+  Use case resumes at step 1.
+* 1b. MediConnect detects that patient to be edited does not exist in the system
+  * 1b1. MediConnect shows an error message.
+  
+  Use case ends.
+* 3a.MediConnect detects that the arguments provided to edit a patient is invalid.
+  * 3a1. MediConnect shows an error message.
+  * 3a2 MediConnect requests for the correct input.
+  
+  Steps 3a1-3a2 are repeated until user inputs correct input.       
+  Use case resumes at step 4.
+  
+**Use case: UC05 Delete a patient**
+  
+**MSS**
+
+1.  User requests to list patients.
+2.  MediConnect shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  MediConnect deletes the person.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. MediConnect shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+  Use case resumes at step 2.
 
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
