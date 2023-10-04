@@ -393,6 +393,109 @@ Use case ends.
 
   Use case resumes at step 2.
 
+**Use case: UC06 View all doctors’ records**
+
+**MSS**
+
+1.  User requests to view all doctors’ records
+2.  MediConnect shows the doctors’ record
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The command is invalid.
+    * 1a1. MediConnect shows an error message.
+
+  Use case resumes at step 1.
+
+**Use case: UC07 View a doctor’'s records**
+
+**MSS**
+
+1.  User requests to view a doctor's records
+2.  MediConnect shows the doctor’s record
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The command is invalid.
+    * 1a1. MediConnect shows an error message. 
+  
+  Use case resumes at step 1.
+* 1b. The doctor does not exist in the system.
+  * 1b1. MediConnect shows an error message. 
+  
+  Use case resumes at step 1.
+
+**Use case: UC08 Add a doctor**
+
+**MSS**
+ 
+1.  User requests to list doctors
+2.  MediConnect shows a list of doctor
+3.  User requests to add a specific doctor to the list
+4.  MediConnect adds the specific doctor to the list
+
+Use case ends.
+  
+**Extensions**
+  
+* 3a.MediConnect detects that the arguments provided to add a doctor is invalid.
+    * 3a1. MediConnect shows an error message.
+* 3a2 MediConnect requests for the correct input    
+  
+  Use case resumes at step 3.
+* 3b. MediConnect detects that doctor to be added already exists in the system
+  * 3b1. MediConnect shows an error message.
+  
+  Use case ends.
+
+**Use case: UC09 Edit a doctor’s details/notes**
+
+**MSS**
+
+1.  User requests to edit a specific doctor’s details.
+2.  MediConnectshows the current details of the doctor to user.
+3.  User edits the doctor’s details.
+4.  AddressBook edits the doctor’s details.
+Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to edit a doctor is invalid.
+    * 1a1. MediConnect shows an error message.
+* 1a2 MediConnect requests for the correct input.
+  
+  Use case resumes at step 1.
+* 1b. MediConnect detects that doctor to be edited does not exist in the system
+  * 1b1. MediConnect shows an error message.
+  
+  Use case ends.
+* 3a.MediConnect detects that the arguments provided to edit a patient is invalid.
+  * 1a1. MediConnect shows an error message.
+  * 1a2 MediConnect requests for the correct input.
+  Use case resumes at step 3.
+  
+**Use case: UC010 Delete a doctor**
+
+**MSS**
+
+1. User requests to list doctors.
+2. MediConnect shows a list of doctors.
+3. User requests to delete a specific doctor in the list.
+4. MediConnect deletes the doctor.
+Use case ends.
+  
+**Extensions**
+
+* 2a. The list is empty.
+  
+Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. MediConnect shows an error message.
+  Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
