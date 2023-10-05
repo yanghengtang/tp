@@ -496,10 +496,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Patient**: A person receiving medical services at UHC
+* **Appointment**: A arranged meeting between a patient and a doctor at a particular date and time
 * **Doctor**: A person providing medical services at UHC
-* **Appointment**: A arranged meeting between a patient and a doctor at a particular time
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of identification for patients and doctors in MediConnect
+* **Patient**: A person receiving medical services at UHC
+* **Receptionist**: A person handling administrative work at UHC, and is the target user of MediConnect
 
 --------------------------------------------------------------------------------------------------------------------
 
