@@ -285,81 +285,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC11 View all appointments within a timeframe**
-
-**MSS**
-
-1.  User requests to view all appointments within a timeframe. 
-2. MediConnect shows the appointments list.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The command is invalid.
-    * 1a1. MediConnect shows an error message.
-
-      Use case resumes at step 1.
 
 
-**Use case: UC12 View a patient’s upcoming appointments**
+**Use case: UC11 View a patient’s upcoming appointments**
 
 **MSS**
 
 1. User requests to view a patient’s upcoming appointments 
 2. MediConnect shows the patient’s appointment list
 
-   use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
 
       Use case resumes at step 1.
 
-* 1b. The patient does not exist in the system.
+* 1b. MediConnect detects that the patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
     
       Use case resumes at step 1.
 
 
-**Use case: UC13 View a doctor’s upcoming appointments**
+
+**Use case: UC12 View a doctor’s upcoming appointments**
 
 **MSS**
 
 1. User requests to view a doctor’s upcoming appointments. 
 2. MediConnect shows the doctor’s appointment list.
 
-   use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
 
       Use case resumes at step 1.
 
-* 1b. The doctor does not exist in the system.
+* 1b. MediConnect detects that the doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input
 
       Use case resumes at step 1.
 
 
-**Use case: UC14 Add an appointment between a patient and doctor**
+**Use case: UC13 Add an appointment between a patient and doctor**
 
 **MSS**
 
 1. User requests to add a specific appointment between a patient and doctor. 
 2. MediConnect adds the appointment to the list.
 
-   use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a.MediConnect detects that the arguments provided to add an appointment is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input.
+    * 1a2. MediConnect requests for the correct input.
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be added already exists in the system
@@ -367,14 +356,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC15 Edit an appointment**
+**Use case: UC14 Edit an appointment**
 
 **MSS**
 
 1. User requests to edit an appointment.
-2. MediConnect shows the current details of the appointment to the user.
-3. requests to edit the appointment. 
-4. MediConnect edits the doctor’s details.
+2. MediConnect edits the doctor’s details.
 
     Use case ends.
 
@@ -382,41 +369,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a.MediConnect detects that the arguments provided to edit an appointment is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input.
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be edited does not exist in the system.
-    * 1b1. MediConnect shows an error message.
+    * 1b1. MediConnect shows an error message. 
+    * 1b2. MediConnect requests for the correct input.
   
       Use case ends.
-* 3a.MediConnect detects that the arguments provided to edit an appointment is invalid.
-    * 3a1. MediConnect shows an error message.
-    * 3a2 MediConnect requests for the correct input
 
-      Use case resumes at step 3.
 
-**Use case: UC16 Delete an appointment**
+**Use case: UC15 Delete an appointment**
 
 **MSS**
 
-1. User requests to list appointments 
-2. MediConnect shows a list of appointments
-3. User requests to delete an appointment in the list
-4. MediConnect deletes the appointment
+1. User requests to delete an appointment in the list
+2. MediConnect deletes the appointment
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-    
+* 1a. The list is empty.
+
     Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. MediConnect shows an error message.
+
+* 1b. MediConnect detects that the given index is invalid.
+    * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input
+  
       Use case resumes at step 2.
 
-**Use case: UC17 Find a doctor’s availabilities in a given timeframe**
+**Use case: UC16 Find a doctor’s availabilities in a given timeframe**
 
 **MSS**
 
@@ -427,41 +412,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a.The given command is invalid.
+* 1a.MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input
+    * 1a2. MediConnect requests for the correct input
 
       Steps 1a1-1a2 are repeated until user inputs correct input.
 
       Use case resumes at step 2
 
-* 1b. The given doctor does not exist in the system.
+* 1b. MediConnect detects that the given doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
+
       Use case ends.
 
-**Use case: UC18 View a patient’s outstanding bills**
+**Use case: UC17 View a patient’s outstanding bills**
 
 **MSS**
 
 1. User requests to view a patient’s bills.
 2. MediConnect shows the patient’s bills.
+
    Use case ends.
 
 **Extensions**
 
-* 1a.The given command is invalid.
+* 1a.MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message. 
-    * 1a2 MediConnect requests for the correct input
+    * 1a2. MediConnect requests for the correct input
 
       Steps 1a1-1a2 are repeated until user inputs correct input.
 
       Use case resumes at step 2
 
-* 1b. The given patient does not exist in the system.
+* 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
+  
       Use case ends.
 
-**Use case: UC19 Add an outstanding bill to a patient**
+**Use case: UC18 Add an outstanding bill to a patient**
 
 **MSS**
 
@@ -472,23 +460,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a.The given command is invalid.
+* 1a.MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input
+    * 1a2. MediConnect requests for the correct input
 
       Steps 1a1-1a2 are repeated until user inputs correct input.
 
       Use case resumes at step 2
 
-* 1b. The given patient does not exist in the system.
+* 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
+  
       Use case ends.
 
-**Use case: UC20 Close an outstanding bill of a patient**
+**Use case: UC19 Close an outstanding bill of a patient**
 
 **MSS**
 
-1. User requests to list outstanding bills a patient has
+1. User requests to list outstanding bills a patient has (UC19)
 2. MediConnect shows the list of outstanding bills the patient has
 3. User requests to close a specific bill in the list
 4. MediConnect deletes the bill from the list
@@ -497,16 +486,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given patient is invalid.
+* 1a. MediConnect detects that the given patient is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input
+    * 1a2. MediConnect requests for the correct input
 
       Use case resumes at step 1
 
-* 2a. The list is empty.
+* 1b. MediConnect detects that the list is empty.
 
      Use case ends.
-* 3a. The given index is invalid.
+* 3a. MediConnect detects that the given index is invalid.
     * 3a1. MediConnect shows an error message.
 
       Use case resumes at step 2
