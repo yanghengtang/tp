@@ -385,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 * 3a. The given index is invalid.
@@ -492,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
   
   Use case ends.
 * 3a. The given index is invalid.
