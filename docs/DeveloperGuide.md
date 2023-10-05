@@ -594,7 +594,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: UC16 Find a doctor’s availabilities in a given timeframe**
 
@@ -611,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Use case resumes at step 2
+      Use case resumes at step 1
 
 * 1b. MediConnect detects that the given doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
@@ -633,7 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Use case resumes at step 2
+      Use case resumes at step 1
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
@@ -655,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Use case resumes at step 2
+      Use case resumes at step 1
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
