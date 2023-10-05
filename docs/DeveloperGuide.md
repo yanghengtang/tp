@@ -302,6 +302,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
+      Steps 1a1-1a2 are repeated until user inputs correct input.
+
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the patient does not exist in the system.
@@ -326,11 +328,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
+      Steps 1a1-1a2 are repeated until user inputs correct input.
+
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input
+
+      Steps 1b1-1b2 are repeated until user inputs correct input.
 
       Use case resumes at step 1.
 
@@ -349,6 +355,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a.MediConnect detects that the arguments provided to add an appointment is invalid.
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input.
+
+      Steps 1a1-1a2 are repeated until user inputs correct input.
+  
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be added already exists in the system
@@ -371,11 +380,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input.
 
+      Steps 1a1-1a2 are repeated until user inputs correct input.
+
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be edited does not exist in the system.
     * 1b1. MediConnect shows an error message. 
     * 1b2. MediConnect requests for the correct input.
+
+      Steps 1b1-1b2 are repeated until user inputs correct input.
   
       Use case ends.
 
@@ -398,6 +411,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. MediConnect detects that the given index is invalid.
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input
+
+      Steps 1b1-1b2 are repeated until user inputs correct input.
   
       Use case resumes at step 2.
 
