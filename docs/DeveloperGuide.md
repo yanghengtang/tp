@@ -286,15 +286,208 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MediConnect` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 View all patients’ records**
+
+**MSS**
+
+1.  User requests to view all patients’ records.
+2.  MediConnect shows the patients’ records.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+      
+      Use case resumes at step 1.
+
+**Use case: UC02 View a patient's records**
+
+**MSS**
+
+1.  User requests to view a patient's records.
+2.  MediConnect shows the patient’s record.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+* 1b. The patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+    
+      Use case ends.
+
+**Use case: UC03 Add a patient**
+
+**MSS**
+
+1.  User requests to add a specific patient to the list
+2.  MediConnect adds the specific patient to the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to add a patient is invalid.
+    * 1a1. MediConnect shows an error message.    
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+
+* 1b. MediConnect detects that patient to be added already exists in the system
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
 
 
+**Use case: UC04 Edit a patient’s details/notes**
+
+**MSS**
+
+1.  User edits a specific patient’s details.
+2.  MediConnect edits the patient’s details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to edit a patient is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+   
+      Use case resumes at step 1.
+  
+**Use case: UC05 Delete a patient**
+  
+**MSS**
+
+1.  User requests to delete a specific patient in the list.
+2.  MediConnect deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the list is empty.
+
+  Use case ends.
+* 1b. MediConnect detects that the given index is invalid.
+    * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input.
+
+      Use case resumes at step 2.
+
+**Use case: UC06 View all doctors’ records**
+
+**MSS**
+
+1.  User requests to view all doctors’ records
+2.  MediConnect shows the doctors’ record
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input. 
+    
+       Use case resumes at step 1.
+
+**Use case: UC07 View a doctor’s records**
+
+**MSS**
+
+1.  User requests to view a doctor's records
+2.  MediConnect shows the doctor’s record
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message. 
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+* 1b. MediConnect detects that the doctor does not exist in the system.
+    * 1b1. MediConnect shows an error message. 
+  
+      Use case resumes at step 1.
+
+**Use case: UC08 Add a doctor**
+
+**MSS**
+
+1. User requests to add a specific doctor to the system.
+2. MediConnect adds the specific doctor to the system.
+
+    Use case ends.
+  
+**Extensions**
+  
+* 1a. MediConnect detects that the arguments provided to add a doctor is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input    
+  
+      Use case resumes at step 1.
+* 1b. MediConnect detects that doctor to be added already exists in the system
+   * 1b1. MediConnect shows an error message.
+  
+     Use case ends.
+
+**Use case: UC09 Edit a doctor’s details/notes**
+
+**MSS**
+
+1.  User requests to edit a specific doctor’s details.
+2.  MediConnect edits the doctor’s details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to edit a doctor is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+  
+      Use case resumes at step 1.
+* 1b. MediConnect detects that doctor to be edited does not exist in the system
+    * 1b1. MediConnect shows an error message.
+  
+      Use case ends.
+  
+**Use case: UC10 Delete a doctor**
+
+**MSS**
+
+1.  User requests to delete a specific doctor in the list.
+2.  MediConnect deletes the doctor.
+
+    Use case ends.
+  
+**Extensions**
+
+* 1a. MediConnect detects that the given arguments to delete a doctor is invalid
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
 
 **Use case: UC11 View a patient’s upcoming appointments**
 
 **MSS**
 
-1. User requests to view a patient’s upcoming appointments 
+1. User requests to view a patient’s upcoming appointments
 2. MediConnect shows the patient’s appointment list
 
    Use case ends.
@@ -309,7 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. MediConnect detects that the patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
-    
+
       Use case resumes at step 1.
 
 
@@ -318,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view a doctor’s upcoming appointments. 
+1. User requests to view a doctor’s upcoming appointments.
 2. MediConnect shows the doctor’s appointment list.
 
    Use case ends.
@@ -341,7 +534,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a specific appointment between a patient and doctor. 
+1. User requests to add a specific appointment between a patient and doctor.
 2. MediConnect adds the appointment to the list.
 
    Use case ends.
@@ -366,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to edit an appointment.
 2. MediConnect edits the doctor’s details.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -395,7 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 1b. MediConnect detects that the given index is invalid.
     * 1b1. MediConnect shows an error message.
@@ -437,14 +630,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a.MediConnect detects that the given command is invalid.
-    * 1a1. MediConnect shows an error message. 
+    * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
       Use case resumes at step 2
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
-  
+
       Use case ends.
 
 **Use case: UC18 Add an outstanding bill to a patient**
@@ -466,7 +659,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
     * 1b1. MediConnect shows an error message.
-  
+
       Use case ends.
 
 **Use case: UC19 Close an outstanding bill of a patient**
@@ -490,7 +683,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. MediConnect detects that the list is empty.
 
-     Use case ends.
+  Use case ends.
 * 3a. MediConnect detects that the given index is invalid.
     * 3a1. MediConnect shows an error message.
 
@@ -498,18 +691,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to add up to 40,000 patients and doctors without a noticeable sluggishness in performance for addition, deletion, update of patients and doctors.
-3.  Should be able to retrieve all appointments for a particular doctor or patient within 1 second
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to handle at least 60,000 patients at any point of time.
+3. Should be able to add, view, edit and delete patients and doctors without a noticeable lag.
+4. Should be able to retrieve all appointments for a particular doctor or patient within 1 second.
+5. Should lose no more than 1-minute worth of data in case of system error. 
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Appointment**: A arranged meeting between a patient and a doctor at a particular date and time
+* **Doctor**: A person providing medical services at UHC
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of identification for patients and doctors in MediConnect
+* **Patient**: A person receiving medical services at UHC
+* **Receptionist**: A person handling administrative work at UHC, and is the target user of MediConnect
 
 --------------------------------------------------------------------------------------------------------------------
 
