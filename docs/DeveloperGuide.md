@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. MeddiConnect detects that the list is empty.
+* 1a. MediConnect detects that the list is empty.
 
   Use case ends.
 * 1b. MediConnect detects that the given index is invalid.
@@ -439,7 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input    
   
-      Use case resumes at step 3.
+      Use case resumes at step 1.
 * 1b. MediConnect detects that doctor to be added already exists in the system
    * 1b1. MediConnect shows an error message.
   
@@ -466,7 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
   
-**Use case: UC010 Delete a doctor**
+**Use case: UC10 Delete a doctor**
 
 **MSS**
 
@@ -481,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input.
 
-      Use case resumes at step 3.
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
