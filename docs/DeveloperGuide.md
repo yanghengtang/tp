@@ -333,7 +333,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. MediConnect detects that the doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
-    * 1b2. MediConnect requests for the correct input
 
       Use case resumes at step 1.
 
@@ -378,8 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be edited does not exist in the system.
-    * 1b1. MediConnect shows an error message. 
-    * 1b2. MediConnect requests for the correct input.
+    * 1b1. MediConnect shows an error message.
 
       Use case ends.
 
