@@ -296,10 +296,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
-  
-      Use case ends.
+    * 1a2. MediConnect requests for the correct input.
+      Use case resumes at step 1.
 
 **Use case: UC02 View a patient's records**
 
@@ -312,8 +312,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 * 1b. The patient does not exist in the system.
@@ -326,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a specific patient to the list
-2.  AddressBook adds the specific patient to the list 
+2.  MediConnect adds the specific patient to the list 
 
     Use case ends.
 
@@ -334,6 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a.MediConnect detects that the arguments provided to add a patient is invalid.
     * 1a1. MediConnect shows an error message.    
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 
@@ -360,17 +362,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2 MediConnect requests for the correct input.  
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 * 1b. MediConnect detects that patient to be edited does not exist in the system
     * 1b1. MediConnect shows an error message.
   
-    Use case ends.
+      Use case ends.
 * 3a.MediConnect detects that the arguments provided to edit a patient is invalid.
     * 3a1. MediConnect shows an error message.
     * 3a2 MediConnect requests for the correct input.
-  
-    Steps 3a1-3a2 are repeated until user inputs correct input.       
-  Use case resumes at step 4.
+   
+      Use case resumes at step 4.
   
 **Use case: UC05 Delete a patient**
   
@@ -390,6 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. MediConnect shows an error message.
+    * 3a2. MediConnect requests for the correct input.
 
       Use case resumes at step 2.
 
@@ -420,9 +422,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message. 
-  
+    * 1a2. MediConnect requests for the correct input.
+
       Use case resumes at step 1.
 * 1b. The doctor does not exist in the system.
     * 1b1. MediConnect shows an error message. 
@@ -497,6 +500,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. MediConnect shows an error message.
+    * 3a2. MediConnect requests for the correct input.
+
       Use case resumes at step 3.
 
 ### Non-Functional Requirements
