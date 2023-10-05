@@ -360,11 +360,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a.MediConnect detects that the arguments provided to edit a patient is invalid.
-    * 3a1. MediConnect shows an error message.
-    * 3a2. MediConnect requests for the correct input.
+* 1a.MediConnect detects that the arguments provided to edit a patient is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
    
-      Use case resumes at step 4.
+      Use case resumes at step 1.
   
 **Use case: UC05 Delete a patient**
   
@@ -380,9 +380,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. MeddiConnect detects that the list is empty.
 
   Use case ends.
-* 3a. MediConnect detects that the given index is invalid.
-    * 3a1. MediConnect shows an error message.
-    * 3a2. MediConnect requests for the correct input.
+* 1b. MediConnect detects that the given index is invalid.
+    * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input.
 
       Use case resumes at step 2.
 
