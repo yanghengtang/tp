@@ -497,6 +497,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Patient**: A person receiving medical services at UHC
+* **Doctor**: A person providing medical services at UHC
+* **Appointment**: A arranged meeting between a patient and a doctor at a particular time
 
 --------------------------------------------------------------------------------------------------------------------
 
