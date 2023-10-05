@@ -305,8 +305,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the patient does not exist in the system.
@@ -331,15 +329,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the doctor does not exist in the system.
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input
-
-      Steps 1b1-1b2 are repeated until user inputs correct input.
 
       Use case resumes at step 1.
 
@@ -359,8 +353,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input.
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-  
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be added already exists in the system
@@ -383,16 +375,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input.
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-
       Use case resumes at step 1.
 
 * 1b. MediConnect detects that the appointment to be edited does not exist in the system.
     * 1b1. MediConnect shows an error message. 
     * 1b2. MediConnect requests for the correct input.
 
-      Steps 1b1-1b2 are repeated until user inputs correct input.
-  
       Use case ends.
 
 
@@ -415,8 +403,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input
 
-      Steps 1b1-1b2 are repeated until user inputs correct input.
-  
       Use case resumes at step 2.
 
 **Use case: UC16 Find a doctor’s availabilities in a given timeframe**
@@ -433,8 +419,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a.MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
-
-      Steps 1a1-1a2 are repeated until user inputs correct input.
 
       Use case resumes at step 2
 
@@ -458,8 +442,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message. 
     * 1a2. MediConnect requests for the correct input
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-
       Use case resumes at step 2
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
@@ -482,8 +464,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MediConnect shows an error message.
     * 1a2. MediConnect requests for the correct input
 
-      Steps 1a1-1a2 are repeated until user inputs correct input.
-
       Use case resumes at step 2
 
 * 1b. MediConnect detects that the given patient does not exist in the system.
@@ -495,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list outstanding bills a patient has (UC19)
+1. User requests to list outstanding bills a patient has (UC17)
 2. MediConnect shows the list of outstanding bills the patient has
 3. User requests to close a specific bill in the list
 4. MediConnect deletes the bill from the list
