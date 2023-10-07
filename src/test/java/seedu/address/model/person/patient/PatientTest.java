@@ -62,7 +62,7 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different nric -> returns false
+        // different NRIC -> returns false
         editedAlice = new PatientBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
