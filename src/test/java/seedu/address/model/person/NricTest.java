@@ -20,21 +20,25 @@ public class NricTest {
 
     @Test
     public void isValidNric() {
-        // null name
+        // null NRIC
         assertThrows(NullPointerException.class, () -> Nric.isValidNric(null));
 
-        // invalid name
+        // invalid NRIC
         assertFalse(Nric.isValidNric("")); // empty string
-        assertFalse(Nric.isValidNric(" ")); // spaces only
-        assertFalse(Nric.isValidNric("^")); // only non-alphanumeric characters
-        assertFalse(Nric.isValidNric("peter*")); // contains non-alphanumeric characters
+        assertFalse(Nric.isValidNric("S012345 A")); // contains space
+        assertFalse(Nric.isValidNric("S012^456A")); // contains non-alphanumeric characters
+        assertFalse(Nric.isValidNric("S01222456A")); // too many characters
+        assertFalse(Nric.isValidNric("S01456A")); // too few characters
+        assertFalse(Nric.isValidNric("A0123456A")); // invalid starting character
+        assertFalse(Nric.isValidNric("s0123456A")); // lowercase starting character
+        assertFalse(Nric.isValidNric("S0123456a")); // lowercase end character
 
-        // valid name
+        // valid NRIC
         assertTrue(Nric.isValidNric("S0123456A")); // starting with S
-        assertTrue(Nric.isValidNric("T2414628F")); // numbers only
-        assertTrue(Nric.isValidNric("G1238858J")); // alphanumeric characters
-        assertTrue(Nric.isValidNric("F7423926D")); // with capital letters
-        assertTrue(Nric.isValidNric("M4812734E")); // long names
+        assertTrue(Nric.isValidNric("T2414628F")); // starting with T
+        assertTrue(Nric.isValidNric("G1238858J")); // starting with G
+        assertTrue(Nric.isValidNric("F7423926D")); // starting with F
+        assertTrue(Nric.isValidNric("M4812734E")); // starting with M
     }
 
     @Test
