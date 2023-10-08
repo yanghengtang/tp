@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 
@@ -12,7 +13,7 @@ import seedu.address.model.person.Nric;
  * Represents a Doctor in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Doctor {
+public class Doctor implements Listable {
     // Identity fields
     private final Name name;
     private final Nric nric;
@@ -38,13 +39,18 @@ public class Doctor {
      * Returns true if both doctors have the same NRIC.
      * This defines a weaker notion of equality between two doctors.
      */
-    public boolean isSameDoctor(Doctor otherDoctor) {
+    public boolean isSame(Listable otherListable) {
+        if (!(otherListable instanceof Doctor)) {
+            return false;
+        }
+
+        Doctor otherDoctor = (Doctor) otherListable;
+
         if (otherDoctor == this) {
             return true;
         }
 
-        return otherDoctor != null
-                && otherDoctor.getNric().equals(getNric());
+        return otherDoctor.getNric().equals(getNric());
     }
 
     /**
