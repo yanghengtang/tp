@@ -1,8 +1,8 @@
 package seedu.address.model.person.patient;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateItemException;
+import seedu.address.model.person.exceptions.ItemNotFoundException;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatient;
 
@@ -53,7 +53,7 @@ public class UniqueItemListTest {
     @Test
     public void add_duplicateItem_throwsDuplicateItemException() {
         uniquePatientList.add(TypicalPatient.ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePatientList.add(TypicalPatient.ALICE));
+        assertThrows(DuplicateItemException.class, () -> uniquePatientList.add(TypicalPatient.ALICE));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_targetItemNotInList_throwsItemNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, TypicalPatient.ALICE));
+        assertThrows(ItemNotFoundException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, TypicalPatient.ALICE));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class UniqueItemListTest {
     public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
         uniquePatientList.add(TypicalPatient.ALICE);
         uniquePatientList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, BOB));
+        assertThrows(DuplicateItemException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, BOB));
     }
 
     @Test
@@ -114,7 +114,7 @@ public class UniqueItemListTest {
 
     @Test
     public void remove_itemDoesNotExist_throwsItemNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePatientList.remove(TypicalPatient.ALICE));
+        assertThrows(ItemNotFoundException.class, () -> uniquePatientList.remove(TypicalPatient.ALICE));
     }
 
     @Test
@@ -157,7 +157,7 @@ public class UniqueItemListTest {
     @Test
     public void setItems_listWithDuplicateItems_throwsDuplicateItemException() {
         List<Patient> listWithDuplicatePatients = Arrays.asList(TypicalPatient.ALICE, TypicalPatient.ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePatientList.setItems(listWithDuplicatePatients));
+        assertThrows(DuplicateItemException.class, () -> uniquePatientList.setItems(listWithDuplicatePatients));
     }
 
     @Test
