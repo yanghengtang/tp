@@ -33,7 +33,7 @@ public class TypicalDoctor {
     public static final Doctor IDA = new DoctorBuilder().withName("Ida Mueller")
             .withNric("S9348573F").build();
 
-    // Manually added - Patient's details found in {@code CommandTestUtil}
+    // Manually added - Doctor's details found in {@code CommandTestUtil}
     public static final Doctor AMY = new DoctorBuilder().withName(VALID_NAME_AMY)
             .withNric(VALID_NRIC_AMY).build();
     public static final Doctor BOB = new DoctorBuilder().withName(VALID_NAME_BOB)
