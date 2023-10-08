@@ -15,18 +15,18 @@ public class DoctorTest {
     @Test
     public void isSameDoctor() {
         // same object -> returns true
-        assertTrue(ALICE.isSameDoctor(ALICE));
+        assertTrue(ALICE.isSame(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameDoctor(null));
+        assertFalse(ALICE.isSame(null));
 
         // same NRIC, all other attributes different -> returns true
         Doctor editedAlice = new DoctorBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertTrue(ALICE.isSameDoctor(editedAlice));
+        assertTrue(ALICE.isSame(editedAlice));
 
         // different NRIC, all other attributes same -> returns false
         editedAlice = new DoctorBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
-        assertFalse(ALICE.isSameDoctor(editedAlice));
+        assertFalse(ALICE.isSame(editedAlice));
     }
 
     @Test
