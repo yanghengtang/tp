@@ -10,7 +10,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Patient in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient {
