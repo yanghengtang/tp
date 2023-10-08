@@ -1,4 +1,4 @@
-package seedu.address.model.person.patient;
+package seedu.address.model.person.doctor;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -8,26 +8,22 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Phone;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Doctor in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Patient implements Listable {
-
+public class Doctor implements Listable {
     // Identity fields
     private final Name name;
-    private final Phone phone;
     private final Nric nric;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Nric nric) {
-        requireAllNonNull(name, phone, nric);
+    public Doctor(Name name, Nric nric) {
+        requireAllNonNull(name, nric);
         this.name = name;
-        this.phone = phone;
         this.nric = nric;
     }
 
@@ -35,35 +31,31 @@ public class Patient implements Listable {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
     public Nric getNric() {
         return nric;
     }
 
     /**
-     * Returns true if both patients have the same NRIC.
-     * This defines a weaker notion of equality between two patients.
+     * Returns true if both doctors have the same NRIC.
+     * This defines a weaker notion of equality between two doctors.
      */
     public boolean isSame(Listable otherListable) {
-        if (!(otherListable instanceof Patient)) {
+        if (!(otherListable instanceof Doctor)) {
             return false;
         }
 
-        Patient otherPatient = (Patient) otherListable;
+        Doctor otherDoctor = (Doctor) otherListable;
 
-        if (otherPatient == this) {
+        if (otherDoctor == this) {
             return true;
         }
 
-        return otherPatient.getNric().equals(getNric());
+        return otherDoctor.getNric().equals(getNric());
     }
 
     /**
-     * Returns true if both patients have the same identity fields.
-     * This defines a stronger notion of equality between two patients.
+     * Returns true if both doctors have the same identity fields.
+     * This defines a stronger notion of equality between two doctors.
      */
     @Override
     public boolean equals(Object other) {
@@ -72,29 +64,26 @@ public class Patient implements Listable {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Patient)) {
+        if (!(other instanceof Doctor)) {
             return false;
         }
 
-        Patient otherPerson = (Patient) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && nric.equals(otherPerson.nric);
+        Doctor otherDoctor = (Doctor) other;
+        return name.equals(otherDoctor.name)
+                && nric.equals(otherDoctor.nric);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, nric);
+        return Objects.hash(name, nric);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
                 .add("nric", nric)
                 .toString();
     }
-
 }
