@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -13,7 +14,7 @@ import seedu.address.model.person.Phone;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Patient {
+public class Patient implements Listable {
 
     // Identity fields
     private final Name name;
@@ -46,13 +47,18 @@ public class Patient {
      * Returns true if both patients have the same NRIC.
      * This defines a weaker notion of equality between two patients.
      */
-    public boolean isSamePatient(Patient otherPatient) {
+    public boolean isSame(Listable otherListable) {
+        if (!(otherListable instanceof Patient)) {
+            return false;
+        }
+
+        Patient otherPatient = (Patient) otherListable;
+
         if (otherPatient == this) {
             return true;
         }
 
-        return otherPatient != null
-                && otherPatient.getNric().equals(getNric());
+        return otherPatient.getNric().equals(getNric());
     }
 
     /**
