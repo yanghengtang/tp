@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import seedu.address.model.person.Person;
-
 /**
  * A interface for all classes that needs to be added to a UniqueList to implement.
  */

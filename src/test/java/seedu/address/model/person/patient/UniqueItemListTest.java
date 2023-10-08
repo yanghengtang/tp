@@ -1,22 +1,24 @@
 package seedu.address.model.person.patient;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.exceptions.DuplicateItemException;
-import seedu.address.model.person.exceptions.ItemNotFoundException;
-import seedu.address.testutil.PatientBuilder;
-import seedu.address.testutil.TypicalPatient;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPatient.ALICE;
+import static seedu.address.testutil.TypicalPatient.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPatient.ALICE;
-import static seedu.address.testutil.TypicalPatient.BOB;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.exceptions.DuplicateItemException;
+import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.TypicalPatient;
 
 public class UniqueItemListTest {
     private final UniqueItemList<Patient> uniquePatientList = new UniqueItemList<>();
@@ -40,7 +42,8 @@ public class UniqueItemListTest {
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniquePatientList.add(TypicalPatient.ALICE);
-        Patient editedAlice = new PatientBuilder(TypicalPatient.ALICE).withPhone(VALID_PHONE_BOB).withName(VALID_NAME_BOB)
+        Patient editedAlice = new PatientBuilder(TypicalPatient.ALICE).withPhone(VALID_PHONE_BOB)
+                .withName(VALID_NAME_BOB)
                 .build();
         assertTrue(uniquePatientList.contains(editedAlice));
     }
@@ -68,7 +71,8 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_targetItemNotInList_throwsItemNotFoundException() {
-        assertThrows(ItemNotFoundException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, TypicalPatient.ALICE));
+        assertThrows(ItemNotFoundException.class, () -> uniquePatientList.setItem(
+                TypicalPatient.ALICE, TypicalPatient.ALICE));
     }
 
     @Test
@@ -83,7 +87,8 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
         uniquePatientList.add(TypicalPatient.ALICE);
-        Patient editedAlice = new PatientBuilder(TypicalPatient.ALICE).withPhone(VALID_PHONE_BOB).withName(VALID_NAME_BOB)
+        Patient editedAlice = new PatientBuilder(TypicalPatient.ALICE).withPhone(VALID_PHONE_BOB)
+                .withName(VALID_NAME_BOB)
                 .build();
         uniquePatientList.setItem(TypicalPatient.ALICE, editedAlice);
         UniqueItemList<Patient> expectedUniquePatientList = new UniqueItemList<>();

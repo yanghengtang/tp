@@ -1,16 +1,16 @@
 package seedu.address.model.person.patient;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.Listable;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of Listables that enforces uniqueness between its elements and does not allow nulls.
