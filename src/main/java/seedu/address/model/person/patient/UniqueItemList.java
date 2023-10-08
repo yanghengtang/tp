@@ -3,8 +3,8 @@ package seedu.address.model.person.patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.Listable;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateItemException;
+import seedu.address.model.person.exceptions.ItemNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,8 +43,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
     public void add(S toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // TODO: update the exception thrown
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
         internalList.add(toAdd);
     }
@@ -59,13 +58,11 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            // TODO: update the exception thrown
-            throw new PersonNotFoundException();
+            throw new ItemNotFoundException();
         }
 
         if (!target.isSame(editedItem) && contains(editedItem)) {
-            // TODO: update the exception thrown
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
 
         internalList.set(index, editedItem);
@@ -78,7 +75,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
     public void remove(S toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ItemNotFoundException();
         }
     }
 
@@ -94,7 +91,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
     public void setItems(List<S> items) {
         requireAllNonNull(items);
         if (!itemsAreUnique(items)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
 
         internalList.setAll(items);
