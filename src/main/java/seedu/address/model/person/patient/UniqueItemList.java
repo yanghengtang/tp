@@ -3,8 +3,6 @@ package seedu.address.model.person.patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.Listable;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -19,7 +17,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * A Listable is considered unique by comparing using {@code Listable#isSame(Listable)}. As such, adding and updating of
  * items uses Listable#isSame(Listable) for equality so as to ensure that the item being added or updated is
  * unique in terms of identity in the UniqueItemList. However, the removal of a item uses Listable#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * as to ensure that the items with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -93,7 +91,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
      * Replaces the contents of this list with {@code items}.
      * {@code items} must not contain duplicate items.
      */
-    public void setPersons(List<S> items) {
+    public void setItems(List<S> items) {
         requireAllNonNull(items);
         if (!itemsAreUnique(items)) {
             throw new DuplicatePersonException();
