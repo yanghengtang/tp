@@ -271,16 +271,47 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo) - *
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority  | As a … | I want to …                                                                                                                    | So that I can…                                                                               |
+|-----------|--------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| * * *     | user,  | add patient's data into the system                                                                                             | ensure the system will have a record of a new or existing patient.                           |
+| * * *     | user,  | edit a patient's data in the system                                                                                            | modify or update when the patients record has changes.                                       |
+| * * *     | user,  | view list of patients in the system                                                                                            | easily verify their identity.                                                                |
+| * * *     | user,  | delete patients' profile from the system                                                                                       | ensure the system only contains current patients of UHC.                                     |
+| * * *     | user,  | add doctor profile into the system                                                                                             | ensure the system keep tracks of all the doctor working at UHC.                              |
+| * * *     | user,  | view list of doctor profiles in the system                                                                                     | assign the patient to a suitable doctor accordingly.                                         |
+| * * *     | user,  | delete doctor profile from the system                                                                                          | ensure the system only contains doctor that is still working in UHC.                         |
+| * * *     | user,  | add an appointment in the system                                                                                               | ensure the system has a record of this appointment.                                          |
+| * * *     | user,  | view list of appointment in the system                                                                                         | see the information of the appointment.                                                      |
+| * * *     | user,  | delete an appointment from the system                                                                                          | ensure appointment that has been postponed or cancelled will not be reflected in the system. |
+| * * *     | user,  | easily locate available time slots for emergency appointments                                                                  | ensure that urgent cases are seen promptly                                                   |
+| * * *     | user,  | generate a summary of upcoming appointments for patients                                                                       | ensure they receive reminders and stay well-prepared for their scheduled appointments        |
+| * * *     | user,  | view a patient's medical profile and medical histories                                                                         | more efficiently match patients with the right doctor.                                       |
+| * * *     | user,  | quickly view emergency contact information of patients                                                                         | provide useful information in the event of an emergency                                      |
+| * * *     | user,  | update treatment plans for patients                                                                                            | ensure they receive the most up-to-date and effective care.                                  |
+| * * *     | user,  | view patients who have appointments on any day                                                                                 | know who will be coming.                                                                     |
+| * * *     | user,  | quickly locate and retrieve patient records by their names or dates of birth                                                   | streamline the check-in process and reducing wait times                                      |
+| * * *     | user,  | compile a concise daily or monthly appointment schedule                                                                        | enable me to prepare in advance and know my patients in advance                              |
+| * *       | user,  | provide doctors information about a patient's dietary restrictions and preferences                                             | provide tailored dietary advice during their appointments.                                   |
+| * *       | user,  | easily navigate on the application                                                                                             | use it more efficiently.                                                                     |
+| * *       | user,  | provide patients with detailed information about required pre-appointment preparations (e.g., fasting, medication adjustments) | ensure a smooth and successful visit.                                                        |
+| * *       | user,  | schedule recurring appointments for patients with ongoing treatment plans                                                      | ensure that staff and patients do not need to repeatedly book appointments in the system.    |
+| * *       | user,  | generate reports summarizing the number of patient appointments for a specific month                                           | better resource allocation and planning.                                                     |
+| * *       | user,  | view patient consent forms and treatment waivers                                                                               | ensure legal compliance and patient safety.                                                  |
+| * *       | user,  | provide patients with secure access to their medical records and appointment histories                                         | promote transparency and patient engagement.                                                 |
+| *         | user,  | use the system to track and manage the inventory of medical supplies                                                           | ensure what we have what we need for patient care.                                           |
+| *         | user,  | easily transfer patient records to other healthcare facilities or specialists                                                  | ensure there is seamless continuity of care                                                  |
+| *         | user,  | efficiently enter patient check-ins and check-outs                                                                             | keep track of waiting times.                                                                 |
+| *         | user,  | set up automated appointment confirmation messages for patients                                                                | reduce the need for manual confirmation calls.                                               |
+| *         | user,  | add payments for each patient                                                                                                  | streamline the payment process and also reducing administrative errors.                      |
+| *         | user,  | close payments for each patient                                                                                                | streamline the payment process and also reducing administrative errors.                      |
+| *         | user,  | view the prescribed medicine for the patient's latest appointment                                                              | dispense the appropriate medicine.                                                           |
+| *         | user,  | view all outstanding bills of each patient to advise                                                                           | let patients are aware of their financial obligations and can plan accordingly.              |
+| *         | user,  | securely transmit patient invoices and billing information to the finance department                                           | streamline the billing process                                                               |
+| *         | user,  | update patient consent forms and privacy policies                                                                              | let patients review and sign electronically                                                  |
+| *         | user,  | customize appointment reminder messages                                                                                        | cater to patients' preferred communication methods (email, SMS, phone call)                  |
+
 
 *{More to be added}*
 
@@ -299,10 +330,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
-  
-      Use case ends.
+    * 1a2. MediConnect requests for the correct input.
+      
+      Use case resumes at step 1.
 
 **Use case: UC02 View a patient's records**
 
@@ -315,8 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 * 1b. The patient does not exist in the system.
@@ -329,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a specific patient to the list
-2.  AddressBook adds the specific patient to the list 
+2.  MediConnect adds the specific patient to the list 
 
     Use case ends.
 
@@ -337,6 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a.MediConnect detects that the arguments provided to add a patient is invalid.
     * 1a1. MediConnect shows an error message.    
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 
@@ -350,10 +384,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to edit a specific patient’s details.
-2.  MediConnect shows the current details of the patient to the user.
-3.  User edits the patient’s details.
-4.  MediConnect edits the patient’s details.
+1.  User edits a specific patient’s details.
+2.  MediConnect edits the patient’s details.
 
     Use case ends.
 
@@ -361,38 +393,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a.MediConnect detects that the arguments provided to edit a patient is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input.  
-
-    Use case resumes at step 1.
-* 1b. MediConnect detects that patient to be edited does not exist in the system
-    * 1b1. MediConnect shows an error message.
-  
-    Use case ends.
-* 3a.MediConnect detects that the arguments provided to edit a patient is invalid.
-    * 3a1. MediConnect shows an error message.
-    * 3a2 MediConnect requests for the correct input.
-  
-    Steps 3a1-3a2 are repeated until user inputs correct input.       
-  Use case resumes at step 4.
+    * 1a2. MediConnect requests for the correct input.
+   
+      Use case resumes at step 1.
   
 **Use case: UC05 Delete a patient**
   
 **MSS**
 
-1.  User requests to list patients.
-2.  MediConnect shows a list of patients.
-3.  User requests to delete a specific patient in the list.
-4.  MediConnect deletes the person.
+1.  User requests to delete a specific patient in the list.
+2.  MediConnect deletes the person.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. MediConnect detects that the list is empty.
 
   Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. MediConnect shows an error message.
+* 1b. MediConnect detects that the given index is invalid.
+    * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input.
 
       Use case resumes at step 2.
 
@@ -407,12 +428,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input. 
+    
+       Use case resumes at step 1.
 
-      Use case resumes at step 1.
-
-**Use case: UC07 View a doctor’'s records**
+**Use case: UC07 View a doctor’s records**
 
 **MSS**
 
@@ -423,11 +445,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command is invalid.
+* 1a. MediConnect detects that the command is invalid.
     * 1a1. MediConnect shows an error message. 
-  
+    * 1a2. MediConnect requests for the correct input.
+
       Use case resumes at step 1.
-* 1b. The doctor does not exist in the system.
+* 1b. MediConnect detects that the doctor does not exist in the system.
     * 1b1. MediConnect shows an error message. 
   
       Use case resumes at step 1.
@@ -435,23 +458,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC08 Add a doctor**
 
 **MSS**
- 
-1.  User requests to list doctors
-2.  MediConnect shows a list of doctor
-3.  User requests to add a specific doctor to the list
-4.  MediConnect adds the specific doctor to the list
+
+1. User requests to add a specific doctor to the system.
+2. MediConnect adds the specific doctor to the system.
 
     Use case ends.
   
 **Extensions**
   
-* 3a.MediConnect detects that the arguments provided to add a doctor is invalid.
-    * 3a1. MediConnect shows an error message.
-    * 3a2 MediConnect requests for the correct input    
+* 1a. MediConnect detects that the arguments provided to add a doctor is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input    
   
-      Use case resumes at step 3.
-* 3b. MediConnect detects that doctor to be added already exists in the system
-   * 3b1. MediConnect shows an error message.
+      Use case resumes at step 1.
+* 1b. MediConnect detects that doctor to be added already exists in the system
+   * 1b1. MediConnect shows an error message.
   
      Use case ends.
 
@@ -460,9 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to edit a specific doctor’s details.
-2.  MediConnect shows the current details of the doctor to user.
-3.  User edits the doctor’s details.
-4.  AddressBook edits the doctor’s details.
+2.  MediConnect edits the doctor’s details.
 
     Use case ends.
 
@@ -470,50 +489,260 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a.MediConnect detects that the arguments provided to edit a doctor is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input.
+    * 1a2. MediConnect requests for the correct input.
   
       Use case resumes at step 1.
 * 1b. MediConnect detects that doctor to be edited does not exist in the system
     * 1b1. MediConnect shows an error message.
   
       Use case ends.
-* 1a.MediConnect detects that the arguments provided to edit a patient is invalid.
-    * 1a1. MediConnect shows an error message.
-    * 1a2 MediConnect requests for the correct input.
-      Use case resumes at step 3.
   
-**Use case: UC010 Delete a doctor**
+**Use case: UC10 Delete a doctor**
 
 **MSS**
 
-1.  User requests to list doctors.
-2.  MediConnect shows a list of doctors.
-3.  User requests to delete a specific doctor in the list.
-4.  MediConnect deletes the doctor.
+1.  User requests to delete a specific doctor in the list.
+2.  MediConnect deletes the doctor.
 
     Use case ends.
   
 **Extensions**
 
+* 1a. MediConnect detects that the given arguments to delete a doctor is invalid
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+
+**Use case: UC11 View a patient’s upcoming appointments**
+
+**MSS**
+
+1. User requests to view a patient’s upcoming appointments
+2. MediConnect shows the patient’s appointment list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1.
+
+* 1b. MediConnect detects that the patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: UC12 View a doctor’s upcoming appointments**
+
+**MSS**
+
+1. User requests to view a doctor’s upcoming appointments.
+2. MediConnect shows the doctor’s appointment list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1.
+
+* 1b. MediConnect detects that the doctor does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC13 Add an appointment between a patient and doctor**
+
+**MSS**
+
+1. User requests to add a specific appointment between a patient and doctor.
+2. MediConnect adds the appointment to the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to add an appointment is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+
+* 1b. MediConnect detects that the appointment to be added already exists in the system
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC14 Edit an appointment**
+
+**MSS**
+
+1. User requests to edit an appointment.
+2. MediConnect edits the doctor’s details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the arguments provided to edit an appointment is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
+
+      Use case resumes at step 1.
+
+* 1b. MediConnect detects that the appointment to be edited does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC15 Delete an appointment**
+
+**MSS**
+
+1. User requests to delete an appointment in the list
+2. MediConnect deletes the appointment
+
+   Use case ends.
+
+**Extensions**
+
 * 1a. The list is empty.
-  
+
   Use case ends.
-* 3a. The given index is invalid.
+
+* 1b. MediConnect detects that the given index is invalid.
+    * 1b1. MediConnect shows an error message.
+    * 1b2. MediConnect requests for the correct input
+
+      Use case resumes at step 1.
+
+**Use case: UC16 Find a doctor’s availabilities in a given timeframe**
+
+**MSS**
+
+1. User requests to find a doctor’s availability in a given timeframe.
+2. MediConnect shows the doctor’s availability.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1
+
+* 1b. MediConnect detects that the given doctor does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC17 View a patient’s outstanding bills**
+
+**MSS**
+
+1. User requests to view a patient’s bills.
+2. MediConnect shows the patient’s bills.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1
+
+* 1b. MediConnect detects that the given patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC18 Add an outstanding bill to a patient**
+
+**MSS**
+
+1. User requests to add an outstanding bill to a patient.
+2. MediConnect adds the outstanding bill to the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1
+
+* 1b. MediConnect detects that the given patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC19 Close an outstanding bill of a patient**
+
+**MSS**
+
+1. User requests to list outstanding bills a patient has (UC17)
+2. MediConnect shows the list of outstanding bills the patient has
+3. User requests to close a specific bill in the list
+4. MediConnect deletes the bill from the list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the given patient is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input
+
+      Use case resumes at step 1
+
+* 1b. MediConnect detects that the list is empty.
+
+  Use case ends.
+* 3a. MediConnect detects that the given index is invalid.
     * 3a1. MediConnect shows an error message.
-      Use case resumes at step 3.
+
+      Use case resumes at step 2
+
+*{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to add up to 40,000 patients and doctors without a noticeable sluggishness in performance for addition, deletion, update of patients and doctors.
-3.  Should be able to retrieve all appointments for a particular doctor or patient within 1 second
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to handle at least 60,000 patients at any point of time.
+3. Should be able to add, view, edit and delete patients and doctors without a noticeable lag.
+4. Should be able to retrieve all appointments for a particular doctor or patient within 1 second.
+5. Should lose no more than 1-minute worth of data in case of system error. 
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Appointment**: A arranged meeting between a patient and a doctor at a particular date and time
+* **Doctor**: A person providing medical services at UHC
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of identification for patients and doctors in MediConnect
+* **Patient**: A person receiving medical services at UHC
+* **Receptionist**: A person handling administrative work at UHC, and is the target user of MediConnect
 
 --------------------------------------------------------------------------------------------------------------------
 
