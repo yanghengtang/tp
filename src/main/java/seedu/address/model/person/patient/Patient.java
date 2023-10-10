@@ -11,7 +11,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in the system.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient implements Listable {
@@ -76,10 +76,10 @@ public class Patient implements Listable {
             return false;
         }
 
-        Patient otherPerson = (Patient) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && nric.equals(otherPerson.nric);
+        Patient otherPatient = (Patient) other;
+        return name.equals(otherPatient.name)
+                && phone.equals(otherPatient.phone)
+                && nric.equals(otherPatient.nric);
     }
 
     @Override
