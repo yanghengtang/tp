@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,18 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
     public boolean contains(S toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
+    }
+
+    /**
+     * Returns true if the list contains an item that returns true based on the given predicate.
+     *
+     * @param predicate predicate to check the items
+     * @return true if the item exists in the list
+     */
+    public boolean contains(Function<S, Boolean> predicate) {
+        return internalList.stream()
+                .map(item -> predicate.apply(item))
+                .reduce(true, (acc, item) -> acc && item);
     }
 
     /**
