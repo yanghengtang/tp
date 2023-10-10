@@ -47,7 +47,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
     public boolean contains(Function<S, Boolean> predicate) {
         return internalList.stream()
                 .map(item -> predicate.apply(item))
-                .reduce(true, (acc, item) -> acc && item);
+                .reduce(false, (acc, item) -> acc || item);
     }
 
     /**
