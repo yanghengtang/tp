@@ -7,14 +7,25 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatient.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE_NAME;
+import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
+import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
+import static seedu.address.testutil.TypicalPatient.BENSON;
+import static seedu.address.testutil.TypicalPatient.BENSON_NAME;
+import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
+import static seedu.address.testutil.TypicalPatient.BENSON_PHONE;
 import static seedu.address.testutil.TypicalPatient.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 import seedu.address.testutil.PatientBuilder;
@@ -25,18 +36,32 @@ public class UniqueItemListTest {
 
     @Test
     public void contains_nullItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePatientList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.contains((Patient) null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.contains((Function<Patient, Boolean>) null));
     }
 
     @Test
     public void contains_itemNotInList_returnsFalse() {
         assertFalse(uniquePatientList.contains(ALICE));
+        assertFalse(uniquePatientList.contains(patient -> patient.getNric().equals(new Nric(ALICE_NRIC))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getName().equals(new Name(ALICE_NAME))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getPhone().equals(new Phone(ALICE_PHONE))));
+
+        uniquePatientList.add(ALICE);
+        assertFalse(uniquePatientList.contains(BENSON));
+        assertFalse(uniquePatientList.contains(patient -> patient.getNric().equals(new Nric(BENSON_NRIC))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getName().equals(new Name(BENSON_NAME))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getPhone().equals(new Phone(BENSON_PHONE))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getName().equals(new Nric(ALICE_NRIC))));
     }
 
     @Test
     public void contains_itemInList_returnsTrue() {
         uniquePatientList.add(TypicalPatient.ALICE);
         assertTrue(uniquePatientList.contains(TypicalPatient.ALICE));
+        assertTrue(uniquePatientList.contains(patient -> patient.getNric().equals(new Nric(ALICE_NRIC))));
+        assertTrue(uniquePatientList.contains(patient -> patient.getName().equals(new Name(ALICE_NAME))));
+        assertTrue(uniquePatientList.contains(patient -> patient.getPhone().equals(new Phone(ALICE_PHONE))));
     }
 
     @Test
