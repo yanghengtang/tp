@@ -7,34 +7,33 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Nric;
 
 /**
  * Represents a Appointment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment implements Listable {
-    private final Doctor doctor;
-    private final Patient patient;
+    private final Nric doctorNric;
+    private final Nric patientNric;
     private final LocalDateTime dateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Doctor doctor, Patient patient, LocalDateTime dateTime) {
-        requireAllNonNull(doctor, patient, dateTime);
-        this.doctor = doctor;
-        this.patient = patient;
+    public Appointment(Nric doctorNric, Nric patientNric, LocalDateTime dateTime) {
+        requireAllNonNull(doctorNric, patientNric, dateTime);
+        this.doctorNric = doctorNric;
+        this.patientNric = patientNric;
         this.dateTime = dateTime;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Nric getDoctorNric() {
+        return doctorNric;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Nric getPatientNric() {
+        return patientNric;
     }
 
     public LocalDateTime getDateTime() {
@@ -53,8 +52,8 @@ public class Appointment implements Listable {
             return true;
         }
 
-        return otherAppointment.getDoctor().isSame(getDoctor())
-                && otherAppointment.getPatient().isSame(getPatient())
+        return otherAppointment.getDoctorNric().equals(getDoctorNric())
+                && otherAppointment.getPatientNric().equals(getPatientNric())
                 && otherAppointment.getDateTime().equals(getDateTime());
     }
 
@@ -74,22 +73,22 @@ public class Appointment implements Listable {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return doctor.equals(otherAppointment.doctor)
-                && patient.equals(otherAppointment.patient)
+        return doctorNric.equals(otherAppointment.doctorNric)
+                && patientNric.equals(otherAppointment.patientNric)
                 && dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(doctor, patient, dateTime);
+        return Objects.hash(doctorNric, patientNric, dateTime);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("doctor", doctor)
-                .add("patient", patient)
+                .add("doctorNric", doctorNric)
+                .add("patientNric", patientNric)
                 .add("dateTime", dateTime)
                 .toString();
     }
