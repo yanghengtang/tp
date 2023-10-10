@@ -3,12 +3,10 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_2;
-import static seedu.address.testutil.TypicalDoctor.CARL;
-import static seedu.address.testutil.TypicalDoctor.DANIEL;
-import static seedu.address.testutil.TypicalPatient.ELLE;
-import static seedu.address.testutil.TypicalPatient.FIONA;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,10 +23,12 @@ public class AppointmentTest {
         assertFalse(APPOINTMENT_1.isSame(null));
 
         // different Doctor -> returns false
-        assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1).withDoctor(CARL).build()));
+        assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
+                .withDoctorNric(VALID_NRIC_AMY).build()));
 
         // different Patient -> returns false
-        assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1).withPatient(ELLE).build()));
+        assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
+                .withPatientNric(VALID_NRIC_BOB).build()));
 
         // different Date Time -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
@@ -54,11 +54,11 @@ public class AppointmentTest {
         assertFalse(APPOINTMENT_1.equals(APPOINTMENT_2));
 
         // different Doctor -> returns false
-        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withDoctor(DANIEL).build();
+        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withDoctorNric(VALID_NRIC_AMY).build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different Patient -> returns false
-        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withPatient(FIONA).build();
+        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withPatientNric(VALID_NRIC_BOB).build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different DateTime -> returns false
@@ -68,8 +68,9 @@ public class AppointmentTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Appointment.class.getCanonicalName() + "{doctor=" + APPOINTMENT_1.getDoctor()
-                + ", patient=" + APPOINTMENT_1.getPatient() + ", dateTime=" + APPOINTMENT_1.getDateTime() + "}";
+        String expected = Appointment.class.getCanonicalName() + "{doctorNric=" + APPOINTMENT_1.getDoctorNric()
+                + ", patientNric=" + APPOINTMENT_1.getPatientNric()
+                + ", dateTime=" + APPOINTMENT_1.getDateTime() + "}";
         assertEquals(expected, APPOINTMENT_1.toString());
     }
 }
