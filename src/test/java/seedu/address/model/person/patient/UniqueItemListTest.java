@@ -6,7 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPatient.*;
+import static seedu.address.testutil.TypicalPatient.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE_NAME;
+import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
+import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
+import static seedu.address.testutil.TypicalPatient.BENSON;
+import static seedu.address.testutil.TypicalPatient.BENSON_NAME;
+import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
+import static seedu.address.testutil.TypicalPatient.BENSON_PHONE;
+import static seedu.address.testutil.TypicalPatient.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
