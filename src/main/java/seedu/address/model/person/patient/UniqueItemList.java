@@ -45,6 +45,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
      * @return true if the item exists in the list
      */
     public boolean contains(Function<S, Boolean> predicate) {
+        requireNonNull(predicate);
         return internalList.stream()
                 .map(item -> predicate.apply(item))
                 .reduce(false, (acc, item) -> acc || item);
