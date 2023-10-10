@@ -3,26 +3,25 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Nric;
 
 /**
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
-    public static final Doctor DEFAULT_DOCTOR = TypicalDoctor.ALICE;
-    public static final Patient DEFAULT_PATIENT = TypicalPatient.BOB;
+    public static final String DEFAULT_DOCTOR_NRIC = "T0123456A";
+    public static final String DEFAULT_PATIENT_NRIC = "S9987654B";
     public static final String DEFAULT_DATE_TIME = "2023-09-11T07:30";
-    private Doctor doctor;
-    private Patient patient;
+    private Nric doctorNric;
+    private Nric patientNric;
     private LocalDateTime dateTime;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        doctor = DEFAULT_DOCTOR;
-        patient = DEFAULT_PATIENT;
+        doctorNric = new Nric(DEFAULT_DOCTOR_NRIC);
+        patientNric = new Nric(DEFAULT_PATIENT_NRIC);
         dateTime = LocalDateTime.parse(DEFAULT_DATE_TIME);
     }
 
@@ -30,24 +29,24 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code doctorToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        doctor = appointmentToCopy.getDoctor();
-        patient = appointmentToCopy.getPatient();
+        doctorNric = appointmentToCopy.getDoctorNric();
+        patientNric = appointmentToCopy.getPatientNric();
         dateTime = appointmentToCopy.getDateTime();
     }
 
     /**
      * Sets the {@code Doctor} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public AppointmentBuilder withDoctorNric(String doctorNric) {
+        this.doctorNric = new Nric(doctorNric);
         return this;
     }
 
     /**
      * Sets the {@code Patient} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withPatient(Patient patient) {
-        this.patient = patient;
+    public AppointmentBuilder withPatientNric(String patientNric) {
+        this.patientNric = new Nric(patientNric);
         return this;
     }
 
@@ -60,6 +59,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(doctor, patient, dateTime);
+        return new Appointment(doctorNric, patientNric, dateTime);
     }
 }
