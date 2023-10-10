@@ -26,7 +26,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Initializes the AppointmentBuilder with the data of {@code doctorToCopy}.
+     * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
         doctorNric = appointmentToCopy.getDoctorNric();
@@ -35,7 +35,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code Doctor} of the {@code Appointment} that we are building.
+     * Sets the {@code DoctorNRIC} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withDoctorNric(String doctorNric) {
         this.doctorNric = new Nric(doctorNric);
@@ -43,7 +43,7 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code Patient} of the {@code Appointment} that we are building.
+     * Sets the {@code PatientNRIC} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withPatientNric(String patientNric) {
         this.patientNric = new Nric(patientNric);

@@ -22,11 +22,11 @@ public class AppointmentTest {
         // null -> returns false
         assertFalse(APPOINTMENT_1.isSame(null));
 
-        // different Doctor -> returns false
+        // different Doctor NRIC -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
                 .withDoctorNric(VALID_NRIC_AMY).build()));
 
-        // different Patient -> returns false
+        // different Patient NRIC -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
                 .withPatientNric(VALID_NRIC_BOB).build()));
 
@@ -53,11 +53,11 @@ public class AppointmentTest {
         // different person -> returns false
         assertFalse(APPOINTMENT_1.equals(APPOINTMENT_2));
 
-        // different Doctor -> returns false
+        // different Doctor NRIC -> returns false
         Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withDoctorNric(VALID_NRIC_AMY).build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
-        // different Patient -> returns false
+        // different Patient NRIC -> returns false
         editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withPatientNric(VALID_NRIC_BOB).build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
