@@ -44,6 +44,7 @@ public class UniqueItemListTest {
         assertFalse(uniquePatientList.contains(patient -> patient.getNric().equals(new Nric(BENSON_NRIC))));
         assertFalse(uniquePatientList.contains(patient -> patient.getName().equals(new Name(BENSON_NAME))));
         assertFalse(uniquePatientList.contains(patient -> patient.getPhone().equals(new Phone(BENSON_PHONE))));
+        assertFalse(uniquePatientList.contains(patient -> patient.getName().equals(new Nric(ALICE_NRIC))));
     }
 
     @Test
