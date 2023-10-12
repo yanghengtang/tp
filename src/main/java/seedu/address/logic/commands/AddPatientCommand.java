@@ -14,7 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
  */
 public class AddPatientCommand extends NewCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add_p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
