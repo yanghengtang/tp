@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.CARL;
+import static seedu.address.testutil.TypicalPatient.CARL_NRIC;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,6 +16,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 
 public class NewModelManagerTest {
@@ -100,6 +103,32 @@ public class NewModelManagerTest {
     }
 
     @Test
+    public void hasDoctorWithNric_doctorNricNotInDatabase_returnsFalse() {
+        Nric doctorNric = new Nric(ALICE_NRIC);
+        assertFalse(modelManager.hasDoctorWithNric(doctorNric));
+    }
+
+    @Test
+    public void hasPatientWithNric_patientNricNotInDatabase_returnsFalse() {
+        Nric patientNric = new Nric(CARL_NRIC);
+        assertFalse(modelManager.hasPatientWithNric(patientNric));
+    }
+
+    @Test
+    public void hasDoctorWithNric_doctorNricInDatabase_returnsFalse() {
+        Nric doctorNric = new Nric(ALICE_NRIC);
+        modelManager.addDoctor(ALICE);
+        assertTrue(modelManager.hasDoctorWithNric(doctorNric));
+    }
+
+    @Test
+    public void hasPatientWithNric_patientNricInDatabase_returnsFalse() {
+        Nric patientNric = new Nric(CARL_NRIC);
+        modelManager.addPatient(CARL);
+        assertTrue(modelManager.hasPatientWithNric(patientNric));
+    }
+
+    @Test
     public void hasAppointment_appointmentInDatabase_returnsTrue() {
         modelManager.addAppointment(APPOINTMENT_1);
         assertTrue(modelManager.hasAppointment(APPOINTMENT_1));
@@ -118,18 +147,36 @@ public class NewModelManagerTest {
     }
 
     @Test
-    public void deleteAppointment_emptyDatabase_throwsItemNotFoundException() {
+    public void deleteAppointment_appointmentNotInDatabase_throwsItemNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> modelManager.deleteAppointment(APPOINTMENT_1));
     }
 
     @Test
-    public void deleteDoctor_emptyDatabase_throwsItemNotFoundException() {
+    public void deleteDoctor_doctorNotInDatabase_throwsItemNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> modelManager.deleteDoctor(ALICE));
     }
 
     @Test
-    public void deletePatient_emptyDatabase_throwsItemNotFoundException() {
+    public void deletePatient_patientNotInDatabase_throwsItemNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> modelManager.deletePatient(CARL));
+    }
+
+    @Test
+    public void setAppointment_nullAppointment_throwsNullPointerException() {
+        modelManager.addAppointment(APPOINTMENT_1);
+        assertThrows(NullPointerException.class, () -> modelManager.setAppointment(APPOINTMENT_1, null));
+    }
+
+    @Test
+    public void setDoctor_nullDoctor_throwsNullPointerException() {
+        modelManager.addDoctor(ALICE);
+        assertThrows(NullPointerException.class, () -> modelManager.setDoctor(ALICE, null));
+    }
+
+    @Test
+    public void setPatient_nullPatient_throwsNullPointerException() {
+        modelManager.addPatient(CARL);
+        assertThrows(NullPointerException.class, () -> modelManager.setPatient(CARL, null));
     }
 
     @Test
