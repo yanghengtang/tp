@@ -16,16 +16,18 @@ import seedu.address.model.person.Nric;
 public class Appointment implements Listable {
     private final Nric doctorNric;
     private final Nric patientNric;
-    private final LocalDateTime dateTime;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Nric doctorNric, Nric patientNric, LocalDateTime dateTime) {
-        requireAllNonNull(doctorNric, patientNric, dateTime);
+    public Appointment(Nric doctorNric, Nric patientNric, LocalDateTime startTime, LocalDateTime endTime) {
+        requireAllNonNull(doctorNric, patientNric, startTime, endTime);
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;
-        this.dateTime = dateTime;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Nric getDoctorNric() {
@@ -36,10 +38,13 @@ public class Appointment implements Listable {
         return patientNric;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
     @Override
     public boolean isSame(Listable otherListable) {
         if (!(otherListable instanceof Appointment)) {
@@ -54,7 +59,8 @@ public class Appointment implements Listable {
 
         return otherAppointment.getDoctorNric().equals(getDoctorNric())
                 && otherAppointment.getPatientNric().equals(getPatientNric())
-                && otherAppointment.getDateTime().equals(getDateTime());
+                && otherAppointment.getStartTime().equals(getStartTime())
+                && otherAppointment.getEndTime().equals(getEndTime());
     }
 
     /**
@@ -75,13 +81,14 @@ public class Appointment implements Listable {
         Appointment otherAppointment = (Appointment) other;
         return doctorNric.equals(otherAppointment.doctorNric)
                 && patientNric.equals(otherAppointment.patientNric)
-                && dateTime.equals(otherAppointment.dateTime);
+                && startTime.equals(otherAppointment.startTime)
+                && endTime.equals(otherAppointment.endTime);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(doctorNric, patientNric, dateTime);
+        return Objects.hash(doctorNric, patientNric, startTime, endTime);
     }
 
     @Override
@@ -89,7 +96,8 @@ public class Appointment implements Listable {
         return new ToStringBuilder(this)
                 .add("doctorNric", doctorNric)
                 .add("patientNric", patientNric)
-                .add("dateTime", dateTime)
+                .add("startTime", startTime)
+                .add("endTime", endTime)
                 .toString();
     }
 }
