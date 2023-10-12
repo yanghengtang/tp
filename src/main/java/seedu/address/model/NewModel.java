@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
@@ -77,6 +78,16 @@ public interface NewModel {
      * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
      */
     boolean hasPatient(Patient patient);
+
+    /**
+     * Returns true if a doctor with the same NRIC as {@code doctor} exists in the database.
+     */
+    boolean hasDoctorWithNric(Nric nric);
+
+    /**
+     * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
+     */
+    boolean hasPatientWithNric(Nric nric);
 
     /**
      * Deletes the given appointment.
