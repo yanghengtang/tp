@@ -9,9 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Phone;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
-import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,12 +114,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code nric} into an {@code Nric} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code nric} into an {@code NRIC} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified nric is invalid.
      */
     public static Nric parseNric(String nric) throws ParseException {
-        String trimmedNric = nric.trim();
+        String trimmedNric = nric.trim().toUpperCase();
         if (!Nric.isValidNric(trimmedNric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
