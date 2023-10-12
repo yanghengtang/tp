@@ -10,6 +10,8 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
@@ -35,8 +37,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PATIENT_NRIC, PREFIX_DOCTOR_NRIC, PREFIX_APPOINTMENT_START_TIME, PREFIX_APPOINTMENT_END_TIME);
         Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_PATIENT_NRIC).get());
         Nric doctorNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_DOCTOR_NRIC).get());
+        AppointmentStartTime start = ParserUtil.parseAppointmentStartTime(argMultimap.getValue(PREFIX_APPOINTMENT_START_TIME).get());
+        AppointmentEndTime end = ParserUtil.parseAppointmentEndTime(argMultimap.getValue(PREFIX_APPOINTMENT_END_TIME).get());
 
-        Appointment appointment = new Appointment(patientNric, doctorNric);
+        Appointment appointment = new Appointment(patientNric, doctorNric, start, end);
 
         return new AddAppointmentCommand(appointment);
     }

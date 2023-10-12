@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
@@ -108,16 +110,42 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code nric} into an {@code Nric} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Nric parseNric(String nric) throws ParseException {
         String trimmedNric = nric.trim();
         if (!Nric.isValidNric(trimmedNric)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
         return new Nric(trimmedNric);
+    }
+
+    /**
+     * Parses {@code time} into an {@code AppointmentStartTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified time is invalid (or not correct format).
+     */
+    public static AppointmentStartTime parseAppointmentStartTime(String time) throws ParseException {
+        String trimmedTime = time.trim();
+        if (!AppointmentStartTime.isValidAppointmmentTime(trimmedTime)) {
+            throw new ParseException(AppointmentStartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentStartTime(trimmedTime);
+    }
+
+    /**
+     * Parses {@code time} into an {@code AppointmentEndTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified time is invalid (or not correct format).
+     */
+    public static AppointmentEndTime parseAppointmentEndTime(String time) throws ParseException {
+        String trimmedTime = time.trim();
+        if (!AppointmentEndTime.isValidAppointmmentTime(trimmedTime)) {
+            throw new ParseException(AppointmentEndTime.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentEndTime(trimmedTime);
     }
 
     /**

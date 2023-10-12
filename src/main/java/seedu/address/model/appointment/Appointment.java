@@ -16,13 +16,13 @@ import seedu.address.model.person.Nric;
 public class Appointment implements Listable {
     private final Nric doctorNric;
     private final Nric patientNric;
-    private final LocalDateTime startTime;
-    private final LocalDateTime endTime;
+    private final AppointmentStartTime startTime;
+    private final AppointmentEndTime endTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Nric doctorNric, Nric patientNric, LocalDateTime startTime, LocalDateTime endTime) {
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentStartTime startTime, AppointmentEndTime endTime) {
         requireAllNonNull(doctorNric, patientNric, startTime, endTime);
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;
@@ -39,11 +39,11 @@ public class Appointment implements Listable {
     }
 
     public LocalDateTime getStartTime() {
-        return startTime;
+        return startTime.time;
     }
 
     public LocalDateTime getEndTime() {
-        return endTime;
+        return endTime.time;
     }
     @Override
     public boolean isSame(Listable otherListable) {
