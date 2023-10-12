@@ -14,6 +14,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.exceptions.ItemNotFoundException;
+
 public class NewModelManagerTest {
     private NewModelManager modelManager = new NewModelManager();
 
@@ -113,6 +115,21 @@ public class NewModelManagerTest {
     public void hasPatient_patientInDatabase_returnsTrue() {
         modelManager.addPatient(CARL);
         assertTrue(modelManager.hasPatient(CARL));
+    }
+
+    @Test
+    public void deleteAppointment_emptyDatabase_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> modelManager.deleteAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void deleteDoctor_emptyDatabase_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> modelManager.deleteDoctor(ALICE));
+    }
+
+    @Test
+    public void deletePatient_emptyDatabase_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> modelManager.deletePatient(CARL));
     }
 
     @Test
