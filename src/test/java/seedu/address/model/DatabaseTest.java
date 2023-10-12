@@ -9,11 +9,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
 import static seedu.address.testutil.TypicalDoctor.BENSON;
+import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
 import static seedu.address.testutil.TypicalPatient.CARL;
 import static seedu.address.testutil.TypicalPatient.DANIEL;
+import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +34,23 @@ public class DatabaseTest {
     private final Database database = new Database();
 
     @Test
-    public void constructor() {
+    public void emptyConstructor() {
         assertEquals(Collections.emptyList(), database.getAppointmentList());
         assertEquals(Collections.emptyList(), database.getDoctorList());
         assertEquals(Collections.emptyList(), database.getPatientList());
+    }
+
+    @Test
+    public void copyConstructor() {
+        List<Appointment> appointmentList = new ArrayList<>();
+        List<Doctor> doctorList = getTypicalDoctor();
+        List<Patient> patientList = getTypicalPatient();
+        DatabaseStub newData = new DatabaseStub(appointmentList, doctorList, patientList);
+
+        Database newDatabase = new Database(newData);
+        assertEquals(appointmentList, newDatabase.getAppointmentList());
+        assertEquals(doctorList, newDatabase.getDoctorList());
+        assertEquals(patientList, newDatabase.getPatientList());
     }
 
     @Test
