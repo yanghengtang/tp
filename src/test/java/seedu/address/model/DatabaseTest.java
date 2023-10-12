@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalPatient.CARL;
 import static seedu.address.testutil.TypicalPatient.DANIEL;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
