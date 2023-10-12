@@ -1,15 +1,23 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.NewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.person.patient.Patient;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.NewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Phone;
+
+
+
+
 
 /**
  * Parses input arguments and creates a new AddCommand object

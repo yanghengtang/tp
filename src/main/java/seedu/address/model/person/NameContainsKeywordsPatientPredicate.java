@@ -1,11 +1,13 @@
 package seedu.address.model.person;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.patient.Patient;
 
-import java.util.List;
-import java.util.function.Predicate;
+
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -34,7 +36,8 @@ public class NameContainsKeywordsPatientPredicate implements Predicate<Patient> 
             return false;
         }
 
-        NameContainsKeywordsPatientPredicate otherNameContainsKeywordsPatientPredicate = (NameContainsKeywordsPatientPredicate) other;
+        NameContainsKeywordsPatientPredicate otherNameContainsKeywordsPatientPredicate =
+                (NameContainsKeywordsPatientPredicate) other;
         return keywords.equals(otherNameContainsKeywordsPatientPredicate.keywords);
     }
 

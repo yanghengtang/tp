@@ -1,13 +1,18 @@
 package seedu.address.logic.commands;
-import seedu.address.model.NewModel;
-import seedu.address.model.person.patient.Patient;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.NewModel;
+import seedu.address.model.person.patient.Patient;
 
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+
 
 /**
  * Adds a patient to the address book.
@@ -24,7 +29,7 @@ public class AddPatientCommand extends NewCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "A0123456B ";
+            + PREFIX_NRIC + "A0123456B ";
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
     private final Patient toAdd;

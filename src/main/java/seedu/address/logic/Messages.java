@@ -49,6 +49,10 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code patient} for display to the user.
+     */
+
     public static String format(Patient patient) {
         final StringBuilder builder = new StringBuilder();
         builder.append(patient.getName())
