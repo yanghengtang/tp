@@ -26,8 +26,9 @@ public class Nric {
      */
     public Nric(String nric) {
         requireNonNull(nric);
-        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
-        this.nric = nric;
+        String uppercaseNric = nric.toUpperCase();
+        checkArgument(isValidNric(uppercaseNric), MESSAGE_CONSTRAINTS);
+        this.nric = uppercaseNric;
     }
 
     /**

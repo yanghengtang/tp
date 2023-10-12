@@ -114,10 +114,10 @@ public class ParserUtil {
     /**
      * Parses {@code nric} into an {@code NRIC} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid.
+     * @throws ParseException if the specified nric is invalid.
      */
     public static Nric parseNric(String nric) throws ParseException {
-        String trimmedNric = nric.trim();
+        String trimmedNric = nric.trim().toUpperCase();
         if (!Nric.isValidNric(trimmedNric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }

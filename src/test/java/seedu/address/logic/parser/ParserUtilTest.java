@@ -36,7 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
-    private static final String VALID_NRIC = "T0234567G";
+    private static final String VALID_NRIC = "T1234567G";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -209,15 +209,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseNric_validValueWithoutWhitespace_returnsName() throws Exception {
+    public void parseNric_validValueWithoutWhitespace_returnsNric() throws Exception {
         Nric expectedNric = new Nric(VALID_NRIC);
         assertEquals(expectedNric, ParserUtil.parseNric(VALID_NRIC));
     }
 
     @Test
-    public void parseNric_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+    public void parseNric_validValueWithWhitespace_returnsTrimmedNric() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NRIC + WHITESPACE;
         Nric expectedNric = new Nric(VALID_NRIC);
         assertEquals(expectedNric, ParserUtil.parseNric(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseNric_validValueWithLowerCase_returnsTrimmedNric() throws Exception {
+        String lowercaseNric = VALID_NRIC.toLowerCase();
+        Nric expectedNric = new Nric(VALID_NRIC);
+        assertEquals(expectedNric, ParserUtil.parseNric(lowercaseNric));
     }
 }
