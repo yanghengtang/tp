@@ -152,6 +152,14 @@ public class Database implements ReadOnlyDatabase {
     }
 
     /**
+     * Returns true if a patient with the given NRIC {@code nric} exists in the database.
+     */
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return patients.contains(patient -> patient.getNric().equals(nric));
+    }
+
+    /**
      * Adds a patient to the database.
      * The patient must not already exist in the database.
      */
