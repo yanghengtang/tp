@@ -8,6 +8,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.person.patient.UniqueItemList;
@@ -108,6 +109,14 @@ public class Database implements ReadOnlyDatabase {
     }
 
     /**
+     * Returns true if a doctor with the given NRIC as {@code nric} exists in the database.
+     */
+    public boolean hasDoctorWithNric(Nric nric) {
+        requireNonNull(nric);
+        return doctors.contains(doctor -> doctor.getNric().equals(nric));
+    }
+
+    /**
      * Adds a doctor to the database.
      * The doctor must not already exist in the database.
      */
@@ -140,6 +149,14 @@ public class Database implements ReadOnlyDatabase {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patients.contains(patient);
+    }
+
+    /**
+     * Returns true if a patient with the given NRIC {@code nric} exists in the database.
+     */
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return patients.contains(patient -> patient.getNric().equals(nric));
     }
 
     /**
