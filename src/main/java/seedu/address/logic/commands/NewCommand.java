@@ -11,10 +11,10 @@ public abstract class NewCommand {
     /**
      * Executes the command and returns the result message.
      *
-     * @param newModel {@code NewModel} which the command should operate on.
+     * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(NewModel newModel) throws CommandException;
+    public abstract CommandResult execute(NewModel model) throws CommandException;
 
 }
