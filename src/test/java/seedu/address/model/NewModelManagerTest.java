@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
@@ -17,7 +18,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.DoctorBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class NewModelManagerTest {
     private NewModelManager modelManager = new NewModelManager();
@@ -143,6 +148,43 @@ public class NewModelManagerTest {
     @Test
     public void hasPatient_patientInDatabase_returnsTrue() {
         modelManager.addPatient(CARL);
+        assertTrue(modelManager.hasPatient(CARL));
+    }
+
+    @Test
+    public void hasAppointment_appointmentRemovedFromDatabase_returnsTrue() {
+        modelManager.addAppointment(APPOINTMENT_1);
+        modelManager.deleteAppointment(APPOINTMENT_1);
+        assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void hasDoctor_doctorRemovedFromDatabase_returnsTrue() {
+        modelManager.addDoctor(ALICE);
+        modelManager.deleteDoctor(ALICE);
+        assertFalse(modelManager.hasDoctor(ALICE));
+    }
+
+    @Test
+    public void hasPatient_patientRemovedFromDatabase_returnsTrue() {
+        modelManager.addPatient(CARL);
+        modelManager.deletePatient(CARL);
+        assertFalse(modelManager.hasPatient(CARL));
+    }
+
+    @Test
+    public void hasDoctor_doctorWithDifferentName_returnsTrue() {
+        Doctor editedAlice = new DoctorBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        modelManager.addDoctor(ALICE);
+        modelManager.setDoctor(ALICE, editedAlice);
+        assertTrue(modelManager.hasDoctor(ALICE));
+    }
+
+    @Test
+    public void hasPatient_patientWithDifferentName_returnsTrue() {
+        Patient editedCarl = new PatientBuilder(CARL).withName(VALID_NAME_BOB).build();
+        modelManager.addPatient(CARL);
+        modelManager.setPatient(CARL, editedCarl);
         assertTrue(modelManager.hasPatient(CARL));
     }
 
