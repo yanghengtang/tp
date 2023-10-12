@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
@@ -110,6 +111,18 @@ public class NewModelManager implements NewModel {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return database.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasDoctorWithNric(Nric nric) {
+        requireNonNull(nric);
+        return database.hasDoctorWithNric(nric);
+    }
+
+    @Override
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return database.hasPatientWithNric(nric);
     }
 
     @Override
