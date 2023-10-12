@@ -6,14 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+import seedu.address.model.NewModel;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
  */
-public class AddAppointmentCommand extends Command {
+public class AddAppointmentCommand extends NewCommand {
 
     public static final String COMMAND_WORD = "add_a";
 
@@ -25,7 +24,9 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_END_TIME + "END_TIME " ;
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This Appointment already exists in the list of appointments";
+    public static final String MESSAGE_INVALID_DOCTOR= "This Doctor does not exist in the list of doctors";
+    public static final String MESSAGE_INVALID_PATIENT= "This Patient does not exist in the list of patients";
 
     private final Appointment toAdd;
 
@@ -37,15 +38,22 @@ public class AddAppointmentCommand extends Command {
         toAdd = appointment;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!model.hasDoctorWithNric(toAdd.getDoctorNric())) {
+            throw new CommandException(MESSAGE_INVALID_DOCTOR);
         }
 
-        model.addPerson(toAdd);
+        if (!model.hasPatientWithNric(toAdd.getPatientNric())) {
+            throw new CommandException(MESSAGE_INVALID_PATIENT);
+        }
+
+        if (model.hasAppointment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
@@ -56,11 +64,11 @@ public class AddAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddAppointmentCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
+        AddAppointmentCommand otherAddCommand = (AddAppointmentCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
