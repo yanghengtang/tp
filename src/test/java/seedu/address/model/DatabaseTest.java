@@ -104,6 +104,7 @@ public class DatabaseTest {
     public void hasDoctor_doctorWithSameNricInDatabase_returnsTrue() {
         database.addDoctor(BENSON);
         Doctor editedBenson = new DoctorBuilder(BENSON).withName(VALID_NAME_BOB).build();
+        database.setDoctor(BENSON, editedBenson);
         assertTrue(database.hasDoctor(editedBenson));
     }
 
@@ -111,7 +112,15 @@ public class DatabaseTest {
     public void hasPatient_patientWithSameNricInDatabase_returnsTrue() {
         database.addPatient(DANIEL);
         Patient editedDaniel = new PatientBuilder(DANIEL).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
+        database.setPatient(DANIEL, editedDaniel);
         assertTrue(database.hasPatient(editedDaniel));
+    }
+
+    @Test
+    public void hasAppointment_appointmentRemovedFromDatabase_returnsFalse() {
+        database.addAppointment(APPOINTMENT_1);
+        database.removeAppointment(APPOINTMENT_1);
+        assertFalse(database.hasAppointment(APPOINTMENT_1));
     }
 
     @Test
@@ -141,6 +150,34 @@ public class DatabaseTest {
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> database.getPatientList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns true
+        assertTrue(database.equals(database));
+
+        // same values -> returns true
+        Database newDatabase = new Database(database);
+        assertTrue(database.equals(newDatabase));
+
+        // null -> returns false
+        assertFalse(database.equals(null));
+
+        // different type -> returns false
+        assertFalse(database.equals(5.0));
+
+        // different doctorList -> return false;
+        List<Doctor> doctorList = getTypicalDoctor();
+        newDatabase = new Database();
+        newDatabase.setDoctors(doctorList);
+        assertFalse(database.equals(newDatabase));
+
+        // different patientList -> return false;
+        List<Patient> patientList = getTypicalPatient();
+        newDatabase = new Database();
+        newDatabase.setPatients(patientList);
+        assertFalse(database.equals(newDatabase));
     }
 
     @Test
