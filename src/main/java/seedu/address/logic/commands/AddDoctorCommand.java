@@ -11,19 +11,19 @@ import seedu.address.model.NewModel;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Adds a doctor to the address book.
+ * Adds a doctor to the database.
  */
 public class AddDoctorCommand extends NewCommand {
 
     public static final String COMMAND_WORD = "add_d";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a doctor to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a doctor to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the database";
 
     private final Doctor toAdd;
 
