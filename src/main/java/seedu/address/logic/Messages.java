@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
 /**
@@ -62,5 +63,17 @@ public class Messages {
                 .append(patient.getNric());
         return builder.toString();
     }
+
+    /**
+     * Formats the {@code doctor} for display to the user.
+     */
+    public static String format(Doctor doctor) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(doctor.getName())
+                .append("; Nric: ")
+                .append(doctor.getNric());
+        return builder.toString();
+    }
+
 
 }
