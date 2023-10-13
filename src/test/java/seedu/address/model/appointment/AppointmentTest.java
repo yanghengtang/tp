@@ -32,7 +32,7 @@ public class AppointmentTest {
 
         // different Date Time -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
-                .withDateTime("2023-12-01T10:30").build()));
+                .withStartTime("2023-12-01 10:30").build()));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AppointmentTest {
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different DateTime -> returns false
-        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withDateTime("2023-12-01T12:00").build();
+        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-12-01 12:00").build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
     }
 
@@ -70,7 +70,9 @@ public class AppointmentTest {
     public void toStringMethod() {
         String expected = Appointment.class.getCanonicalName() + "{doctorNric=" + APPOINTMENT_1.getDoctorNric()
                 + ", patientNric=" + APPOINTMENT_1.getPatientNric()
-                + ", dateTime=" + APPOINTMENT_1.getDateTime() + "}";
+                + ", startTime=" + APPOINTMENT_1.getStartTime()
+                + ", endTime=" + APPOINTMENT_1.getEndTime()
+                + "}";
         assertEquals(expected, APPOINTMENT_1.toString());
     }
 }

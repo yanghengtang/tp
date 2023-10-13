@@ -2,11 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -38,6 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_APPOINTMENT_TIME = "2023-09-11 16:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -50,11 +47,24 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String APPOINTMENT_START_TIME_DESC = " " + PREFIX_APPOINTMENT_START_TIME + VALID_APPOINTMENT_TIME;
+    public static final String APPOINTMENT_END_TIME_DESC = " " + PREFIX_APPOINTMENT_END_TIME + VALID_APPOINTMENT_TIME;
+    public static final String NRIC_DESC_AMY = " " + PREFIX_PATIENT_NRIC + VALID_NRIC_AMY;
+    public static final String NRIC_DESC_BOB = " " + PREFIX_DOCTOR_NRIC + VALID_NRIC_BOB;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_APPOINTMENT_START_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_START_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_APPOINTMENT_END_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_END_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_NRIC_DESC_AMY = " " + PREFIX_PATIENT_NRIC + VALID_NRIC_AMY;
+    public static final String INVALID_NRIC_DESC_BOB = " " + PREFIX_DOCTOR_NRIC + VALID_NRIC_BOB;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

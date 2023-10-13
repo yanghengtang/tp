@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
 
 /**
@@ -11,12 +13,12 @@ import seedu.address.model.person.Nric;
 public class AppointmentBuilder {
     public static final String DEFAULT_DOCTOR_NRIC = "T0123456A";
     public static final String DEFAULT_PATIENT_NRIC = "S9987654B";
-    public static final String DEFAULT_START_TIME = "2023-09-11T07:30";
-    public static final String DEFAULT_END_TIME = "2023-09-11T08:00";
+    public static final String DEFAULT_START_TIME = "2023-09-11 07:30";
+    public static final String DEFAULT_END_TIME = "2023-09-11 08:00";
     private Nric doctorNric;
     private Nric patientNric;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private AppointmentStartTime startTime;
+    private AppointmentEndTime endTime;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
@@ -24,8 +26,8 @@ public class AppointmentBuilder {
     public AppointmentBuilder() {
         doctorNric = new Nric(DEFAULT_DOCTOR_NRIC);
         patientNric = new Nric(DEFAULT_PATIENT_NRIC);
-        startTime = LocalDateTime.parse(DEFAULT_START_TIME);
-        endTime = LocalDateTime.parse(DEFAULT_END_TIME);
+        startTime = new AppointmentStartTime(DEFAULT_START_TIME);
+        endTime = new AppointmentEndTime(DEFAULT_END_TIME);
     }
 
     /**
@@ -58,12 +60,12 @@ public class AppointmentBuilder {
      * Sets the {@code LocalDateTime} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withStartTime(String startTime) {
-        this.startTime = LocalDateTime.parse(startTime);
+        this.startTime = new AppointmentStartTime(startTime);
         return this;
     }
 
     public AppointmentBuilder withEndTime(String endTime) {
-        this.endTime = LocalDateTime.parse(endTime);
+        this.endTime = new AppointmentEndTime(endTime);
         return this;
     }
 
