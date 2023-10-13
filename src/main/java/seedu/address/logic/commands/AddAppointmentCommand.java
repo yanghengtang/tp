@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,12 +24,13 @@ public class AddAppointmentCommand extends NewCommand {
             + PREFIX_PATIENT_NRIC + "PATIENT_NRIC"
             + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC"
             + PREFIX_APPOINTMENT_START_TIME + "START_TIME "
-            + PREFIX_APPOINTMENT_END_TIME + "END_TIME " ;
+            + PREFIX_APPOINTMENT_END_TIME + "END_TIME ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This Appointment already exists in the list of appointments";
-    public static final String MESSAGE_INVALID_DOCTOR= "This Doctor does not exist in the list of doctors";
-    public static final String MESSAGE_INVALID_PATIENT= "This Patient does not exist in the list of patients";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "This Appointment already exists in the list of appointments";
+    public static final String MESSAGE_INVALID_DOCTOR = "This Doctor does not exist in the list of doctors";
+    public static final String MESSAGE_INVALID_PATIENT = "This Patient does not exist in the list of patients";
 
     private final Appointment toAdd;
 
@@ -38,6 +42,7 @@ public class AddAppointmentCommand extends NewCommand {
         toAdd = appointment;
     }
 
+    @Override
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
 

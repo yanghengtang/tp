@@ -1,21 +1,20 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.person.Email;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
- * Represents a Person's email in the address book.
+ * Represents a Appointment's end time in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointmmentTime(String)}
  */
 public class AppointmentEndTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Appointment end date and time should be of the format YYYY-MM-DD HHmm ";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Appointment end date and time should be of the format YYYY-MM-DD HHmm ";
     public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
     public static final DateTimeFormatter
             DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
@@ -24,7 +23,7 @@ public class AppointmentEndTime {
     /**
      * Constructs an {@code AppointmentStartTime}.
      *
-     * @param time A valid LocalDateTime time.
+     * @param time A valid String time.
      */
     public AppointmentEndTime(String time) {
         requireNonNull(time);

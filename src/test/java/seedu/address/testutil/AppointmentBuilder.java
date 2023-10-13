@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.time.LocalDateTime;
-
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
@@ -57,13 +55,16 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code LocalDateTime} of the {@code Appointment} that we are building.
+     * Sets the {@code startTime} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withStartTime(String startTime) {
         this.startTime = new AppointmentStartTime(startTime);
         return this;
     }
 
+    /**
+     * Sets the {@code endTime} of the {@code Appointment} that we are building.
+     */
     public AppointmentBuilder withEndTime(String endTime) {
         this.endTime = new AppointmentEndTime(endTime);
         return this;

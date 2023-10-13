@@ -36,7 +36,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_AppointmentAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded();
         Appointment validAppointment = new AppointmentBuilder().build();
 

@@ -1,11 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_END_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.DOCTOR_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_END_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DOCTOR_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PATIENT_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PATIENT_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
@@ -17,7 +30,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {
@@ -48,7 +61,7 @@ public class AddAppointmentCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PATIENT_NRIC));
 
         // multiple doctor nric
-        assertParseFailure(parser, DOCTOR_NRIC_DESC  + validExpectedAppointmentString,
+        assertParseFailure(parser, DOCTOR_NRIC_DESC + validExpectedAppointmentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DOCTOR_NRIC));
 
         // multiple apointment start dates
@@ -178,7 +191,7 @@ public class AddAppointmentCommandParserTest {
                         + APPOINTMENT_END_TIME_DESC,
                 Nric.MESSAGE_CONSTRAINTS);
         // non-empty preamble
-        assertParseFailure(parser,  PREAMBLE_NON_EMPTY
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY
                         + PATIENT_NRIC_DESC
                         + DOCTOR_NRIC_DESC
                         + APPOINTMENT_START_TIME_DESC
