@@ -1,16 +1,19 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
-
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
+
+import java.nio.file.Path;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Database;
+import seedu.address.model.ReadOnlyDatabase;
+import seedu.address.model.UserPrefs;
 
 public class NewStorageManagerTest {
 

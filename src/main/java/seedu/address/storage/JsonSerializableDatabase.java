@@ -1,21 +1,19 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Database;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyDatabase;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Database;
+import seedu.address.model.ReadOnlyDatabase;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * An Immutable Database that is serializable to JSON format.
