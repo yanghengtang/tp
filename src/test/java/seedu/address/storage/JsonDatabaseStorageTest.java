@@ -53,15 +53,15 @@ public class JsonDatabaseStorageTest {
     @Test
     public void readDatabase_invalidPersonAddressBook_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readDatabase("invalidPatientDatabase.json"));
-        // assertThrows(DataLoadingException.class, () -> readDatabase("invalidDoctorDatabase.json"));
-        // assertThrows(DataLoadingException.class, () -> readDatabase("invalidAppointmentDatabase.json"));
+         assertThrows(DataLoadingException.class, () -> readDatabase("invalidDoctorDatabase.json"));
+         assertThrows(DataLoadingException.class, () -> readDatabase("invalidAppointmentDatabase.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readDatabase("invalidAndValidPatientDatabase.json"));
-        // assertThrows(DataLoadingException.class, () -> readDatabase("invalidAndValidDoctorAddressBook.json"));
-        // assertThrows(DataLoadingException.class, () -> readDatabase("invalidAndValidAppointmentAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readDatabase("invalidAndValidDoctorDatabase.json"));
+        assertThrows(DataLoadingException.class, () -> readDatabase("invalidAndValidAppointmentDatabase.json"));
     }
 
     @Test

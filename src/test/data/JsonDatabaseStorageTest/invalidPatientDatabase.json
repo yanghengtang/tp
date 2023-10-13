@@ -1,7 +1,9 @@
 {
-  "persons": [ {
+  "patients": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "nric": "T0123456F"
-  } ]
+  } ],
+  "doctors": [],
+  "appointments": []
 }

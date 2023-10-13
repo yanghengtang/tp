@@ -1,0 +1,11 @@
+{
+  "patients": [],
+  "doctors": [ {
+    "name": "Valid Doctor",
+    "nric": "T0123456F"
+  }, {
+    "name": "Doctor With Invalid Nric Field",
+    "nric": "S654K"
+  } ],
+  "appointments": []
+}

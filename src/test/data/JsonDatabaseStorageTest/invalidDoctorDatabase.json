@@ -1,0 +1,8 @@
+{
+  "patients": [],
+  "doctors": [ {
+    "name": "Doctor with invalid name field: Ha!ns Mu@ster",
+    "nric": "T0123456F"
+  } ],
+  "appointments": []
+}
