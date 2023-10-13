@@ -61,9 +61,14 @@ public class AppointmentTest {
         editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withPatientNric(VALID_NRIC_BOB).build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
-        // different DateTime -> returns false
+        // different startTime -> returns false
         editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-12-01 12:00").build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
+
+        // different endTime -> returns false
+        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withEndTime("2023-12-01 12:00").build();
+        assertFalse(APPOINTMENT_1.equals(editedAppointment));
+
     }
 
     @Test
