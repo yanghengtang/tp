@@ -31,7 +31,7 @@ public class AddPatientCommand extends NewCommand {
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Patient}
+     * Creates an AddPatientCommand to add the specified {@code Patient}
      */
     public AddPatientCommand(Patient patient) {
         requireNonNull(patient);
@@ -61,8 +61,8 @@ public class AddPatientCommand extends NewCommand {
             return false;
         }
 
-        AddPatientCommand otherAddCommand = (AddPatientCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddPatientCommand otherAddPatientCommand = (AddPatientCommand) other;
+        return toAdd.equals(otherAddPatientCommand.toAdd);
     }
 
     @Override
