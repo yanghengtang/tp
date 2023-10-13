@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
+public class AddAppointmentCommandParser implements NewParser<AddAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
