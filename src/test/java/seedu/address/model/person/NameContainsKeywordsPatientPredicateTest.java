@@ -1,13 +1,16 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PatientBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PatientBuilder;
 
 public class NameContainsKeywordsPatientPredicateTest {
 
@@ -16,14 +19,17 @@ public class NameContainsKeywordsPatientPredicateTest {
         List<String> firstPredicatePatientKeywordList = Collections.singletonList("first");
         List<String> secondPredicatePatientKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPatientPredicate firstPredicate = new NameContainsKeywordsPatientPredicate(firstPredicatePatientKeywordList);
-        NameContainsKeywordsPatientPredicate secondPredicate = new NameContainsKeywordsPatientPredicate(secondPredicatePatientKeywordList);
+        NameContainsKeywordsPatientPredicate firstPredicate =
+                new NameContainsKeywordsPatientPredicate(firstPredicatePatientKeywordList);
+        NameContainsKeywordsPatientPredicate secondPredicate =
+                new NameContainsKeywordsPatientPredicate(secondPredicatePatientKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPatientPredicate firstPredicateCopy = new NameContainsKeywordsPatientPredicate(firstPredicatePatientKeywordList);
+        NameContainsKeywordsPatientPredicate firstPredicateCopy =
+                new NameContainsKeywordsPatientPredicate(firstPredicatePatientKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,7 +45,8 @@ public class NameContainsKeywordsPatientPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPatientPredicate predicate = new NameContainsKeywordsPatientPredicate(Collections.singletonList("Alice"));
+        NameContainsKeywordsPatientPredicate predicate =
+                new NameContainsKeywordsPatientPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -58,7 +65,8 @@ public class NameContainsKeywordsPatientPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPatientPredicate predicate = new NameContainsKeywordsPatientPredicate(Collections.emptyList());
+        NameContainsKeywordsPatientPredicate predicate =
+                new NameContainsKeywordsPatientPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PatientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
