@@ -14,6 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PATIENT_NRIC = new Prefix("pic\\");
     public static final Prefix PREFIX_DOCTOR_NRIC = new Prefix("dic\\");
     public static final Prefix PREFIX_APPOINTMENT_START_TIME =  new Prefix("from\\");
-    public static final Prefix PREFIX_APPOINTMENT_END_TIME =  new Prefix("end\\");
+    public static final Prefix PREFIX_APPOINTMENT_END_TIME =  new Prefix("to\\");
 
 }
