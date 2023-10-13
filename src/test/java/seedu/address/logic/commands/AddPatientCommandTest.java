@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -27,12 +27,6 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
-
-
-
-
-
-
 public class AddPatientCommandTest {
 
     @Test
@@ -88,9 +82,9 @@ public class AddPatientCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddPatientCommand addPatientCommand = new AddPatientCommand(ALICE);
+        String expected = AddPatientCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addPatientCommand.toString());
     }
 
     /**
@@ -227,7 +221,7 @@ public class AddPatientCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single patient.
      */
     private class ModelStubWithPatient extends ModelStub {
         private final Patient patient;
@@ -245,7 +239,7 @@ public class AddPatientCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the patient being added.
      */
     private class ModelStubAcceptingPatientAdded extends ModelStub {
         final ArrayList<Patient> patientsAdded = new ArrayList<>();

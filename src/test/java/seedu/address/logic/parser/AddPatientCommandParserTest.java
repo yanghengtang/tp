@@ -32,8 +32,6 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
-
-
 public class AddPatientCommandParserTest {
     private AddPatientCommandParser parser = new AddPatientCommandParser();
 
@@ -47,9 +45,9 @@ public class AddPatientCommandParserTest {
 
 
         // multiple tags - all accepted
-        Patient expectedPersonMultipleTags = new PatientBuilder(BOB).build();
+        Patient expectedPatientMultipleTags = new PatientBuilder(BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + NRIC_DESC_BOB,
-                new AddPatientCommand(expectedPersonMultipleTags));
+                new AddPatientCommand(expectedPatientMultipleTags));
     }
 
     @Test
