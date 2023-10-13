@@ -16,7 +16,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentEndTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Appointment end date and time should be of the format YYYY-MM-DD HHmm ";
-    public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HHmm";
+    public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
     public static final DateTimeFormatter
             DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
     public final LocalDateTime time;
@@ -57,12 +57,12 @@ public class AppointmentEndTime {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AppointmentStartTime)) {
+        if (!(other instanceof AppointmentEndTime)) {
             return false;
         }
 
-        AppointmentStartTime otherAppointmentStartTime = (AppointmentStartTime) other;
-        return time.equals(otherAppointmentStartTime.time);
+        AppointmentEndTime otherAppointmentEndTime = (AppointmentEndTime) other;
+        return time.equals(otherAppointmentEndTime.time);
     }
 
     @Override

@@ -38,12 +38,12 @@ public class Appointment implements Listable {
         return patientNric;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime.time;
+    public AppointmentStartTime getStartTime() {
+        return startTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime.time;
+    public AppointmentEndTime getEndTime() {
+        return endTime;
     }
     @Override
     public boolean isSame(Listable otherListable) {

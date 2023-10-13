@@ -16,7 +16,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentStartTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Appointment start date and time should be of the format YYYY-MM-DD HHmm ";
-    public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HHmm";
+    public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
     public static final DateTimeFormatter
             DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
     public final LocalDateTime time;
