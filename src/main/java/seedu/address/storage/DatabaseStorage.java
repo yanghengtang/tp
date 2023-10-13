@@ -39,7 +39,7 @@ public interface DatabaseStorage {
     /**
      * @see #getDatabasePatientFilePath(), #getDatabaseDoctorFilePath(), #getDatabaseAppointmentFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path patientFilePath, Path doctorFilePath, Path appointmentFilePath)
+    Optional<ReadOnlyDatabase> readDatabase(Path patientFilePath, Path doctorFilePath, Path appointmentFilePath)
             throws DataLoadingException;
 
     /**
