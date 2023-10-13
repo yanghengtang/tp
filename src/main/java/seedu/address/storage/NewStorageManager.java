@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -50,47 +49,30 @@ public class NewStorageManager implements NewStorage {
     // ================ Database methods ==============================
 
     @Override
-    public Path getDatabasePatientFilePath() {
-        return databaseStorage.getDatabasePatientFilePath();
-    }
-
-    @Override
-    public Path getDatabaseDoctorFilePath() {
-        return databaseStorage.getDatabaseDoctorFilePath();
-    }
-
-    @Override
-    public Path getDatabaseAppointmentFilePath() {
-        return databaseStorage.getDatabaseAppointmentFilePath();
+    public Path getDatabaseFilePath() {
+        return databaseStorage.getDatabaseFilePath();
     }
 
     @Override
     public Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException {
-        return readDatabase(databaseStorage.getDatabasePatientFilePath(),
-                databaseStorage.getDatabaseDoctorFilePath(),
-                databaseStorage.getDatabaseAppointmentFilePath());
+        return readDatabase(databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readDatabase(Path patientFilePath, Path doctorFilePath, Path appointmentFilePath)
-            throws DataLoadingException {
-        logger.fine("Attempting to read data from files: " + patientFilePath + ", " + doctorFilePath + ", "
-                + appointmentFilePath);
-        return databaseStorage.readDatabase(patientFilePath, doctorFilePath, appointmentFilePath);
+    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return databaseStorage.readDatabase(filePath);
     }
 
     @Override
     public void saveDatabase(ReadOnlyDatabase database) throws IOException {
-        saveDatabase(database, databaseStorage.getDatabasePatientFilePath(),
-                databaseStorage.getDatabaseDoctorFilePath(), databaseStorage.getDatabaseAppointmentFilePath());
+        saveDatabase(database, databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public void saveDatabase(ReadOnlyDatabase database, Path patientFilePath, Path doctorFilePath,
-                             Path appointmentFilePath) throws IOException {
-        logger.fine("Attempting to write to data files: " + patientFilePath + ", " + doctorFilePath + ", "
-                + appointmentFilePath);
-        databaseStorage.saveDatabase(database, patientFilePath, doctorFilePath, appointmentFilePath);
+    public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        databaseStorage.saveDatabase(database, filePath);
     }
 
 }

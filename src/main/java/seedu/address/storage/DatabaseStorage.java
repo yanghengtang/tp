@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatabase;
 
 import java.io.IOException;
@@ -16,17 +15,7 @@ public interface DatabaseStorage {
     /**
      * Returns the file path of the patient data file.
      */
-    Path getDatabasePatientFilePath();
-
-    /**
-     * Returns the file path of the doctor data file.
-     */
-    Path getDatabaseDoctorFilePath();
-
-    /**
-     * Returns the file path of the appointmnet data file.
-     */
-    Path getDatabaseAppointmentFilePath();
+    Path getDatabaseFilePath();
 
     /**
      * Returns Database data as a {@link seedu.address.model.ReadOnlyDatabase}.
@@ -37,9 +26,9 @@ public interface DatabaseStorage {
     Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException;
 
     /**
-     * @see #getDatabasePatientFilePath(), #getDatabaseDoctorFilePath(), #getDatabaseAppointmentFilePath()
+     * @see #getDatabaseFilePath()
      */
-    Optional<ReadOnlyDatabase> readDatabase(Path patientFilePath, Path doctorFilePath, Path appointmentFilePath)
+    Optional<ReadOnlyDatabase> readDatabase(Path filePath)
             throws DataLoadingException;
 
     /**
@@ -52,7 +41,5 @@ public interface DatabaseStorage {
     /**
      * @see #saveDatabase(ReadOnlyDatabase)
      */
-    void saveDatabase(ReadOnlyDatabase database, Path patientFilePath, Path doctorFilePath, Path appointmentFilePath)
-            throws IOException;
-
+    void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException;
 }

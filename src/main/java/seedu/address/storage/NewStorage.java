@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -22,13 +21,7 @@ public interface NewStorage extends DatabaseStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getDatabasePatientFilePath();
-
-    @Override
-    Path getDatabaseDoctorFilePath();
-
-    @Override
-    Path getDatabaseAppointmentFilePath();
+    Path getDatabaseFilePath();
 
     @Override
     Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException;
