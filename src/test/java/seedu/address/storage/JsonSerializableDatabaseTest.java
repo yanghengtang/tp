@@ -20,6 +20,13 @@ public class JsonSerializableDatabaseTest {
     private static final Path INVALID_PATIENTS_DATABASE_FILE = TEST_DATA_FOLDER.resolve("invalidPatientDatabase.json");
     private static final Path DUPLICATE_PATIENTS_DATABASE_FILE =
             TEST_DATA_FOLDER.resolve("duplicatePatientDatabase.json");
+    private static final Path INVALID_DOCTORS_DATABASE_FILE = TEST_DATA_FOLDER.resolve("invalidDoctorDatabase.json");
+    private static final Path DUPLICATE_DOCTORS_DATABASE_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateDoctorDatabase.json");
+    private static final Path INVALID_APPOINTMENTS_DATABASE_FILE =
+            TEST_DATA_FOLDER.resolve("invalidAppointmentDatabase.json");
+    private static final Path DUPLICATE_APPOINTMENTS_DATABASE_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateAppointmentDatabase.json");
 
     @Test
     public void toModelType_typicalDatabaseFile_success() throws Exception {
@@ -45,4 +52,33 @@ public class JsonSerializableDatabaseTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidDoctorsFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(INVALID_DOCTORS_DATABASE_FILE,
+                JsonSerializableDatabase.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateDoctors_throwsIllegalValueException() throws Exception {
+        JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(DUPLICATE_DOCTORS_DATABASE_FILE,
+                JsonSerializableDatabase.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableDatabase.MESSAGE_DUPLICATE_DOCTOR,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAppointmentsFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(INVALID_APPOINTMENTS_DATABASE_FILE,
+                JsonSerializableDatabase.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateAppointments_throwsIllegalValueException() throws Exception {
+        JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(DUPLICATE_APPOINTMENTS_DATABASE_FILE,
+                JsonSerializableDatabase.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableDatabase.MESSAGE_DUPLICATE_APPOINTMENT,
+                dataFromFile::toModelType);
+    }
 }
