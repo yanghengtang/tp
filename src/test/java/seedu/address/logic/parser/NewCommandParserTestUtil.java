@@ -38,6 +38,4 @@ public class NewCommandParserTestUtil {
             assertEquals(expectedMessage, pe.getMessage());
         }
     }
-
-
 }
