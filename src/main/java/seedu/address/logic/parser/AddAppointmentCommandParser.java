@@ -40,7 +40,7 @@ public class AddAppointmentCommandParser implements NewParser<AddAppointmentComm
         AppointmentStartTime start = ParserUtil.parseAppointmentStartTime(argMultimap.getValue(PREFIX_APPOINTMENT_START_TIME).get());
         AppointmentEndTime end = ParserUtil.parseAppointmentEndTime(argMultimap.getValue(PREFIX_APPOINTMENT_END_TIME).get());
 
-        Appointment appointment = new Appointment(patientNric, doctorNric, start, end);
+        Appointment appointment = new Appointment(doctorNric, patientNric, start, end);
 
         return new AddAppointmentCommand(appointment);
     }
