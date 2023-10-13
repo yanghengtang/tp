@@ -19,7 +19,7 @@ public class JsonAdaptedPatientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validPatientDetails_returnsPatient() throws Exception {
         JsonAdaptedPatient patient = new JsonAdaptedPatient(BENSON);
         assertEquals(BENSON, patient.toModelType());
     }
