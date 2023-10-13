@@ -36,8 +36,8 @@ class JsonSerializableDatabase {
      */
     @JsonCreator
     public JsonSerializableDatabase(@JsonProperty("patients") List<JsonAdaptedPatient> patients,
-                                    @JsonProperty("patients") List<JsonAdaptedDoctor> doctors,
-                                    @JsonProperty("patients") List<JsonAdaptedAppointment> appointments) {
+                                    @JsonProperty("doctors") List<JsonAdaptedDoctor> doctors,
+                                    @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.patients.addAll(patients);
         this.doctors.addAll(doctors);
         this.appointments.addAll(appointments);
