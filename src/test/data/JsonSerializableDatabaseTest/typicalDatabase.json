@@ -52,28 +52,34 @@
     "name" : "George Best"
   } ],
   "appointments" : [ {
-    "doctorNric" : "T0123456J",
-    "patientNric" : "S9348573F",
-    "dateTime" : "2023-12-01T07:30"
-  }, {
     "doctorNric" : "S2936283D",
-    "patientNric" : "T0248362R",
-    "dateTime" : "2023-12-01T07:45"
+    "patientNric" : "T0123456J",
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
   }, {
     "doctorNric" : "T3856391A",
-    "patientNric" : "T0359320R",
-    "dateTime" : "2023-12-01T08:00"
+    "patientNric" : "S2936283D",
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
   }, {
     "doctorNric" : "S9754123F",
-    "patientNric" : "G6739542H",
-    "dateTime" : "2023-12-01T08:15"
+    "patientNric" : "T3856391A",
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
   }, {
     "doctorNric" : "G4123573C",
     "patientNric" : "S9754123F",
-    "dateTime" : "2023-12-01T08:30"
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
   }, {
     "doctorNric" : "G6739542H",
     "patientNric" : "G4123573C",
-    "dateTime" : "2023-12-01T08:45"
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
+  }, {
+    "doctorNric" : "T0123456J",
+    "patientNric" : "G6739542H",
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00"
   } ]
 }
