@@ -1,8 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -80,7 +77,8 @@ class JsonAdaptedAppointment {
         final AppointmentStartTime modelAppointmentStartTime = new AppointmentStartTime(startTime);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentEndTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AppointmentEndTime.class.getSimpleName()));
         }
         if (!AppointmentEndTime.isValidAppointmmentTime(endTime)) {
             throw new IllegalValueException(AppointmentEndTime.MESSAGE_CONSTRAINTS);

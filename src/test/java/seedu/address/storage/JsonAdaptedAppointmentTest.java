@@ -72,7 +72,8 @@ public class JsonAdaptedAppointmentTest {
     public void toModelType_nullStartTime_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_NRIC, null,
                 VALID_END_TIME);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentStartTime.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                AppointmentStartTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
 
