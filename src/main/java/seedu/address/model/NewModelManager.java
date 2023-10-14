@@ -161,7 +161,6 @@ public class NewModelManager implements NewModel {
     @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
-
         database.setAppointment(target, editedAppointment);
     }
 

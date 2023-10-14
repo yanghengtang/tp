@@ -191,10 +191,10 @@ Examples:
 
 Adds an appointment into the system.
 
-Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME`
+Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
 Examples:
-* `add_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30`
+* `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00 `
 
 ### Listing all appointments : `list_a`
 
@@ -264,19 +264,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                            |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**        | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                 |
-| **Add Doctor**         | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                           |
-| **Add Appointment**    | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30`      |
-| **Delete Patient**     | `delete_p ic\NRIC`<br> e.g., `delete_p ic\T0212385J`                                                                        |
-| **Delete Doctor**      | `delete_d ic\NRIC`<br> e.g., `delete_d ic\T0212385J`                                                                        |
-| **Delete Appointment** | `delete_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME`<br> e.g., `delete_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30` |
-| **Edit Patient**       | `edit_p ic\NRIC [n\NAME] [p\PHONE]`<br> e.g.,`edit_p ic\T0212385J n\Joe Ng`                                                 |
-| **Edit Doctor**        | `edit_d ic\NRIC [n\NAME]`<br> e.g.,`edit_d ic\T0212385J n\Joe Ng`                                                           |
-| **Find Patient**       | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                              |
-| **Find Patient**       | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                              |
-| **List Patient**       | `list_p`                                                                                                                    |
-| **List Doctor**        | `list_d`                                                                                                                    |
-| **List Appointment**   | `list_a`                                                                                                                    |
-| **Help**               | `help`                                                                                                                      |
+| Action                 | Format, Examples                                                                                                                       |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**        | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                            |
+| **Add Doctor**         | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                                      |
+| **Add Appointment**    | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30` |
+| **Delete Patient**     | `delete_p ic\NRIC`<br> e.g., `delete_p ic\T0212385J`                                                                                   |
+| **Delete Doctor**      | `delete_d ic\NRIC`<br> e.g., `delete_d ic\T0212385J`                                                                                   |
+| **Delete Appointment** | `delete_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME`<br> e.g., `delete_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30`            |
+| **Edit Patient**       | `edit_p ic\NRIC [n\NAME] [p\PHONE]`<br> e.g.,`edit_p ic\T0212385J n\Joe Ng`                                                            |
+| **Edit Doctor**        | `edit_d ic\NRIC [n\NAME]`<br> e.g.,`edit_d ic\T0212385J n\Joe Ng`                                                                      |
+| **Find Patient**       | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                         |
+| **Find Patient**       | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                         |
+| **List Patient**       | `list_p`                                                                                                                               |
+| **List Doctor**        | `list_d`                                                                                                                               |
+| **List Appointment**   | `list_a`                                                                                                                               |
+| **Help**               | `help`                                                                                                                                 |
