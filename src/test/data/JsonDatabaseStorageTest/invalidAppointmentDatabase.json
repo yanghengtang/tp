@@ -1,0 +1,9 @@
+{
+  "patients": [],
+  "doctors": [],
+  "appointments": [ {
+    "doctorNric": "S6543210Z",
+    "patientNric": "T456F",
+    "dateTime" : "2023-12-01T07:30"
+  } ]
+}
