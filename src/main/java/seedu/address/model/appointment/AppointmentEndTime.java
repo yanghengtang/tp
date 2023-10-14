@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class AppointmentEndTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment end date and time should be of the format YYYY-MM-DD HHmm ";
+            "Appointment end date and time should be of the format yyyy-MM-dd HH:mm ";
     public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
     public static final DateTimeFormatter
             DATE_TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);

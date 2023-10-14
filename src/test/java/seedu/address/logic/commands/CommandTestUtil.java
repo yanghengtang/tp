@@ -21,9 +21,14 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Database;
 import seedu.address.model.Model;
+import seedu.address.model.NewModel;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -142,6 +147,53 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertNewCommandSuccess(NewCommand command, NewModel actualModel,
+                                               CommandResult expectedCommandResult,
+                                               NewModel expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertNewCommandSuccess(NewCommand, NewModel, CommandResult, NewModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertNewCommandSuccess(NewCommand newCommand, NewModel actualModel, String expectedMessage,
+                                            NewModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertNewCommandSuccess(newCommand, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code newcommand}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     */
+    public static void assertNewCommandFailure(NewCommand newCommand, NewModel actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        Database expectedAddressBook = new Database(actualModel.getDatabase());
+        List<Appointment> expectedFilteredAppointmentList = new ArrayList<>(actualModel.getFilteredAppointmentList());
+        List<Patient> expectedFilteredPatientList = new ArrayList<>(actualModel.getFilteredPatientList());
+        List<Doctor> expectedFilteredDoctorList = new ArrayList<>(actualModel.getFilteredDoctorList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> newCommand.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getDatabase());
+        assertEquals(expectedFilteredAppointmentList, actualModel.getFilteredAppointmentList());
+        assertEquals(expectedFilteredPatientList, actualModel.getFilteredPatientList());
+        assertEquals(expectedFilteredDoctorList, actualModel.getFilteredDoctorList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

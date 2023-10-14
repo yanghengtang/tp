@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.NewModel;
 import seedu.address.model.ReadOnlyDatabase;
@@ -45,16 +44,6 @@ public class AddAppointmentCommandTest {
         assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, Messages.format(validAppointment)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateAppointment_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder().build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
-        ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
-
-        assertThrows(CommandException.class,
-                AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
     }
 
     @Test

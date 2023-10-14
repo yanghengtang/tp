@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
+import static seedu.address.testutil.TypicalPatient.GEORGE_NRIC;
+
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
@@ -9,8 +12,8 @@ import seedu.address.model.person.Nric;
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
-    public static final String DEFAULT_DOCTOR_NRIC = "T0123456A";
-    public static final String DEFAULT_PATIENT_NRIC = "S9987654B";
+    public static final String DEFAULT_DOCTOR_NRIC = ALICE_NRIC;
+    public static final String DEFAULT_PATIENT_NRIC = GEORGE_NRIC;
     public static final String DEFAULT_START_TIME = "2023-09-11 07:30";
     public static final String DEFAULT_END_TIME = "2023-09-11 08:00";
     private Nric doctorNric;

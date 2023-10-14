@@ -20,9 +20,9 @@ public class AppointmentEndTimeTest {
     }
 
     @Test
-    public void isValidAppointmentStartTime() {
+    public void isValidAppointmentEndTime() {
         // null name
-        assertThrows(NullPointerException.class, () -> AppointmentStartTime.isValidAppointmmentTime(null));
+        assertThrows(NullPointerException.class, () -> AppointmentEndTime.isValidAppointmmentTime(null));
 
         // invalid name
         assertFalse(AppointmentEndTime.isValidAppointmmentTime("")); // empty string
