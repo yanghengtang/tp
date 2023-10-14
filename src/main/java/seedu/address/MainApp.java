@@ -13,24 +13,20 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.NewLogic;
 import seedu.address.logic.NewLogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.Database;
 import seedu.address.model.NewModel;
 import seedu.address.model.NewModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.DatabaseStorage;
+import seedu.address.storage.JsonDatabaseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.NewStorage;
+import seedu.address.storage.NewStorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -45,11 +41,9 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected Logic logic;
-    protected NewLogic newLogic;
-    protected Storage storage;
-    protected Model model;
-    protected NewModel newModel;
+    protected NewLogic logic;
+    protected NewStorage storage;
+    protected NewModel model;
     protected Config config;
 
     @Override
@@ -63,16 +57,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatabaseStorage databaseStorage = new JsonDatabaseStorage(userPrefs.getDatabaseFilePath());
+        storage = new NewStorageManager(databaseStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
-        newModel = new NewModelManager();
 
-        logic = new LogicManager(model, storage);
-        newLogic = new NewLogicManager(newModel, storage);
+        logic = new NewLogicManager(model, storage);
 
-        ui = new UiManager(newLogic);
+        ui = new UiManager(logic);
     }
 
     /**
@@ -80,25 +72,26 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+    private NewModel initModelManager(NewStorage storage, ReadOnlyUserPrefs userPrefs) {
+        logger.info("Using data file : " + storage.getDatabaseFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+
+        Optional<ReadOnlyDatabase> databaseOptional;
+        ReadOnlyDatabase initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+            databaseOptional = storage.readDatabase();
+            if (!databaseOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getDatabaseFilePath()
                         + " populated with a sample AddressBook.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = databaseOptional.orElseGet(SampleDataUtil::getSampleDatabase);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            initialData = new Database();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new NewModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
