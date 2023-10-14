@@ -15,9 +15,13 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.NewLogic;
+import seedu.address.logic.NewLogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NewModel;
+import seedu.address.model.NewModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -42,8 +46,10 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
+    protected NewLogic newLogic;
     protected Storage storage;
     protected Model model;
+    protected NewModel newModel;
     protected Config config;
 
     @Override
@@ -61,10 +67,12 @@ public class MainApp extends Application {
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
+        newModel = new NewModelManager();
 
         logic = new LogicManager(model, storage);
+        newLogic = new NewLogicManager(newModel, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(newLogic);
     }
 
     /**
