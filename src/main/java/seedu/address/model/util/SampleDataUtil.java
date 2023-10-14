@@ -4,48 +4,70 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.Database;
+import seedu.address.model.ReadOnlyDatabase;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+
+    public static Patient[] getSamplePatients() {
+        return new Patient[] {
+            new Patient(new Name("Kim Shi Tong"), new Phone("87438807"), new Nric("G0234723F")),
+            new Patient(new Name("Mah Chee Teng"), new Phone("99272758"), new Nric("T0384394D")),
+            new Patient(new Name("Mounil Sankar"), new Phone("93210283"), new Nric("T0123483C")),
+            new Patient(new Name("Derek Tan JX"), new Phone("91031282"), new Nric("T0151708E")),
+            new Patient(new Name("Mohd Yang Heng"), new Phone("92492021"), new Nric("T0157283A"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static Doctor[] getSampleDoctors() {
+        return new Doctor[] {
+            new Doctor(new Name("Kim Shi Tong"), new Nric("G0234723F")),
+            new Doctor(new Name("Mah Chee Teng"), new Nric("T0384394D")),
+            new Doctor(new Name("Mounil Sankar"), new Nric("T0123483C")),
+            new Doctor(new Name("Derek Tan JX"), new Nric("T0151708E")),
+            new Doctor(new Name("Mohd Yang Heng"), new Nric("T0157283A"))
+        };
+    }
+
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[] {
+            new Appointment(new Nric("T0157283A"), new Nric("G0234723F"),
+                    new AppointmentStartTime("2023-09-11 07:30"), new AppointmentEndTime("2023-09-11 08:30")),
+            new Appointment(new Nric("T0151708E"), new Nric("T0384394D"),
+                    new AppointmentStartTime("2023-09-11 08:30"), new AppointmentEndTime("2023-09-11 09:30")),
+            new Appointment(new Nric("T0123483C"), new Nric("T0123483C"),
+                    new AppointmentStartTime("2023-09-11 09:30"), new AppointmentEndTime("2023-09-11 10:30")),
+            new Appointment(new Nric("T0384394D"), new Nric("T0151708E"),
+                    new AppointmentStartTime("2023-09-11 10:30"), new AppointmentEndTime("2023-09-11 11:30")),
+            new Appointment(new Nric("T0384394D"), new Nric("T0157283A"),
+                    new AppointmentStartTime("2023-09-11 11:30"), new AppointmentEndTime("2023-09-11 12:30"))
+        };
+    }
+
+    public static ReadOnlyDatabase getSampleDatabase() {
+        Database sampleDb = new Database();
+        for (Patient samplePatient : getSamplePatients()) {
+            sampleDb.addPatient(samplePatient);
         }
-        return sampleAb;
+        for (Doctor sampleDoctor : getSampleDoctors()) {
+            sampleDb.addDoctor(sampleDoctor);
+        }
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleDb.addAppointment(sampleAppointment);
+        }
+        return sampleDb;
     }
 
     /**
