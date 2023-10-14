@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
 
 /**
@@ -19,7 +21,8 @@ class JsonAdaptedAppointment {
 
     private final String doctorNric;
     private final String patientNric;
-    private final String dateTime;
+    private final String startTime;
+    private final String endTime;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -27,10 +30,12 @@ class JsonAdaptedAppointment {
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("doctorNric") String doctorNric,
                                   @JsonProperty("patientNric") String patientNric,
-                                  @JsonProperty("dateTime") String dateTime) {
+                                  @JsonProperty("startTime") String startTime,
+                                  @JsonProperty("endTime") String endTime) {
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;
-        this.dateTime = dateTime;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -39,7 +44,8 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         doctorNric = source.getDoctorNric().nric;
         patientNric = source.getPatientNric().nric;
-        dateTime = source.getDateTime().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
     }
 
     /**
@@ -64,18 +70,23 @@ class JsonAdaptedAppointment {
         }
         final Nric modelPatientNric = new Nric(patientNric);
 
-        if (dateTime == null) {
-            // TODO: remove magic literal
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
+        if (startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AppointmentStartTime.class.getSimpleName()));
         }
-        final LocalDateTime modelDateTime;
-        try {
-            modelDateTime = LocalDateTime.parse(dateTime);
-        } catch (DateTimeParseException e) {
-            //TODO: remove magic literal
-            throw new IllegalValueException("throwing datetime exception");
+        if (!AppointmentStartTime.isValidAppointmmentTime(startTime)) {
+            throw new IllegalValueException(AppointmentStartTime.MESSAGE_CONSTRAINTS);
         }
+        final AppointmentStartTime modelAppointmentStartTime = new AppointmentStartTime(startTime);
 
-        return new Appointment(modelDoctorNric, modelPatientNric, modelDateTime);
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentEndTime.class.getSimpleName()));
+        }
+        if (!AppointmentEndTime.isValidAppointmmentTime(endTime)) {
+            throw new IllegalValueException(AppointmentEndTime.MESSAGE_CONSTRAINTS);
+        }
+        final AppointmentEndTime modelAppointmentEndTime = new AppointmentEndTime(endTime);
+
+        return new Appointment(modelDoctorNric, modelPatientNric, modelAppointmentStartTime, modelAppointmentEndTime);
     }
 }
