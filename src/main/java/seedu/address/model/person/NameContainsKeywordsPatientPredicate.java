@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -16,6 +17,9 @@ public class NameContainsKeywordsPatientPredicate implements Predicate<Patient> 
         this.keywords = keywords;
     }
 
+    public int hashcode() {
+        return Objects.hash(this.keywords);
+    }
     @Override
     public boolean test(Patient patient) {
         return keywords.stream()

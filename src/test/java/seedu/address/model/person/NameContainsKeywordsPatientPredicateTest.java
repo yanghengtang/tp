@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,20 @@ import seedu.address.testutil.PatientBuilder;
 
 public class NameContainsKeywordsPatientPredicateTest {
 
+    @Test
+    public void hashcode() {
+        List<String> keywords = List.of("keyword1", "keyword2");
+
+        // same value -> return same hashcode
+        NameContainsKeywordsPatientPredicate command = new NameContainsKeywordsPatientPredicate(keywords);
+        assertEquals(command.hashCode(), Objects.hash(keywords));
+
+        List<String> keywords2 = List.of("keyword1", "keyword3");
+
+        // different value -> returns different hashcode
+        assertNotEquals(command.hashCode(), Objects.hash(keywords2));
+
+    }
     @Test
     public void equals() {
         List<String> firstPredicatePatientKeywordList = Collections.singletonList("first");
