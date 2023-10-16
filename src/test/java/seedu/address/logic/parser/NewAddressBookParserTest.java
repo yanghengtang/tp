@@ -8,12 +8,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -28,6 +31,13 @@ public class NewAddressBookParserTest {
         AddAppointmentCommand command =
                 (AddAppointmentCommand) parser.parseCommand(PersonUtil.getAddAppointmentCommand(appointment));
         assertEquals(new AddAppointmentCommand(appointment), command);
+    }
+
+    @Test
+    public void parseCommand_addDoctor() throws Exception {
+        Doctor doctor = new DoctorBuilder().build();
+        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddDoctorCommand(doctor));
+        assertEquals(new AddDoctorCommand(doctor), command);
     }
 
     @Test

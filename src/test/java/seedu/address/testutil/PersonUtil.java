@@ -15,10 +15,12 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -42,7 +44,14 @@ public class PersonUtil {
     }
 
     /**
-     * Returns an add patient command string for adding the {@code appointment}.
+     * Returns an add doctor command string for adding the {@code doctor}.
+     */
+    public static String getAddDoctorCommand(Doctor doctor) {
+        return AddDoctorCommand.COMMAND_WORD + " " + getDoctorDetails(doctor);
+    }
+
+    /**
+     * Returns an add patient command string for adding the {@code patient}.
      */
     public static String getAddPatientCommand(Patient patient) {
         return AddPatientCommand.COMMAND_WORD + " " + getPatientDetails(patient);
@@ -75,7 +84,17 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code doctor}'s details.
+     */
+    public static String getDoctorDetails(Doctor doctor) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NRIC + doctor.getNric().toString() + " ");
+        sb.append(PREFIX_NAME + doctor.getName().toString() + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code patient}'s details.
      */
     public static String getPatientDetails(Patient patient) {
         StringBuilder sb = new StringBuilder();
