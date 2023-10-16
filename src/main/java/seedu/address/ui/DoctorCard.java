@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Doctor}.
  */
 public class DoctorCard extends UiPart<Region> {
     private static final String FXML = "DoctorListCard.fxml";
@@ -32,7 +32,7 @@ public class DoctorCard extends UiPart<Region> {
     private Label nric;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DoctorCard} with the given {@code Doctor} and index to display.
      */
     public DoctorCard(Doctor doctor, int displayedIndex) {
         super(FXML);
