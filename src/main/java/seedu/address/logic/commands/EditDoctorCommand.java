@@ -36,7 +36,7 @@ public class EditDoctorCommand extends NewCommand {
             + PREFIX_NAME + "BOBE "
             + PREFIX_NRIC + "T5012345A";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Doctor: %1$s";
+    public static final String MESSAGE_EDIT_DOCTOR_SUCCESS = "Edited Doctor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book.";
 
@@ -61,7 +61,7 @@ public class EditDoctorCommand extends NewCommand {
         List<Doctor> lastShownList = model.getFilteredDoctorList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
         }
 
         Doctor doctorToEdit = lastShownList.get(index.getZeroBased());
@@ -73,7 +73,7 @@ public class EditDoctorCommand extends NewCommand {
 
         model.setDoctor(doctorToEdit, editedDoctor);
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedDoctor)));
+        return new CommandResult(String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, Messages.format(editedDoctor)));
     }
 
     /**
