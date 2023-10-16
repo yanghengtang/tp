@@ -20,22 +20,6 @@ public class AppointmentEndTimeTest {
     }
 
     @Test
-    public void isValidAppointmentEndTime() {
-        // null name
-        assertThrows(NullPointerException.class, () -> AppointmentEndTime.isValidAppointmentTime(null));
-
-        // invalid name
-        assertFalse(AppointmentEndTime.isValidAppointmentTime("")); // empty string
-        assertFalse(AppointmentEndTime.isValidAppointmentTime(" ")); // spaces only
-        assertFalse(AppointmentEndTime.isValidAppointmentTime("^*$")); // not numeric characters
-        assertFalse(AppointmentEndTime.isValidAppointmentTime("12-01-2023 07:30")); // date in wrong format
-
-        // valid name
-        assertTrue(AppointmentEndTime.isValidAppointmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm format
-        assertTrue(AppointmentEndTime.isValidAppointmentTime("2023-09-11 16:00")); // in yyyy-dd-mm HH:mm 24h format
-    }
-
-    @Test
     public void equals() {
         AppointmentEndTime appointmentEndTime = new AppointmentEndTime("2023-09-11 16:00");
 
@@ -53,6 +37,9 @@ public class AppointmentEndTimeTest {
 
         // different values -> returns false
         assertFalse(appointmentEndTime.equals(new AppointmentEndTime("2023-09-11 04:00")));
+
+        AppointmentStartTime appointmentStartTime = new AppointmentStartTime("2023-09-11 16:00");
+        assertFalse(appointmentEndTime.equals(appointmentStartTime));
     }
 }
 

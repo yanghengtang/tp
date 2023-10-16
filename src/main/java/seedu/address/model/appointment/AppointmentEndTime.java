@@ -19,4 +19,19 @@ public class AppointmentEndTime extends AppointmentTime {
     public AppointmentEndTime(String time) {
         super(AppointmentTime.parse(time, MESSAGE_CONSTRAINTS));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof AppointmentEndTime)) {
+            return false;
+        }
+
+        AppointmentEndTime otherAppointmentEndTime = (AppointmentEndTime) other;
+        return super.equals(otherAppointmentEndTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
