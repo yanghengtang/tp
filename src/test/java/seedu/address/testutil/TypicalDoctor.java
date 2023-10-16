@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.Database;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
@@ -64,5 +65,13 @@ public class TypicalDoctor {
     public static List<Doctor> getTypicalDoctor() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+    public static Database getTypicalDatabase() {
+        Database ab = new Database();
+        for (Doctor doctor : getTypicalDoctor()) {
+            ab.addDoctor(doctor);
+        }
+        return ab;
+    }
+
 
 }
