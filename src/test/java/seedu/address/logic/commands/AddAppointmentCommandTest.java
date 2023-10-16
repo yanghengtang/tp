@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.model.Database;
@@ -252,7 +252,7 @@ public class AddAppointmentCommandTest {
 
         @Override
         public boolean hasPatientWithNric(Nric nric) {
-           return this.patient.getNric().equals(nric);
+            return this.patient.getNric().equals(nric);
         }
     }
 
