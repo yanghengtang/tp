@@ -61,20 +61,6 @@ public class TypicalAppointment {
             .build();
     public TypicalAppointment() {} // prevents instantiation
 
-    public static Database getTypicalDatabase() {
-        Database db = new Database();
-        for (Appointment appointment : getTypicalAppointment()) {
-            db.addAppointment(appointment);
-        }
-        for (Patient patient : getTypicalPatient()) {
-            db.addPatient(patient);
-        }
-
-        for (Doctor doctor: getTypicalDoctor()) {
-            db.addDoctor(doctor);
-        }
-        return db;
-    }
     public static List<Appointment> getTypicalAppointment() {
         return new ArrayList<>(Arrays.asList(APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3, APPOINTMENT_4,
                 APPOINTMENT_5, APPOINTMENT_6));
