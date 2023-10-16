@@ -3,13 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
+import static seedu.address.testutil.TypicalDoctor.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -86,6 +89,18 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(ALICE);
         String expected = AddDoctorCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addDoctorCommand.toString());
+    }
+
+    @Test
+    public void hashcode() {
+        AddDoctorCommand command = new AddDoctorCommand(ALICE);
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(ALICE));
+
+        // different feedbackToUser value -> returns different hashcode
+        assertNotEquals(command.hashCode(), Objects.hash(BOB));
+
     }
 
     /**
