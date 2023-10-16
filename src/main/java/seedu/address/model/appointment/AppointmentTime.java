@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a time to be used in Appointment
- * Guarantees: immutable; is valid as declared in {@link #isValidAppointmmentTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAppointmentTime(String)}
  */
 public abstract class AppointmentTime {
     public static final String MESSAGE_CONSTRAINTS =
@@ -32,7 +32,7 @@ public abstract class AppointmentTime {
     /**
      * Returns if a given string is a valid dateTime.
      */
-    public static boolean isValidAppointmmentTime(String test) {
+    public static boolean isValidAppointmentTime(String test) {
         try {
             LocalDateTime.parse(test, DATE_TIME_INPUT_FORMATTER);
             return true; // Parsing successful, so it matches the specified format.
@@ -73,7 +73,7 @@ public abstract class AppointmentTime {
     public static LocalDateTime parse(String time, String msg) {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        checkArgument(isValidAppointmmentTime((trimmedTime)), msg);
+        checkArgument(isValidAppointmentTime((trimmedTime)), msg);
         return LocalDateTime.parse(trimmedTime, DATE_TIME_INPUT_FORMATTER);
     }
 }

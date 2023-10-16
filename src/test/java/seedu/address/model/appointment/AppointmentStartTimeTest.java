@@ -22,17 +22,17 @@ public class AppointmentStartTimeTest {
     @Test
     public void isValidAppointmentStartTime() {
         // null name
-        assertThrows(NullPointerException.class, () -> AppointmentStartTime.isValidAppointmmentTime(null));
+        assertThrows(NullPointerException.class, () -> AppointmentStartTime.isValidAppointmentTime(null));
 
         // invalid name
-        assertFalse(AppointmentStartTime.isValidAppointmmentTime("")); // empty string
-        assertFalse(AppointmentStartTime.isValidAppointmmentTime(" ")); // spaces only
-        assertFalse(AppointmentStartTime.isValidAppointmmentTime("^*$")); // not numeric characters
-        assertFalse(AppointmentStartTime.isValidAppointmmentTime("12-01-2023 07:30")); // date in wrong format
+        assertFalse(AppointmentStartTime.isValidAppointmentTime("")); // empty string
+        assertFalse(AppointmentStartTime.isValidAppointmentTime(" ")); // spaces only
+        assertFalse(AppointmentStartTime.isValidAppointmentTime("^*$")); // not numeric characters
+        assertFalse(AppointmentStartTime.isValidAppointmentTime("12-01-2023 07:30")); // date in wrong format
 
         // valid name
-        assertTrue(AppointmentStartTime.isValidAppointmmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm format
-        assertTrue(AppointmentStartTime.isValidAppointmmentTime("2023-09-11 16:00")); // in yyyy-dd-mm HH:mm 24h format
+        assertTrue(AppointmentStartTime.isValidAppointmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm format
+        assertTrue(AppointmentStartTime.isValidAppointmentTime("2023-09-11 16:00")); // in yyyy-dd-mm HH:mm 24h format
     }
 
     @Test

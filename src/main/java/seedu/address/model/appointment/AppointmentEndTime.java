@@ -3,13 +3,9 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 /**
  * Represents a Appointment's end time in the database.
- * Guarantees: immutable; is valid as declared in {@link AppointmentTime#isValidAppointmmentTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link AppointmentTime#isValidAppointmentTime(String)}
  */
 public class AppointmentEndTime extends AppointmentTime {
 

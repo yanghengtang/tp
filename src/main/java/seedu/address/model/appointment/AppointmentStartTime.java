@@ -1,10 +1,8 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDateTime;
-
 /**
  * Represents a Appointment's start time in the address book.
- * Guarantees: immutable; is valid as declared in {@link AppointmentTime#isValidAppointmmentTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link AppointmentTime#isValidAppointmentTime(String)}
  */
 public class AppointmentStartTime extends AppointmentTime {
 
