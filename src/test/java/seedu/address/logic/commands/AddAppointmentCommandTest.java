@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -25,6 +26,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.UniqueItemList;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandTest {
@@ -139,12 +141,12 @@ public class AddAppointmentCommandTest {
 
         @Override
         public boolean hasDoctorWithNric(Nric nric) {
-            return true;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasPatientWithNric(Nric nric) {
-            return true;
+            throw new AssertionError("This method should not be called.");
         }
         @Override
         public void deleteAppointment(Appointment target) {
@@ -227,10 +229,14 @@ public class AddAppointmentCommandTest {
      */
     private class ModelStubWithAppointment extends ModelStub {
         private final Appointment appointment;
+        private final Patient patient;
+        private final Doctor doctor;
 
-        ModelStubWithAppointment(Appointment appointment) {
+        ModelStubWithAppointment(Appointment appointment, Patient patient, Doctor doctor) {
             requireNonNull(appointment);
             this.appointment = appointment;
+            this.patient = patient;
+            this.doctor = doctor;
         }
 
         @Override
@@ -238,10 +244,20 @@ public class AddAppointmentCommandTest {
             requireNonNull(appointment);
             return this.appointment.isSame(appointment);
         }
+
+        @Override
+        public boolean hasDoctorWithNric(Nric nric) {
+            return this.doctor.getNric().equals(nric);
+        }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+           return this.patient.getNric().equals(nric);
+        }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the appointment being added.
      */
     private class ModelStubAcceptingAppointmentAdded extends ModelStub {
         final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();
@@ -256,6 +272,20 @@ public class AddAppointmentCommandTest {
         public void addAppointment(Appointment appointment) {
             requireNonNull(appointment);
             appointmentsAdded.add(appointment);
+        }
+
+        @Override
+        public boolean hasDoctorWithNric(Nric nric) {
+            return true;
+        }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            return true;
+        }
+
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            return new FilteredList<>(new UniqueItemList<Appointment>().asUnmodifiableObservableList());
         }
 
         @Override
