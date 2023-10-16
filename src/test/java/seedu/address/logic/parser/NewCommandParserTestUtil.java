@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import seedu.address.logic.commands.NewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
 /**
  * Contains helper methods for testing command parsers.
  */
@@ -38,6 +37,4 @@ public class NewCommandParserTestUtil {
             assertEquals(expectedMessage, pe.getMessage());
         }
     }
-
-
 }

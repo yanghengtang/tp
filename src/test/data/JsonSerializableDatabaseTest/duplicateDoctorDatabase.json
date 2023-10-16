@@ -1,0 +1,11 @@
+{
+  "patients": [],
+  "doctors": [ {
+    "name": "Alice Pauline",
+    "nric": "T0123456F"
+  }, {
+    "name": "Alice Pauline",
+    "nric": "T0123456F"
+  } ],
+  "appointments": []
+}

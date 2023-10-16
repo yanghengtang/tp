@@ -8,7 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.NewCommand;
@@ -49,16 +51,18 @@ public class NewAddressBookParser {
         switch (commandWord) {
 
         //Todo
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
         case AddDoctorCommand.COMMAND_WORD:
             return new AddDoctorCommandParser().parse(arguments);
 
-        case EditDoctorCommand.COMMAND_WORD:
-            return new EditDoctorCommandParser().parse(arguments);
+        case AddPatientCommand.COMMAND_WORD:
+            return new AddPatientCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

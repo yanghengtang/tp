@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,9 +21,14 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Database;
 import seedu.address.model.Model;
+import seedu.address.model.NewModel;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -39,6 +48,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PATIENT_NRIC = "S9348573F";
+    public static final String VALID_DOCTOR_NRIC = "T0123456J";
+    public static final String VALID_APPOINTMENT_START_TIME = "2023-12-01 07:30";
+    public static final String VALID_APPOINTMENT_END_TIME = "2023-12-01 08:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -53,12 +66,30 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String APPOINTMENT_START_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_START_TIME
+            + VALID_APPOINTMENT_START_TIME;
+    public static final String APPOINTMENT_END_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_END_TIME
+            + VALID_APPOINTMENT_END_TIME;
+    public static final String PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + VALID_PATIENT_NRIC;
+    public static final String DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + VALID_DOCTOR_NRIC;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "T012#456A"; // '#' not allowed in nric
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_NRIC = "S9348573FF"; // invalid number of digits
+    public static final String INVALID_APPOINTMENT_START_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_START_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_APPOINTMENT_END_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_END_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + INVALID_NRIC;
+    public static final String INVALID_DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + INVALID_NRIC;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -116,6 +147,53 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertNewCommandSuccess(NewCommand command, NewModel actualModel,
+                                               CommandResult expectedCommandResult,
+                                               NewModel expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertNewCommandSuccess(NewCommand, NewModel, CommandResult, NewModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertNewCommandSuccess(NewCommand newCommand, NewModel actualModel, String expectedMessage,
+                                            NewModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertNewCommandSuccess(newCommand, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code newcommand}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     */
+    public static void assertNewCommandFailure(NewCommand newCommand, NewModel actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        Database expectedAddressBook = new Database(actualModel.getDatabase());
+        List<Appointment> expectedFilteredAppointmentList = new ArrayList<>(actualModel.getFilteredAppointmentList());
+        List<Patient> expectedFilteredPatientList = new ArrayList<>(actualModel.getFilteredPatientList());
+        List<Doctor> expectedFilteredDoctorList = new ArrayList<>(actualModel.getFilteredDoctorList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> newCommand.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getDatabase());
+        assertEquals(expectedFilteredAppointmentList, actualModel.getFilteredAppointmentList());
+        assertEquals(expectedFilteredPatientList, actualModel.getFilteredPatientList());
+        assertEquals(expectedFilteredDoctorList, actualModel.getFilteredDoctorList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

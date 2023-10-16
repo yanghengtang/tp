@@ -1,16 +1,27 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +37,26 @@ public class PersonUtil {
     }
 
     /**
+     * Returns an add appointment command string for adding the {@code appointment}.
+     */
+    public static String getAddAppointmentCommand(Appointment appointment) {
+        return AddAppointmentCommand.COMMAND_WORD + " " + getAppointmentDetails(appointment);
+    }
+
+    /**
+     * Returns an add doctor command string for adding the {@code doctor}.
+     */
+    public static String getAddDoctorCommand(Doctor doctor) {
+        return AddDoctorCommand.COMMAND_WORD + " " + getDoctorDetails(doctor);
+    }
+
+    /**
+     * Returns an add patient command string for adding the {@code patient}.
+     */
+    public static String getAddPatientCommand(Patient patient) {
+        return AddPatientCommand.COMMAND_WORD + " " + getPatientDetails(patient);
+    }
+    /**
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Person person) {
@@ -37,6 +68,39 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code appointment}'s details.
+     */
+    public static String getAppointmentDetails(Appointment appointment) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_PATIENT_NRIC + appointment.getPatientNric().toString() + " ");
+        sb.append(PREFIX_DOCTOR_NRIC + appointment.getDoctorNric().toString() + " ");
+        sb.append(PREFIX_APPOINTMENT_START_TIME + appointment.getStartTime().toString() + " ");
+        sb.append(PREFIX_APPOINTMENT_END_TIME + appointment.getEndTime().toString() + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code doctor}'s details.
+     */
+    public static String getDoctorDetails(Doctor doctor) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NRIC + doctor.getNric().toString() + " ");
+        sb.append(PREFIX_NAME + doctor.getName().toString() + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code patient}'s details.
+     */
+    public static String getPatientDetails(Patient patient) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NRIC + patient.getNric().toString() + " ");
+        sb.append(PREFIX_NAME + patient.getName().toString() + " ");
+        sb.append(PREFIX_PHONE + patient.getPhone().toString() + " ");
         return sb.toString();
     }
 

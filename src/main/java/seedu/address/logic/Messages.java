@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * Container for user visible messages.
@@ -48,6 +50,36 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code appointment} for display to the user.
+     */
+    public static String format(Appointment appointment) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Patient NRIC: ")
+                .append(appointment.getPatientNric())
+                .append("; Doctor NRIC: ")
+                .append(appointment.getDoctorNric())
+                .append("; From: ")
+                .append(appointment.getStartTime())
+                .append("; to: ")
+                .append(appointment.getEndTime());
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code patient} for display to the user.
+     */
+
+    public static String format(Patient patient) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(patient.getName())
+                .append("; Phone: ")
+                .append(patient.getPhone())
+                .append("; NRIC: ")
+                .append(patient.getNric());
         return builder.toString();
     }
 
