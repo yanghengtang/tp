@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.NewModel;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_PATIENTS;
+
+import seedu.address.model.NewModel;
 
 /**
  * Lists all patients in the address book to the user.
