@@ -98,7 +98,7 @@ public class AddDoctorCommandTest {
         // same value -> returns same hashcode
         assertEquals(command.hashCode(), Objects.hash(ALICE));
 
-        // different feedbackToUser value -> returns different hashcode
+        // different value -> returns different hashcode
         assertNotEquals(command.hashCode(), Objects.hash(BOB));
 
     }

@@ -99,7 +99,7 @@ public class NameContainsKeywordsDoctorPredicateTest {
 
         List<String> keywords2 = List.of("keyword1", "keyword3");
 
-        // different feedbackToUser value -> returns different hashcode
+        // different value -> returns different hashcode
         assertNotEquals(command.hashCode(), Objects.hash(keywords2));
 
     }
