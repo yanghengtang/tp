@@ -115,7 +115,7 @@ public class AppointmentTest {
 
         //endTime within interval but start time not
         assertTrue(APPOINTMENT_1.overlaps(new AppointmentBuilder()
-                .withStartTime("2023-09-11 07:45")
+                .withStartTime("2023-09-11 07:30")
                 .withEndTime("2023-09-11 08:15")
                 .build()));
 
