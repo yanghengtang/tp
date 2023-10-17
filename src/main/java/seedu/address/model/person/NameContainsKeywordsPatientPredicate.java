@@ -16,7 +16,6 @@ public class NameContainsKeywordsPatientPredicate implements Predicate<Patient> 
     public NameContainsKeywordsPatientPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(this.keywords);
