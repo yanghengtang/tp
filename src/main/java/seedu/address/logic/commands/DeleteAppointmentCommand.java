@@ -20,7 +20,7 @@ public class DeleteAppointmentCommand extends NewCommand {
     public static final String COMMAND_WORD = "delete_a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment identified by the index number used in the displayed patient list.\n"
+            + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

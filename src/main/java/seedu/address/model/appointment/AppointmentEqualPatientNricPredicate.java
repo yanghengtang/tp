@@ -7,7 +7,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Nric;
 
 /**
- * Tests that a {@code Doctor}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Patient}'s {@code Nric} matches the nric given.
  */
 public class AppointmentEqualPatientNricPredicate implements Predicate<Appointment> {
     private final Nric nric;

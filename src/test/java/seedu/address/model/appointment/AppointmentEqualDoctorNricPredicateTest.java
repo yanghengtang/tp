@@ -37,7 +37,7 @@ public class AppointmentEqualDoctorNricPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different doctor -> returns false
+        // different doctor nric -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
