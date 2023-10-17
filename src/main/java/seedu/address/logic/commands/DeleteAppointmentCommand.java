@@ -10,45 +10,41 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Deletes a patient identified using it's displayed index from the database.
  */
-public class DeletePatientCommand extends NewCommand {
+public class DeleteAppointmentCommand extends NewCommand {
 
-    public static final String COMMAND_WORD = "delete_p";
+    public static final String COMMAND_WORD = "delete_a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
+            + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted patient: %1$s";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
     private final Index targetIndex;
 
-    public DeletePatientCommand(Index targetIndex) {
+    public DeleteAppointmentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.targetIndex);
     }
 
     @Override
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPatientList();
+        List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePatient(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, Messages.format(patientToDelete)));
+        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteAppointment(appointmentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                Messages.format(appointmentToDelete)));
     }
 
     @Override
@@ -58,12 +54,17 @@ public class DeletePatientCommand extends NewCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeletePatientCommand)) {
+        if (!(other instanceof DeleteAppointmentCommand)) {
             return false;
         }
 
-        DeletePatientCommand otherDeletePatientCommand = (DeletePatientCommand) other;
-        return targetIndex.equals(otherDeletePatientCommand.targetIndex);
+        DeleteAppointmentCommand otherDeleteAppointmentCommand = (DeleteAppointmentCommand) other;
+        return targetIndex.equals(otherDeleteAppointmentCommand.targetIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.targetIndex);
     }
 
     @Override
@@ -72,4 +73,5 @@ public class DeletePatientCommand extends NewCommand {
                 .add("targetIndex", targetIndex)
                 .toString();
     }
+
 }
