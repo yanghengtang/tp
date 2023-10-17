@@ -1,20 +1,20 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
+import static seedu.address.testutil.TypicalAppointment.getTypicalDatabase;
+import static seedu.address.testutil.TypicalPatient.HOON_NAME;
+import static seedu.address.testutil.TypicalPatient.HOON_NRIC;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.Messages;
 import seedu.address.model.NewModel;
 import seedu.address.model.NewModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.DoctorBuilder;
-import seedu.address.testutil.PatientBuilder;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
-import static seedu.address.testutil.TypicalAppointment.getTypicalDatabase;
-import static seedu.address.testutil.TypicalPatient.*;
 
 public class AddDoctorCommandIntegrationTest {
     private NewModel newModel;
