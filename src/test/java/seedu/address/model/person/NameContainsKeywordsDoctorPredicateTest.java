@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -97,10 +97,14 @@ public class NameContainsKeywordsDoctorPredicateTest {
         NameContainsKeywordsDoctorPredicate command = new NameContainsKeywordsDoctorPredicate(keywords);
         assertEquals(command.hashCode(), Objects.hash(keywords));
 
-        List<String> keywords2 = List.of("keyword1", "keyword3");
+        //objects are equal should have same hashcode
+        NameContainsKeywordsDoctorPredicate predicate2 = new NameContainsKeywordsDoctorPredicate(keywords);
+        assertEquals(command.hashCode(), predicate2.hashCode());
 
-        // different value -> returns different hashcode
-        assertNotEquals(command.hashCode(), Objects.hash(keywords2));
+        List<String> nullKeywords = null;
+        NameContainsKeywordsDoctorPredicate predicate = new NameContainsKeywordsDoctorPredicate(nullKeywords);
+        // Here, we just want to make sure it doesn't throw an exception
+        assertNotNull(predicate.hashCode());
 
     }
 
