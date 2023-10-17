@@ -1,11 +1,15 @@
 package seedu.address.model.appointment;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
 
 public class AppointmentTimeTest {
     public static final LocalDateTime VALID_TIME =
@@ -46,7 +50,7 @@ public class AppointmentTimeTest {
     }
 
     @Test
-    public void toString_() {
+    public void toString_test() {
         AppointmentTime appointmentTime = new AppointmentTimeStub(VALID_TIME);
         assertEquals(VALID_TIME_STRING, appointmentTime.toString());
         assertNotEquals(INVALID_TIME_STRING, appointmentTime.toString());
@@ -78,8 +82,8 @@ public class AppointmentTimeTest {
         assertThrows(NullPointerException.class, () -> AppointmentTime.parse(null, MESSAGE));
 
         // invalid time string -> throws IllegalArgumentException with message
-        assertThrows(IllegalArgumentException.class, MESSAGE,
-                () -> AppointmentTime.parse(INVALID_TIME_STRING, MESSAGE));
+        assertThrows(IllegalArgumentException.class, MESSAGE, () ->
+                AppointmentTime.parse(INVALID_TIME_STRING, MESSAGE));
 
         // valid time string -> returns LocalDateTime object
         assertEquals(VALID_TIME_2, AppointmentTime.parse(VALID_TIME_STRING_2, MESSAGE));

@@ -1,11 +1,11 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a time to be used in Appointment
@@ -70,6 +70,12 @@ public abstract class AppointmentTime {
         return time.hashCode();
     }
 
+    /**
+     * Parses a given string using the date_time_formatter.
+     * @param time string representation of the time
+     * @param msg message to return if the appointment time is invalid
+     * @return LocalDateTime object of the given time
+     */
     public static LocalDateTime parse(String time, String msg) {
         requireNonNull(time);
         String trimmedTime = time.trim();
