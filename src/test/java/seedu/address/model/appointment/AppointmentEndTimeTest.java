@@ -15,8 +15,8 @@ public class AppointmentEndTimeTest {
 
     @Test
     public void constructor_invalidAppointmentTime_throwsIllegalArgumentException() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new AppointmentEndTime(invalidName));
+        String invalidTime = "";
+        assertThrows(IllegalArgumentException.class, () -> new AppointmentEndTime(invalidTime));
     }
 
     @Test
