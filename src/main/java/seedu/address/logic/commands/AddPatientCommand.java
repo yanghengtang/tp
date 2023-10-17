@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
+import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.patient.Patient;
 /**
  * Adds a patient to the database.
@@ -41,12 +42,13 @@ public class AddPatientCommand extends NewCommand {
     @Override
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasPatient(toAdd)) {
+        try {
+            model.addPatient(toAdd);
+        } catch (DuplicateItemException e) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
-        model.addPatient(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

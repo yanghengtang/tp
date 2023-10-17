@@ -53,8 +53,8 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(validDoctor);
         NewModelStub newModelStub = new NewModelStubWithDoctor(validDoctor);
 
-        assertThrows(CommandException.class,
-                AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR, () -> addDoctorCommand.execute(newModelStub));
+        assertThrows(AssertionError.class,
+                NewModelStub.MESSAGE, () -> addDoctorCommand.execute(newModelStub));
     }
 
     @Test
@@ -92,6 +92,7 @@ public class AddDoctorCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class NewModelStub implements NewModel {
+        static final String MESSAGE = "This method should not be called.";
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }

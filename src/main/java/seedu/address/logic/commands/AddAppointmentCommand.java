@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.exceptions.DuplicateItemException;
 
 /**
  * Adds a person to the address book.
@@ -54,11 +55,12 @@ public class AddAppointmentCommand extends NewCommand {
             throw new CommandException(MESSAGE_INVALID_PATIENT);
         }
 
-        if (model.hasAppointment(toAdd)) {
+        try {
+            model.addAppointment(toAdd);
+        } catch (DuplicateItemException e) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
