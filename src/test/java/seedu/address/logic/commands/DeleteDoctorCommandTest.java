@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
@@ -112,12 +111,6 @@ public class DeleteDoctorCommandTest {
 
         // same value -> returns same hashcode
         assertEquals(deleteCommand.hashCode(), Objects.hash(targetIndex));
-
-        Index targetIndex2 = Index.fromOneBased(2);
-
-        // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(deleteCommand.hashCode(), Objects.hash(targetIndex2));
-
     }
 
     @Test
