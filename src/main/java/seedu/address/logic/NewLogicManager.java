@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -16,7 +18,7 @@ import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
-import seedu.address.storage.Storage;
+import seedu.address.storage.NewStorage;
 
 /**
  * The main LogicManager of the app.
@@ -30,13 +32,13 @@ public class NewLogicManager implements NewLogic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final NewModel model;
-    private final Storage storage;
+    private final NewStorage storage;
     private final NewAddressBookParser newAddressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public NewLogicManager(NewModel model, Storage storage) {
+    public NewLogicManager(NewModel model, NewStorage storage) {
         this.model = model;
         this.storage = storage;
         newAddressBookParser = new NewAddressBookParser();
@@ -49,7 +51,15 @@ public class NewLogicManager implements NewLogic {
         CommandResult commandResult;
         NewCommand command = newAddressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        //save to database logic to be implemented here
+
+        try {
+            storage.saveDatabase(model.getDatabase());
+        } catch (AccessDeniedException e) {
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+        }
+
         return commandResult;
     }
 
