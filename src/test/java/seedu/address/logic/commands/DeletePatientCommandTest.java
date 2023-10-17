@@ -10,6 +10,8 @@ import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -26,7 +28,12 @@ import seedu.address.model.person.patient.Patient;
 public class DeletePatientCommandTest {
 
     private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
-
+    @Test
+    public void hashcode() {
+        DeletePatientCommand command = new DeletePatientCommand(INDEX_FIRST_PERSON);
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(INDEX_FIRST_PERSON));
+    }
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());

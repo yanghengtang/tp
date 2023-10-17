@@ -1,9 +1,12 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +23,12 @@ public class DeletePatientCommandParserTest {
 
     private DeletePatientCommandParser parser = new DeletePatientCommandParser();
 
+    @Test
+    public void hashcode() {
+        DeletePatientCommand command = new DeletePatientCommand(INDEX_FIRST_PERSON);
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(INDEX_FIRST_PERSON));
+    }
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeletePatientCommand(INDEX_FIRST_PERSON));
