@@ -12,8 +12,8 @@ import static seedu.address.testutil.TypicalPatient.BOB;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
