@@ -39,12 +39,15 @@ public class NameContainsKeywordsDoctorPredicate implements Predicate<Doctor> {
                 (NameContainsKeywordsDoctorPredicate) other;
         return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(keywords);
     }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();
     }
+
 }

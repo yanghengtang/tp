@@ -64,6 +64,7 @@ public class AddDoctorCommand extends NewCommand {
         AddDoctorCommand otherAddCommand = (AddDoctorCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(toAdd);
