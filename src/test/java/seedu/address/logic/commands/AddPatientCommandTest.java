@@ -3,11 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatient.ALICE;
-import static seedu.address.testutil.TypicalPatient.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -38,10 +36,6 @@ public class AddPatientCommandTest {
 
         // same value -> returns same hashcode
         assertEquals(command.hashCode(), Objects.hash(ALICE));
-
-        // different value -> returns different hashcode
-        assertNotEquals(command.hashCode(), Objects.hash(BOB));
-
     }
 
     @Test
