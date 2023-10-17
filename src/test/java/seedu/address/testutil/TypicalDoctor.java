@@ -67,11 +67,11 @@ public class TypicalDoctor {
     }
 
     public static Database getTypicalDatabase() {
-        Database ab = new Database();
+        Database db = new Database();
         for (Doctor doctor : getTypicalDoctor()) {
-            ab.addDoctor(doctor);
+            db.addDoctor(doctor);
         }
-        return ab;
+        return db;
     }
 
 }
