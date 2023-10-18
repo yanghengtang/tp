@@ -65,21 +65,13 @@ public class TypicalDoctor {
     public static List<Doctor> getTypicalDoctor() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
     public static Database getTypicalDatabase() {
         Database ab = new Database();
         for (Doctor doctor : getTypicalDoctor()) {
             ab.addDoctor(doctor);
         }
         return ab;
-    }
-
-
-    public static Database getTypicalDatabase() {
-        Database db = new Database();
-        for (Doctor doctor : getTypicalDoctor()) {
-            db.addDoctor(doctor);
-        }
-        return db;
     }
 
 }

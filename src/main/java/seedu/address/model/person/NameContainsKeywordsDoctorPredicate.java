@@ -43,10 +43,6 @@ public class NameContainsKeywordsDoctorPredicate implements Predicate<Doctor> {
     public int hashCode() {
         return Objects.hash(keywords);
     }
-    @Override
-    public int hashCode() {
-        return Objects.hash(keywords);
-    }
 
     @Override
     public String toString() {

@@ -103,7 +103,7 @@ public class NameContainsKeywordsDoctorPredicateTest {
 
         List<String> nullKeywords = null;
         NameContainsKeywordsDoctorPredicate predicate = new NameContainsKeywordsDoctorPredicate(nullKeywords);
-      
+
         // Here, we just want to make sure it doesn't throw an exception
         assertNotNull(predicate.hashCode());
     }
