@@ -25,8 +25,10 @@ import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.NewModel;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
@@ -208,6 +210,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Appointment at the given {@code targetIndex} in the
+     * {@code model}'s database.
+     */
+    public static void showAppointmentAtIndex(NewModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
+
+        Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
+        final Nric doctorNric = appointment.getDoctorNric();
+        model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
+        assertEquals(1, model.getFilteredAppointmentList().size());
     }
 
     /**
