@@ -37,7 +37,7 @@ public class DoctorCard extends UiPart<Region> {
     public DoctorCard(Doctor doctor, int displayedIndex) {
         super(FXML);
         this.doctor = doctor;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.format("%d", displayedIndex));
         name.setText(doctor.getName().fullName);
         nric.setText(doctor.getNric().nric);
     }
