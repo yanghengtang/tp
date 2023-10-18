@@ -16,7 +16,7 @@ public class AppointmentEqualDoctorNricPredicateTest {
     @Test
     public void equals() {
         Nric firstDoctorNric = new Nric(ALICE_NRIC);
-        Nric secondDoctorNric = new Nric(BENSON_NRIC);;
+        Nric secondDoctorNric = new Nric(BENSON_NRIC);
 
         AppointmentEqualDoctorNricPredicate firstPredicate =
                 new AppointmentEqualDoctorNricPredicate(firstDoctorNric);
