@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -47,6 +49,12 @@ public class NewAddressBookParserTest {
         assertEquals(new AddPatientCommand(patient), command);
     }
 
+    @Test
+    public void parseCommand_deleteAppointment() throws Exception {
+        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
+                DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
