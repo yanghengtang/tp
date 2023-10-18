@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.NewModel;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
+import seedu.address.model.appointment.AppointmentEqualPatientNricPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -222,6 +223,24 @@ public class CommandTestUtil {
         final Nric doctorNric = appointment.getDoctorNric();
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Appointment with the given {@code patientNric} in the
+     * {@code model}'s database.
+     */
+    public static void showAppointmentsWithPatientNric(NewModel model, Nric patientNric) {
+        assertTrue(model.hasPatientWithNric(patientNric));
+        model.updateFilteredAppointmentList(new AppointmentEqualPatientNricPredicate(patientNric));
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Appointment with the given {@code doctorNric} in the
+     * {@code model}'s database.
+     */
+    public static void showAppointmentsWithDoctorNric(NewModel model, Nric doctorNric) {
+        assertTrue(model.hasPatientWithNric(doctorNric));
+        model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
     }
 
 }
