@@ -20,35 +20,35 @@
             </padding>
          <HBox>
             <children>
-                   <Label fx:id="id" styleClass="cell_small_label">
+                <Label fx:id="header" styleClass="cell_label_bold" text="Appointment " />
+                   <Label fx:id="id" styleClass="cell_label_bold">
                        <minWidth>
                            <!-- Ensures that the label text is never truncated -->
                            <Region fx:constant="USE_PREF_SIZE" />
                        </minWidth>
                    </Label>
-                  <Label fx:id="header" styleClass="cell_small_label" text="Appointment" />
             </children>
          </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="startHeader" styleClass="cell_big_label" text="Start: " />
-                <Label fx:id="startDateTime" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="startHeader" styleClass="cell_label_bold" text="Start: " />
+                <Label fx:id="startDateTime" styleClass="cell_label" text="\$first" />
             </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="endHeader" styleClass="cell_big_label" text="End: " />
-               <Label fx:id="endDateTime" styleClass="cell_big_label" text="\$first" />
+               <Label fx:id="endHeader" styleClass="cell_label_bold" text="End: " />
+               <Label fx:id="endDateTime" styleClass="cell_label" text="\$first" />
             </children>
          </HBox>
             <HBox>
                 <children>
-                    <Label fx:id="patientNricHeader" styleClass="cell_small_label" text="Patient NRIC: " />
-                    <Label fx:id="patientNric" styleClass="cell_small_label" text="\$nric" />
+                    <Label fx:id="patientNricHeader" styleClass="cell_label_bold" text="Patient NRIC: " />
+                    <Label fx:id="patientNric" styleClass="cell_label" text="\$nric" />
                 </children>
             </HBox>
             <HBox>
                 <children>
-                    <Label fx:id="doctorNricHeader" styleClass="cell_small_label" text="Doctor NRIC: " />
-                    <Label fx:id="doctorNric" styleClass="cell_small_label" text="\$nric" />
+                    <Label fx:id="doctorNricHeader" styleClass="cell_label_bold" text="Doctor NRIC: " />
+                    <Label fx:id="doctorNric" styleClass="cell_label" text="\$nric" />
                 </children>
             </HBox>
         </VBox>
