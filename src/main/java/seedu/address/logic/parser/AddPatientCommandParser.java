@@ -14,12 +14,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
-
-
-
-
-
-
 /**
  * Parses input arguments and creates a new AddPatientCommand object
  */
