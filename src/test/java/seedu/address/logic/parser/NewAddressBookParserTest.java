@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -54,6 +55,13 @@ public class NewAddressBookParserTest {
         DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
                 DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deletePatient() throws Exception {
+        DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
+                DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePatientCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

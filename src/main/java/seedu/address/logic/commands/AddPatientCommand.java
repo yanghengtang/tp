@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
 import seedu.address.model.person.patient.Patient;
 
-
 /**
  * Adds a patient to the database.
  */
@@ -40,6 +39,11 @@ public class AddPatientCommand extends NewCommand {
     public AddPatientCommand(Patient patient) {
         requireNonNull(patient);
         toAdd = patient;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.toAdd);
     }
 
     @Override
@@ -74,11 +78,5 @@ public class AddPatientCommand extends NewCommand {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)
                 .toString();
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(toAdd);
     }
 }

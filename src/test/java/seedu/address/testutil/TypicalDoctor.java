@@ -74,4 +74,12 @@ public class TypicalDoctor {
     }
 
 
+    public static Database getTypicalDatabase() {
+        Database db = new Database();
+        for (Doctor doctor : getTypicalDoctor()) {
+            db.addDoctor(doctor);
+        }
+        return db;
+    }
+
 }
