@@ -79,4 +79,10 @@ public class AddPatientCommand extends NewCommand {
                 .add("toAdd", toAdd)
                 .toString();
     }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(toAdd);
+    }
 }
