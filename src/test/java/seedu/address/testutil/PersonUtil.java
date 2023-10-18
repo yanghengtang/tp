@@ -13,10 +13,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
@@ -70,6 +72,14 @@ public class PersonUtil {
         );
         return sb.toString();
     }
+
+    /**
+     * Returns an add patient command string for adding the {@code patient}.
+     */
+    public static String getDeleteDoctorCommand(Index index) {
+        return DeleteDoctorCommand.COMMAND_WORD + " " + index.toString();
+    }
+
 
     /**
      * Returns the part of command string for the given {@code appointment}'s details.
