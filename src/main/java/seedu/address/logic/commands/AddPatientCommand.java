@@ -5,11 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
 import seedu.address.model.person.patient.Patient;
+
 /**
  * Adds a patient to the database.
  */
@@ -36,6 +39,11 @@ public class AddPatientCommand extends NewCommand {
     public AddPatientCommand(Patient patient) {
         requireNonNull(patient);
         toAdd = patient;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.toAdd);
     }
 
     @Override

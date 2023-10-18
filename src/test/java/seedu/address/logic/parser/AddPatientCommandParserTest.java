@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
@@ -20,8 +21,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPatient.ALICE;
 import static seedu.address.testutil.TypicalPatient.AMY;
 import static seedu.address.testutil.TypicalPatient.BOB;
+
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +38,13 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 public class AddPatientCommandParserTest {
     private AddPatientCommandParser parser = new AddPatientCommandParser();
+    @Test
+    public void hashcode() {
+        AddPatientCommand command = new AddPatientCommand(ALICE);
 
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(ALICE));
+    }
     @Test
     public void parse_allFieldsPresent_success() {
         Patient expectedPatient = new PatientBuilder(BOB).build();

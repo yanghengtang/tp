@@ -59,27 +59,27 @@
   }, {
     "doctorNric" : "T3856391A",
     "patientNric" : "S2936283D",
-    "startTime" : "2023-09-11 07:30",
-    "endTime" : "2023-09-11 08:00"
+    "startTime" : "2023-09-12 07:30",
+    "endTime" : "2023-09-12 08:00"
   }, {
     "doctorNric" : "S9754123F",
     "patientNric" : "T3856391A",
-    "startTime" : "2023-09-11 07:30",
-    "endTime" : "2023-09-11 08:00"
+    "startTime" : "2023-09-11 10:30",
+    "endTime" : "2023-09-11 11:00"
   }, {
     "doctorNric" : "G4123573C",
     "patientNric" : "S9754123F",
-    "startTime" : "2023-09-11 07:30",
-    "endTime" : "2023-09-11 08:00"
+    "startTime" : "2023-09-11 17:30",
+    "endTime" : "2023-09-11 18:00"
   }, {
     "doctorNric" : "G6739542H",
     "patientNric" : "G4123573C",
-    "startTime" : "2023-09-11 07:30",
-    "endTime" : "2023-09-11 08:00"
+    "startTime" : "2023-09-11 09:30",
+    "endTime" : "2023-09-11 10:00"
   }, {
     "doctorNric" : "T0123456J",
     "patientNric" : "G6739542H",
-    "startTime" : "2023-09-11 07:30",
-    "endTime" : "2023-09-11 08:00"
+    "startTime" : "2023-09-11 13:30",
+    "endTime" : "2023-09-11 14:00"
   } ]
 }
