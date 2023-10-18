@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,14 @@ import seedu.address.testutil.PatientBuilder;
 
 public class NameContainsKeywordsPatientPredicateTest {
 
+    @Test
+    public void hashcode() {
+        List<String> keywords = List.of("keyword1", "keyword2");
+
+        // same value -> return same hashcode
+        NameContainsKeywordsPatientPredicate command = new NameContainsKeywordsPatientPredicate(keywords);
+        assertEquals(command.hashCode(), Objects.hash(keywords));
+    }
     @Test
     public void equals() {
         List<String> firstPredicatePatientKeywordList = Collections.singletonList("first");
