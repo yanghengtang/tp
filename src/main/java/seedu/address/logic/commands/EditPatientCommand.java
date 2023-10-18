@@ -58,6 +58,10 @@ public class EditPatientCommand extends NewCommand {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(this.index, this.editPatientDescriptor);
+    }
+    @Override
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
