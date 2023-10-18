@@ -66,6 +66,11 @@ public class AddDoctorCommand extends NewCommand {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)

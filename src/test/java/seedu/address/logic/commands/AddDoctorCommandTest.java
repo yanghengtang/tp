@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalDoctor.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -86,6 +87,18 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(ALICE);
         String expected = AddDoctorCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addDoctorCommand.toString());
+    }
+
+    @Test
+    public void hashcode() {
+        AddDoctorCommand command = new AddDoctorCommand(ALICE);
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(ALICE));
+
+        //objects are equal should have same hashcode
+        AddDoctorCommand predicate2 = new AddDoctorCommand(ALICE);
+        assertEquals(command.hashCode(), predicate2.hashCode());
     }
 
     /**
