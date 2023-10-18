@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPatient.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,14 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 public class AddPatientCommandTest {
+
+    @Test
+    public void hashcode() {
+        AddPatientCommand command = new AddPatientCommand(ALICE);
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(ALICE));
+    }
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
