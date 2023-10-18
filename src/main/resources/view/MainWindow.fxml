@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="750" minWidth="750" onCloseRequest="#handleExit" title="MediConnect App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@MediConnectTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -32,28 +33,33 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="header-pane">
+               <children>
+                  <Label text="MediConnect" styleClass="label-header"/>
+               </children>
+            </StackPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-borderless" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-borderless" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-borderless" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                <StackPane fx:id="appointmentListPanelPlaceholder" />
-                     <StackPane fx:id="patientListPanelPlaceholder" />
-                     <StackPane fx:id="doctorListPanelPlaceholder" />
+                <StackPane fx:id="appointmentListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
+                     <StackPane fx:id="patientListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
+                     <StackPane fx:id="doctorListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
                   </children>
                </HBox>
         </VBox>
