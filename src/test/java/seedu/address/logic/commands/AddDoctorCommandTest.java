@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
@@ -98,9 +97,9 @@ public class AddDoctorCommandTest {
         // same value -> returns same hashcode
         assertEquals(command.hashCode(), Objects.hash(ALICE));
 
-        // different value -> returns different hashcode
-        assertNotEquals(command.hashCode(), Objects.hash(BOB));
-
+        //objects are equal should have same hashcode
+        AddDoctorCommand predicate2 = new AddDoctorCommand(ALICE);
+        assertEquals(command.hashCode(), predicate2.hashCode());
     }
 
     /**

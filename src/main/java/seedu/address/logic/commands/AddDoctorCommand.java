@@ -70,9 +70,20 @@ public class AddDoctorCommand extends NewCommand {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)
                 .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(toAdd);
     }
 }

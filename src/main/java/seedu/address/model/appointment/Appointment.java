@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -63,8 +64,28 @@ public class Appointment implements Listable {
     }
 
     /**
+     * Returns true if both appointments have overlapping timings
+     */
+    public boolean overlaps(Appointment a) {
+        if (this.startTime.equals(a.startTime) && this.endTime.equals(a.endTime)) {
+            return true;
+        }
+        return this.withinInterval(a.startTime.time)
+                || this.withinInterval(a.endTime.time)
+                || a.withinInterval(this.startTime.time)
+                || a.withinInterval(this.endTime.time);
+    }
+
+    /**
+     * Returns true if given time is within the appointment timings
+     */
+    public boolean withinInterval(LocalDateTime time) {
+        return time.isBefore(this.endTime.time) && time.isAfter(this.startTime.time);
+    }
+
+    /**
      * Returns true if both appointments have the same identity fields.
-     * This defines a stronger notion of equality between two patients.
+     * This defines a stronger notion of equality between two appointments.
      */
     @Override
     public boolean equals(Object other) {
