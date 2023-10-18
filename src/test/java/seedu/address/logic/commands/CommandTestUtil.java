@@ -233,20 +233,6 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
-     * {@code model}'s database
-     */
-    public static void showPatientAtIndex(NewModel model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
-
-        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
-        final String[] splitName = patient.getName().fullName.split("\\s+");
-        model.updateFilteredPatientList(new NameContainsKeywordsPatientPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPatientList().size());
-    }
-
-    /**
      * Updates {@code model}'s filtered list to show only the Appointment at the given {@code targetIndex} in the
      * {@code model}'s database.
      */
