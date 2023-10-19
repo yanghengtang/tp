@@ -236,7 +236,7 @@ public class CommandTestUtil {
         final Nric doctorNric = appointment.getDoctorNric();
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
         assertEquals(1, model.getFilteredAppointmentList().size());
-     }
+    }
 
     /**
      * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
