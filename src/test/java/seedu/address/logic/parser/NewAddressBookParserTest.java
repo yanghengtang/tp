@@ -6,6 +6,10 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
@@ -13,16 +17,17 @@ import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonUtil;
-
 
 public class NewAddressBookParserTest {
 
@@ -62,6 +67,14 @@ public class NewAddressBookParserTest {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeletePatientCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_findPatient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindPatientCommand command = (FindPatientCommand) parser.parseCommand(
+                FindPatientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPatientCommand(new NameContainsKeywordsPatientPredicate(keywords)), command);
     }
 
     @Test
