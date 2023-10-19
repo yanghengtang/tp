@@ -18,7 +18,7 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddPatientCommand}.
+ * Contains integration tests (interaction with the Model) for the AddPatientCommand class
  */
 public class AddPatientCommandIntegrationTest {
     private NewModel newModel;

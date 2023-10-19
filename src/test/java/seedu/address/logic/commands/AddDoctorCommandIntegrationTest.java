@@ -16,6 +16,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.testutil.DoctorBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) for the AddDoctorCommand class.
+ */
 public class AddDoctorCommandIntegrationTest {
     private NewModel newModel;
 
