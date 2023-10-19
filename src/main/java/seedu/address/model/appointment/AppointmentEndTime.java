@@ -26,9 +26,4 @@ public class AppointmentEndTime extends AppointmentTime {
         AppointmentEndTime otherAppointmentEndTime = (AppointmentEndTime) other;
         return super.equals(otherAppointmentEndTime);
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }
