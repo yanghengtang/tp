@@ -21,7 +21,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
 
 /**
- * Edits the details of an existing patient in the address book.
+ * Edits the details of an existing patient in the database.
  */
 public class EditPatientCommand extends NewCommand {
 
@@ -133,7 +133,6 @@ public class EditPatientCommand extends NewCommand {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
 
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
