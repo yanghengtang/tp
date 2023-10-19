@@ -18,6 +18,7 @@ import seedu.address.model.Database;
 import seedu.address.model.NewModel;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.testutil.EditDoctorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,6 +42,7 @@ public class NewCommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "T012#456A"; // '#' not allowed in nric
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -49,6 +51,15 @@ public class NewCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditDoctorCommand.EditDoctorDescriptor DESC_AMY;
+    public static final EditDoctorCommand.EditDoctorDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditDoctorDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withNric(VALID_NRIC_AMY).build();
+        DESC_BOB = new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withNric(VALID_NRIC_BOB).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -57,7 +68,7 @@ public class NewCommandTestUtil {
      * - the {@code actualNewModel} matches {@code expectedNewModel}
      */
     public static void assertCommandSuccess(NewCommand command, NewModel actualNewModel,
-                                            CommandResult expectedCommandResult, NewModel expectedNewModel) {
+            CommandResult expectedCommandResult, NewModel expectedNewModel) {
         try {
             CommandResult result = command.execute(actualNewModel);
             assertEquals(expectedCommandResult, result);
@@ -72,7 +83,7 @@ public class NewCommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(NewCommand command, NewModel actualNewModel, String expectedMessage,
-                                            NewModel expectedNewModel) {
+            NewModel expectedNewModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualNewModel, expectedCommandResult, expectedNewModel);
     }
