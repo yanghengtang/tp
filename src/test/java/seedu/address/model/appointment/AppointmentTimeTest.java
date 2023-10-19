@@ -35,17 +35,17 @@ public class AppointmentTimeTest {
 
     @Test
     public void isValidAppointmentTime() {
-        // null name
+        // null time
         assertThrows(NullPointerException.class, () -> AppointmentTime.isValidAppointmentTime(null));
 
-        // invalid name
+        // invalid time
         assertFalse(AppointmentTime.isValidAppointmentTime("")); // empty string
         assertFalse(AppointmentTime.isValidAppointmentTime(" ")); // spaces only
         assertFalse(AppointmentTime.isValidAppointmentTime("^*$")); // not numeric characters
         assertFalse(AppointmentTime.isValidAppointmentTime("12-01-2023 07:30")); // date in wrong format
 
-        // valid name
-        assertTrue(AppointmentStartTime.isValidAppointmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm format
+        // valid time
+        assertTrue(AppointmentStartTime.isValidAppointmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm 24h format
         assertTrue(AppointmentStartTime.isValidAppointmentTime("2023-09-11 16:00")); // in yyyy-dd-mm HH:mm 24h format
     }
 
