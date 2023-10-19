@@ -15,6 +15,7 @@ import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -72,6 +73,13 @@ public class NewAddressBookParserTest {
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD + " 3") instanceof ListPatientsCommand);
     }
 
+    @Test
+    public void parseCommand_listAppointments() throws Exception {
+        assertTrue(parser.parseCommand(ListAppointmentCommand.COMMAND_WORD) instanceof ListAppointmentCommand);
+        assertTrue(parser.parseCommand(ListAppointmentCommand.COMMAND_WORD
+                + " pic\\ T0123456J dic\\ S2936283D") instanceof ListAppointmentCommand);
+
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

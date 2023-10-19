@@ -16,8 +16,8 @@ import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
+import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.NewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
