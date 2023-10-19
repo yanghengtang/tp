@@ -39,7 +39,7 @@ public class PatientCard extends UiPart<Region> {
     public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
         this.patient = patient;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.format("%d", displayedIndex));
         name.setText(patient.getName().fullName);
         nric.setText(patient.getNric().nric);
         phone.setText(patient.getPhone().value);
