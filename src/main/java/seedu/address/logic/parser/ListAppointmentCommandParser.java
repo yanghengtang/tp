@@ -14,7 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
-public class ListAppointmentCommandParser {
+public class ListAppointmentCommandParser implements NewParser<ListAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListAppointmentCommand
@@ -27,22 +27,33 @@ public class ListAppointmentCommandParser {
                 PREFIX_DOCTOR_NRIC);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PATIENT_NRIC,
                 PREFIX_DOCTOR_NRIC);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ListAppointmentCommand.MESSAGE_USAGE));
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT_NRIC)
                 && !arePrefixesPresent(argMultimap, PREFIX_DOCTOR_NRIC)) {
             return new ListAppointmentCommand();
         } else if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT_NRIC)) {
             Nric doctorNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_DOCTOR_NRIC).get());
-            return new ListAppointmentCommand(PREDICATE_SHOW_ALL_APPOINTMENTS,
-                    new AppointmentEqualDoctorNricPredicate(doctorNric));
+            AppointmentEqualDoctorNricPredicate doctorPredicate =  new AppointmentEqualDoctorNricPredicate(doctorNric);
+            Predicate<Appointment> patientPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
+            AppointmentFilterByNricPredicate predicate = new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+            return new ListAppointmentCommand(predicate);
         } else if (!arePrefixesPresent(argMultimap, PREFIX_DOCTOR_NRIC)) {
             Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_PATIENT_NRIC).get());
-            return new ListAppointmentCommand(new AppointmentEqualPatientNricPredicate(patientNric),
-                    PREDICATE_SHOW_ALL_APPOINTMENTS);
+            AppointmentEqualPatientNricPredicate patientPredicate =  new AppointmentEqualPatientNricPredicate(patientNric);
+            Predicate<Appointment> doctorPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
+            AppointmentFilterByNricPredicate predicate = new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+            return new ListAppointmentCommand(predicate);
         } else {
             Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_PATIENT_NRIC).get());
             Nric doctorNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_DOCTOR_NRIC).get());
-            return new ListAppointmentCommand(new AppointmentEqualPatientNricPredicate(patientNric),
-                    new AppointmentEqualDoctorNricPredicate(doctorNric));
+            AppointmentEqualPatientNricPredicate patientPredicate =  new AppointmentEqualPatientNricPredicate(patientNric);
+            AppointmentEqualDoctorNricPredicate doctorPredicate =  new AppointmentEqualDoctorNricPredicate(doctorNric);
+            AppointmentFilterByNricPredicate predicate = new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+            return new ListAppointmentCommand(predicate);
         }
     }
 
