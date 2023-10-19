@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a time to be used in Appointment
+ * Represents a time to be used in Appointment.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointmentTime(String)}
  */
 public abstract class AppointmentTime {
