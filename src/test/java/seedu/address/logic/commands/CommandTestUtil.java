@@ -252,7 +252,7 @@ public class CommandTestUtil {
      * {@code model}'s database.
      */
     public static void showAppointmentsWithDoctorNric(NewModel model, Nric doctorNric) {
-        assertTrue(model.hasPatientWithNric(doctorNric));
+        assertTrue(model.hasDoctorWithNric(doctorNric));
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
     }
 
