@@ -44,8 +44,9 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appointment = appointment;
         id.setText(String.format("%d", displayedIndex));
-        startDateTime.setText(appointment.getStartTime().time.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
-        endDateTime.setText(appointment.getEndTime().time.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
+        startDateTime.setText(appointment.getStartTime().getTime().format(DateTimeFormatter
+                .ofPattern("MMM d yyyy HH:mm")));
+        endDateTime.setText(appointment.getEndTime().getTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
         patientNric.setText(appointment.getPatientNric().nric);
         doctorNric.setText(appointment.getDoctorNric().nric);
     }

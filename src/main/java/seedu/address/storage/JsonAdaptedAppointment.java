@@ -71,7 +71,7 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppointmentStartTime.class.getSimpleName()));
         }
-        if (!AppointmentStartTime.isValidAppointmmentTime(startTime)) {
+        if (!AppointmentStartTime.isValidAppointmentTime(startTime)) {
             throw new IllegalValueException(AppointmentStartTime.MESSAGE_CONSTRAINTS);
         }
         final AppointmentStartTime modelAppointmentStartTime = new AppointmentStartTime(startTime);
@@ -80,7 +80,7 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppointmentEndTime.class.getSimpleName()));
         }
-        if (!AppointmentEndTime.isValidAppointmmentTime(endTime)) {
+        if (!AppointmentEndTime.isValidAppointmentTime(endTime)) {
             throw new IllegalValueException(AppointmentEndTime.MESSAGE_CONSTRAINTS);
         }
         final AppointmentEndTime modelAppointmentEndTime = new AppointmentEndTime(endTime);

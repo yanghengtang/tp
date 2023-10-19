@@ -3,10 +3,12 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
 import static seedu.address.testutil.TypicalDoctor.BENSON;
 import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
@@ -25,6 +27,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatient;
@@ -121,6 +124,31 @@ public class DatabaseTest {
     public void hasAppointment_appointmentRemovedFromDatabase_returnsFalse() {
         database.addAppointment(APPOINTMENT_1);
         database.removeAppointment(APPOINTMENT_1);
+        assertFalse(database.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void hasAppointment_appointmentModified_returnsFalse() {
+        database.addAppointment(APPOINTMENT_1);
+        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1)
+                .withEndTime(VALID_APPOINTMENT_END_TIME).build();
+        database.setAppointment(APPOINTMENT_1, editedAppointment);
+        assertTrue(database.hasAppointment(editedAppointment));
+    }
+
+    @Test
+    public void hasAppointment_doctorRemovedFromDatabase_returnsFalse() {
+        database.addDoctor(BENSON);
+        database.addAppointment(APPOINTMENT_1);
+        database.removeDoctor(BENSON);
+        assertFalse(database.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void hasAppointment_patientRemovedFromDatabase_returnsFalse() {
+        database.addPatient(TypicalPatient.ALICE);
+        database.addAppointment(APPOINTMENT_1);
+        database.removePatient(TypicalPatient.ALICE);
         assertFalse(database.hasAppointment(APPOINTMENT_1));
     }
 
@@ -240,6 +268,12 @@ public class DatabaseTest {
         List<Patient> patientList = getTypicalPatient();
         newDatabase = new Database();
         newDatabase.setPatients(patientList);
+        assertFalse(database.equals(newDatabase));
+
+        // different appointmentList -> return false
+        List<Appointment> appointmentList = getTypicalAppointment();
+        newDatabase = new Database();
+        newDatabase.setAppointments(appointmentList);
         assertFalse(database.equals(newDatabase));
     }
 

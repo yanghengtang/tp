@@ -70,17 +70,17 @@ public class Appointment implements Listable {
         if (this.startTime.equals(a.startTime) && this.endTime.equals(a.endTime)) {
             return true;
         }
-        return this.withinInterval(a.startTime.time)
-                || this.withinInterval(a.endTime.time)
-                || a.withinInterval(this.startTime.time)
-                || a.withinInterval(this.endTime.time);
+        return this.withinInterval(a.startTime.getTime())
+                || this.withinInterval(a.endTime.getTime())
+                || a.withinInterval(this.startTime.getTime())
+                || a.withinInterval(this.endTime.getTime());
     }
 
     /**
      * Returns true if given time is within the appointment timings
      */
     public boolean withinInterval(LocalDateTime time) {
-        return time.isBefore(this.endTime.time) && time.isAfter(this.startTime.time);
+        return time.isBefore(this.endTime.getTime()) && time.isAfter(this.startTime.getTime());
     }
 
     /**

@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.exceptions.DuplicateItemException;
 
 
 /**
@@ -41,12 +42,12 @@ public class AddDoctorCommand extends NewCommand {
     @Override
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasDoctor(toAdd)) {
+        try {
+            model.addDoctor(toAdd);
+        } catch (DuplicateItemException e) {
             throw new CommandException(MESSAGE_DUPLICATE_DOCTOR);
         }
 
-        model.addDoctor(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
