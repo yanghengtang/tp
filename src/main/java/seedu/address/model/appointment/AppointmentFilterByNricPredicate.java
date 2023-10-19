@@ -48,7 +48,7 @@ public class AppointmentFilterByNricPredicate implements Predicate<Appointment> 
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.patientPredicate);
+        return Objects.hash(this.patientPredicate, this.doctorPredicate);
     }
     @Override
     public String toString() {
