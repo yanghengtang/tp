@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -86,4 +88,24 @@ public class NameContainsKeywordsDoctorPredicateTest {
         String expected = NameContainsKeywordsDoctorPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
+
+    @Test
+    public void hashcode() {
+        List<String> keywords = List.of("keyword1", "keyword2");
+
+        // same value -> return same hashcode
+        NameContainsKeywordsDoctorPredicate command = new NameContainsKeywordsDoctorPredicate(keywords);
+        assertEquals(command.hashCode(), Objects.hash(keywords));
+
+        //objects are equal should have same hashcode
+        NameContainsKeywordsDoctorPredicate predicate2 = new NameContainsKeywordsDoctorPredicate(keywords);
+        assertEquals(command.hashCode(), predicate2.hashCode());
+
+        List<String> nullKeywords = null;
+        NameContainsKeywordsDoctorPredicate predicate = new NameContainsKeywordsDoctorPredicate(nullKeywords);
+
+        // Here, we just want to make sure it doesn't throw an exception
+        assertNotNull(predicate.hashCode());
+    }
+
 }

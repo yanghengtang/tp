@@ -4,12 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.NewModel;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.DuplicateItemException;
+
 
 /**
  * Adds a doctor to the database.
@@ -61,6 +64,10 @@ public class AddDoctorCommand extends NewCommand {
 
         AddDoctorCommand otherAddCommand = (AddDoctorCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 
     @Override
