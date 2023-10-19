@@ -141,6 +141,7 @@ public class Database implements ReadOnlyDatabase {
      */
     public void removeDoctor(Doctor doctor) {
         doctors.remove(doctor);
+        appointments.remove(appointment -> appointment.getDoctorNric().equals(doctor.getNric()));
     }
 
     /**
