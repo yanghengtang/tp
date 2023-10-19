@@ -27,13 +27,17 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.TypicalDoctor;
 import seedu.address.testutil.TypicalPatient;
 
 public class UniqueItemListTest {
     private final UniqueItemList<Patient> uniquePatientList = new UniqueItemList<>();
+    private final UniqueItemList<Patient> uniquePatientList2 = new UniqueItemList<>();
+    private final UniqueItemList<Doctor> uniqueDoctorList = new UniqueItemList<>();
 
     @Test
     public void contains_nullItem_throwsNullPointerException() {
@@ -201,5 +205,29 @@ public class UniqueItemListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniquePatientList.asUnmodifiableObservableList().toString(), uniquePatientList.toString());
+    }
+
+    @Test
+    public void equalsMethod() {
+        // same object -> return True
+        assertTrue(uniquePatientList.equals(uniquePatientList));
+
+        // different type -> return False
+        assertFalse(uniquePatientList.equals(5));
+
+        // null -> returns false
+        assertFalse(uniquePatientList.equals(null));
+
+        uniquePatientList.add(ALICE);
+        // different number of patients -> return False
+        assertFalse(uniquePatientList.equals(uniquePatientList2));
+
+        uniquePatientList2.add(ALICE);
+        // same patients -> return True
+        assertTrue(uniquePatientList.equals(uniquePatientList2));
+
+        // different contents -> return False
+        uniqueDoctorList.add(TypicalDoctor.ALICE);
+        assertFalse(uniquePatientList.equals(uniqueDoctorList));
     }
 }
