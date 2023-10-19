@@ -43,7 +43,7 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.format("%d", displayedIndex));
         startDateTime.setText(appointment.getStartTime().time.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
         endDateTime.setText(appointment.getEndTime().time.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
         patientNric.setText(appointment.getPatientNric().nric);

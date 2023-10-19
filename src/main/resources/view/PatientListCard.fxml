@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
@@ -21,30 +20,26 @@
             </padding>
          <HBox>
             <children>
-                   <Label fx:id="id" styleClass="cell_small_label">
+                <Label fx:id="header" styleClass="cell_label_bold" text="Patient " />
+                   <Label fx:id="id" styleClass="cell_label_bold">
                        <minWidth>
                            <!-- Ensures that the label text is never truncated -->
                            <Region fx:constant="USE_PREF_SIZE" />
                        </minWidth>
                    </Label>
-               <Label fx:id="header" styleClass="cell_small_label" text="Patient">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
             </children>
          </HBox>
-             <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+             <Label fx:id="name" styleClass="cell_label" text="\$first" />
          <HBox>
             <children>
-               <Label fx:id="nricHeader" styleClass="cell_small_label" text="NRIC: " />
-                  <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
+               <Label fx:id="nricHeader" styleClass="cell_label_bold" text="NRIC: " />
+                  <Label fx:id="nric" styleClass="cell_label" text="\$nric" />
             </children>
          </HBox>
          <HBox>
             <children>
-               <Label fx:id="phoneHeader" styleClass="cell_small_label" text="Phone: " />
-                  <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+               <Label fx:id="phoneHeader" styleClass="cell_label_bold" text="Phone: " />
+                  <Label fx:id="phone" styleClass="cell_label" text="\$phone" />
             </children>
          </HBox>
         </VBox>
