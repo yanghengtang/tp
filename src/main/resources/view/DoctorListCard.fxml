@@ -20,20 +20,20 @@
             </padding>
          <HBox>
             <children>
-                   <Label fx:id="id" styleClass="cell_small_label">
+                <Label fx:id="header" styleClass="cell_label_bold" text="Doctor " />
+                   <Label fx:id="id" styleClass="cell_label_bold">
                        <minWidth>
                            <!-- Ensures that the label text is never truncated -->
                            <Region fx:constant="USE_PREF_SIZE" />
                        </minWidth>
                    </Label>
-               <Label fx:id="header" styleClass="cell_small_label" text="Doctor" />
             </children>
          </HBox>
-             <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+             <Label fx:id="name" styleClass="cell_label" text="\$first" />
          <HBox>
             <children>
-               <Label fx:id="nricHeader" styleClass="cell_small_label" text="NRIC: " />
-                  <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
+               <Label fx:id="nricHeader" styleClass="cell_label_bold" text="NRIC: " />
+                  <Label fx:id="nric" styleClass="cell_label" text="\$nric" />
             </children>
          </HBox>
         </VBox>
