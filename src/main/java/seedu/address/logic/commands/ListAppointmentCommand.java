@@ -1,22 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
-
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.NewModel;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
-import seedu.address.model.appointment.AppointmentEqualPatientNricPredicate;
-import seedu.address.model.appointment.AppointmentFilterByNricPredicate;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.NewModel;
+import seedu.address.model.appointment.Appointment;
+
 /**
- * Lists all persons in the address book to the user.
+ * Lists all Appoiintments in the address book to the user.
  */
 public class ListAppointmentCommand extends NewCommand {
 

@@ -3,14 +3,17 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPatient.*;
+import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
+import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
+import static seedu.address.testutil.TypicalPatient.CARL_NRIC;
+import static seedu.address.testutil.TypicalPatient.DANIEL_NRIC;
+
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
-
-import java.util.function.Predicate;
 
 public class AppointmentFilterByNricPredicateTest {
 
@@ -61,7 +64,8 @@ public class AppointmentFilterByNricPredicateTest {
                 new AppointmentEqualPatientNricPredicate(new Nric(ALICE_NRIC));
         AppointmentEqualDoctorNricPredicate doctorPredicate =
                 new AppointmentEqualDoctorNricPredicate(new Nric(BENSON_NRIC));
-        AppointmentFilterByNricPredicate predicate = new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         assertTrue(predicate.test(new AppointmentBuilder()
                 .withPatientNric(ALICE_NRIC)
                 .withDoctorNric(BENSON_NRIC)
@@ -74,7 +78,8 @@ public class AppointmentFilterByNricPredicateTest {
                 new AppointmentEqualPatientNricPredicate(new Nric(ALICE_NRIC));
         AppointmentEqualDoctorNricPredicate doctorPredicate =
                 new AppointmentEqualDoctorNricPredicate(new Nric(BENSON_NRIC));
-        AppointmentFilterByNricPredicate predicate = new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
 
         // Non-matching  patient nric
         assertFalse(predicate.test(new AppointmentBuilder()

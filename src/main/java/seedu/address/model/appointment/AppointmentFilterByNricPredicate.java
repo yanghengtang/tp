@@ -4,15 +4,20 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Nric;
 
 /**
- * Tests that an {@code Appointment}'s {@code Doctor}'s {@code Nric} and {@code Patient}'s {@code Nric} matches the predicates given.
+ * Tests that an {@code Appointment}'s {@code Doctor}'s {@code Nric}
+ * and {@code Patient}'s {@code Nric} matches the predicates given.
  */
 public class AppointmentFilterByNricPredicate implements Predicate<Appointment> {
     private final Predicate<Appointment> patientPredicate;
     private final Predicate<Appointment> doctorPredicate;
 
+    /**
+     * Constructor for a {@code AppointmentFilterByNricPredicate} object
+     * @param patientPredicate
+     * @param doctorPredicate
+     */
     public AppointmentFilterByNricPredicate(Predicate<Appointment> patientPredicate,
                                                Predicate<Appointment> doctorPredicate) {
         this.patientPredicate = patientPredicate;

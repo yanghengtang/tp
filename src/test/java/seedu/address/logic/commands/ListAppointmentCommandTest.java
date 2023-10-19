@@ -1,28 +1,29 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
+import seedu.address.model.NewModel;
+import seedu.address.model.NewModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.appointment.AppointmentEqualPatientNricPredicate;
 import seedu.address.model.appointment.AppointmentFilterByNricPredicate;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
-import java.util.function.Predicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -40,21 +41,27 @@ public class ListAppointmentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertNewCommandSuccess(new ListAppointmentCommand(), model, ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertNewCommandSuccess(new ListAppointmentCommand(), model,
+                ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
-        assertNewCommandSuccess(new ListAppointmentCommand(), model, ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertNewCommandSuccess(new ListAppointmentCommand(),
+                model,
+                ListAppointmentCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsAppointmentsWithPatientNric() {
         Nric aliceNric = new Nric(ALICE_NRIC);
-        AppointmentEqualPatientNricPredicate patientPredicate = new AppointmentEqualPatientNricPredicate(aliceNric);
+        AppointmentEqualPatientNricPredicate patientPredicate =
+                new AppointmentEqualPatientNricPredicate(aliceNric);
         Predicate<Appointment> doctorPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
-        AppointmentFilterByNricPredicate predicate =  new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertNewCommandSuccess(command,
@@ -66,9 +73,11 @@ public class ListAppointmentCommandTest {
     @Test
     public void execute_listIsFiltered_showsAppointmentsWithDoctorNric() {
         Nric aliceNric = new Nric(ALICE_NRIC);
-        AppointmentEqualDoctorNricPredicate doctorPredicate = new AppointmentEqualDoctorNricPredicate(aliceNric);
+        AppointmentEqualDoctorNricPredicate doctorPredicate =
+                new AppointmentEqualDoctorNricPredicate(aliceNric);
         Predicate<Appointment> patientPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
-        AppointmentFilterByNricPredicate predicate =  new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertNewCommandSuccess(command,
@@ -81,9 +90,12 @@ public class ListAppointmentCommandTest {
     public void execute_listIsFiltered_showsAppointmentsWithDoctorAndPatientNric() {
         Nric aliceNric = new Nric(ALICE_NRIC);
         Nric bensonNric = new Nric(BENSON_NRIC);
-        AppointmentEqualPatientNricPredicate patientPredicate = new AppointmentEqualPatientNricPredicate(aliceNric);
-        AppointmentEqualDoctorNricPredicate doctorPredicate = new AppointmentEqualDoctorNricPredicate(bensonNric);
-        AppointmentFilterByNricPredicate predicate =  new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentEqualPatientNricPredicate patientPredicate =
+                new AppointmentEqualPatientNricPredicate(aliceNric);
+        AppointmentEqualDoctorNricPredicate doctorPredicate =
+                new AppointmentEqualDoctorNricPredicate(bensonNric);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertNewCommandSuccess(command,
@@ -96,9 +108,12 @@ public class ListAppointmentCommandTest {
     public void equals() {
         Nric aliceNric = new Nric(ALICE_NRIC);
         Nric bensonNric = new Nric(BENSON_NRIC);
-        AppointmentEqualPatientNricPredicate patientPredicate = new AppointmentEqualPatientNricPredicate(aliceNric);
-        AppointmentEqualDoctorNricPredicate doctorPredicate = new AppointmentEqualDoctorNricPredicate(bensonNric);
-        AppointmentFilterByNricPredicate predicate =  new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        AppointmentEqualPatientNricPredicate patientPredicate =
+                new AppointmentEqualPatientNricPredicate(aliceNric);
+        AppointmentEqualDoctorNricPredicate doctorPredicate =
+                new AppointmentEqualDoctorNricPredicate(bensonNric);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command1 = new ListAppointmentCommand(predicate);
         ListAppointmentCommand command2 = new ListAppointmentCommand();
 
@@ -123,11 +138,16 @@ public class ListAppointmentCommandTest {
     public void toStringMethod() {
         Nric aliceNric = new Nric(ALICE_NRIC);
         Nric bensonNric = new Nric(BENSON_NRIC);
-        AppointmentEqualPatientNricPredicate patientPredicate = new AppointmentEqualPatientNricPredicate(aliceNric);
-        AppointmentEqualDoctorNricPredicate doctorPredicate = new AppointmentEqualDoctorNricPredicate(bensonNric);
-        AppointmentFilterByNricPredicate predicate =  new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
-        ListAppointmentCommand command1 = new ListAppointmentCommand(predicate);
-        String expected = ListAppointmentCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        AppointmentEqualPatientNricPredicate patientPredicate =
+                new AppointmentEqualPatientNricPredicate(aliceNric);
+        AppointmentEqualDoctorNricPredicate doctorPredicate =
+                new AppointmentEqualDoctorNricPredicate(bensonNric);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        ListAppointmentCommand command1 =
+                new ListAppointmentCommand(predicate);
+        String expected = ListAppointmentCommand.class.getCanonicalName()
+                + "{predicate=" + predicate + "}";
         assertEquals(expected, command1.toString());
     }
 }
