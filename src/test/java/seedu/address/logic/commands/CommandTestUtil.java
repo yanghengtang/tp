@@ -211,6 +211,18 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the Patient at the given {@code targetIndex} in the
+     * {@code model}'s database.
+     */
+    public static void showPatientAtIndex(NewModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
+
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        final String[] splitName = patient.getName().fullName.split("\\s+");
+        model.updateFilteredPatientList(new NameContainsKeywordsPatientPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredPatientList().size());
+    }
 
     /**
      * Updates {@code model}'s filtered list to show only the Appointment at the given {@code targetIndex} in the
@@ -223,19 +235,5 @@ public class CommandTestUtil {
         final Nric doctorNric = appointment.getDoctorNric();
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
         assertEquals(1, model.getFilteredAppointmentList().size());
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
-     * {@code model}'s database.
-     */
-    public static void showPatientAtIndex(NewModel model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
-
-        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
-        final String[] splitName = patient.getName().fullName.split("\\s+");
-        model.updateFilteredPatientList(new NameContainsKeywordsPatientPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPatientList().size());
     }
 }
