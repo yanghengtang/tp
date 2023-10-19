@@ -236,5 +236,4 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
-
 }
