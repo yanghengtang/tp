@@ -21,15 +21,20 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NewModel;
+import seedu.address.model.NewModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonDatabaseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.NewStorageManager;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
@@ -41,7 +46,9 @@ public class LogicManagerTest {
     public Path temporaryFolder;
 
     private Model model = new ModelManager();
+    private NewModel newModel = new NewModelManager();
     private Logic logic;
+    private NewLogic newLogic;
 
     @BeforeEach
     public void setUp() {
@@ -50,6 +57,11 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
+
+        JsonDatabaseStorage databaseStorage =
+                new JsonDatabaseStorage(temporaryFolder.resolve("addressBook.json"));
+        NewStorageManager newStorage = new NewStorageManager(databaseStorage, userPrefsStorage);
+        newLogic = new NewLogicManager(newModel, newStorage);
     }
 
     @Test
@@ -68,6 +80,12 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
+    @Test
+    public void execute_validDoctorCommand_success() throws Exception {
+        String listDoctorCommand = ListDoctorCommand.COMMAND_WORD;
+
+        assertNewCommandSuccess(listDoctorCommand, ListDoctorCommand.MESSAGE_SUCCESS, newModel);
     }
 
     @Test
@@ -99,6 +117,12 @@ public class LogicManagerTest {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
+    }
+    private void assertNewCommandSuccess(String inputCommand, String expectedMessage,
+                                      NewModel expectedModel) throws CommandException, ParseException {
+        CommandResult result = newLogic.execute(inputCommand);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+        assertEquals(expectedModel, newModel);
     }
 
     /**
