@@ -7,6 +7,10 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
@@ -14,10 +18,12 @@ import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.FindDoctorCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
@@ -70,6 +76,14 @@ public class NewAddressBookParserTest {
     public void parseCommand_listPatients() throws Exception {
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD) instanceof ListPatientsCommand);
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD + " 3") instanceof ListPatientsCommand);
+    }
+
+    @Test
+    public void parseCommand_findDoctor() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindDoctorCommand command = (FindDoctorCommand) parser.parseCommand(
+                FindDoctorCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindDoctorCommand(new NameContainsKeywordsDoctorPredicate(keywords)), command);
     }
 
     @Test
