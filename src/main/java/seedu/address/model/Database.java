@@ -185,6 +185,7 @@ public class Database implements ReadOnlyDatabase {
      */
     public void removePatient(Patient patient) {
         patients.remove(patient);
+        appointments.remove(appointment -> appointment.getPatientNric().equals(patient.getNric()));
     }
 
     @Override

@@ -101,9 +101,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
      */
     public void remove(Predicate<S> predicate) {
         requireNonNull(predicate);
-        if (!internalList.removeIf(predicate)) {
-            throw new ItemNotFoundException();
-        }
+        internalList.removeIf(predicate);
     }
 
     public void setItems(UniqueItemList<S> replacement) {
