@@ -125,6 +125,22 @@ public class DatabaseTest {
     }
 
     @Test
+    public void hasAppointment_doctorRemovedFromDatabase_returnsFalse() {
+        database.addDoctor(BENSON);
+        database.addAppointment(APPOINTMENT_1);
+        database.removeDoctor(BENSON);
+        assertFalse(database.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void hasAppointment_patientRemovedFromDatabase_returnsFalse() {
+        database.addPatient(TypicalPatient.ALICE);
+        database.addAppointment(APPOINTMENT_1);
+        database.removePatient(TypicalPatient.ALICE);
+        assertFalse(database.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
     public void hasDoctor_doctorRemovedFromDatabase_returnsFalse() {
         database.addDoctor(ALICE);
         database.removeDoctor(ALICE);

@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -139,7 +140,8 @@ public class UniqueItemListTest {
 
     @Test
     public void remove_nullItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePatientList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.remove((Patient) null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.remove((Predicate<Patient>) null));
     }
 
     @Test
