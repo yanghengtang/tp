@@ -5,9 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.Listable;
-import seedu.address.model.person.patient.Patient;
 
-public class Person implements Listable {
+public abstract class Person implements Listable {
     private final Name name;
     private final Nric nric;
 
