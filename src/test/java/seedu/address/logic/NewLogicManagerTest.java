@@ -45,7 +45,7 @@ public class NewLogicManagerTest {
     public void setUp() {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonDatabaseStorage databaseStorage =
-                new JsonDatabaseStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonDatabaseStorage(temporaryFolder.resolve("database.json"));
         NewStorageManager newStorage = new NewStorageManager(databaseStorage, userPrefsStorage);
         newLogic = new NewLogicManager(newModel, newStorage);
     }
@@ -149,7 +149,7 @@ public class NewLogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonDatabaseStorage addressBookStorage = new JsonDatabaseStorage(prefPath) {
+        JsonDatabaseStorage databaseStorage = new JsonDatabaseStorage(prefPath) {
             @Override
             public void saveDatabase(ReadOnlyDatabase database, Path filePath)
                     throws IOException {
@@ -159,7 +159,7 @@ public class NewLogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        NewStorageManager storage = new NewStorageManager(addressBookStorage, userPrefsStorage);
+        NewStorageManager storage = new NewStorageManager(databaseStorage, userPrefsStorage);
 
         newLogic = new NewLogicManager(newModel, storage);
 
