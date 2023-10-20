@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.testutil.TypicalPatient.ALICE_NAME;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.BENSON_NAME;

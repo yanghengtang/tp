@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.NewCommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -41,14 +41,14 @@ public class ListAppointmentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertNewCommandSuccess(new ListAppointmentCommand(), model,
+        assertCommandSuccess(new ListAppointmentCommand(), model,
                 ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
-        assertNewCommandSuccess(new ListAppointmentCommand(),
+        assertCommandSuccess(new ListAppointmentCommand(),
                 model,
                 ListAppointmentCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -64,7 +64,7 @@ public class ListAppointmentCommandTest {
                 new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertNewCommandSuccess(command,
+        assertCommandSuccess(command,
                 model,
                 ListAppointmentCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -80,7 +80,7 @@ public class ListAppointmentCommandTest {
                 new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertNewCommandSuccess(command,
+        assertCommandSuccess(command,
                 model,
                 ListAppointmentCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -98,7 +98,7 @@ public class ListAppointmentCommandTest {
                 new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
         ListAppointmentCommand command = new ListAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertNewCommandSuccess(command,
+        assertCommandSuccess(command,
                 model,
                 ListAppointmentCommand.MESSAGE_SUCCESS,
                 expectedModel);

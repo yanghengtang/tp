@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalPatient.HOON_NAME;
 import static seedu.address.testutil.TypicalPatient.HOON_NRIC;
@@ -34,7 +34,7 @@ public class AddDoctorCommandIntegrationTest {
 
         NewModel expectedModel = new NewModelManager(newModel.getDatabase(), new UserPrefs());
         expectedModel.addDoctor(validDoctor);
-        assertNewCommandSuccess(new AddDoctorCommand(validDoctor), newModel,
+        assertCommandSuccess(new AddDoctorCommand(validDoctor), newModel,
                 String.format(AddDoctorCommand.MESSAGE_SUCCESS, Messages.format(validDoctor)),
                 expectedModel);
     }
@@ -42,7 +42,7 @@ public class AddDoctorCommandIntegrationTest {
     @Test
     public void execute_duplicateDoctor_throwsCommandException() {
         Doctor doctorInList = newModel.getDatabase().getDoctorList().get(0);
-        assertNewCommandFailure(new AddDoctorCommand(doctorInList), newModel,
+        assertCommandFailure(new AddDoctorCommand(doctorInList), newModel,
                 AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
     }
 }
