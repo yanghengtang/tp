@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.NewModel;
@@ -24,6 +26,10 @@ public class FindPatientCommand extends NewCommand {
 
     public FindPatientCommand(NameContainsKeywordsPatientPredicate predicate) {
         this.predicate = predicate;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(predicate);
     }
 
     @Override
