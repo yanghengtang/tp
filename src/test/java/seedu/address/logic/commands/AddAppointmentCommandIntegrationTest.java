@@ -18,7 +18,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.AppointmentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for the AddAppointmentCommand class.
  */
 public class AddAppointmentCommandIntegrationTest {
 

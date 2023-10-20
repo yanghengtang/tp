@@ -133,7 +133,7 @@ public class ParserUtil {
      */
     public static AppointmentStartTime parseAppointmentStartTime(String time) throws ParseException {
         String trimmedTime = time.trim();
-        if (!AppointmentStartTime.isValidAppointmmentTime(trimmedTime)) {
+        if (!AppointmentStartTime.isValidAppointmentTime(trimmedTime)) {
             throw new ParseException(AppointmentStartTime.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentStartTime(trimmedTime);
@@ -146,7 +146,7 @@ public class ParserUtil {
      */
     public static AppointmentEndTime parseAppointmentEndTime(String time) throws ParseException {
         String trimmedTime = time.trim();
-        if (!AppointmentEndTime.isValidAppointmmentTime(trimmedTime)) {
+        if (!AppointmentEndTime.isValidAppointmentTime(trimmedTime)) {
             throw new ParseException(AppointmentEndTime.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentEndTime(trimmedTime);
