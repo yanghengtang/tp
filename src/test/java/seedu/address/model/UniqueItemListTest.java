@@ -1,4 +1,4 @@
-package seedu.address.model.person.patient;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -30,6 +30,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalDoctor;
 import seedu.address.testutil.TypicalPatient;

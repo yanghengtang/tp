@@ -22,11 +22,11 @@ import seedu.address.model.Database;
 import seedu.address.model.NewModel;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UniqueItemList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.UniqueItemList;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandTest {
