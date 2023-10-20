@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
 import static seedu.address.testutil.TypicalPatient.CARL_NRIC;

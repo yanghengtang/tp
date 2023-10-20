@@ -17,6 +17,7 @@ import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.NewCommand;
@@ -31,7 +32,7 @@ public class NewAddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static final Logger logger = LogsCenter.getLogger(NewAddressBookParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -55,6 +56,8 @@ public class NewAddressBookParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommandParser().parse(arguments);
 
         //Todo
         case AddAppointmentCommand.COMMAND_WORD:

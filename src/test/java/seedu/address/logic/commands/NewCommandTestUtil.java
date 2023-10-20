@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -16,9 +19,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.NewModel;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
+import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -31,8 +40,20 @@ public class NewCommandTestUtil {
     public static final String VALID_NRIC_BOB = "S9987654Z";
     public static final String VALID_PHONE_AMY = "81732200";
     public static final String VALID_PHONE_BOB = "91234567";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_PATIENT_NRIC = "S9348573F";
+    public static final String VALID_DOCTOR_NRIC = "T0123456J";
+    public static final String VALID_APPOINTMENT_START_TIME = "2023-12-01 07:30";
+    public static final String VALID_APPOINTMENT_END_TIME = "2023-12-01 08:00";
+
+    public static final String APPOINTMENT_START_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_START_TIME
+            + VALID_APPOINTMENT_START_TIME;
+    public static final String APPOINTMENT_END_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_END_TIME
+            + VALID_APPOINTMENT_END_TIME;
+
+    public static final String PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + VALID_PATIENT_NRIC;
+    public static final String DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + VALID_DOCTOR_NRIC;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -40,13 +61,19 @@ public class NewCommandTestUtil {
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "T012#456A"; // '#' not allowed in nric
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_NRIC = "S9348573FF"; // invalid number of digits
+    public static final String INVALID_APPOINTMENT_START_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_START_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_APPOINTMENT_END_TIME_DESC = " "
+            + PREFIX_APPOINTMENT_END_TIME
+            + "11-09-2023 07:30"; // invalid format for date
+    public static final String INVALID_PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + INVALID_NRIC;
+    public static final String INVALID_DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + INVALID_NRIC;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -54,11 +81,18 @@ public class NewCommandTestUtil {
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_AMY;
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_BOB;
 
+    public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_AMY;
+    public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_BOB;
+
     static {
         DESC_AMY = new EditDoctorDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withNric(VALID_NRIC_AMY).build();
         DESC_BOB = new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withNric(VALID_NRIC_BOB).build();
+        PATIENT_DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withNric(VALID_NRIC_AMY).build();
+        PATIENT_DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withNric(VALID_NRIC_BOB).build();
     }
 
     /**
@@ -104,6 +138,20 @@ public class NewCommandTestUtil {
         assertEquals(expectedDatabase, actualNewModel.getDatabase());
         assertEquals(expectedFilteredList, actualNewModel.getFilteredDoctorList());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Appointment at the given {@code targetIndex} in the
+     * {@code model}'s database.
+     */
+    public static void showAppointmentAtIndex(NewModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
+
+        Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
+        final Nric doctorNric = appointment.getDoctorNric();
+        model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
+        assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -116,6 +164,19 @@ public class NewCommandTestUtil {
         model.updateFilteredDoctorList(new NameContainsKeywordsDoctorPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredDoctorList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Patient at the given {@code targetIndex} in the
+     * {@code model}'s database.
+     */
+    public static void showPatientAtIndex(NewModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
+
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        final String[] splitName = patient.getName().fullName.split("\\s+");
+        model.updateFilteredPatientList(new NameContainsKeywordsPatientPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredPatientList().size());
     }
 
 }

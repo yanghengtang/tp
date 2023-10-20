@@ -20,8 +20,8 @@ public class NameContainsKeywordsPatientPredicateTest {
         List<String> keywords = List.of("keyword1", "keyword2");
 
         // same value -> return same hashcode
-        NameContainsKeywordsPatientPredicate command = new NameContainsKeywordsPatientPredicate(keywords);
-        assertEquals(command.hashCode(), Objects.hash(keywords));
+        NameContainsKeywordsPatientPredicate predicate = new NameContainsKeywordsPatientPredicate(keywords);
+        assertEquals(predicate.hashCode(), Objects.hash(keywords));
     }
     @Test
     public void equals() {
