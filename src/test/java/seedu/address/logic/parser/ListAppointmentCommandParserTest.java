@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 
 import java.util.function.Predicate;
 

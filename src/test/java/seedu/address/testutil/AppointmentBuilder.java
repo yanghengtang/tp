@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.GEORGE_NRIC;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.GEORGE_NRIC;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;

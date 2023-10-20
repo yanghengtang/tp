@@ -3,8 +3,8 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 
 import org.junit.jupiter.api.Test;
 
