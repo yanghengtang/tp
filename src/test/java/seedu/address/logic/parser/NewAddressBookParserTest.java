@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,12 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditDoctorCommand;
+import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -22,6 +27,7 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
+import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -67,9 +73,32 @@ public class NewAddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteDoctor() throws Exception {
+        DeleteDoctorCommand command = (DeleteDoctorCommand) parser.parseCommand(
+                DeleteDoctorCommand.COMMAND_WORD + " " + INDEX_FIRST_DOCTOR.getOneBased());
+        assertEquals(new DeleteDoctorCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_editDoctor() throws Exception {
+        Doctor doctor = new DoctorBuilder().build();
+        EditDoctorDescriptor descriptor =
+                new EditDoctorDescriptorBuilder(doctor).build();
+        EditDoctorCommand command = (EditDoctorCommand) parser.parseCommand(EditDoctorCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditDoctorDescriptorDetails(descriptor));
+        assertEquals(new EditDoctorCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+
+    @Test
     public void parseCommand_listPatients() throws Exception {
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD) instanceof ListPatientsCommand);
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD + " 3") instanceof ListPatientsCommand);
+    }
+    @Test
+    public void parseCommand_listDoctor() throws Exception {
+        assertTrue(parser.parseCommand(ListDoctorCommand.COMMAND_WORD) instanceof ListDoctorCommand);
+        assertTrue(parser.parseCommand(ListDoctorCommand.COMMAND_WORD + " 3") instanceof ListDoctorCommand);
     }
 
     @Test
