@@ -56,7 +56,7 @@ public class AddAppointmentCommand extends NewCommand {
     public CommandResult execute(NewModel model) throws CommandException {
         requireNonNull(model);
 
-        if (!toAdd.getEndTime().time.isAfter(toAdd.getStartTime().time)) {
+        if (!toAdd.getEndTime().getTime().isAfter(toAdd.getStartTime().getTime())) {
             throw new CommandException(MESSAGE_INVALID_APPOINTMENT_TIME);
         }
 
@@ -90,6 +90,7 @@ public class AddAppointmentCommand extends NewCommand {
         }
 
         model.addAppointment(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

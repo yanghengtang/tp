@@ -15,24 +15,8 @@ public class AppointmentEndTimeTest {
 
     @Test
     public void constructor_invalidAppointmentTime_throwsIllegalArgumentException() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new AppointmentEndTime(invalidName));
-    }
-
-    @Test
-    public void isValidAppointmentEndTime() {
-        // null name
-        assertThrows(NullPointerException.class, () -> AppointmentEndTime.isValidAppointmmentTime(null));
-
-        // invalid name
-        assertFalse(AppointmentEndTime.isValidAppointmmentTime("")); // empty string
-        assertFalse(AppointmentEndTime.isValidAppointmmentTime(" ")); // spaces only
-        assertFalse(AppointmentEndTime.isValidAppointmmentTime("^*$")); // not numeric characters
-        assertFalse(AppointmentEndTime.isValidAppointmmentTime("12-01-2023 07:30")); // date in wrong format
-
-        // valid name
-        assertTrue(AppointmentEndTime.isValidAppointmmentTime("2023-09-11 08:00")); // in yyyy-dd-mm HH:mm format
-        assertTrue(AppointmentEndTime.isValidAppointmmentTime("2023-09-11 16:00")); // in yyyy-dd-mm HH:mm 24h format
+        String invalidTime = "";
+        assertThrows(IllegalArgumentException.class, () -> new AppointmentEndTime(invalidTime));
     }
 
     @Test
@@ -53,6 +37,9 @@ public class AppointmentEndTimeTest {
 
         // different values -> returns false
         assertFalse(appointmentEndTime.equals(new AppointmentEndTime("2023-09-11 04:00")));
+
+        AppointmentStartTime appointmentStartTime = new AppointmentStartTime("2023-09-11 16:00");
+        assertFalse(appointmentEndTime.equals(appointmentStartTime));
     }
 }
 

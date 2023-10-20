@@ -27,12 +27,14 @@ import seedu.address.model.NewModel;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.appointment.AppointmentEqualPatientNricPredicate;
+import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -101,6 +103,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_AMY;
+    public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_BOB;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -108,6 +113,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        PATIENT_DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withNric(VALID_NRIC_AMY).build();
+        PATIENT_DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withNric(VALID_NRIC_BOB).build();
     }
 
     /**
@@ -256,4 +265,17 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
     }
 
+     * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
+     * {@code model}'s database.
+     */
+    public static void showDoctorAtIndex(NewModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDoctorList().size());
+
+        Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
+        final String[] splitName = doctor.getName().fullName.split("\\s+");
+        model.updateFilteredDoctorList(
+                new NameContainsKeywordsDoctorPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredDoctorList().size());
+    }
 }

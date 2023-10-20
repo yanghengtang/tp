@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
@@ -131,6 +132,16 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditDoctorDescriptor}'s details.
+     */
+    public static String getEditDoctorDescriptorDetails(EditDoctorDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.nric).append(" "));
         return sb.toString();
     }
 }

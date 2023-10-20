@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,6 +92,16 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
         if (!internalList.remove(toRemove)) {
             throw new ItemNotFoundException();
         }
+    }
+
+    /**
+     * Remove the all items satisfying a predicate.
+     * At least 1 item must exist in the list.
+     * @param predicate to check items to remove.
+     */
+    public void remove(Predicate<S> predicate) {
+        requireNonNull(predicate);
+        internalList.removeIf(predicate);
     }
 
     public void setItems(UniqueItemList<S> replacement) {
