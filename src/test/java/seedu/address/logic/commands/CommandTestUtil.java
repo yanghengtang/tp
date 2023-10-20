@@ -265,6 +265,7 @@ public class CommandTestUtil {
         model.updateFilteredAppointmentList(new AppointmentEqualDoctorNricPredicate(doctorNric));
     }
 
+    /**
      * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
      * {@code model}'s database.
      */
