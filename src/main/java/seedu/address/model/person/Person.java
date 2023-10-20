@@ -4,9 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Data;
 import seedu.address.model.Listable;
 
-public abstract class Person implements Listable {
+public abstract class Person extends Data {
     private final Name name;
     private final Nric nric;
 
