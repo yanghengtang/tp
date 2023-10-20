@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalPatient.HOON_NAME;
 import static seedu.address.testutil.TypicalPatient.HOON_NRIC;
@@ -35,7 +35,7 @@ public class AddPatientCommandIntegrationTest {
 
         NewModel expectedModel = new NewModelManager(newModel.getDatabase(), new UserPrefs());
         expectedModel.addPatient(validPatient);
-        assertNewCommandSuccess(new AddPatientCommand(validPatient), newModel,
+        assertCommandSuccess(new AddPatientCommand(validPatient), newModel,
                 String.format(AddPatientCommand.MESSAGE_SUCCESS, Messages.format(validPatient)),
                 expectedModel);
     }
@@ -43,7 +43,7 @@ public class AddPatientCommandIntegrationTest {
     @Test
     public void execute_duplicatePatient_throwsCommandException() {
         Patient patientInList = newModel.getDatabase().getPatientList().get(0);
-        assertNewCommandFailure(new AddPatientCommand(patientInList), newModel,
+        assertCommandFailure(new AddPatientCommand(patientInList), newModel,
                 AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 }

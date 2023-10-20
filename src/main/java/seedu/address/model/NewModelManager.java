@@ -20,7 +20,7 @@ import seedu.address.model.person.patient.Patient;
  * Represents the in-memory model of the address book data.
  */
 public class NewModelManager implements NewModel {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(NewModelManager.class);
     private final Database database;
     private final UserPrefs userPrefs;
     private final FilteredList<Appointment> filteredAppointments;

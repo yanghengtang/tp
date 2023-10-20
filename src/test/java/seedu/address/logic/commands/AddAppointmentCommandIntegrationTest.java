@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.ELLE_NRIC;
@@ -39,7 +39,7 @@ public class AddAppointmentCommandIntegrationTest {
 
         NewModel expectedModel = new NewModelManager(newModel.getDatabase(), new UserPrefs());
         expectedModel.addAppointment(validAppointment);
-        assertNewCommandSuccess(new AddAppointmentCommand(validAppointment), newModel,
+        assertCommandSuccess(new AddAppointmentCommand(validAppointment), newModel,
                 String.format(AddAppointmentCommand.MESSAGE_SUCCESS, Messages.format(validAppointment)),
                 expectedModel);
     }
@@ -47,21 +47,21 @@ public class AddAppointmentCommandIntegrationTest {
     @Test
     public void execute_duplicateAppointment_throwsCommandException() {
         Appointment appointmentInList = newModel.getDatabase().getAppointmentList().get(0);
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentInList), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentInList), newModel,
                 AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test
     public void execute_invalidPatient_throwsCommandException() {
         Appointment appointmentWithInvalidPatient = new AppointmentBuilder().withPatientNric(HOON_NRIC).build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithInvalidPatient), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidPatient), newModel,
                 AddAppointmentCommand.MESSAGE_INVALID_PATIENT);
     }
 
     @Test
     public void execute_invalidDoctor_throwsCommandException() {
         Appointment appointmentWithInvalidDoctor = new AppointmentBuilder().withDoctorNric(HOON_NRIC).build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithInvalidDoctor), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidDoctor), newModel,
                 AddAppointmentCommand.MESSAGE_INVALID_DOCTOR);
     }
 
@@ -71,7 +71,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withDoctorNric(ALICE_NRIC)
                 .withPatientNric(ALICE_NRIC)
                 .build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithDuplicateNric), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithDuplicateNric), newModel,
                 AddAppointmentCommand.MESSAGE_SAME_PIC_DIC);
     }
 
@@ -81,7 +81,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withStartTime("2023-09-11 07:45")
                 .withEndTime("2023-09-11 06:45")
                 .build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
                 AddAppointmentCommand.MESSAGE_INVALID_APPOINTMENT_TIME);
     }
 
@@ -93,7 +93,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withStartTime("2023-09-11 07:30")
                 .withEndTime("2023-09-11 08:00")
                 .build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
                 AddAppointmentCommand.MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
     }
 
@@ -105,7 +105,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withStartTime("2023-09-11 17:45")
                 .withEndTime("2023-09-11 18:00")
                 .build();
-        assertNewCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
+        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), newModel,
                 AddAppointmentCommand.MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
     }
 

@@ -27,10 +27,12 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
+import seedu.address.testutil.DoctorUtil;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PatientUtil;
 
 
 public class NewAddressBookParserTest {
@@ -41,21 +43,21 @@ public class NewAddressBookParserTest {
     public void parseCommand_addAppointment() throws Exception {
         Appointment appointment = new AppointmentBuilder().build();
         AddAppointmentCommand command =
-                (AddAppointmentCommand) parser.parseCommand(PersonUtil.getAddAppointmentCommand(appointment));
+                (AddAppointmentCommand) parser.parseCommand(AppointmentUtil.getAddAppointmentCommand(appointment));
         assertEquals(new AddAppointmentCommand(appointment), command);
     }
 
     @Test
     public void parseCommand_addDoctor() throws Exception {
         Doctor doctor = new DoctorBuilder().build();
-        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(PersonUtil.getAddDoctorCommand(doctor));
+        AddDoctorCommand command = (AddDoctorCommand) parser.parseCommand(DoctorUtil.getAddDoctorCommand(doctor));
         assertEquals(new AddDoctorCommand(doctor), command);
     }
 
     @Test
     public void parseCommand_addPatient() throws Exception {
         Patient patient = new PatientBuilder().build();
-        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddPatientCommand(patient));
+        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddPatientCommand(patient));
         assertEquals(new AddPatientCommand(patient), command);
     }
 
@@ -86,7 +88,7 @@ public class NewAddressBookParserTest {
         EditDoctorDescriptor descriptor =
                 new EditDoctorDescriptorBuilder(doctor).build();
         EditDoctorCommand command = (EditDoctorCommand) parser.parseCommand(EditDoctorCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditDoctorDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + DoctorUtil.getEditDoctorDescriptorDetails(descriptor));
         assertEquals(new EditDoctorCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
