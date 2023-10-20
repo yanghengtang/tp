@@ -8,31 +8,18 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Doctor in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Doctor implements Listable {
-    // Identity fields
-    private final Name name;
-    private final Nric nric;
-
+public class Doctor extends Person {
     /**
      * Every field must be present and not null.
      */
     public Doctor(Name name, Nric nric) {
-        requireAllNonNull(name, nric);
-        this.name = name;
-        this.nric = nric;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public Nric getNric() {
-        return nric;
+        super(name, nric);
     }
 
     /**
@@ -69,21 +56,15 @@ public class Doctor implements Listable {
         }
 
         Doctor otherDoctor = (Doctor) other;
-        return name.equals(otherDoctor.name)
-                && nric.equals(otherDoctor.nric);
+        return super.equals(otherDoctor);
     }
 
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric);
-    }
 
-    @Override
+        @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("nric", nric)
+                .add("name", getName())
+                .add("nric", getNric())
                 .toString();
     }
 }

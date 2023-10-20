@@ -49,7 +49,7 @@ public class Patient extends Person {
         }
 
         Patient otherPatient = (Patient) other;
-        return super.equals(other) && phone.equals(otherPatient.phone);
+        return super.equals(otherPatient) && phone.equals(otherPatient.phone);
     }
 
     @Override

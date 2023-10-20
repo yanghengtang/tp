@@ -54,7 +54,7 @@ public class Person implements Listable {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Patient)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
