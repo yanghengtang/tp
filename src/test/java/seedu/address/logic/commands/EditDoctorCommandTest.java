@@ -161,7 +161,7 @@ public class EditDoctorCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ListDoctorCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditDoctorCommand(INDEX_SECOND_DOCTOR, DESC_AMY)));

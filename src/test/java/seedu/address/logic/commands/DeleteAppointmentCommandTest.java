@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertNewCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.NewCommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -38,7 +38,7 @@ public class DeleteAppointmentCommandTest {
         NewModelManager expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
 
-        assertNewCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class DeleteAppointmentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
         DeleteAppointmentCommand deletePatientCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
-        assertNewCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DeleteAppointmentCommandTest {
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 
-        assertNewCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class DeleteAppointmentCommandTest {
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
-        assertNewCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
