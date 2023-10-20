@@ -51,7 +51,7 @@ public class FindDoctorCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different doctor -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
