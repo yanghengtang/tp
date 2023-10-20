@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPatient.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +51,7 @@ public class FindPatientCommandTest {
         // null -> returns false
         assertFalse(findFirstPatientCommand.equals(null));
 
-        // different person -> returns false
+        // different patients -> returns false
         assertFalse(findFirstPatientCommand.equals(findSecondPatientCommand));
     }
 
@@ -81,6 +82,21 @@ public class FindPatientCommandTest {
         FindPatientCommand findPatientCommand = new FindPatientCommand(predicate);
         String expected = FindPatientCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findPatientCommand.toString());
+    }
+
+    @Test
+    public void hashcode() {
+        NameContainsKeywordsPatientPredicate firstPredicate =
+                new NameContainsKeywordsPatientPredicate(Collections.singletonList("first"));
+
+        FindPatientCommand findFirstCommand = new FindPatientCommand(firstPredicate);
+
+        // same value -> returns same hashcode
+        assertEquals(findFirstCommand.hashCode(), Objects.hash(firstPredicate));
+
+        //objects are equal should have same hashcode
+        FindPatientCommand findSecondCommand = new FindPatientCommand(firstPredicate);
+        assertEquals(findFirstCommand.hashCode(), findSecondCommand.hashCode());
     }
 
     /**
