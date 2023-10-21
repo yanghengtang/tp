@@ -7,11 +7,19 @@ import java.util.Objects;
 import seedu.address.model.Data;
 import seedu.address.model.Listable;
 
+/**
+ * A parent class for all different types of people in the system.
+ */
 public abstract class Person extends Data {
     private final Name name;
     private final Nric nric;
 
-    public Person (Name name, Nric nric) {
+    /**
+     * Constructor for Person.
+     * @param name name of the person.
+     * @param nric nric of the person.
+     */
+    public Person(Name name, Nric nric) {
         requireAllNonNull(name, nric);
         this.name = name;
         this.nric = nric;

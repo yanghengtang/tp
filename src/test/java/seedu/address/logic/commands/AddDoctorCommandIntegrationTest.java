@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.PersonUtil.HOON_NAME;
 import static seedu.address.testutil.PersonUtil.HOON_NRIC;
+import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

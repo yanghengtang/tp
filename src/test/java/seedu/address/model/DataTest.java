@@ -1,24 +1,24 @@
 package seedu.address.model;
 
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.remark.Remark;
-import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.util.HashSet;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
+
 public class DataTest {
-    private final Remark VALID_REMARK = new Remark("Allergic to sunlight");
-    private final Remark EMPTY_REMARK = new Remark("");
-    private final Tag DEPRESSION_TAG = new Tag("Depression");
-    private final Tag PARACETAMOL_TAG = new Tag("Paracetamol");
-    private final Tag PEDIATRICIAN_TAG = new Tag("PEDIATRICIAN");
-    private final HashSet<Tag> TAGS = new HashSet<>();
-    private final Data DATA_1 = new DataStub();
-    private final Data DATA_2 = new DataStub(VALID_REMARK, TAGS);
+    private static final Remark VALID_REMARK = new Remark("Allergic to sunlight");
+    private static final Remark EMPTY_REMARK = new Remark("");
+    private static final Tag DEPRESSION_TAG = new Tag("Depression");
+    private static final Tag PARACETAMOL_TAG = new Tag("Paracetamol");
+    private static final Tag PEDIATRICIAN_TAG = new Tag("Pediatrician");
+    private static final HashSet<Tag> TAGS = new HashSet<>();
+    private static final Data DATA_1 = new DataStub();
+    private static final Data DATA_2 = new DataStub(VALID_REMARK, TAGS);
 
     @Test
     public void getRemark() {
@@ -42,13 +42,13 @@ public class DataTest {
         assertNotEquals(DATA_2.getTags(), TAGS);
 
         // creating a new Data object with the modified set of tags returns the modified set
-        Data data_3 = new DataStub(VALID_REMARK, TAGS);
-        assertEquals(data_3.getTags(), TAGS);
+        Data data3 = new DataStub(VALID_REMARK, TAGS);
+        assertEquals(data3.getTags(), TAGS);
 
         // modifying tags retrived from Data does not modify the set of tags in Data
-        HashSet<Tag> retrivedTags = data_3.getTags();
+        HashSet<Tag> retrivedTags = data3.getTags();
         retrivedTags.add(PARACETAMOL_TAG);
-        assertNotEquals(data_3.getTags(), retrivedTags);
+        assertNotEquals(data3.getTags(), retrivedTags);
     }
 }
 

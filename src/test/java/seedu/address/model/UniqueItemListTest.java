@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPatient.ALICE;
 import static seedu.address.testutil.PersonUtil.ALICE_NAME;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
-import static seedu.address.testutil.TypicalPatient.BENSON;
 import static seedu.address.testutil.PersonUtil.BENSON_NAME;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.TypicalPatient.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
+import static seedu.address.testutil.TypicalPatient.BENSON;
 import static seedu.address.testutil.TypicalPatient.BENSON_PHONE;
 import static seedu.address.testutil.TypicalPatient.BOB;
 

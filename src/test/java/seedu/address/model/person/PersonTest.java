@@ -1,28 +1,32 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPatient.BOB;
 
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalPatient.BOB;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonUtil;
 
 public class PersonTest {
-    private final Name ALICE_NAME = new Name(PersonUtil.ALICE_NAME);
-    private final Name BENSON_NAME = new Name(PersonUtil.BENSON_NAME);
-    private final Nric ALICE_NRIC = new Nric(PersonUtil.ALICE_NRIC);
-    private final Nric BENSON_NRIC = new Nric(PersonUtil.BENSON_NRIC);
+    private static final Name ALICE_NAME = new Name(PersonUtil.ALICE_NAME);
+    private static final Name BENSON_NAME = new Name(PersonUtil.BENSON_NAME);
+    private static final Nric ALICE_NRIC = new Nric(PersonUtil.ALICE_NRIC);
+    private static final Nric BENSON_NRIC = new Nric(PersonUtil.BENSON_NRIC);
 
-    private final PersonStub ALICE = new PersonStub(ALICE_NAME, ALICE_NRIC);
+    private static final PersonStub ALICE = new PersonStub(ALICE_NAME, ALICE_NRIC);
 
-    private final PersonStub ALICE_COPY = new PersonStub(ALICE_NAME, ALICE_NRIC);
+    private static final PersonStub ALICE_COPY = new PersonStub(ALICE_NAME, ALICE_NRIC);
 
-    private final PersonStub BENSON = new PersonStub(BENSON_NAME, BENSON_NRIC);
+    private static final PersonStub BENSON = new PersonStub(BENSON_NAME, BENSON_NRIC);
 
-    private final PersonStub ALICE_WITH_BENSON_NRIC = new PersonStub(ALICE_NAME, BENSON_NRIC);
+    private static final PersonStub ALICE_WITH_BENSON_NRIC = new PersonStub(ALICE_NAME, BENSON_NRIC);
 
-    private final PersonStub BENSON_WITH_ALICE_NRIC = new PersonStub(BENSON_NAME, ALICE_NRIC);
+    private static final PersonStub BENSON_WITH_ALICE_NRIC = new PersonStub(BENSON_NAME, ALICE_NRIC);
 
     @Test
     public void getName() {

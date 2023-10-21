@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
-import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.CARL;
-import static seedu.address.testutil.PersonUtil.CARL_NRIC;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,9 +1,5 @@
 package seedu.address.model.person.doctor;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Objects;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
@@ -60,7 +56,7 @@ public class Doctor extends Person {
     }
 
 
-        @Override
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", getName())

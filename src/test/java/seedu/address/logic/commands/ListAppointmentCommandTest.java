@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.NewCommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.function.Predicate;
 
