@@ -105,7 +105,7 @@ public class DeleteDoctorCommandTest {
     }
 
     @Test
-    public void hashcode() {
+    public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteDoctorCommand deleteCommand = new DeleteDoctorCommand(targetIndex);
 
