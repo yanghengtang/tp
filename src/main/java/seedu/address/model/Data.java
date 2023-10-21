@@ -27,11 +27,11 @@ public abstract class Data implements Listable {
         this.tags = (HashSet<Tag>) tags.clone();
     }
 
-    public Remark getRemark() {
+    public final Remark getRemark() {
         return this.remark;
     }
 
-    public HashSet<Tag> getTags() {
+    public final HashSet<Tag> getTags() {
         return (HashSet<Tag>) this.tags.clone();
     }
 }
