@@ -20,6 +20,8 @@ import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.logic.commands.FindPatientCommand;
@@ -36,6 +38,7 @@ import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.DoctorUtil;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PatientUtil;
@@ -97,6 +100,18 @@ public class NewAddressBookParserTest {
         assertEquals(new EditDoctorCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
+    @Test
+    public void parseCommand_editAppointment() throws Exception {
+        EditAppointmentCommand command = (EditAppointmentCommand) parser.parseCommand(
+                "edit_a 1 pic\\T0123456N dic\\T0234872G from\\2023-09-11 11:00 to\\2023-09-11 11:15");
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder()
+                .withPatientNric("T0123456N")
+                .withDoctorNric("T0234872G")
+                .withStartTime("2023-09-11 11:00")
+                .withEndTime("2023-09-11 11:15")
+                .build();
+        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
 
     @Test
     public void parseCommand_findPatient() throws Exception {
