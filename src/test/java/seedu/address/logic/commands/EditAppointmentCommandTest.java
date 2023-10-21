@@ -201,7 +201,6 @@ public class EditAppointmentCommandTest {
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(index, editAppointmentDescriptor);
         assertEquals(editAppointmentCommand.hashCode(), Objects.hash(index, editAppointmentDescriptor));
-
     }
 
     @Test
