@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -70,6 +71,18 @@ public class AddAppointmentCommandTest {
 
         // different person -> returns false
         assertFalse(addAppointment1Command.equals(addAppointment2Command));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        AddAppointmentCommand command = new AddAppointmentCommand(APPOINTMENT_1);
+        AddAppointmentCommand anotherCommand = new AddAppointmentCommand(APPOINTMENT_1);
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(APPOINTMENT_1));
+
+        // command with same appointment object -> return same hashcode
+        assertEquals(command.hashCode(), anotherCommand.hashCode());
     }
 
     @Test
