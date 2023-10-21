@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
@@ -37,7 +37,7 @@ public class AddDoctorCommandTest {
 
     @Test
     public void execute_doctorAcceptedByModel_addSuccessful() throws Exception {
-        NewModelStubAcceptingDoctorAdded newModelStub = new NewModelStubAcceptingDoctorAdded();
+        ModelStubAcceptingDoctorAdded newModelStub = new ModelStubAcceptingDoctorAdded();
         Doctor validDoctor = new DoctorBuilder().build();
 
         CommandResult commandResult = new AddDoctorCommand(validDoctor).execute(newModelStub);
@@ -51,10 +51,10 @@ public class AddDoctorCommandTest {
     public void execute_duplicateDoctor_throwsCommandException() {
         Doctor validDoctor = new DoctorBuilder().build();
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(validDoctor);
-        NewModelStub newModelStub = new NewModelStubWithDoctor(validDoctor);
+        ModelStub newModelStub = new ModelStubWithDoctor(validDoctor);
 
         assertThrows(AssertionError.class,
-                NewModelStub.MESSAGE, () -> addDoctorCommand.execute(newModelStub));
+                ModelStub.MESSAGE, () -> addDoctorCommand.execute(newModelStub));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class AddDoctorCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class NewModelStub implements NewModel {
+    private class ModelStub implements Model {
         static final String MESSAGE = "This method should not be called.";
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -314,10 +314,10 @@ public class AddDoctorCommandTest {
     /**
      * A Model stub that contains a single doctor.
      */
-    private class NewModelStubWithDoctor extends NewModelStub {
+    private class ModelStubWithDoctor extends ModelStub {
         private final Doctor doctor;
 
-        NewModelStubWithDoctor(Doctor doctor) {
+        ModelStubWithDoctor(Doctor doctor) {
             requireNonNull(doctor);
             this.doctor = doctor;
         }
@@ -332,7 +332,7 @@ public class AddDoctorCommandTest {
     /**
      * A Model stub that always accept the doctor being added.
      */
-    private class NewModelStubAcceptingDoctorAdded extends NewModelStub {
+    private class ModelStubAcceptingDoctorAdded extends ModelStub {
         final ArrayList<Doctor> doctorsAdded = new ArrayList<>();
 
         @Override

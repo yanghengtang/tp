@@ -42,9 +42,9 @@ import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PatientUtil;
 
-public class NewAddressBookParserTest {
+public class MediConnectParserTest {
 
-    private final NewAddressBookParser parser = new NewAddressBookParser();
+    private final MediConnectParser parser = new MediConnectParser();
 
     @Test
     public void parseCommand_addAppointment() throws Exception {

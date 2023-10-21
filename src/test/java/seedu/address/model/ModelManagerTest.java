@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
@@ -24,8 +24,8 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 
-public class NewModelManagerTest {
-    private NewModelManager modelManager = new NewModelManager();
+public class ModelManagerTest {
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
@@ -248,8 +248,8 @@ public class NewModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new NewModelManager(database, userPrefs);
-        NewModelManager modelManagerCopy = new NewModelManager(database, userPrefs);
+        modelManager = new ModelManager(database, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(database, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -262,6 +262,6 @@ public class NewModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new NewModelManager(differentDatabase, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentDatabase, userPrefs)));
     }
 }

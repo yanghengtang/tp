@@ -13,7 +13,7 @@ import seedu.address.model.person.patient.Patient;
 /**
  * The API of the Model component.
  */
-public interface NewModel {
+public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;

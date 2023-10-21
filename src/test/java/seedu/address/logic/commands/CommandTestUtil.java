@@ -18,7 +18,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
@@ -32,7 +32,7 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
  */
-public class NewCommandTestUtil {
+public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -99,51 +99,51 @@ public class NewCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches
      *  {@code expectedCommandResult} <br>
-     * - the {@code actualNewModel} matches {@code expectedNewModel}
+     * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(NewCommand command, NewModel actualNewModel,
-            CommandResult expectedCommandResult, NewModel expectedNewModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualNewModel);
+            CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedNewModel, actualNewModel);
+            assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(NewCommand, NewModel, CommandResult, NewModel)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(NewCommand command, NewModel actualNewModel, String expectedMessage,
-            NewModel expectedNewModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualNewModel, expectedCommandResult, expectedNewModel);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered doctor list and selected doctor in {@code actualNewModel} remain unchanged
+     * - the address book, filtered doctor list and selected doctor in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(NewCommand command, NewModel actualNewModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Database expectedDatabase = new Database(actualNewModel.getDatabase());
-        List<Doctor> expectedFilteredList = new ArrayList<>(actualNewModel.getFilteredDoctorList());
+        Database expectedDatabase = new Database(actualModel.getDatabase());
+        List<Doctor> expectedFilteredList = new ArrayList<>(actualModel.getFilteredDoctorList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualNewModel));
-        assertEquals(expectedDatabase, actualNewModel.getDatabase());
-        assertEquals(expectedFilteredList, actualNewModel.getFilteredDoctorList());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedDatabase, actualModel.getDatabase());
+        assertEquals(expectedFilteredList, actualModel.getFilteredDoctorList());
     }
 
     /**
      * Updates {@code model}'s filtered list to show only the Appointment at the given {@code targetIndex} in the
      * {@code model}'s database.
      */
-    public static void showAppointmentAtIndex(NewModel model, Index targetIndex) {
+    public static void showAppointmentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
@@ -156,7 +156,7 @@ public class NewCommandTestUtil {
      * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showDoctorAtIndex(NewModel model, Index targetIndex) {
+    public static void showDoctorAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDoctorList().size());
 
         Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
@@ -170,7 +170,7 @@ public class NewCommandTestUtil {
      * Updates {@code model}'s filtered list to show only the Patient at the given {@code targetIndex} in the
      * {@code model}'s database.
      */
-    public static void showPatientAtIndex(NewModel model, Index targetIndex) {
+    public static void showPatientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
         Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());

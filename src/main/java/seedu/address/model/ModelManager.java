@@ -19,8 +19,8 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Represents the in-memory model of the address book data.
  */
-public class NewModelManager implements NewModel {
-    private static final Logger logger = LogsCenter.getLogger(NewModelManager.class);
+public class ModelManager implements Model {
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final Database database;
     private final UserPrefs userPrefs;
     private final FilteredList<Appointment> filteredAppointments;
@@ -30,7 +30,7 @@ public class NewModelManager implements NewModel {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public NewModelManager(ReadOnlyDatabase database, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDatabase database, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(database, userPrefs);
 
         logger.fine("Initializing with database: " + database + " and user prefs " + userPrefs);
@@ -42,7 +42,7 @@ public class NewModelManager implements NewModel {
         filteredPatients = new FilteredList<>(this.database.getPatientList());
     }
 
-    public NewModelManager() {
+    public ModelManager() {
         this(new Database(), new UserPrefs());
     }
 
@@ -232,11 +232,11 @@ public class NewModelManager implements NewModel {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NewModelManager)) {
+        if (!(other instanceof ModelManager)) {
             return false;
         }
 
-        NewModelManager otherModelManager = (NewModelManager) other;
+        ModelManager otherModelManager = (ModelManager) other;
         return database.equals(otherModelManager.getDatabase())
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments)

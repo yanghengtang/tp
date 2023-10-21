@@ -14,16 +14,16 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of MediConnect data in local storage.
  */
-public class NewStorageManager implements NewStorage {
+public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(NewStorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private DatabaseStorage databaseStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code NewStorageManager} with the given {@code DatabaseStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code DatabaseStorage} and {@code UserPrefStorage}.
      */
-    public NewStorageManager(DatabaseStorage databaseStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(DatabaseStorage databaseStorage, UserPrefsStorage userPrefsStorage) {
         this.databaseStorage = databaseStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

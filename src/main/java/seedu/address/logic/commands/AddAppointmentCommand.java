@@ -12,14 +12,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 
 /**
  * Adds a person to the address book.
  */
-public class AddAppointmentCommand extends NewCommand {
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_a";
 
@@ -53,7 +53,7 @@ public class AddAppointmentCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!toAdd.getEndTime().getTime().isAfter(toAdd.getStartTime().getTime())) {

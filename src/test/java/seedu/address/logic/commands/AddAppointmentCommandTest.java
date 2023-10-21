@@ -19,7 +19,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
@@ -82,7 +82,7 @@ public class AddAppointmentCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements NewModel {
+    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
