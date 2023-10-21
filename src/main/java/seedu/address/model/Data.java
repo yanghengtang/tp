@@ -4,42 +4,34 @@ import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
-import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A common class for classes that have remarks and tags to inherit from.
+ * Ensures remark and tags are immutable.
  */
 public abstract class Data implements Listable {
-    private Remark remark = new Remark("");
+    private final Remark remark;
 
-    private Set<Tag> tags = new HashSet<>();
+    private final HashSet<Tag> tags;
+
+    public Data() {
+        this.remark = new Remark("");
+        this.tags = new HashSet<>();
+    }
+
+    public Data(Remark remark, HashSet<? extends Tag> tags) {
+        requireAllNonNull(remark, tags);
+        this.remark = remark;
+        this.tags = (HashSet<Tag>) tags.clone();
+    }
 
     public Remark getRemark() {
         return this.remark;
     }
 
-    public Set<Tag> getTags() {
-        return this.tags;
-    }
-
-    public void setRemark(Remark remark) {
-        this.remark = remark;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public void addTags(Tag tag) {
-        requireNonNull(tag);
-        this.tags.add(tag);
-    }
-
-    public void removeTags (Tag... tags) {
-        for (Tag tag : tags) {
-            this.tags.remove(tag);
-        }
+    public HashSet<Tag> getTags() {
+        return (HashSet<Tag>) this.tags.clone();
     }
 }
