@@ -17,10 +17,12 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 
@@ -170,6 +172,14 @@ public class ModelManagerTest {
         modelManager.addPatient(CARL);
         modelManager.deletePatient(CARL);
         assertFalse(modelManager.hasPatient(CARL));
+    }
+
+    @Test
+    public void hasAppointment_appointmentWithDifferentEndTime_returnsFalse() {
+        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withEndTime("2023-09-11 08:30").build();
+        modelManager.addAppointment(APPOINTMENT_1);
+        modelManager.setAppointment(APPOINTMENT_1, editedAppointment);
+        assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
     }
 
     @Test
