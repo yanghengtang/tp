@@ -64,7 +64,7 @@ public class DeleteAppointmentCommand extends Command {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.targetIndex);
+        return Objects.hash(this.targetIndex);
     }
 
     @Override
