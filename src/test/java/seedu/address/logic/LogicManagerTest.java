@@ -16,15 +16,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyDatabase;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.storage.JsonDatabaseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -46,8 +44,15 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonDatabaseStorage databaseStorage =
                 new JsonDatabaseStorage(temporaryFolder.resolve("database.json"));
-        StorageManager newStorage = new StorageManager(databaseStorage, userPrefsStorage);
-        logic = new LogicManager(model, newStorage);
+        StorageManager storage = new StorageManager(databaseStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+    }
+
+    @Test
+    public void constructor() {
+        assertEquals(model.getDatabase(), logic.getDatabase());
+        assertEquals(model.getDatabaseFilePath(), logic.getDatabaseFilePath());
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
     }
 
     @Test
@@ -82,8 +87,30 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAppointmentList().remove(0));
+    }
+
+    @Test
     public void getFilteredDoctorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDoctorList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
