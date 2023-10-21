@@ -23,7 +23,7 @@ import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
 
 /**
- * Edits the details of an existing doctor in the address book.
+ * Edits the details of an existing appointment in the address book.
  */
 public class EditAppointmentCommand extends NewCommand {
 
