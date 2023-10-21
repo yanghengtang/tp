@@ -19,6 +19,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 
+import java.util.Objects;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteAppointmentCommand}.
@@ -99,6 +101,15 @@ public class DeleteAppointmentCommandTest {
 
         // different patient -> returns false
         assertFalse(deleteFirstAppointmentCommand.equals(deleteSecondAppointmentCommand));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        DeleteAppointmentCommand deleteCommand = new DeleteAppointmentCommand(targetIndex);
+
+        // same value -> returns same hashcode
+        assertEquals(deleteCommand.hashCode(), Objects.hash(targetIndex));
     }
 
     @Test
