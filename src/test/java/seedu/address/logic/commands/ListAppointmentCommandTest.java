@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -149,5 +150,27 @@ public class ListAppointmentCommandTest {
         String expected = ListAppointmentCommand.class.getCanonicalName()
                 + "{predicate=" + predicate + "}";
         assertEquals(expected, command1.toString());
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Nric aliceNric = new Nric(ALICE_NRIC);
+        Nric bensonNric = new Nric(BENSON_NRIC);
+        AppointmentEqualPatientNricPredicate patientPredicate =
+                new AppointmentEqualPatientNricPredicate(aliceNric);
+        AppointmentEqualDoctorNricPredicate doctorPredicate =
+                new AppointmentEqualDoctorNricPredicate(bensonNric);
+        AppointmentFilterByNricPredicate predicate =
+                new AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate);
+        ListAppointmentCommand command1 =
+                new ListAppointmentCommand(predicate);
+        ListAppointmentCommand command2 =
+                new ListAppointmentCommand(predicate);
+
+        // same value -> returns both equal
+        assertEquals(command1.hashCode(), Objects.hash(predicate));
+
+        // same predicate -> returns both equal
+        assertEquals(command1.hashCode(), command2.hashCode());
     }
 }
