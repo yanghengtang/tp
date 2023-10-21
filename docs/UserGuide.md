@@ -10,7 +10,7 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -29,7 +29,7 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
 
    * `add_p n\Joe Ng ic\T0383462A p\83745623` : Adds a patient named `Joe Ng` to the list of Patient.
 
-   * `delete_d id\T0123321D` : Deletes the doctor with NRIC `T0123321D`.
+   * `delete_d 5` : Deletes the 5th doctor in the list of doctors.
 
    * `exit` : Exits the app.
 
@@ -37,7 +37,7 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -61,6 +61,8 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+## General Features
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -69,6 +71,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+## Patient Features
 
 ### Adding a patient: `add_p`
 
@@ -86,20 +95,33 @@ Shows a list of all patients in the system.
 
 Format: `list_p`
 
+### Viewing a patient : `view_p`
+
+Views the specified patient from the system.
+
+Format: `view_p INDEX`
+
+* Displays the full detail of the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_p` followed by `view_p 2` views the 2nd patient in the patient list.
+* `find_p Jonathan` followed by `view_p 1` views the 1st patient in the results of the `find_p` command.
+
 ### Editing a patient : `edit_p`
 
 Edits an existing patient in the system.
 
-Format: `edit_p ic\NRIC [n\NAME] [p\PHONE]`
+Format: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
-* Edits the person with the specified `NRIC`.
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* The NRIC of the patient cannot be changed.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit_p ic\T0212385J n\Joe Ng` Edits the name of the patient with NRIC `T0212385J` to be `Joe Ng`.
-*  `edit_p ic\S9912343G p\91234567` Edits the phone of patient with NRIC `S9912343G` to be `91234567`.
+*  `edit_p 1 n\Joe Ng` Edits the name of 1st patient to be `Joe Ng`.
+*  `edit_p 2 p\91234567` Edits the phone of the 2nd patient to be `91234567`.
 
 ### Locating patients by name: `find_p`
 
@@ -122,12 +144,17 @@ Examples:
 
 Deletes the specified patient from the system.
 
-Format: `delete_p ic\NRIC`
+Format: `delete_p INDEX`
 
-* Deletes the patient with the specified `NRIC`.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete_p ic\T0212385J` deletes the patient with NRIC `T0212385J` in the system.
+* `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
+* `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the results of the `find_p` command.
+
+## Doctor Features
 
 ### Adding a doctor: `add_d`
 
@@ -145,19 +172,32 @@ Shows a list of all doctors in the system.
 
 Format: `list_d`
 
+### Viewing a doctor : `view_d`
+
+Views the specified doctor from the system.
+
+Format: `view_d INDEX`
+
+* Displays the full detail of the doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_d` followed by `view_d 2` views the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `view_d 1` views the 1st doctor in the results of the `find_d` command.
+
 ### Editing a doctor : `edit_d`
 
 Edits an existing doctor in the system.
 
-Format: `edit_d ic\NRIC [n\NAME]`
+Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
-* Edits the doctor with the specified `NRIC`.
+* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* The NRIC of the dcotor cannot be changed.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit_d ic\T0212385J n\Joe Ng` Edits the name of the doctor with NRIC `T0212385J` to be `Joe Ng`.
+*  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
 
 ### Locating doctors by name: `find_d`
 
@@ -180,12 +220,17 @@ Examples:
 
 Deletes the specified doctor from the system.
 
-Format: `delete_d ic\NRIC`
+Format: `delete_d INDEX`
 
-* Deletes the doctor with the specified `NRIC`.
+* Deletes the doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete_d ic\T0212385J` deletes the doctor with NRIC `T0212385J` in the system.
+* `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
+
+## Appointment Features
 
 ### Adding an appointment: `add_a`
 
@@ -196,40 +241,41 @@ Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 Examples:
 * `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00 `
 
-### Listing all appointments : `list_a`
+### Listing all appointments, or by patient or doctor NRIC: `list_a`
 
-Shows a list of all upcoming appointments in the system.
+Shows a list of appointments in the system depending on the fields given.
 
-Format: `list_a`
+Format: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
-### Locating appointment by patient or doctor NRIC: `find_a`
-
-Finds appointment with the specified doctor or patient NRIC.
-
-Format: `find_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
-
-* Find any appointment of the doctor or patient with the specified `NRIC` has.
-* At least one of the optional field must be provided
+* Find any appointment of the doctor or patient with the specified `NRIC`.
+* List all the appointments in the system if no fields are given.
 
 Examples:
-* `find_a pic\S9912343G` returns all the appointment the patient with NRIC `S9912343G` has.
+* `list_a pic\S9912343G` returns all the appointment the patient with NRIC `S9912343G` has.
+
+### Viewing an appointment: `view_a`
+
+Views the specified appointment from the system.
+
+Format: `view_a INDEX`
+
+* Displays the full detail of the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
 ### Deleting an appointment : `delete_a`
 
 Deletes the specified appointment from the system.
 
-Format: `delete_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME`
+Format: `delete_a INDEX`
 
-* Deletes the appointment with the specified `PATIENT_NRIC`, `DOCTOR_NRIC` and `DATE_TIME`.
+* Deletes the appointment with the specified `INDEX`.
 
 Examples:
-* `delete_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30` deletes the existing appointment between patient with NRIC `S9912343G` and doctor with NRIC `T0212385J` at `9 Sep 23 7.30am`.
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+* `delete_a 2` deletes the 2nd appointment in the appointment list.
 
 ### Saving the data
 
@@ -237,7 +283,7 @@ MediConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-MediConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
@@ -249,34 +295,37 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
-| Action                 | Format, Examples                                                                                                                       |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**        | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                            |
-| **Add Doctor**         | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                                      |
-| **Add Appointment**    | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30` |
-| **Delete Patient**     | `delete_p ic\NRIC`<br> e.g., `delete_p ic\T0212385J`                                                                                   |
-| **Delete Doctor**      | `delete_d ic\NRIC`<br> e.g., `delete_d ic\T0212385J`                                                                                   |
-| **Delete Appointment** | `delete_a pic\PATIENT_NRIC dic\DOCTOR_NRIC d\DATE_TIME`<br> e.g., `delete_a pic\S9912343G dic\T0212385J d\2023-09-11T07:30`            |
-| **Edit Patient**       | `edit_p ic\NRIC [n\NAME] [p\PHONE]`<br> e.g.,`edit_p ic\T0212385J n\Joe Ng`                                                            |
-| **Edit Doctor**        | `edit_d ic\NRIC [n\NAME]`<br> e.g.,`edit_d ic\T0212385J n\Joe Ng`                                                                      |
-| **Find Patient**       | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                         |
-| **Find Patient**       | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                         |
-| **List Patient**       | `list_p`                                                                                                                               |
-| **List Doctor**        | `list_d`                                                                                                                               |
-| **List Appointment**   | `list_a`                                                                                                                               |
-| **Help**               | `help`                                                                                                                                 |
+| Action                 | Format, Examples                                                                                                                                              |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**        | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                                                   |
+| **Add Doctor**         | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                                                             |
+| **Add Appointment**    | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:30` |
+| **Delete Patient**     | `delete_p INDEX`<br> e.g., `delete_p 1`                                                                                                                       |
+| **Delete Doctor**      | `delete_d INDEX`<br> e.g., `delete_d 2`                                                                                                                       |
+| **Delete Appointment** | `delete_a INDEX`<br> e.g., `delete_a 3`                                                                                                                       |
+| **View Patient**       | `view_p INDEX`<br> e.g., `view_p 1`                                                                                                                           |
+| **View Doctor**        | `view_d INDEX`<br> e.g., `view_d 2`                                                                                                                           |
+| **View Appointment**   | `view_a INDEX`<br> e.g., `view_a 3`                                                                                                                           |
+| **Edit Patient**       | `edit_p INDEX [ic\NRIC] [n\NAME] [p\PHONE]`<br> e.g.,`edit_p 3 ic\T0212385J n\Joe Ng`                                                                         |
+| **Edit Doctor**        | `edit_d INDEX [ic\NRIC] [n\NAME]`<br> e.g.,`edit_d 2 ic\T0212385J n\Joe Ng`                                                                                   |
+| **Find Patient**       | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                                                |
+| **Find Patient**       | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                                                |
+| **List Patient**       | `list_p`                                                                                                                                                      |
+| **List Doctor**        | `list_d`                                                                                                                                                      |
+| **List Appointment**   | `list_a`                                                                                                                                                      |
+| **Help**               | `help`                                                                                                                                                        |
