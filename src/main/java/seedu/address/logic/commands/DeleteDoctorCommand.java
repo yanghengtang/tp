@@ -13,7 +13,7 @@ import seedu.address.model.NewModel;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Deletes a doctor identified using it's displayed index from the address book.
+ * Deletes a doctor identified using it's displayed index from the database.
  */
 public class DeleteDoctorCommand extends NewCommand {
 

@@ -26,6 +26,7 @@ import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
@@ -83,7 +84,8 @@ public class NewCommandTestUtil {
 
     public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_AMY;
     public static final EditPatientCommand.EditPatientDescriptor PATIENT_DESC_BOB;
-
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPOINTMENT_1;
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPOINTMENT_2;
     static {
         DESC_AMY = new EditDoctorDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withNric(VALID_NRIC_AMY).build();
@@ -93,6 +95,18 @@ public class NewCommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withNric(VALID_NRIC_AMY).build();
         PATIENT_DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withNric(VALID_NRIC_BOB).build();
+        DESC_APPOINTMENT_1 = new EditAppointmentDescriptorBuilder()
+                .withPatientNric(VALID_NRIC_AMY)
+                .withDoctorNric(VALID_NRIC_BOB)
+                .withStartTime(VALID_APPOINTMENT_START_TIME)
+                .withEndTime(VALID_APPOINTMENT_END_TIME)
+                .build();
+        DESC_APPOINTMENT_2 = new EditAppointmentDescriptorBuilder()
+                .withPatientNric(VALID_NRIC_BOB)
+                .withDoctorNric(VALID_NRIC_AMY)
+                .withStartTime(VALID_APPOINTMENT_START_TIME)
+                .withEndTime(VALID_APPOINTMENT_END_TIME)
+                .build();
     }
 
     /**
