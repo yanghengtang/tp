@@ -24,6 +24,7 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
+import seedu.address.logic.commands.FindDoctorCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
@@ -126,10 +128,19 @@ public class NewAddressBookParserTest {
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD) instanceof ListPatientsCommand);
         assertTrue(parser.parseCommand(ListPatientsCommand.COMMAND_WORD + " 3") instanceof ListPatientsCommand);
     }
+
     @Test
     public void parseCommand_listDoctor() throws Exception {
         assertTrue(parser.parseCommand(ListDoctorCommand.COMMAND_WORD) instanceof ListDoctorCommand);
         assertTrue(parser.parseCommand(ListDoctorCommand.COMMAND_WORD + " 3") instanceof ListDoctorCommand);
+    }
+
+    @Test
+    public void parseCommand_findDoctor() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindDoctorCommand command = (FindDoctorCommand) parser.parseCommand(
+                FindDoctorCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindDoctorCommand(new NameContainsKeywordsDoctorPredicate(keywords)), command);
     }
 
     @Test
@@ -139,6 +150,7 @@ public class NewAddressBookParserTest {
                 + " pic\\ T0123456J dic\\ S2936283D") instanceof ListAppointmentCommand);
 
     }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
