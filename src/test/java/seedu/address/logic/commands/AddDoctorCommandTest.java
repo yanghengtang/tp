@@ -96,8 +96,8 @@ public class AddDoctorCommandTest {
         assertEquals(command.hashCode(), Objects.hash(ALICE));
 
         //objects are equal should have same hashcode
-        AddDoctorCommand predicate2 = new AddDoctorCommand(ALICE);
-        assertEquals(command.hashCode(), predicate2.hashCode());
+        AddDoctorCommand anotherCommand = new AddDoctorCommand(ALICE);
+        assertEquals(command.hashCode(), anotherCommand.hashCode());
     }
 
     /**
