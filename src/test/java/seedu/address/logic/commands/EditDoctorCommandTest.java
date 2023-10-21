@@ -15,6 +15,8 @@ import static seedu.address.testutil.TypicalDoctor.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DOCTOR;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -168,6 +170,16 @@ public class EditDoctorCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditDoctorCommand(INDEX_FIRST_DOCTOR, DESC_BOB)));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditDoctorCommand editCommand = new EditDoctorCommand(targetIndex, descriptor);
+
+        // same value -> returns same hashcode
+        assertEquals(editCommand.hashCode(), Objects.hash(targetIndex, descriptor));
     }
 
     @Test
