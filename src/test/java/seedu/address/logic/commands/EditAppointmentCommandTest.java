@@ -16,6 +16,8 @@ import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -191,6 +193,15 @@ public class EditAppointmentCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditAppointmentCommand(INDEX_FIRST_PERSON, DESC_APPOINTMENT_2)));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Index index = Index.fromOneBased(1);
+        EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(index, editAppointmentDescriptor);
+        assertEquals(editAppointmentCommand.hashCode(), Objects.hash(index, editAppointmentDescriptor));
+
     }
 
     @Test

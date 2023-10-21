@@ -5,16 +5,41 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_1;
 import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_2;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_START_TIME;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
+
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
+import seedu.address.model.person.Nric;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentDescriptorTest {
 
+    @Test
+    public void hashCodeMethod() {
+        Nric patientNric = new Nric(VALID_NRIC_AMY);
+        Nric doctorNric = new Nric(VALID_NRIC_BOB);
+        AppointmentStartTime startTime = new AppointmentStartTime(VALID_APPOINTMENT_START_TIME);
+        AppointmentEndTime endTime = new AppointmentEndTime(VALID_APPOINTMENT_END_TIME);
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder()
+                .withPatientNric(VALID_NRIC_AMY)
+                .withDoctorNric(VALID_NRIC_BOB)
+                .withStartTime(VALID_APPOINTMENT_START_TIME)
+                .withEndTime(VALID_APPOINTMENT_END_TIME)
+                .build();
+
+        // same value -> returns same hashcode
+        assertEquals(descriptor.hashCode(), Objects.hash(patientNric, doctorNric, startTime, endTime));
+    }
     @Test
     public void equals() {
         // same values -> returns true
