@@ -32,7 +32,7 @@ public class UserPrefsTest {
     public void equals() {
         UserPrefs sameUserPrefs = new UserPrefs(userPrefs);
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setDatabaseFilePath(Paths.get("data", "dataBase.json"));
+        differentUserPrefs.setDatabaseFilePath(Paths.get("data", "addressBook.json"));
 
         // same values -> returns true
         assertTrue(userPrefs.equals(sameUserPrefs));
@@ -46,7 +46,7 @@ public class UserPrefsTest {
         // different types -> returns false
         assertFalse(userPrefs.equals(5.0f));
 
-        // different database FilePath -> return false
+        // different database file path -> return false
         assertFalse(userPrefs.equals(differentUserPrefs));
     }
 
