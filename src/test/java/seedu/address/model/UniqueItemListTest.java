@@ -1,4 +1,4 @@
-package seedu.address.model.person.patient;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.PersonUtil.ALICE_NAME;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NAME;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.TypicalPatient.ALICE;
-import static seedu.address.testutil.TypicalPatient.ALICE_NAME;
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
 import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
 import static seedu.address.testutil.TypicalPatient.BENSON;
-import static seedu.address.testutil.TypicalPatient.BENSON_NAME;
-import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
 import static seedu.address.testutil.TypicalPatient.BENSON_PHONE;
 import static seedu.address.testutil.TypicalPatient.BOB;
 
@@ -30,6 +30,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalDoctor;
 import seedu.address.testutil.TypicalPatient;

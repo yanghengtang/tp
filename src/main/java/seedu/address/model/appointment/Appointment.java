@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Data;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Nric;
 
@@ -13,7 +14,7 @@ import seedu.address.model.person.Nric;
  * Represents a Appointment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Appointment implements Listable {
+public class Appointment extends Data {
     private final Nric doctorNric;
     private final Nric patientNric;
     private final AppointmentStartTime startTime;

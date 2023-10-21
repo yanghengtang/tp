@@ -30,7 +30,9 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPatient;
+
 
 public class DatabaseTest {
     private final Database database = new Database();
@@ -188,13 +190,13 @@ public class DatabaseTest {
 
     @Test
     public void hasDoctorWithNric_doctorNotInDatabase_returnsFalse() {
-        assertFalse(database.hasDoctorWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertFalse(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test
     public void hasDoctorWithNric_doctorInDatabase_returnsTrue() {
         database.addDoctor(ALICE);
-        assertTrue(database.hasDoctorWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertTrue(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test
@@ -202,14 +204,14 @@ public class DatabaseTest {
         database.addDoctor(BENSON);
         Doctor editedBenson = new DoctorBuilder(BENSON).withName(VALID_NAME_BOB).build();
         database.setDoctor(BENSON, editedBenson);
-        assertTrue(database.hasDoctorWithNric(new Nric(TypicalPatient.BENSON_NRIC)));
+        assertTrue(database.hasDoctorWithNric(new Nric(PersonUtil.BENSON_NRIC)));
     }
 
     @Test
     public void hasDoctorWithNric_doctorRemovedFromDatabase_returnsFalse() {
         database.addDoctor(ALICE);
         database.removeDoctor(ALICE);
-        assertFalse(database.hasDoctorWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertFalse(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test
@@ -219,13 +221,13 @@ public class DatabaseTest {
 
     @Test
     public void hasPatientWithNric_patientNotInDatabase_returnsFalse() {
-        assertFalse(database.hasPatientWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertFalse(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test
     public void hasPatientWithNric_patientInDatabase_returnsTrue() {
         database.addPatient(TypicalPatient.ALICE);
-        assertTrue(database.hasPatientWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertTrue(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test
@@ -233,14 +235,14 @@ public class DatabaseTest {
         database.addPatient(TypicalPatient.BENSON);
         Patient editedBenson = new PatientBuilder(TypicalPatient.BENSON).withName(VALID_NAME_BOB).build();
         database.setPatient(TypicalPatient.BENSON, editedBenson);
-        assertTrue(database.hasPatientWithNric(new Nric(TypicalPatient.BENSON_NRIC)));
+        assertTrue(database.hasPatientWithNric(new Nric(PersonUtil.BENSON_NRIC)));
     }
 
     @Test
     public void hasPatientWithNric_patientRemovedFromDatabase_returnsFalse() {
         database.addPatient(TypicalPatient.ALICE);
         database.removePatient(TypicalPatient.ALICE);
-        assertFalse(database.hasPatientWithNric(new Nric(TypicalPatient.ALICE_NRIC)));
+        assertFalse(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
     }
 
     @Test

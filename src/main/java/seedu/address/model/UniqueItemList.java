@@ -1,4 +1,4 @@
-package seedu.address.model.person.patient;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.Listable;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 
