@@ -11,7 +11,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.UniqueItemList;
 
 /**
  * Wraps all data at the system level

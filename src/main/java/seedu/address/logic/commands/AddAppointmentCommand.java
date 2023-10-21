@@ -23,7 +23,7 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_a";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the database. "
             + "Parameters: "
             + PREFIX_PATIENT_NRIC + "PATIENT_NRIC"
             + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC"
@@ -32,9 +32,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "This Appointment already exists in the list of appointments";
-    public static final String MESSAGE_INVALID_DOCTOR = "This Doctor does not exist in the list of doctors";
-    public static final String MESSAGE_INVALID_PATIENT = "This Patient does not exist in the list of patients";
+            "This Appointment already exists in the database";
+    public static final String MESSAGE_INVALID_DOCTOR = "This Doctor does not exist in the database";
+    public static final String MESSAGE_INVALID_PATIENT = "This Patient does not exist in the database";
     public static final String MESSAGE_SAME_PIC_DIC = "Patient's NRIC cannot be the same as Doctor's NRIC";
     public static final String MESSAGE_INVALID_APPOINTMENT_TIME = "Appointment's end time cannot be before start time";
     public static final String MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS =

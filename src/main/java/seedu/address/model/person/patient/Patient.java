@@ -5,60 +5,31 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 /**
  * Represents a Patient in the system.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Patient implements Listable {
+public class Patient extends Person {
 
     // Identity fields
-    private final Name name;
     private final Phone phone;
-    private final Nric nric;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Nric nric) {
-        requireAllNonNull(name, phone, nric);
-        this.name = name;
+        super(name, nric);
+        requireAllNonNull(phone);
         this.phone = phone;
-        this.nric = nric;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Phone getPhone() {
         return phone;
-    }
-
-    public Nric getNric() {
-        return nric;
-    }
-
-    /**
-     * Returns true if both patients have the same NRIC.
-     * This defines a weaker notion of equality between two patients.
-     */
-    public boolean isSame(Listable otherListable) {
-        if (!(otherListable instanceof Patient)) {
-            return false;
-        }
-
-        Patient otherPatient = (Patient) otherListable;
-
-        if (otherPatient == this) {
-            return true;
-        }
-
-        return otherPatient.getNric().equals(getNric());
     }
 
     /**
@@ -77,23 +48,21 @@ public class Patient implements Listable {
         }
 
         Patient otherPatient = (Patient) other;
-        return name.equals(otherPatient.name)
-                && phone.equals(otherPatient.phone)
-                && nric.equals(otherPatient.nric);
+        return super.equals(otherPatient) && phone.equals(otherPatient.phone);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, nric);
+        return Objects.hash(getName(), phone, getNric());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("name", getName())
                 .add("phone", phone)
-                .add("nric", nric)
+                .add("nric", getNric())
                 .toString();
     }
 

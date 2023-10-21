@@ -4,12 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
-import static seedu.address.testutil.TypicalPatient.CARL_NRIC;
-import static seedu.address.testutil.TypicalPatient.DANIEL_NRIC;
-import static seedu.address.testutil.TypicalPatient.ELLE_NRIC;
-import static seedu.address.testutil.TypicalPatient.FIONA_NRIC;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.DANIEL_NRIC;
+import static seedu.address.testutil.PersonUtil.ELLE_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
 
 import java.util.ArrayList;
 import java.util.Arrays;

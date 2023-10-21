@@ -14,24 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PatientBuilder;
 
 public class PatientTest {
-
-    @Test
-    public void isSamePatient() {
-        // same object -> returns true
-        assertTrue(ALICE.isSame(ALICE));
-
-        // null -> returns false
-        assertFalse(ALICE.isSame(null));
-
-        // same NRIC, all other attributes different -> returns true
-        Patient editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withName(VALID_NAME_BOB).build();
-        assertTrue(ALICE.isSame(editedAlice));
-
-        // different NRIC, all other attributes same -> returns false
-        editedAlice = new PatientBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
-        assertFalse(ALICE.isSame(editedAlice));
-    }
-
     @Test
     public void equals() {
         // same values -> returns true

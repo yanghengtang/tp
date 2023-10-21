@@ -13,12 +13,12 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Lists all Appoiintments in the address book to the user.
+ * Lists all Appoiintments in the database to the user.
  */
 public class ListAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "list_a";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists appointments in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists appointments in the database. "
             + "Parameters: "
             + PREFIX_PATIENT_NRIC + "PATIENT_NRIC"
             + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC";
