@@ -25,6 +25,7 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.TypicalDatabase;
 
 public class ModelManagerTest {
     private ModelManager modelManager = new ModelManager();
@@ -68,15 +69,21 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setDatabaseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setDatabaseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setDatabaseFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setDatabaseFilePath(path);
         assertEquals(path, modelManager.getDatabaseFilePath());
+    }
+
+    @Test void setDatabase_validDatabase_returnsTrue() {
+        ReadOnlyDatabase database = TypicalDatabase.getTypicalDatabase();
+        modelManager.setDatabase(database);
+        assertTrue(database.equals(modelManager.getDatabase()));
     }
 
     @Test
