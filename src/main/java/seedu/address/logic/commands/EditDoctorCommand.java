@@ -20,7 +20,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Edits the details of an existing doctor in the address book.
+ * Edits the details of an existing doctor in the database.
  */
 public class EditDoctorCommand extends NewCommand {
 
