@@ -116,7 +116,7 @@ public class LogicManagerTest {
 
     @Test
     public void getSelectedPatient_getNric_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> logic.getSelectedDoctor().getNric());
+        assertThrows(NullPointerException.class, () -> logic.getSelectedPatient().getNric());
     }
 
     @Test
