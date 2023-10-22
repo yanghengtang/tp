@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.DataTest.*;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.GEORGE_NRIC;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
@@ -10,9 +12,6 @@ import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * A utility class to help with building Appointment objects.
@@ -100,6 +99,9 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Builds an {@code Appointment} based on the current attributes.
+     */
     public Appointment build() {
         if (this.remark == null || this.tags == null) {
             return new Appointment(doctorNric, patientNric, startTime, endTime);

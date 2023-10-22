@@ -1,15 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * A utility class to help with building Patient objects.
@@ -86,6 +85,9 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Patient} with the same attributes.
+     */
     public Patient build() {
         if (this.remark == null || this.tags == null) {
             return new Patient(name, phone, nric);

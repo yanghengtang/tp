@@ -1,5 +1,7 @@
 package seedu.address.model.person.doctor;
 
+import java.util.HashSet;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
@@ -7,8 +9,6 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
 
 /**
  * Represents a Doctor in the address book.

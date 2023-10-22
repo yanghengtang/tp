@@ -4,7 +4,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
-import static seedu.address.model.DataTest.*;
+import static seedu.address.model.DataTest.PARACETAMOL_TAG;
+import static seedu.address.model.DataTest.PEDIATRICIAN_TAG;
+import static seedu.address.model.DataTest.VALID_REMARK_STRING;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;

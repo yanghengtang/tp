@@ -1,14 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
-
-import javax.print.Doc;
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * A utility class to help with building Doctor objects.
@@ -73,6 +72,9 @@ public class DoctorBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Doctor} with the same attributes.
+     */
     public Doctor build() {
         if (this.remark == null || this.tags == null) {
             return new Doctor(name, nric);

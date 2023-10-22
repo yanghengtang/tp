@@ -6,15 +6,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.model.DataTest.*;
-import static seedu.address.testutil.PersonUtil.ALICE_NAME;
-import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.model.DataTest.DEPRESSION_TAG;
+import static seedu.address.model.DataTest.VALID_REMARK_STRING;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
 /**
