@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.HashSet;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +11,19 @@ import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 public class DataTest {
-    private static final Remark VALID_REMARK = new Remark("Allergic to sunlight");
-    private static final Remark EMPTY_REMARK = new Remark("");
-    private static final Tag DEPRESSION_TAG = new Tag("Depression");
-    private static final Tag PARACETAMOL_TAG = new Tag("Paracetamol");
-    private static final Tag PEDIATRICIAN_TAG = new Tag("Pediatrician");
-    private static final HashSet<Tag> TAGS = new HashSet<>();
-    private static final Data DATA_1 = new DataStub();
-    private static final Data DATA_2 = new DataStub(VALID_REMARK, TAGS);
+    public static final String VALID_REMARK_STRING = "Allergic to sunlight";
+    public static final Remark VALID_REMARK = new Remark(VALID_REMARK_STRING);
+    public static final Remark EMPTY_REMARK = new Remark("");
+    public static final String DEPRESSION_TAG_STRING = "Depression";
+    public static final String PARACETAMOL_TAG_STRING = "Paracetamol";
+    public static final String PEDIATRICIAN_TAG_STRING = "Pediatrician";
+    public static final Tag DEPRESSION_TAG = new Tag(DEPRESSION_TAG_STRING);
+    public static final Tag PARACETAMOL_TAG = new Tag(PARACETAMOL_TAG_STRING);
+    public static final Tag PEDIATRICIAN_TAG = new Tag(PEDIATRICIAN_TAG_STRING);
+    public static final HashSet<Tag> TAGS = new HashSet<>();
+    public static final HashSet<Tag> TAGS_WITH_TAG = new HashSet<>(Arrays.asList(PEDIATRICIAN_TAG, PARACETAMOL_TAG));
+    public static final Data DATA_1 = new DataStub();
+    public static final Data DATA_2 = new DataStub(VALID_REMARK, TAGS);
 
     @Test
     public void getRemark() {
