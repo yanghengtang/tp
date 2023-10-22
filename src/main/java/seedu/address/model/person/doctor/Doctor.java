@@ -5,6 +5,10 @@ import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
+
+import java.util.HashSet;
 
 /**
  * Represents a Doctor in the address book.
@@ -16,6 +20,18 @@ public class Doctor extends Person {
      */
     public Doctor(Name name, Nric nric) {
         super(name, nric);
+    }
+
+    /**
+     * Constructor to set remark and tags.
+     * Every field must be present and not null.
+     * @param name name of doctor.
+     * @param nric nric of doctor.
+     * @param remark remark for doctor.
+     * @param tags tags for doctor.
+     */
+    public Doctor(Name name, Nric nric, Remark remark, HashSet<Tag> tags) {
+        super(name, nric, remark, tags);
     }
 
     /**
