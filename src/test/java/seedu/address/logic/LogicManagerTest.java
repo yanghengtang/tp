@@ -105,6 +105,21 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getSelectedAppointment_getDoctorNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.getSelectedAppointment().getDoctorNric());
+    }
+
+    @Test
+    public void getSelectedDoctor_getNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.getSelectedDoctor().getNric());
+    }
+
+    @Test
+    public void getSelectedPatient_getNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.getSelectedDoctor().getNric());
+    }
+
+    @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
     }
