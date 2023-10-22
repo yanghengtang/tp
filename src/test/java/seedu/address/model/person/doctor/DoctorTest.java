@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.testutil.TypicalDoctor.ALICE;
-import static seedu.address.testutil.TypicalDoctor.BOB;
+import static seedu.address.testutil.TypicalDoctor.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +40,9 @@ public class DoctorTest {
         // different NRIC -> returns false
         editedAlice = new DoctorBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // same NRIC, different remarks -> return true
+        assertTrue(ALICE.isSame(ALICE_WITH_REMARKS));
     }
 
     @Test
