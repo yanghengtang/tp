@@ -42,6 +42,15 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of Doctors */
     ObservableList<Doctor> getFilteredDoctorList();
 
+    /** Returns the selected appointment in the model */
+    Appointment getSelectedAppointment();
+
+    /** Returns the selected doctor in the model */
+    Doctor getSelectedDoctor();
+
+    /** Returns the selected patient in the model */
+    Patient getSelectedPatient();
+
     /**
      * Returns the user prefs' address book file path.
      */
