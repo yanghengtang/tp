@@ -82,6 +82,22 @@ public class LogicManager implements Logic {
     public ObservableList<Doctor> getFilteredDoctorList() {
         return model.getFilteredDoctorList();
     }
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return model.getSelectedAppointment();
+    }
+
+    @Override
+    public Doctor getSelectedDoctor() {
+        return model.getSelectedDoctor();
+    }
+
+    @Override
+    public Patient getSelectedPatient() {
+        return model.getSelectedPatient();
+    }
+
     @Override
     public Path getDatabaseFilePath() {
         return model.getDatabaseFilePath();
