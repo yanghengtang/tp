@@ -17,7 +17,7 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the MediConnect data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,6 +26,9 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<Doctor> filteredDoctors;
     private final FilteredList<Patient> filteredPatients;
+    private Appointment selectedAppointment;
+    private Doctor selectedDoctor;
+    private Patient selectedPatient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -223,6 +226,41 @@ public class ModelManager implements Model {
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    //=========== Selected Entity Accessors ===========================================================
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return selectedAppointment;
+    }
+
+    @Override
+    public Doctor getSelectedDoctor() {
+        return selectedDoctor;
+    }
+
+    @Override
+    public Patient getSelectedPatient() {
+        return selectedPatient;
+    }
+
+    @Override
+    public void updateSelectedAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        selectedAppointment = appointment;
+    }
+
+    @Override
+    public void updateSelectedDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        selectedDoctor = doctor;
+    }
+
+    @Override
+    public void updateSelectedPatient(Patient patient) {
+        requireNonNull(patient);
+        selectedPatient = patient;
     }
 
     @Override
