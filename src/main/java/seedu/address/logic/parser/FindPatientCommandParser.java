@@ -11,7 +11,7 @@ import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 /**
  * Parses input arguments and creates a new FindPatientCommand object
  */
-public class FindPatientCommandParser implements NewParser<FindPatientCommand> {
+public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindPatientCommand

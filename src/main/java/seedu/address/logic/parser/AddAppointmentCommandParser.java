@@ -18,7 +18,7 @@ import seedu.address.model.person.Nric;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddAppointmentCommandParser implements NewParser<AddAppointmentCommand> {
+public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand

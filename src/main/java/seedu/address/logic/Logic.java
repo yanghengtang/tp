@@ -7,6 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.doctor.Doctor;
@@ -15,7 +16,7 @@ import seedu.address.model.person.patient.Patient;
 /**
  * API of the Logic component
  */
-public interface NewLogic {
+public interface Logic {
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
@@ -28,7 +29,7 @@ public interface NewLogic {
     /**
      * Returns the database.
      *
-     * @see seedu.address.model.NewModel#getDatabase()
+     * @see Model#getDatabase()
      */
     ReadOnlyDatabase getDatabase();
 

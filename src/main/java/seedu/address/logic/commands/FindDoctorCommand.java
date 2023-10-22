@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 
 
@@ -14,7 +14,7 @@ import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
  * Finds and lists all doctors in database whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindDoctorCommand extends NewCommand {
+public class FindDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "find_d";
 
@@ -30,7 +30,7 @@ public class FindDoctorCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDoctorList(predicate);
         return new CommandResult(

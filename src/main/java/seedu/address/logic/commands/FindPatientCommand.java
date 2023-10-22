@@ -6,14 +6,14 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 
 /**
  * Finds and lists all patients in database whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindPatientCommand extends NewCommand {
+public class FindPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "find_p";
 
@@ -33,7 +33,7 @@ public class FindPatientCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
         return new CommandResult(

@@ -3,29 +3,31 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Contains integration tests (interaction with the NewModel) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteAppointmentCommand}.
  */
 public class DeleteAppointmentCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +37,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(appointmentToDelete));
 
-        NewModelManager expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
 
         assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
@@ -59,7 +61,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(appointmentToDelete));
 
-        NewModel expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 
@@ -102,6 +104,15 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
+    public void hashCodeMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        DeleteAppointmentCommand deleteCommand = new DeleteAppointmentCommand(targetIndex);
+
+        // same value -> returns same hashcode
+        assertEquals(deleteCommand.hashCode(), Objects.hash(targetIndex));
+    }
+
+    @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(targetIndex);
@@ -112,7 +123,7 @@ public class DeleteAppointmentCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoAppointment(NewModel model) {
+    private void showNoAppointment(Model model) {
         model.updateFilteredAppointmentList(p -> false);
 
         assertTrue(model.getFilteredAppointmentList().isEmpty());

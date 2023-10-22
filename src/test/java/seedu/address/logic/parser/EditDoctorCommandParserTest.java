@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NRIC_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.NRIC_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.NRIC_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DOCTOR;

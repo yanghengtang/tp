@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
@@ -98,7 +98,7 @@ public class AddPatientCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements NewModel {
+    private class ModelStub implements Model {
         static final String MESSAGE = "This method should not be called.";
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {

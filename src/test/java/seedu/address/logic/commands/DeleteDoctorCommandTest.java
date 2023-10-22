@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showDoctorAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
 import static seedu.address.testutil.TypicalDoctor.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DOCTOR;
@@ -16,19 +16,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.doctor.Doctor;
 
 
 /**
- * Contains integration tests (interaction with the NewModel) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteDoctorCommand}.
  */
 public class DeleteDoctorCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -38,7 +38,7 @@ public class DeleteDoctorCommandTest {
         String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS,
                 Messages.format(personToDelete));
 
-        NewModelManager expectedNewModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        ModelManager expectedNewModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedNewModel.deleteDoctor(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedNewModel);
@@ -62,11 +62,11 @@ public class DeleteDoctorCommandTest {
         String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS,
                 Messages.format(personToDelete));
 
-        NewModel expectedNewModel = new NewModelManager(model.getDatabase(), new UserPrefs());
-        expectedNewModel.deleteDoctor(personToDelete);
-        showNoDoctor(expectedNewModel);
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
+        expectedModel.deleteDoctor(personToDelete);
+        showNoDoctor(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedNewModel);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class DeleteDoctorCommandTest {
     }
 
     @Test
-    public void hashcode() {
+    public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteDoctorCommand deleteCommand = new DeleteDoctorCommand(targetIndex);
 
@@ -124,7 +124,7 @@ public class DeleteDoctorCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoDoctor(NewModel model) {
+    private void showNoDoctor(Model model) {
         model.updateFilteredDoctorList(p -> false);
 
         assertTrue(model.getFilteredDoctorList().isEmpty());

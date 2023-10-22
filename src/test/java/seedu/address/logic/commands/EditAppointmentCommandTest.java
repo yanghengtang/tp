@@ -3,15 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_1;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_2;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_END_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_START_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DOCTOR_NRIC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_1;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -24,8 +24,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.AppointmentBuilder;
@@ -36,7 +36,7 @@ import seedu.address.testutil.EditAppointmentDescriptorBuilder;
  */
 public class EditAppointmentCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -47,7 +47,7 @@ public class EditAppointmentCommandTest {
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class EditAppointmentCommandTest {
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setAppointment(lastAppointment, editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
@@ -92,7 +92,7 @@ public class EditAppointmentCommandTest {
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
@@ -112,7 +112,7 @@ public class EditAppointmentCommandTest {
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);

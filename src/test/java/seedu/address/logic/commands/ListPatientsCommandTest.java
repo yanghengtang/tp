@@ -1,28 +1,28 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 /**
- * Contains integration tests (interaction with the NewModel) and unit tests for ListPatientsCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListPatientsCommand.
  */
 public class ListPatientsCommandTest {
 
-    private NewModel model;
-    private NewModel expectedModel;
+    private Model model;
+    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
-        expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+        expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
     }
 
     @Test

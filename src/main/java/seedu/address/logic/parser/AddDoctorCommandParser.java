@@ -15,7 +15,7 @@ import seedu.address.model.person.doctor.Doctor;
 /**
  * Parses input arguments and creates a new AddDoctorCommand object
  */
-public class AddDoctorCommandParser implements NewParser<AddDoctorCommand> {
+public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddDoctorCommand

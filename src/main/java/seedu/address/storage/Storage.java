@@ -10,9 +10,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * API of the NewStorage component
+ * API of the Storage component
  */
-public interface NewStorage extends DatabaseStorage, UserPrefsStorage {
+public interface Storage extends DatabaseStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;

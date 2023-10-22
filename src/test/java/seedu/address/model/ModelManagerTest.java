@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
@@ -17,15 +17,18 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.TypicalDatabase;
 
-public class NewModelManagerTest {
-    private NewModelManager modelManager = new NewModelManager();
+public class ModelManagerTest {
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
@@ -42,14 +45,14 @@ public class NewModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setDatabaseFilePath(Paths.get("database/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setDatabaseFilePath(Paths.get("new/database/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -66,15 +69,21 @@ public class NewModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setDatabaseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setDatabaseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setDatabaseFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setDatabaseFilePath(path);
         assertEquals(path, modelManager.getDatabaseFilePath());
+    }
+
+    @Test void setDatabase_validDatabase_returnsTrue() {
+        ReadOnlyDatabase database = TypicalDatabase.getTypicalDatabase();
+        modelManager.setDatabase(database);
+        assertTrue(database.equals(modelManager.getDatabase()));
     }
 
     @Test
@@ -173,6 +182,14 @@ public class NewModelManagerTest {
     }
 
     @Test
+    public void hasAppointment_appointmentWithDifferentEndTime_returnsFalse() {
+        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withEndTime("2023-09-11 08:30").build();
+        modelManager.addAppointment(APPOINTMENT_1);
+        modelManager.setAppointment(APPOINTMENT_1, editedAppointment);
+        assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
     public void hasDoctor_doctorWithDifferentName_returnsTrue() {
         Doctor editedAlice = new DoctorBuilder(ALICE).withName(VALID_NAME_BOB).build();
         modelManager.addDoctor(ALICE);
@@ -248,8 +265,8 @@ public class NewModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new NewModelManager(database, userPrefs);
-        NewModelManager modelManagerCopy = new NewModelManager(database, userPrefs);
+        modelManager = new ModelManager(database, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(database, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -262,6 +279,6 @@ public class NewModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new NewModelManager(differentDatabase, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentDatabase, userPrefs)));
     }
 }

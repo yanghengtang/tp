@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UniqueItemList;
@@ -73,6 +74,18 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
+    public void hashCodeMethod() {
+        AddAppointmentCommand command = new AddAppointmentCommand(APPOINTMENT_1);
+        AddAppointmentCommand anotherCommand = new AddAppointmentCommand(APPOINTMENT_1);
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(APPOINTMENT_1));
+
+        // command with same appointment object -> return same hashcode
+        assertEquals(command.hashCode(), anotherCommand.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(APPOINTMENT_1);
         String expected = AddAppointmentCommand.class.getCanonicalName() + "{toAdd=" + APPOINTMENT_1 + "}";
@@ -82,7 +95,7 @@ public class AddAppointmentCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements NewModel {
+    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

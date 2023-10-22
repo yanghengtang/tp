@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalDoctor.CARL;
 import static seedu.address.testutil.TypicalDoctor.ELLE;
@@ -16,17 +16,17 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 
 /**
- * Contains integration tests (interaction with the NewModel) for {@code FindDoctorCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindDoctorCommand}.
  */
 public class FindDoctorCommandTest {
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
-    private NewModel expectedNewModel = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -76,8 +76,8 @@ public class FindDoctorCommandTest {
         String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsDoctorPredicate predicate = preparePredicate(" ");
         FindDoctorCommand command = new FindDoctorCommand(predicate);
-        expectedNewModel.updateFilteredDoctorList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedNewModel);
+        expectedModel.updateFilteredDoctorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredDoctorList());
     }
 
@@ -86,8 +86,8 @@ public class FindDoctorCommandTest {
         String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsDoctorPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindDoctorCommand command = new FindDoctorCommand(predicate);
-        expectedNewModel.updateFilteredDoctorList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedNewModel);
+        expectedModel.updateFilteredDoctorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredDoctorList());
     }
 

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.NewCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -17,14 +17,14 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Parses input arguments and creates a new AddPatientCommand object
  */
-public class AddPatientCommandParser implements NewParser<NewCommand> {
+public class AddPatientCommandParser implements Parser<Command> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddPatientCommand
      * and returns an AddPatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public NewCommand parse(String args) throws ParseException {
+    public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE);
 
