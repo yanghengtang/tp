@@ -65,7 +65,7 @@ public class DoctorBuilder {
     }
 
     /**
-     * Sets the {@code tags} of the {@code Appointment} that we are building.
+     * Sets the {@code tags} of the {@code Doctor} that we are building.
      */
     public DoctorBuilder withTags(Tag... tags) {
         HashSet<Tag> tagSet = new HashSet<>(Arrays.asList(tags));
