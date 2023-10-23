@@ -126,7 +126,6 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
         @Override
         public void setDatabase(ReadOnlyDatabase newDatabase) {
             throw new AssertionError("This method should not be called.");

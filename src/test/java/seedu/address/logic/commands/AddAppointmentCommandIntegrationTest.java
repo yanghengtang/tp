@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -75,7 +76,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withEndTime("2023-09-11 08:00")
                 .build();
         assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), model,
-                AddAppointmentCommand.MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
+                Database.MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
     }
 
     @Test
@@ -87,7 +88,7 @@ public class AddAppointmentCommandIntegrationTest {
                 .withEndTime("2023-09-11 18:00")
                 .build();
         assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), model,
-                AddAppointmentCommand.MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
+                Database.MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
     }
 
 }

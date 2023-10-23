@@ -22,6 +22,7 @@ public class Database implements ReadOnlyDatabase {
             "Appointment overlaps with an existing appointment of Patient";
     public static final String MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS =
             "Appointment overlaps with an existing appointment of Doctor";
+
     private final UniqueItemList<Appointment> appointments;
     private final UniqueItemList<Doctor> doctors;
     private final UniqueItemList<Patient> patients;

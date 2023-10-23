@@ -34,8 +34,6 @@ public class AddAppointmentCommand extends Command {
             "This Appointment already exists in the database";
     public static final String MESSAGE_INVALID_DOCTOR = "This Doctor does not exist in the database";
     public static final String MESSAGE_INVALID_PATIENT = "This Patient does not exist in the database";
-    public static final String MESSAGE_SAME_PIC_DIC = "Patient's NRIC cannot be the same as Doctor's NRIC";
-    public static final String MESSAGE_INVALID_APPOINTMENT_TIME = "Appointment's end time cannot be before start time";
     public static final String MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS =
             "Appointment overlaps with an existing appointment of Patient";
     public static final String MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS =
