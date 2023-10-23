@@ -132,6 +132,20 @@ public class Database implements ReadOnlyDatabase {
         requireNonNull(editedDoctor);
 
         doctors.setItem(target, editedDoctor);
+
+        if (!target.getNric().equals(editedDoctor.getNric())) {
+            appointments.setMultipleItems(
+                    appointment -> appointment.getDoctorNric().equals(target.getNric()),
+                    appointment -> new Appointment(
+                            editedDoctor.getNric(),
+                            appointment.getPatientNric(),
+                            appointment.getStartTime(),
+                            appointment.getEndTime(),
+                            appointment.getRemark(),
+                            appointment.getTags()
+                    )
+            );
+        }
     }
 
     /**
