@@ -7,11 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
-import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
-import static seedu.address.testutil.TypicalDoctor.ALICE;
-import static seedu.address.testutil.TypicalDoctor.BENSON;
-import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
+import static seedu.address.testutil.PersonUtil.*;
+import static seedu.address.testutil.TypicalAppointment.*;
+import static seedu.address.testutil.TypicalDoctor.*;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
 import java.util.ArrayList;
@@ -24,6 +22,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
@@ -169,6 +169,100 @@ public class DatabaseTest {
     }
 
     @Test
+    public void setPatient() {
+        database.addDoctor(ALICE);
+        database.addPatient(TypicalPatient.FIONA);
+        database.addAppointment(APPOINTMENT_6);
+        database.addAppointment(APPOINTMENT_6_DIFFERENT_TIME);
+        database.addAppointment(APPOINTMENT_1);
+        database.setPatient(TypicalPatient.FIONA, TypicalPatient.CARL);
+        // previous patient no longer exists
+        assertFalse(database.hasPatient(TypicalPatient.ALICE));
+        // new patient exists
+        assertTrue(database.hasPatient(TypicalPatient.CARL));
+        // appointment patient nric updated
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(CARL_NRIC),
+                new AppointmentStartTime("2023-09-11 13:30"),
+                new AppointmentEndTime("2023-09-11 14:00")
+        )));
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(CARL_NRIC),
+                new AppointmentStartTime("2023-09-11 14:00"),
+                new AppointmentEndTime("2023-09-11 14:30")
+        )));
+        // previous appointments no longer exist
+        assertFalse(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 13:30"),
+                new AppointmentEndTime("2023-09-11 14:00")
+        )));
+        assertFalse(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 14:00"),
+                new AppointmentEndTime("2023-09-11 14:30")
+        )));
+        // other appointments are unaffected
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(BENSON_NRIC),
+                new Nric(ALICE_NRIC),
+                new AppointmentStartTime("2023-09-11 07:30"),
+                new AppointmentEndTime("2023-09-11 08:00")
+        )));
+    }
+
+    @Test
+    public void setDoctor() {
+        database.addDoctor(ALICE);
+        database.addPatient(TypicalPatient.FIONA);
+        database.addAppointment(APPOINTMENT_6);
+        database.addAppointment(APPOINTMENT_6_DIFFERENT_TIME);
+        database.addAppointment(APPOINTMENT_1);
+        database.setDoctor(ALICE, CARL);
+        // previous patient no longer exists
+        assertFalse(database.hasDoctor(ALICE));
+        // new patient exists
+        assertTrue(database.hasDoctor(CARL));
+        // appointment patient nric updated
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(CARL_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 13:30"),
+                new AppointmentEndTime("2023-09-11 14:00")
+        )));
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(CARL_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 14:00"),
+                new AppointmentEndTime("2023-09-11 14:30")
+        )));
+        // previous appointments no longer exist
+        assertFalse(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 13:30"),
+                new AppointmentEndTime("2023-09-11 14:00")
+        )));
+        assertFalse(database.hasAppointment(new Appointment(
+                new Nric(ALICE_NRIC),
+                new Nric(FIONA_NRIC),
+                new AppointmentStartTime("2023-09-11 14:00"),
+                new AppointmentEndTime("2023-09-11 14:30")
+        )));
+        // other appointments are unaffected
+        assertTrue(database.hasAppointment(new Appointment(
+                new Nric(BENSON_NRIC),
+                new Nric(ALICE_NRIC),
+                new AppointmentStartTime("2023-09-11 07:30"),
+                new AppointmentEndTime("2023-09-11 08:00")
+        )));
+    }
+
+    @Test
     public void getAppointmentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> database.getAppointmentList().remove(0));
     }
@@ -190,13 +284,13 @@ public class DatabaseTest {
 
     @Test
     public void hasDoctorWithNric_doctorNotInDatabase_returnsFalse() {
-        assertFalse(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertFalse(database.hasDoctorWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
     public void hasDoctorWithNric_doctorInDatabase_returnsTrue() {
         database.addDoctor(ALICE);
-        assertTrue(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertTrue(database.hasDoctorWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
@@ -211,7 +305,7 @@ public class DatabaseTest {
     public void hasDoctorWithNric_doctorRemovedFromDatabase_returnsFalse() {
         database.addDoctor(ALICE);
         database.removeDoctor(ALICE);
-        assertFalse(database.hasDoctorWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertFalse(database.hasDoctorWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
@@ -221,13 +315,13 @@ public class DatabaseTest {
 
     @Test
     public void hasPatientWithNric_patientNotInDatabase_returnsFalse() {
-        assertFalse(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertFalse(database.hasPatientWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
     public void hasPatientWithNric_patientInDatabase_returnsTrue() {
         database.addPatient(TypicalPatient.ALICE);
-        assertTrue(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertTrue(database.hasPatientWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
@@ -242,7 +336,7 @@ public class DatabaseTest {
     public void hasPatientWithNric_patientRemovedFromDatabase_returnsFalse() {
         database.addPatient(TypicalPatient.ALICE);
         database.removePatient(TypicalPatient.ALICE);
-        assertFalse(database.hasPatientWithNric(new Nric(PersonUtil.ALICE_NRIC)));
+        assertFalse(database.hasPatientWithNric(new Nric(ALICE_NRIC)));
     }
 
     @Test
