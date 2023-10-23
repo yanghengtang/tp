@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Data;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Nric;
@@ -15,6 +16,8 @@ import seedu.address.model.person.Nric;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment extends Data {
+    public static final String MESSAGE_INVALID_APPOINTMENT_TIME = "Appointment's end time cannot be before start time";
+    public static final String MESSAGE_SAME_PIC_DIC = "Patient's NRIC cannot be the same as Doctor's NRIC";
     private final Nric doctorNric;
     private final Nric patientNric;
     private final AppointmentStartTime startTime;
@@ -23,14 +26,30 @@ public class Appointment extends Data {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Nric doctorNric, Nric patientNric, AppointmentStartTime startTime, AppointmentEndTime endTime) {
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentStartTime startTime, AppointmentEndTime endTime)
+            throws CommandException {
         requireAllNonNull(doctorNric, patientNric, startTime, endTime);
+        validateFields(doctorNric, patientNric, startTime, endTime);
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
+    /**
+     * Checks if the endTime is after the startTime and if the patient and doctor nric are different
+     */
+    public static void validateFields(Nric doctorNric, Nric patientNric,
+                                      AppointmentStartTime startTime, AppointmentEndTime endTime)
+            throws CommandException {
+        if (!endTime.getTime().isAfter(startTime.getTime())) {
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_TIME);
+        }
+
+        if (patientNric.equals(doctorNric)) {
+            throw new CommandException(MESSAGE_SAME_PIC_DIC);
+        }
+    }
     public Nric getDoctorNric() {
         return doctorNric;
     }
