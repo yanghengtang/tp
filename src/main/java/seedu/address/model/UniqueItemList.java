@@ -89,6 +89,7 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
      * @param transformer function to transform the current item to the new desired item.
      */
     public void setMultipleItems(Predicate<? super S> pred, Function<? super S, ? extends S> transformer) {
+        requireAllNonNull(pred, transformer);
         // conditionally applies the transformation to the existing item
         List<S> temp = internalList.stream()
                 .map(item -> pred.test(item) ? transformer.apply(item) : item)
