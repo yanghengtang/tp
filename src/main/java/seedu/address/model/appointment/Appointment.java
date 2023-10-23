@@ -3,12 +3,15 @@ package seedu.address.model.appointment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Data;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Nric;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Appointment in the address book.
@@ -21,9 +24,27 @@ public class Appointment extends Data {
     private final AppointmentEndTime endTime;
 
     /**
+     * Constructor for Appointment.
+     * Used for initial creation of an Appointment, as remarks and tags need not be initialized.
      * Every field must be present and not null.
      */
     public Appointment(Nric doctorNric, Nric patientNric, AppointmentStartTime startTime, AppointmentEndTime endTime) {
+        super();
+        requireAllNonNull(doctorNric, patientNric, startTime, endTime);
+        this.doctorNric = doctorNric;
+        this.patientNric = patientNric;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    /**
+     * Constructor for Appointment.
+     * Used when remark and tags need to be set.
+     * Every field must be present and not null.
+     */
+    public Appointment(Nric doctorNric, Nric patientNric, AppointmentStartTime startTime, AppointmentEndTime endTime,
+                       Remark remark, HashSet<Tag> tags) {
+        super(remark, tags);
         requireAllNonNull(doctorNric, patientNric, startTime, endTime);
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;

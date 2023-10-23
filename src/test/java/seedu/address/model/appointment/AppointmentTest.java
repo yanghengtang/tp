@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.model.appointment.AppointmentStartTime.DATE_TIME_INPUT_FORMATTER;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1_WITH_REMARKS;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_2;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,9 @@ public class AppointmentTest {
         // different Date Time -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
                 .withStartTime("2023-12-01 10:30").build()));
+
+        // same appointment with remarks and tags -> returns true
+        assertTrue(APPOINTMENT_1.isSame(APPOINTMENT_1_WITH_REMARKS));
     }
 
     @Test

@@ -3,10 +3,15 @@ package seedu.address.testutil;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.GEORGE_NRIC;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Appointment objects.
@@ -20,6 +25,8 @@ public class AppointmentBuilder {
     private Nric patientNric;
     private AppointmentStartTime startTime;
     private AppointmentEndTime endTime;
+    private Remark remark;
+    private HashSet<Tag> tags;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
@@ -39,6 +46,8 @@ public class AppointmentBuilder {
         patientNric = appointmentToCopy.getPatientNric();
         startTime = appointmentToCopy.getStartTime();
         endTime = appointmentToCopy.getEndTime();
+        remark = appointmentToCopy.getRemark();
+        tags = appointmentToCopy.getTags();
     }
 
     /**
@@ -73,7 +82,30 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code remark} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withTags(Tag... tags) {
+        HashSet<Tag> tagSet = new HashSet<>(Arrays.asList(tags));
+        this.tags = tagSet;
+        return this;
+    }
+
+    /**
+     * Builds an {@code Appointment} based on the current attributes.
+     */
     public Appointment build() {
-        return new Appointment(doctorNric, patientNric, startTime, endTime);
+        if (this.remark == null || this.tags == null) {
+            return new Appointment(doctorNric, patientNric, startTime, endTime);
+        }
+        return new Appointment(doctorNric, patientNric, startTime, endTime, remark, tags);
     }
 }
