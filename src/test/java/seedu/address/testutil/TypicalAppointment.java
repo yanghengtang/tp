@@ -70,6 +70,13 @@ public class TypicalAppointment {
             .withEndTime("2023-09-11 14:00")
             .build();
 
+    public static final Appointment APPOINTMENT_6_DIFFERENT_TIME = new AppointmentBuilder()
+            .withDoctorNric(ALICE_NRIC)
+            .withPatientNric(FIONA_NRIC)
+            .withStartTime("2023-09-11 14:00")
+            .withEndTime("2023-09-11 14:30")
+            .build();
+
     // Manually added - Doctor's and Patient's details found in {@code CommandTestUtil}
     public static final Appointment APPOINTMENT_7 = new AppointmentBuilder()
             .withDoctorNric(VALID_DOCTOR_NRIC)
