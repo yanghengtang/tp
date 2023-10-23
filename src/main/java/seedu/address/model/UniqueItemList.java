@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +81,19 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
         }
 
         internalList.set(index, editedItem);
+    }
+
+    /**
+     * Replaces multiple items in the list based on a given transformation.
+     * @param pred predicate used to test the item, returns true if the item is to be edited.
+     * @param transformer function to transform the current item to the new desired item.
+     */
+    public void setMultipleItems(Predicate<? super S> pred, Function<? super S, ? extends S> transformer) {
+        // conditionally applies the transformation to the existing item
+        List<S> temp = internalList.stream()
+                .map(item -> pred.test(item) ? transformer.apply(item) : item)
+                .collect(Collectors.toList());
+        this.setItems(temp);
     }
 
     /**
