@@ -173,4 +173,31 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /** Returns the selected appointment in the model */
+    Appointment getSelectedAppointment();
+
+    /** Returns the selected doctor in the model */
+    Doctor getSelectedDoctor();
+
+    /** Returns the selected patient in the model */
+    Patient getSelectedPatient();
+
+    /**
+     * Updates the selected appointment with the given {@code appointment}.
+     * @throws NullPointerException if {@code appointment} is null.
+     */
+    void updateSelectedAppointment(Appointment appointment);
+
+    /**
+     * Updates the selected doctor with the given {@code doctor}.
+     * @throws NullPointerException if {@code doctor} is null.
+     */
+    void updateSelectedDoctor(Doctor doctor);
+
+    /**
+     * Updates the selected patient with the given {@code patient}.
+     * @throws NullPointerException if {@code patient} is null.
+     */
+    void updateSelectedPatient(Patient patient);
 }
