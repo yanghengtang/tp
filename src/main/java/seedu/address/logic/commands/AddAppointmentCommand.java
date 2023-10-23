@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
 
 import java.util.Objects;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -56,10 +55,6 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!toAdd.getEndTime().getTime().isAfter(toAdd.getStartTime().getTime())) {
-            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_TIME);
-        }
-
         if (!model.hasDoctorWithNric(toAdd.getDoctorNric())) {
             throw new CommandException(MESSAGE_INVALID_DOCTOR);
         }
@@ -68,25 +63,8 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_PATIENT);
         }
 
-        if (toAdd.getPatientNric().equals(toAdd.getDoctorNric())) {
-            throw new CommandException(MESSAGE_SAME_PIC_DIC);
-        }
-
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        }
-
-        ObservableList<Appointment> appointments = model.getFilteredAppointmentList();
-
-        for (Appointment a : appointments) {
-            if (toAdd.getPatientNric().equals(a.getPatientNric())
-                    && (toAdd.overlaps(a))) {
-                throw new CommandException(MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
-            }
-            if (toAdd.getDoctorNric().equals(a.getDoctorNric())
-                    && (toAdd.overlaps(a))) {
-                throw new CommandException(MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
-            }
         }
 
         model.addAppointment(toAdd);
