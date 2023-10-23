@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindDoctorCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 
 public class FindDoctorCommandParserTest {
@@ -16,13 +17,13 @@ public class FindDoctorCommandParserTest {
     private FindDoctorCommandParser parser = new FindDoctorCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
+    public void parse_emptyArg_throwsParseException() throws CommandException {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDoctorCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validArgs_returnsFindDoctorCommand() {
+    public void parse_validArgs_returnsFindDoctorCommand() throws CommandException {
         // no leading and trailing whitespaces
         FindDoctorCommand expectedFindDoctorCommand =
                 new FindDoctorCommand(new NameContainsKeywordsDoctorPredicate(Arrays.asList("Alice", "Bob")));

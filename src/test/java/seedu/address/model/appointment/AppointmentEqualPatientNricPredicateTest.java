@@ -45,9 +45,9 @@ public class AppointmentEqualPatientNricPredicateTest {
     public void test_appointmentEqualPatientNric_returnsTrue() {
         // Matching Patient Nric
         AppointmentEqualPatientNricPredicate predicate =
-                new AppointmentEqualPatientNricPredicate(new Nric(ALICE_NRIC));
+                new AppointmentEqualPatientNricPredicate(new Nric(BENSON_NRIC));
         assertTrue(predicate.test(new AppointmentBuilder()
-                .withPatientNric(ALICE_NRIC)
+                .withPatientNric(BENSON_NRIC)
                 .build()));
 
         // Mixed case Nric

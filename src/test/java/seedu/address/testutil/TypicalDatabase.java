@@ -4,6 +4,7 @@ import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
 import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.doctor.Doctor;
@@ -16,7 +17,7 @@ public class TypicalDatabase {
     /**
      * Returns an {@code Database} with all the typical patients, doctors and appointments.
      */
-    public static Database getTypicalDatabase() {
+    public static Database getTypicalDatabase() throws CommandException {
         Database db = new Database();
         for (Patient patient : getTypicalPatient()) {
             db.addPatient(patient);

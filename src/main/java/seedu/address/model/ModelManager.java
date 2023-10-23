@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -141,7 +142,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAppointment(Appointment appointment) {
+    public void addAppointment(Appointment appointment) throws CommandException {
         database.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
@@ -159,7 +160,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
         requireAllNonNull(target, editedAppointment);
         database.setAppointment(target, editedAppointment);
     }

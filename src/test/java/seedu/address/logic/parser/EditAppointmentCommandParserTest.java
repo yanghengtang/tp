@@ -15,6 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
@@ -29,7 +30,7 @@ public class EditAppointmentCommandParserTest {
     private EditAppointmentCommandParser parser = new EditAppointmentCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_missingParts_failure() throws CommandException {
         // no index specified
         assertParseFailure(parser, "pic\\ T0123456J", MESSAGE_INVALID_FORMAT);
 
@@ -41,7 +42,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_invalidPreamble_failure() {
+    public void parse_invalidPreamble_failure() throws CommandException {
         // negative index
         assertParseFailure(parser, "-5" + "pic\\ T0123456J" , MESSAGE_INVALID_FORMAT);
 
@@ -56,7 +57,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidValue_failure() throws CommandException {
         assertParseFailure(parser, "1" + " pic\\T012#456J", Nric.MESSAGE_CONSTRAINTS); // invalid patient nric
         assertParseFailure(parser, "1" + " dic\\T012#456J", Nric.MESSAGE_CONSTRAINTS); // invalid doctor nric
         assertParseFailure(parser, "1" + " from\\14-01-2022 07:30",
@@ -73,7 +74,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_allFieldsSpecified_success() throws CommandException {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + " pic\\T0232356N dic\\T0123456J "
                 + "from\\2023-09-11 07:30 to\\2023-09-11 08:30";
@@ -89,7 +90,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_someFieldsSpecified_success() {
+    public void parse_someFieldsSpecified_success() throws CommandException {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased()
                 + " from\\2023-09-11 07:30 to\\2023-09-11 08:30";
@@ -103,7 +104,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success() {
+    public void parse_oneFieldSpecified_success() throws CommandException {
         // patient nric
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + " pic\\T0232356N";
@@ -138,7 +139,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_failure() {
+    public void parse_multipleRepeatedFields_failure() throws CommandException {
 
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON;

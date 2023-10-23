@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -24,7 +25,7 @@ public interface Storage extends DatabaseStorage, UserPrefsStorage {
     Path getDatabaseFilePath();
 
     @Override
-    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException;
+    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException, CommandException;
 
     @Override
     void saveDatabase(ReadOnlyDatabase database) throws IOException;

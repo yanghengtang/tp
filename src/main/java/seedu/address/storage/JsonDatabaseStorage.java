@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyDatabase;
 
 /**
@@ -33,7 +34,7 @@ public class JsonDatabaseStorage implements DatabaseStorage {
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException {
+    public Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException, CommandException {
         return readDatabase(filePath);
     }
 
@@ -44,7 +45,7 @@ public class JsonDatabaseStorage implements DatabaseStorage {
      * @throws DataLoadingException if loading the data from storage failed.
      */
     public Optional<ReadOnlyDatabase> readDatabase(Path filePath)
-            throws DataLoadingException {
+            throws DataLoadingException, CommandException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableDatabase> jsonDatabase = JsonUtil.readJsonFile(

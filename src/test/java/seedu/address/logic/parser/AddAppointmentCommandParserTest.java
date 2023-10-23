@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
@@ -37,7 +38,7 @@ public class AddAppointmentCommandParserTest {
     private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws CommandException {
         Appointment expectedAppointment = new AppointmentBuilder(APPOINTMENT_7).build();
 
         // whitespace only preamble
@@ -50,7 +51,7 @@ public class AddAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedValue_failure() {
+    public void parse_repeatedValue_failure() throws CommandException {
         String validExpectedAppointmentString = PATIENT_NRIC_DESC
                 + DOCTOR_NRIC_DESC
                 + APPOINTMENT_START_TIME_DESC
@@ -118,7 +119,7 @@ public class AddAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_compulsoryFieldMissing_failure() throws CommandException {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE);
 
         // missing patient nric prefix
@@ -158,7 +159,7 @@ public class AddAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidValue_failure() throws CommandException {
         // invalid patient nric
         assertParseFailure(parser, INVALID_PATIENT_NRIC_DESC
                         + DOCTOR_NRIC_DESC

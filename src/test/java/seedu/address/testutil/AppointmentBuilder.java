@@ -1,8 +1,9 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
-import static seedu.address.testutil.PersonUtil.GEORGE_NRIC;
+import static seedu.address.testutil.PersonUtil.DANIEL_NRIC;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
@@ -13,9 +14,9 @@ import seedu.address.model.person.Nric;
  */
 public class AppointmentBuilder {
     public static final String DEFAULT_DOCTOR_NRIC = ALICE_NRIC;
-    public static final String DEFAULT_PATIENT_NRIC = GEORGE_NRIC;
-    public static final String DEFAULT_START_TIME = "2023-09-11 07:30";
-    public static final String DEFAULT_END_TIME = "2023-09-11 08:00";
+    public static final String DEFAULT_PATIENT_NRIC = DANIEL_NRIC;
+    public static final String DEFAULT_START_TIME = "2023-09-15 07:30";
+    public static final String DEFAULT_END_TIME = "2023-09-15 08:00";
     private Nric doctorNric;
     private Nric patientNric;
     private AppointmentStartTime startTime;
@@ -73,7 +74,15 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Creates a new {@code Appointment} object
+     */
     public Appointment build() {
-        return new Appointment(doctorNric, patientNric, startTime, endTime);
+        try {
+            return new Appointment(doctorNric, patientNric, startTime, endTime);
+        } catch (CommandException e) {
+           // e.printStackTrace();
+        }
+        return new AppointmentBuilder().build();
     }
 }

@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -72,7 +73,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) throws CommandException {
         logger.info("Using data file : " + storage.getDatabaseFilePath());
 
 
@@ -84,13 +85,20 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + storage.getDatabaseFilePath()
                         + " populated with a sample AddressBook.");
             }
-            initialData = databaseOptional.orElseGet(SampleDataUtil::getSampleDatabase);
+            initialData = databaseOptional.orElseGet(() -> {
+                try {
+                    return SampleDataUtil.getSampleDatabase();
+                } catch (CommandException e) {
+                    logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
+                            + " Will be starting with an empty AddressBook.");
+                    return new Database();
+                }
+            });
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
             initialData = new Database();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

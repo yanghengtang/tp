@@ -18,11 +18,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,10 +38,14 @@ import seedu.address.testutil.EditAppointmentDescriptorBuilder;
  */
 public class EditAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
 
+    @BeforeEach
+    public void setUp() throws CommandException {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Appointment editedAppointment = new AppointmentBuilder().build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
@@ -54,7 +60,7 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastAppointment = Index.fromOneBased(model.getFilteredAppointmentList().size());
         Appointment lastAppointment = model.getFilteredAppointmentList().get(indexLastAppointment.getZeroBased());
 
@@ -98,16 +104,22 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
 
         Appointment appointmentInFilteredList =
                 model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment = new AppointmentBuilder(appointmentInFilteredList)
                 .withPatientNric(VALID_PATIENT_NRIC)
+                .withStartTime(VALID_APPOINTMENT_START_TIME)
+                .withEndTime(VALID_APPOINTMENT_END_TIME)
                 .build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
-                new EditAppointmentDescriptorBuilder().withPatientNric(VALID_PATIENT_NRIC).build());
+                new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(VALID_PATIENT_NRIC)
+                        .withStartTime(VALID_APPOINTMENT_START_TIME)
+                        .withEndTime(VALID_APPOINTMENT_END_TIME)
+                        .build());
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));

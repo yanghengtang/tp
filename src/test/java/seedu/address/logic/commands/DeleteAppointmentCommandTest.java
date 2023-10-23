@@ -12,10 +12,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +29,12 @@ import seedu.address.model.appointment.Appointment;
  */
 public class DeleteAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() throws CommandException {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListAppointmentCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEqualDoctorNricPredicate;
 import seedu.address.model.appointment.AppointmentEqualPatientNricPredicate;
@@ -23,7 +24,7 @@ public class ListAppointmentCommandParserTest {
     private ListAppointmentCommandParser parser = new ListAppointmentCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws CommandException {
         AppointmentEqualPatientNricPredicate patientPredicate =
                 new AppointmentEqualPatientNricPredicate(new Nric(ALICE_NRIC));
         AppointmentEqualDoctorNricPredicate doctorPredicate =
@@ -39,7 +40,7 @@ public class ListAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_doctorNricFieldMissing_success() {
+    public void parse_doctorNricFieldMissing_success() throws CommandException {
         AppointmentEqualPatientNricPredicate patientPredicate =
                 new AppointmentEqualPatientNricPredicate(new Nric(ALICE_NRIC));
         Predicate<Appointment> doctorPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
@@ -51,7 +52,7 @@ public class ListAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_patientNricFieldMissing_success() {
+    public void parse_patientNricFieldMissing_success() throws CommandException {
         Predicate<Appointment> patientPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS;
         Predicate<Appointment> doctorPredicate = new AppointmentEqualDoctorNricPredicate(new Nric(ALICE_NRIC));
         AppointmentFilterByNricPredicate expectedNricPredicate =
@@ -62,11 +63,11 @@ public class ListAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsMissing_success() {
+    public void parse_allFieldsMissing_success() throws CommandException {
         assertParseSuccess(parser, "\t  \r  \n ", new ListAppointmentCommand());
     }
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidValue_failure() throws CommandException {
         // invalid patient nric
         assertParseFailure(parser, "\t  \r  \n "
                 + "pic\\T0123456JJ "

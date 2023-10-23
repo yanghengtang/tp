@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,12 +22,12 @@ public class DeleteAppointmentCommandParserTest {
     private DeleteAppointmentCommandParser parser = new DeleteAppointmentCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteCommand() throws CommandException {
         assertParseSuccess(parser, "1", new DeleteAppointmentCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArgs_throwsParseException() throws CommandException {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteAppointmentCommand.MESSAGE_USAGE));
     }

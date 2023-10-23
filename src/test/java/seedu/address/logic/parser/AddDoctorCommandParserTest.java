@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -34,7 +35,7 @@ public class AddDoctorCommandParserTest {
     private AddDoctorCommandParser parser = new AddDoctorCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws CommandException {
         Doctor expectedDoctor = new DoctorBuilder(BOB).build();
 
         // whitespace only preamble
@@ -50,7 +51,7 @@ public class AddDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parse_repeatedNonTagValue_failure() throws CommandException {
         String validExpectedPersonString = NAME_DESC_BOB + NRIC_DESC_BOB;
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -89,7 +90,7 @@ public class AddDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_optionalFieldsMissing_success() throws CommandException {
         // zero tags
         Doctor expectedDoctor = new DoctorBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY,
@@ -97,7 +98,7 @@ public class AddDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_compulsoryFieldMissing_failure() throws CommandException {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDoctorCommand.MESSAGE_USAGE);
 
         // missing name prefix
@@ -114,7 +115,7 @@ public class AddDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidValue_failure() throws CommandException {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + NRIC_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
