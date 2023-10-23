@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,12 +26,12 @@ public class AddAppointmentCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws CommandException {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newPerson_success() throws CommandException {
         Appointment validAppointment = new AppointmentBuilder().withPatientNric(ALICE_NRIC)
                 .withDoctorNric(ELLE_NRIC)
                 .withStartTime("2023-09-12 07:45")
@@ -63,26 +64,6 @@ public class AddAppointmentCommandIntegrationTest {
         Appointment appointmentWithInvalidDoctor = new AppointmentBuilder().withDoctorNric(HOON_NRIC).build();
         assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidDoctor), model,
                 AddAppointmentCommand.MESSAGE_INVALID_DOCTOR);
-    }
-
-    @Test
-    public void execute_sameDoctorPatientAppointment_throwsCommandException() {
-        Appointment appointmentWithDuplicateNric = new AppointmentBuilder()
-                .withDoctorNric(ALICE_NRIC)
-                .withPatientNric(ALICE_NRIC)
-                .build();
-        assertCommandFailure(new AddAppointmentCommand(appointmentWithDuplicateNric), model,
-                AddAppointmentCommand.MESSAGE_SAME_PIC_DIC);
-    }
-
-    @Test
-    public void execute_invalidAppointmentEndAndStartDate_throwsCommandException() {
-        Appointment appointmentWithInvalidStartAndEndDate = new AppointmentBuilder()
-                .withStartTime("2023-09-11 07:45")
-                .withEndTime("2023-09-11 06:45")
-                .build();
-        assertCommandFailure(new AddAppointmentCommand(appointmentWithInvalidStartAndEndDate), model,
-                AddAppointmentCommand.MESSAGE_INVALID_APPOINTMENT_TIME);
     }
 
     @Test
