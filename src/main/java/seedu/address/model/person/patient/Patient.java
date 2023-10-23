@@ -2,6 +2,7 @@ package seedu.address.model.person.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -9,6 +10,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Patient in the system.
@@ -20,10 +23,29 @@ public class Patient extends Person {
     private final Phone phone;
 
     /**
+     * Constructor for Patient.
      * Every field must be present and not null.
+     * @param name name of patient.
+     * @param phone phone number of patient.
+     * @param nric nric of patient.
      */
     public Patient(Name name, Phone phone, Nric nric) {
         super(name, nric);
+        requireAllNonNull(phone);
+        this.phone = phone;
+    }
+
+    /**
+     * Constructor to set remark and tags.
+     * Every field must be present and not null.
+     * @param name name of patient.
+     * @param phone phone number of patient.
+     * @param nric nric of patient.
+     * @param remark remark for patient.
+     * @param tags tags for patient.
+     */
+    public Patient(Name name, Phone phone, Nric nric, Remark remark, HashSet<Tag> tags) {
+        super(name, nric, remark, tags);
         requireAllNonNull(phone);
         this.phone = phone;
     }

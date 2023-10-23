@@ -2,10 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.model.Data;
 import seedu.address.model.Listable;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * A parent class for all different types of people in the system.
@@ -20,6 +23,21 @@ public abstract class Person extends Data {
      * @param nric nric of the person.
      */
     public Person(Name name, Nric nric) {
+        super();
+        requireAllNonNull(name, nric);
+        this.name = name;
+        this.nric = nric;
+    }
+
+    /**
+     * Constructor for Person to set remark and tags.
+     * @param name name of person.
+     * @param nric nric of the person.
+     * @param remark remark for the person.
+     * @param tags tags for the person.
+     */
+    public Person(Name name, Nric nric, Remark remark, HashSet<Tag> tags) {
+        super(remark, tags);
         requireAllNonNull(name, nric);
         this.name = name;
         this.nric = nric;

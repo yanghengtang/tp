@@ -258,6 +258,39 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void updateSelectedAppointment_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSelectedAppointment(null));
+    }
+
+    @Test
+    public void updateSelectedDoctor_nullDoctor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSelectedDoctor(null));
+    }
+
+    @Test
+    public void updateSelectedPatient_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSelectedPatient(null));
+    }
+
+    @Test
+    public void updateSelectedAppointment_validAppointment_success() {
+        modelManager.updateSelectedAppointment(APPOINTMENT_1);
+        assertTrue(modelManager.getSelectedAppointment().equals(APPOINTMENT_1));
+    }
+
+    @Test
+    public void updateSelectedDoctor_validDoctor_success() {
+        modelManager.updateSelectedDoctor(ALICE);
+        assertTrue(modelManager.getSelectedDoctor().equals(ALICE));
+    }
+
+    @Test
+    public void updateSelectedPatient_validPatient_success() {
+        modelManager.updateSelectedPatient(CARL);
+        assertTrue(modelManager.getSelectedPatient().equals(CARL));
+    }
+
+    @Test
     public void equals() {
         Database database = new Database();
         Database differentDatabase = new Database();
