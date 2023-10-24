@@ -154,6 +154,59 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] View Appointment / Doctor / Patient feature
+
+#### Proposed implementation
+
+The proposed View Patient mechanism is facilitated by `ModelManager`. It extends `Model` and stores the appointment, doctor 
+and patient to be shown as `selectedPatient`, `selectedPatient` and `selectedPatient` respectively. Additionally, it implements the following operations:
+
+- `ModelManager#getSelectedAppointment()`  —  Returns the Appointment currently selected in the Model.
+- `ModelManager#updateSelectedAppointment()`  —  Sets the selected Appointment currently in the Model.
+- `ModelManager#getSelectedDoctor()`  —  Returns the Doctor currently selected in the Model.
+- `ModelManager#updateSelectedDoctor()`  —  Sets the selected Doctor currently in the Model.
+- `ModelManager#getSelectedPatient()`  —  Returns the Patient currently selected in the Model.
+- `ModelManager#updateSelectedPatient()`  —  Sets the selected Patient currently in the Model.
+
+The getter operations are exposed in the `Logic` interface as `Logic#getSelectedAppointment()`, `Logic#getSelectedDoctor()` and `Logic#getSelectedPatient()`.
+
+The following sequence diagram shows how the View Patient command is executed in the `Logic`:
+
+![ViewPatientLogicSequenceDiagram](images/ViewPatientLogicSequenceDiagram.png)
+
+The sequence diagram for View Appointment and View Doctor would be similar.
+
+It is also facilitated by `AppointmentWindow`, `DoctorWindow` and `PatientWindow` which extend `UiPart`. They are stored in the `MainWindow` and implements the following operations:
+
+- `AppointmentWindow#updateAppointment()`  —  Sets the Appointment to be shown in the window.
+- `AppointmentWindow#show()`  —  Displays the Appointment Window.
+- `AppointmentWindow#focus()`  —  Toggles to the Appointment Window.
+- `DoctorWindow#updatePatient()`  —  Sets the Doctor to be shown in the window.
+- `DoctorWindow#show()`  —  Displays the Doctor Window.
+- `DoctorWindow#focus()`  —  Toggles to the Doctor Window.
+- `PatientWindow#updatePatient()`  —  Sets the Patient to be shown in the window.
+- `PatientWindow#show()`  —  Displays the Patient Window.
+- `PatientWindow#focus()`  —  Toggles to the Patient Window.
+
+The following sequence diagram shows how the View Patient command results is handled in the `Ui`:
+
+![ViewPatientUiSequenceDiagram](images/ViewPatientUiSequenceDiagram.png)
+
+The sequence diagram for View Appointment and View Doctor would be similar.
+
+#### Design considerations:
+
+**Aspect: How view patient executes:**
+
+* **Alternative 1 (current choice):** Store the selected Patient in the model and retrieve on `CommandResult` instruction.
+    * Pros: Straight forward to implement.
+    * Cons: Requires extensive additions to the `Model` and `Logic` interface.
+
+* **Alternative 2:** Store selected Patient in `CommandResult` and retrieve directly from there.
+    * Pros: No changes to the `Model` and `Logic` interface required.
+    * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
