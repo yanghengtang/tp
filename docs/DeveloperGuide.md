@@ -269,7 +269,8 @@ The sort doctor and sort patient functionality works in a similar manner. It sel
 and sorts the corresponding `FilteredList` within `Database`. 
 
 The following activity diagram summarizes what happens when a user executes a new command:
-todo: insert diagram
+
+<img src="images/SortActivityDiagram.png" />
 
 #### Design considerations:
 
