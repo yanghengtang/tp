@@ -260,17 +260,9 @@ public class Database implements ReadOnlyDatabase {
      * @throws CommandException if {@code predicate} is null.
      */
     void validateAddAppointment(Appointment toAdd) throws CommandException {
-        for (Appointment a : appointments) {
-            if (toAdd.getPatientNric().equals(a.getPatientNric())
-                    && (toAdd.overlaps(a))) {
-                throw new CommandException(MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
-            }
-            if (toAdd.getDoctorNric().equals(a.getDoctorNric())
-                    && (toAdd.overlaps(a))) {
-                throw new CommandException(MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
-            }
-        }
+        validateAddAppointment(null, toAdd);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(appointments, doctors, patients);
