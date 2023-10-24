@@ -243,8 +243,13 @@ The proposed sorting feature
 
 #### Proposed Implementation
 The proposed sorting mechanism is facilitated by implementing a `Comparator` for every sortable field to sort the `UnmodifiableList`.
-The `Comparator`s will be stored as public static final variables within a helper class `Comparators`. 
-This will require all sortable fields to implement the `Comparable` interface, and implement the `compareTo` method to have a predetermined ordering.
+The `Comparator`s will be stored as public static final variables within a helper class `Comparators`.
+This will require all sortable fields to implement the `Comparable` interface, and have a concrete implementation of the `compareTo` method to have a predetermined ordering.
+`ListAppointCommand`, `ListDoctorCommand`, and `ListPatientCommand` will have an additional attribute `comparator` to store the selected `Comparator`.
+
+The updated class diagrams for the models following the changes are as follows:
+
+![SortModelClassDiagram](images/SortModelClassDiagram.png)
 
 Given below is an example usage scenario on how the sort mechanism behaves at each step.
 
