@@ -52,6 +52,8 @@ deactivate Model
 
 ListAppointmentCommand --> LogicManager : result
 deactivate ListAppointmentCommand
+
+ListAppointmentCommand -[hidden]-> LogicManager
 destroy ListAppointmentCommand
 
 [<-- LogicManager
