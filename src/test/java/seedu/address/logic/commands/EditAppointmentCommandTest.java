@@ -12,6 +12,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -167,6 +170,35 @@ public class EditAppointmentCommandTest {
 
         assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_overlappingAppointmentsUnfilteredList_failure() {
+        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
+
+        // overlapping patient appointment
+        EditAppointmentDescriptor editAppointmentDescriptor =
+                new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(BENSON_NRIC)
+                        .withDoctorNric(FIONA_NRIC)
+                        .withStartTime("2023-09-12 07:15")
+                        .withEndTime("2023-09-12 07:45").build();
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
+                editAppointmentDescriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, Database.MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
+
+        // overlapping doctor appointment
+        editAppointmentDescriptor = new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(FIONA_NRIC)
+                        .withDoctorNric(CARL_NRIC)
+                        .withStartTime("2023-09-12 07:15")
+                        .withEndTime("2023-09-12 07:45").build();
+        editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
+                editAppointmentDescriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, Database.MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
+    }
+
 
     /**
      * Edit filtered list where index is larger than size of filtered list,

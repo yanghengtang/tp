@@ -32,7 +32,7 @@ public class AddAppointmentCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newAppointment_success() {
         Appointment validAppointment = new AppointmentBuilder().withPatientNric(ALICE_NRIC)
                 .withDoctorNric(ELLE_NRIC)
                 .withStartTime("2023-09-12 07:45")
