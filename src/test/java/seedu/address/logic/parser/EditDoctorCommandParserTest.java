@@ -24,6 +24,7 @@ import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+
 public class EditDoctorCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =

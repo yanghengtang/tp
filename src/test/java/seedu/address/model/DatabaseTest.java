@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -23,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -88,7 +88,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasAppointment_appointmentInDatabase_returnsTrue() {
+    public void hasAppointment_appointmentInDatabase_returnsTrue() throws CommandException {
         database.addAppointment(APPOINTMENT_1);
         assertTrue(database.hasAppointment(APPOINTMENT_1));
     }
@@ -123,23 +123,23 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasAppointment_appointmentRemovedFromDatabase_returnsFalse() {
+    public void hasAppointment_appointmentRemovedFromDatabase_returnsFalse() throws CommandException {
         database.addAppointment(APPOINTMENT_1);
         database.removeAppointment(APPOINTMENT_1);
         assertFalse(database.hasAppointment(APPOINTMENT_1));
     }
 
     @Test
-    public void hasAppointment_appointmentModified_returnsFalse() {
+    public void hasAppointment_appointmentModified_returnsFalse() throws CommandException {
         database.addAppointment(APPOINTMENT_1);
         Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1)
-                .withEndTime(VALID_APPOINTMENT_END_TIME).build();
+                .withEndTime("2023-09-11 07:45").build();
         database.setAppointment(APPOINTMENT_1, editedAppointment);
         assertTrue(database.hasAppointment(editedAppointment));
     }
 
     @Test
-    public void hasAppointment_doctorRemovedFromDatabase_returnsFalse() {
+    public void hasAppointment_doctorRemovedFromDatabase_returnsFalse() throws CommandException {
         database.addDoctor(BENSON);
         database.addAppointment(APPOINTMENT_1);
         database.removeDoctor(BENSON);
@@ -147,7 +147,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasAppointment_patientRemovedFromDatabase_returnsFalse() {
+    public void hasAppointment_patientRemovedFromDatabase_returnsFalse() throws CommandException {
         database.addPatient(TypicalPatient.ALICE);
         database.addAppointment(APPOINTMENT_1);
         database.removePatient(TypicalPatient.ALICE);

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.appointment.Appointment;
@@ -58,7 +59,7 @@ class JsonSerializableDatabase {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public Database toModelType() throws IllegalValueException {
+    public Database toModelType() throws IllegalValueException, CommandException {
         Database database = new Database();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();

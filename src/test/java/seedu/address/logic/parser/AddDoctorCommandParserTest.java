@@ -28,8 +28,6 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.testutil.DoctorBuilder;
 
-
-
 public class AddDoctorCommandParserTest {
     private AddDoctorCommandParser parser = new AddDoctorCommandParser();
 
