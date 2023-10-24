@@ -5,14 +5,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * API of the NewStorage component
+ * API of the Storage component
  */
-public interface NewStorage extends DatabaseStorage, UserPrefsStorage {
+public interface Storage extends DatabaseStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -24,7 +25,7 @@ public interface NewStorage extends DatabaseStorage, UserPrefsStorage {
     Path getDatabaseFilePath();
 
     @Override
-    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException;
+    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException, CommandException;
 
     @Override
     void saveDatabase(ReadOnlyDatabase database) throws IOException;

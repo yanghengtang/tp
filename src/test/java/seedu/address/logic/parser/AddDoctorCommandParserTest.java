@@ -2,20 +2,20 @@ package seedu.address.logic.parser;
 
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NRIC_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.NRIC_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.NRIC_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.NewCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalDoctor.AMY;
 import static seedu.address.testutil.TypicalDoctor.BOB;
 
@@ -27,8 +27,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.testutil.DoctorBuilder;
-
-
 
 public class AddDoctorCommandParserTest {
     private AddDoctorCommandParser parser = new AddDoctorCommandParser();

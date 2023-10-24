@@ -3,31 +3,37 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.patient.Patient;
 
 /**
- * Contains integration tests (interaction with the NewModel) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeletePatientCommand}.
  */
 public class DeletePatientCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
     @Test
     public void hashcode() {
         DeletePatientCommand command = new DeletePatientCommand(INDEX_FIRST_PERSON);
@@ -42,7 +48,7 @@ public class DeletePatientCommandTest {
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
                 Messages.format(patientToDelete));
 
-        NewModelManager expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
@@ -66,7 +72,7 @@ public class DeletePatientCommandTest {
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
                 Messages.format(patientToDelete));
 
-        NewModel expectedModel = new NewModelManager(model.getDatabase(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deletePatient(patientToDelete);
         showNoPatient(expectedModel);
 
@@ -119,7 +125,7 @@ public class DeletePatientCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPatient(NewModel model) {
+    private void showNoPatient(Model model) {
         model.updateFilteredPatientList(p -> false);
 
         assertTrue(model.getFilteredPatientList().isEmpty());

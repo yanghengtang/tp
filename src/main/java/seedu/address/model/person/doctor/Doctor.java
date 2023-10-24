@@ -1,38 +1,37 @@
 package seedu.address.model.person.doctor;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Objects;
+import java.util.HashSet;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Listable;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Doctor in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Doctor implements Listable {
-    // Identity fields
-    private final Name name;
-    private final Nric nric;
-
+public class Doctor extends Person {
     /**
      * Every field must be present and not null.
      */
     public Doctor(Name name, Nric nric) {
-        requireAllNonNull(name, nric);
-        this.name = name;
-        this.nric = nric;
+        super(name, nric);
     }
 
-    public Name getName() {
-        return name;
-    }
-
-    public Nric getNric() {
-        return nric;
+    /**
+     * Constructor to set remark and tags.
+     * Every field must be present and not null.
+     * @param name name of doctor.
+     * @param nric nric of doctor.
+     * @param remark remark for doctor.
+     * @param tags tags for doctor.
+     */
+    public Doctor(Name name, Nric nric, Remark remark, HashSet<Tag> tags) {
+        super(name, nric, remark, tags);
     }
 
     /**
@@ -69,21 +68,15 @@ public class Doctor implements Listable {
         }
 
         Doctor otherDoctor = (Doctor) other;
-        return name.equals(otherDoctor.name)
-                && nric.equals(otherDoctor.nric);
+        return super.equals(otherDoctor);
     }
 
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric);
-    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("nric", nric)
+                .add("name", getName())
+                .add("nric", getNric())
                 .toString();
     }
 }

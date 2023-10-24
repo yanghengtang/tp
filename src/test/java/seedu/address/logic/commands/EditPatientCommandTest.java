@@ -3,26 +3,27 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.PATIENT_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PATIENT_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.PATIENT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PATIENT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -33,8 +34,12 @@ import seedu.address.testutil.PatientBuilder;
  */
 public class EditPatientCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
 
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Patient editedPatient = new PatientBuilder().build();
@@ -44,7 +49,7 @@ public class EditPatientCommandTest {
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS,
                 Messages.format(editedPatient));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
@@ -66,7 +71,7 @@ public class EditPatientCommandTest {
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS,
                 Messages.format(editedPatient));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setPatient(lastPatient, editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
@@ -80,7 +85,7 @@ public class EditPatientCommandTest {
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS,
                 Messages.format(editedPatient));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
     }
@@ -97,7 +102,7 @@ public class EditPatientCommandTest {
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS,
                 Messages.format(editedPatient));
 
-        NewModel expectedModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);

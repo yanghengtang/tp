@@ -9,13 +9,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
  * Deletes a patient identified using it's displayed index from the database.
  */
-public class DeleteAppointmentCommand extends NewCommand {
+public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_a";
 
@@ -33,7 +33,7 @@ public class DeleteAppointmentCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
@@ -64,7 +64,7 @@ public class DeleteAppointmentCommand extends NewCommand {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.targetIndex);
+        return Objects.hash(this.targetIndex);
     }
 
     @Override

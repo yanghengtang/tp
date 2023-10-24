@@ -14,7 +14,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -23,7 +23,7 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Edits the details of an existing patient in the database.
  */
-public class EditPatientCommand extends NewCommand {
+public class EditPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_p";
 
@@ -62,7 +62,7 @@ public class EditPatientCommand extends NewCommand {
         return Objects.hash(this.index, this.editPatientDescriptor);
     }
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
@@ -78,7 +78,7 @@ public class EditPatientCommand extends NewCommand {
         }
 
         model.setPatient(patientToEdit, editedPatient);
-        model.updateFilteredPatientList(NewModel.PREDICATE_SHOW_ALL_PATIENTS);
+        model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, Messages.format(editedPatient)));
     }
 

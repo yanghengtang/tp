@@ -3,22 +3,22 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
-import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Lists all Appoiintments in the address book to the user.
+ * Lists all Appoiintments in the database to the user.
  */
-public class ListAppointmentCommand extends NewCommand {
+public class ListAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "list_a";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists appointments in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists appointments in the database. "
             + "Parameters: "
             + PREFIX_PATIENT_NRIC + "PATIENT_NRIC"
             + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC";
@@ -35,7 +35,7 @@ public class ListAppointmentCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(MESSAGE_SUCCESS);

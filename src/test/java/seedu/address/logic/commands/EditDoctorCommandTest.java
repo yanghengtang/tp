@@ -3,38 +3,45 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
 import static seedu.address.logic.commands.EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showDoctorAtIndex;
-import static seedu.address.testutil.TypicalDoctor.getTypicalDatabase;
+import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DOCTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DOCTOR;
 
+import java.util.Objects;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the NewModel) and unit tests for EditDoctorCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditDoctorCommand.
  */
 public class EditDoctorCommandTest {
 
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
 
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Doctor editedDoctor = new DoctorBuilder().build();
@@ -43,10 +50,10 @@ public class EditDoctorCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, Messages.format(editedDoctor));
 
-        NewModel expectedNewModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedNewModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedNewModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -63,10 +70,10 @@ public class EditDoctorCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, Messages.format(editedDoctor));
 
-        NewModel expectedNewModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedNewModel.setDoctor(lastDoctor, editedDoctor);
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.setDoctor(lastDoctor, editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedNewModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -76,9 +83,9 @@ public class EditDoctorCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, Messages.format(editedDoctor));
 
-        NewModel expectedNewModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedNewModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -92,10 +99,10 @@ public class EditDoctorCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, Messages.format(editedDoctor));
 
-        NewModel expectedNewModel = new NewModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedNewModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedNewModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -168,6 +175,16 @@ public class EditDoctorCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditDoctorCommand(INDEX_FIRST_DOCTOR, DESC_BOB)));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditDoctorCommand editCommand = new EditDoctorCommand(targetIndex, descriptor);
+
+        // same value -> returns same hashcode
+        assertEquals(editCommand.hashCode(), Objects.hash(targetIndex, descriptor));
     }
 
     @Test

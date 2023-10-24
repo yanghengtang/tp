@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_DOCTORS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DOCTORS;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,15 +14,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Edits the details of an existing doctor in the address book.
+ * Edits the details of an existing doctor in the database.
  */
-public class EditDoctorCommand extends NewCommand {
+public class EditDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_d";
 
@@ -38,7 +38,7 @@ public class EditDoctorCommand extends NewCommand {
 
     public static final String MESSAGE_EDIT_DOCTOR_SUCCESS = "Edited Doctor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the database.";
 
     private final Index index;
     private final EditDoctorDescriptor editDoctorDescriptor;
@@ -56,7 +56,7 @@ public class EditDoctorCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Doctor> lastShownList = model.getFilteredDoctorList();
 

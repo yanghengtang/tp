@@ -9,13 +9,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Deletes a doctor identified using it's displayed index from the address book.
+ * Deletes a doctor identified using it's displayed index from the database.
  */
-public class DeleteDoctorCommand extends NewCommand {
+public class DeleteDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_d";
 
@@ -33,7 +33,7 @@ public class DeleteDoctorCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Doctor> lastShownList = model.getFilteredDoctorList();
 

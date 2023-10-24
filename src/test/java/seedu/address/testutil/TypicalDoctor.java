@@ -1,27 +1,29 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.testutil.TypicalPatient.ALICE_NAME;
-import static seedu.address.testutil.TypicalPatient.ALICE_NRIC;
-import static seedu.address.testutil.TypicalPatient.BENSON_NAME;
-import static seedu.address.testutil.TypicalPatient.BENSON_NRIC;
-import static seedu.address.testutil.TypicalPatient.CARL_NAME;
-import static seedu.address.testutil.TypicalPatient.CARL_NRIC;
-import static seedu.address.testutil.TypicalPatient.DANIEL_NAME;
-import static seedu.address.testutil.TypicalPatient.DANIEL_NRIC;
-import static seedu.address.testutil.TypicalPatient.ELLE_NAME;
-import static seedu.address.testutil.TypicalPatient.ELLE_NRIC;
-import static seedu.address.testutil.TypicalPatient.FIONA_NAME;
-import static seedu.address.testutil.TypicalPatient.FIONA_NRIC;
-import static seedu.address.testutil.TypicalPatient.GEORGE_NAME;
-import static seedu.address.testutil.TypicalPatient.GEORGE_NRIC;
-import static seedu.address.testutil.TypicalPatient.HOON_NAME;
-import static seedu.address.testutil.TypicalPatient.HOON_NRIC;
-import static seedu.address.testutil.TypicalPatient.IDA_NAME;
-import static seedu.address.testutil.TypicalPatient.IDA_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.model.DataTest.PEDIATRICIAN_TAG;
+import static seedu.address.model.DataTest.VALID_REMARK_STRING;
+import static seedu.address.testutil.PersonUtil.ALICE_NAME;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NAME;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NAME;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.DANIEL_NAME;
+import static seedu.address.testutil.PersonUtil.DANIEL_NRIC;
+import static seedu.address.testutil.PersonUtil.ELLE_NAME;
+import static seedu.address.testutil.PersonUtil.ELLE_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NAME;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
+import static seedu.address.testutil.PersonUtil.GEORGE_NAME;
+import static seedu.address.testutil.PersonUtil.GEORGE_NRIC;
+import static seedu.address.testutil.PersonUtil.HOON_NAME;
+import static seedu.address.testutil.PersonUtil.HOON_NRIC;
+import static seedu.address.testutil.PersonUtil.IDA_NAME;
+import static seedu.address.testutil.PersonUtil.IDA_NRIC;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +38,9 @@ import seedu.address.model.person.doctor.Doctor;
 public class TypicalDoctor {
     public static final Doctor ALICE = new DoctorBuilder().withName(ALICE_NAME)
             .withNric(ALICE_NRIC).build();
+
+    public static final Doctor ALICE_WITH_REMARKS = new DoctorBuilder().withName(ALICE_NAME)
+            .withNric(ALICE_NRIC).withRemark(VALID_REMARK_STRING).withTags(PEDIATRICIAN_TAG).build();
     public static final Doctor BENSON = new DoctorBuilder().withName(BENSON_NAME)
             .withNric(BENSON_NRIC).build();
     public static final Doctor CARL = new DoctorBuilder().withName(CARL_NAME)

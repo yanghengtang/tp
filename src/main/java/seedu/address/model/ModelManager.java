@@ -11,26 +11,30 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the MediConnect data.
  */
-public class NewModelManager implements NewModel {
-    private static final Logger logger = LogsCenter.getLogger(NewModelManager.class);
+public class ModelManager implements Model {
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final Database database;
     private final UserPrefs userPrefs;
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<Doctor> filteredDoctors;
     private final FilteredList<Patient> filteredPatients;
+    private Appointment selectedAppointment;
+    private Doctor selectedDoctor;
+    private Patient selectedPatient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public NewModelManager(ReadOnlyDatabase database, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDatabase database, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(database, userPrefs);
 
         logger.fine("Initializing with database: " + database + " and user prefs " + userPrefs);
@@ -42,7 +46,7 @@ public class NewModelManager implements NewModel {
         filteredPatients = new FilteredList<>(this.database.getPatientList());
     }
 
-    public NewModelManager() {
+    public ModelManager() {
         this(new Database(), new UserPrefs());
     }
 
@@ -141,7 +145,7 @@ public class NewModelManager implements NewModel {
     }
 
     @Override
-    public void addAppointment(Appointment appointment) {
+    public void addAppointment(Appointment appointment) throws CommandException {
         database.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
@@ -159,7 +163,7 @@ public class NewModelManager implements NewModel {
     }
 
     @Override
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
         requireAllNonNull(target, editedAppointment);
         database.setAppointment(target, editedAppointment);
     }
@@ -225,6 +229,41 @@ public class NewModelManager implements NewModel {
         filteredPatients.setPredicate(predicate);
     }
 
+    //=========== Selected Entity Accessors ===========================================================
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return selectedAppointment;
+    }
+
+    @Override
+    public Doctor getSelectedDoctor() {
+        return selectedDoctor;
+    }
+
+    @Override
+    public Patient getSelectedPatient() {
+        return selectedPatient;
+    }
+
+    @Override
+    public void updateSelectedAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        selectedAppointment = appointment;
+    }
+
+    @Override
+    public void updateSelectedDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        selectedDoctor = doctor;
+    }
+
+    @Override
+    public void updateSelectedPatient(Patient patient) {
+        requireNonNull(patient);
+        selectedPatient = patient;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -232,11 +271,11 @@ public class NewModelManager implements NewModel {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NewModelManager)) {
+        if (!(other instanceof ModelManager)) {
             return false;
         }
 
-        NewModelManager otherModelManager = (NewModelManager) other;
+        ModelManager otherModelManager = (ModelManager) other;
         return database.equals(otherModelManager.getDatabase())
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredAppointments.equals(otherModelManager.filteredAppointments)

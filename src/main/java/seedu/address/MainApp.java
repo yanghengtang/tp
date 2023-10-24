@@ -13,11 +13,12 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.NewLogic;
-import seedu.address.logic.NewLogicManager;
+import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -25,8 +26,8 @@ import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.DatabaseStorage;
 import seedu.address.storage.JsonDatabaseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.NewStorage;
-import seedu.address.storage.NewStorageManager;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -41,9 +42,9 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected NewLogic logic;
-    protected NewStorage storage;
-    protected NewModel model;
+    protected Logic logic;
+    protected Storage storage;
+    protected Model model;
     protected Config config;
 
     @Override
@@ -58,11 +59,11 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         DatabaseStorage databaseStorage = new JsonDatabaseStorage(userPrefs.getDatabaseFilePath());
-        storage = new NewStorageManager(databaseStorage, userPrefsStorage);
+        storage = new StorageManager(databaseStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new NewLogicManager(model, storage);
+        logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
     }
@@ -72,7 +73,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private NewModel initModelManager(NewStorage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) throws CommandException {
         logger.info("Using data file : " + storage.getDatabaseFilePath());
 
 
@@ -82,16 +83,23 @@ public class MainApp extends Application {
             databaseOptional = storage.readDatabase();
             if (!databaseOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getDatabaseFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample Database.");
             }
-            initialData = databaseOptional.orElseGet(SampleDataUtil::getSampleDatabase);
+            initialData = databaseOptional.orElseGet(() -> {
+                try {
+                    return SampleDataUtil.getSampleDatabase();
+                } catch (CommandException e) {
+                    logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
+                            + " Will be starting with an empty Database.");
+                    return new Database();
+                }
+            });
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty Database.");
             initialData = new Database();
         }
-
-        return new NewModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
