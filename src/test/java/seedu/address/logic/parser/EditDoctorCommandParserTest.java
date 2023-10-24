@@ -21,10 +21,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+
 public class EditDoctorCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -33,7 +33,7 @@ public class EditDoctorCommandParserTest {
     private EditDoctorCommandParser parser = new EditDoctorCommandParser();
 
     @Test
-    public void parse_missingParts_failure() throws CommandException {
+    public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
@@ -45,7 +45,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_invalidPreamble_failure() throws CommandException {
+    public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
@@ -60,7 +60,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() throws CommandException {
+    public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
 
@@ -72,7 +72,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() throws CommandException {
+    public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_DOCTOR;
         String userInput = targetIndex.getOneBased() + NRIC_DESC_BOB;
 
@@ -83,7 +83,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_someFieldsSpecified_success() throws CommandException {
+    public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_DOCTOR;
         String userInput = targetIndex.getOneBased() + NRIC_DESC_BOB;
 
@@ -94,7 +94,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success() throws CommandException {
+    public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_DOCTOR;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
@@ -111,7 +111,7 @@ public class EditDoctorCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_failure() throws CommandException {
+    public void parse_multipleRepeatedFields_failure() {
         // More extensive testing of duplicate parameter detections is done in
         // AddCommandParserTest#parse_repeatedNonTagValue_failure()
 

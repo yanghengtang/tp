@@ -17,7 +17,7 @@ public class TypicalDatabase {
     /**
      * Returns an {@code Database} with all the typical patients, doctors and appointments.
      */
-    public static Database getTypicalDatabase() throws CommandException {
+    public static Database getTypicalDatabase() {
         Database db = new Database();
         for (Patient patient : getTypicalPatient()) {
             db.addPatient(patient);
@@ -26,7 +26,11 @@ public class TypicalDatabase {
             db.addDoctor(doctor);
         }
         for (Appointment appointment : getTypicalAppointment()) {
-            db.addAppointment(appointment);
+            try {
+                db.addAppointment(appointment);
+            } catch (CommandException e) {
+                throw new AssertionError("Invalid appointment in typical database");
+            }
         }
         return db;
     }

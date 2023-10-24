@@ -27,12 +27,12 @@ public class AddAppointmentCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() throws CommandException {
+    public void setUp() {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() throws CommandException {
+    public void execute_newPerson_success() {
         Appointment validAppointment = new AppointmentBuilder().withPatientNric(ALICE_NRIC)
                 .withDoctorNric(ELLE_NRIC)
                 .withStartTime("2023-09-12 07:45")
@@ -40,7 +40,12 @@ public class AddAppointmentCommandIntegrationTest {
                 .build();
 
         Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.addAppointment(validAppointment);
+        try {
+            expectedModel.addAppointment(validAppointment);
+        } catch (CommandException e) {
+            throw new AssertionError(e.getMessage());
+        }
+
         assertCommandSuccess(new AddAppointmentCommand(validAppointment), model,
                 String.format(AddAppointmentCommand.MESSAGE_SUCCESS, Messages.format(validAppointment)),
                 expectedModel);

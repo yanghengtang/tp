@@ -110,8 +110,7 @@ public class AppointmentBuilder {
             }
             return new Appointment(doctorNric, patientNric, startTime, endTime, remark, tags);
         } catch (CommandException e) {
-           // e.printStackTrace();
+            throw new AssertionError("AppointmentBuilder contains invalid fields");
         }
-        return new AppointmentBuilder().build();
     }
 }

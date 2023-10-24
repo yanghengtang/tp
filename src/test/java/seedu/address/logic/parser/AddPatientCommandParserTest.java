@@ -31,7 +31,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -47,7 +46,7 @@ public class AddPatientCommandParserTest {
         assertEquals(command.hashCode(), Objects.hash(ALICE));
     }
     @Test
-    public void parse_allFieldsPresent_success() throws CommandException {
+    public void parse_allFieldsPresent_success() {
         Patient expectedPatient = new PatientBuilder(BOB).build();
 
         // whitespace only preamble
@@ -62,7 +61,7 @@ public class AddPatientCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() throws CommandException {
+    public void parse_repeatedNonTagValue_failure() {
         String validExpectedPatientString = NAME_DESC_BOB + PHONE_DESC_BOB + NRIC_DESC_BOB;
 
         // multiple names
@@ -114,7 +113,7 @@ public class AddPatientCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() throws CommandException {
+    public void parse_optionalFieldsMissing_success() {
         // zero tags
         Patient expectedPerson = new PatientBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + NRIC_DESC_AMY,
@@ -122,7 +121,7 @@ public class AddPatientCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() throws CommandException {
+    public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE);
 
         // missing name prefix
@@ -143,7 +142,7 @@ public class AddPatientCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() throws CommandException {
+    public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + NRIC_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 

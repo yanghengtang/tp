@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -40,7 +39,7 @@ public class EditDoctorCommandTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() throws CommandException {
+    public void setUp() {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
     @Test

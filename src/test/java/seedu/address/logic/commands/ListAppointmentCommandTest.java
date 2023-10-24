@@ -17,7 +17,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -36,7 +35,7 @@ public class ListAppointmentCommandTest {
     private Model expectedModel;
 
     @BeforeEach
-    public void setUp() throws CommandException {
+    public void setUp() {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
         expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
     }

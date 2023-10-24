@@ -83,7 +83,7 @@ public class Database implements ReadOnlyDatabase {
      * The appointment must not already exist in the database.
      */
     public void addAppointment(Appointment appointment) throws CommandException {
-        validateAddAppointment(null, appointment);
+        validateAddAppointment(appointment);
         appointments.add(appointment);
     }
 
@@ -250,6 +250,23 @@ public class Database implements ReadOnlyDatabase {
             if (toAdd.getDoctorNric().equals(a.getDoctorNric())
                     && (toAdd.overlaps(a))
                     && !a.equals(reference)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
+            }
+        }
+    }
+
+    /**
+     * Checks if the appointment is valid to be inserted into the appointment list
+     * @throws CommandException if {@code predicate} is null.
+     */
+    void validateAddAppointment(Appointment toAdd) throws CommandException {
+        for (Appointment a : appointments) {
+            if (toAdd.getPatientNric().equals(a.getPatientNric())
+                    && (toAdd.overlaps(a))) {
+                throw new CommandException(MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
+            }
+            if (toAdd.getDoctorNric().equals(a.getDoctorNric())
+                    && (toAdd.overlaps(a))) {
                 throw new CommandException(MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
             }
         }

@@ -83,20 +83,20 @@ public class MainApp extends Application {
             databaseOptional = storage.readDatabase();
             if (!databaseOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getDatabaseFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample Database.");
             }
             initialData = databaseOptional.orElseGet(() -> {
                 try {
                     return SampleDataUtil.getSampleDatabase();
                 } catch (CommandException e) {
                     logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
-                            + " Will be starting with an empty AddressBook.");
+                            + " Will be starting with an empty Database.");
                     return new Database();
                 }
             });
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty Database.");
             initialData = new Database();
         }
         return new ModelManager(initialData, userPrefs);

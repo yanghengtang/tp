@@ -57,7 +57,7 @@ public class AppointmentTest {
 
         // different Date Time -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
-                .withStartTime("2023-12-01 10:30").build()));
+                .withStartTime("2023-09-11 07:00").build()));
 
         // same appointment with remarks and tags -> returns true
         assertTrue(APPOINTMENT_1.isSame(APPOINTMENT_1_WITH_REMARKS));
@@ -90,7 +90,7 @@ public class AppointmentTest {
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different startTime -> returns false
-        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-12-01 12:00").build();
+        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-09-11 07:00").build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different endTime -> returns false

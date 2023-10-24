@@ -41,11 +41,11 @@ public class EditAppointmentCommandTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() throws CommandException {
+    public void setUp() {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Appointment editedAppointment = new AppointmentBuilder().build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
@@ -54,7 +54,12 @@ public class EditAppointmentCommandTest {
                 Messages.format(editedAppointment));
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
+
+        try {
+            expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
+        } catch (CommandException e) {
+            throw new AssertionError(e.getMessage());
+        }
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
