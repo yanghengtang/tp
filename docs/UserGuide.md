@@ -3,10 +3,55 @@ layout: page
 title: User Guide
 ---
 
-MediConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MediConnect can get your patient, doctor and appointment management tasks done faster than traditional GUI apps.
+MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic om their day-to-day task.
+These may include scheduling an appointment, retrieving a patient's medical history and updating the patient's medical record.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
+If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
+
+If you are keen to get started on using MediConnect, click [here](#quick-start) for our quick start guide.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Table of Contents
+
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction to this user guide
+
+This guide is designed for users of all level to master their use of MediConnect.
+
+## Icons used in this guide
+
+Here are some common icons that is used throughout this user guide
+
+| Icons                          | Representation                                    |
+|--------------------------------|---------------------------------------------------|
+| :information_source:  **Note** | Provides you with additional useful information   |
+| :exclamation: **Caution**      | Warns you on the common mistakes                  |
+| :bulb: **Tip**                 | Provides you with tips to enhance your experience |
+
+
+## Terms used in this guide
+
+Here are some common terms that is used throughout this user guide
+
+| Icons       | Representation                                                                 |
+|-------------|--------------------------------------------------------------------------------|
+| Command     | The instruction you enter into the application                                 |
+| Parameter   | The additional information you provide for the instruction you intend to enter |
+| Appointment | A scheduled medical consultation between the patient and the doctor            |
+
+## Navigating this user guide
+
+As this guide aims to be as comprehensive as possible, you might the amount of information in this user guide to be overwhelming.
+Fred not, you utilise the [Table of Content](#table-of-contents) to find the information your are looking for.
+
+If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
+
+If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to horne your MediConnect sklls.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,6 +79,22 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction to MediConnect
+
+This section will give you an introduction to navigating around MediConnect and what each component does.
+
+## Layout
+
+The application can be broken down into the following components:
+
+- **Command Box**: The command box is where you will enter your input your commands
+- Result Display Box: The box will display the output messages based on your entered commands
+- Appointment List Panel: This panel will display the list of appointments sorted by their starting date and time
+- Patient List Panel: This panel will display the list of patient sorted by their names
+- Doctor List Panel: This panel will display the list of doctor sorted by their names
 
 --------------------------------------------------------------------------------------------------------------------
 
