@@ -263,7 +263,7 @@ The `Predicate` is used to filter the filteredAppointmentList by calling `Filter
 todo: insert diagram
 
 The following sequence diagram shows how the sort operation work:
-todo: insert diagram
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 The sort doctor and sort patient functionality works in a similar manner. It selects the relevant `Comparator`, constructs the `ListDoctorCommand`/`ListPatientCommand`,
 and sorts the corresponding `FilteredList` within `Database`. 
