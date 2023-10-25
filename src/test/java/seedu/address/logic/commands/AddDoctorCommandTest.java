@@ -109,206 +109,171 @@ public class AddDoctorCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns the user prefs.
-         */
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns the user prefs' GUI settings.
-         */
+        @Override
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Sets the user prefs' GUI settings.
-         */
+        @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns the user prefs' database file path.
-         */
+        @Override
         public Path getDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Sets the user prefs' database file path.
-         */
+        @Override
         public void setDatabaseFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
 
-        /**
-         * Replaces current Database data with the data in {@code database}.
-         */
+        @Override
         public void setDatabase(ReadOnlyDatabase database) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /** Returns the Database */
+        @Override
         public ReadOnlyDatabase getDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if an appointment with the same fields as {@code appointment} exists in the database.
-         */
+        @Override
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a doctor with the same NRIC as {@code doctor} exists in the database.
-         */
+        @Override
         public boolean hasDoctor(Doctor doctor) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
-         */
+        @Override
         public boolean hasPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a doctor with the same NRIC as {@code doctor} exists in the database.
-         */
+        @Override
         public boolean hasDoctorWithNric(Nric nric) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
-         */
+        @Override
         public boolean hasPatientWithNric(Nric nric) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Deletes the given appointment.
-         * The appointment must exist in the database.
-         */
+        @Override
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Deletes the given doctor.
-         * The doctor must exist in the database.
-         */
+        @Override
         public void deleteDoctor(Doctor target) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Deletes the given patient.
-         * The patient must exist in the database.
-         */
+        @Override
         public void deletePatient(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Adds the given appointment.
-         * {@code appointment} must not already exist in the database.
-         */
+        @Override
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Adds the given doctor.
-         * {@code doctor} must not already exist in the database.
-         */
+        @Override
         public void addDoctor(Doctor doctor) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Adds the patient doctor.
-         * {@code patient} must not already exist in the database.
-         */
+        @Override
         public void addPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Replaces the given appointment {@code target} with {@code editedAppointment}.
-         * {@code target} must exist in the database.
-         * The doctor, patient and dateTime of {@code editedAppointment} must not be the same as another existing
-         * appointment in the database.
-         */
+        @Override
         public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Replaces the given doctor {@code target} with {@code editedDoctor}.
-         * {@code target} must exist in the database.
-         * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
-         */
+        @Override
         public void setDoctor(Doctor target, Doctor editedDoctor) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Replaces the given patient {@code target} with {@code editedPatient}.
-         * {@code target} must exist in the database.
-         * The NRIC of {@code editedPatient} must not be the same as another existing patient in the database.
-         */
+        @Override
         public void setPatient(Patient target, Patient editedPatient) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /** Returns an unmodifiable view of the filtered appointment list */
+        @Override
         public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /** Returns an unmodifiable view of the filtered doctor list */
+        @Override
         public ObservableList<Doctor> getFilteredDoctorList() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /** Returns an unmodifiable view of the filtered patient list */
+        @Override
         public ObservableList<Patient> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
-         * @throws NullPointerException if {@code predicate} is null.
-         */
+        @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Updates the filter of the filtered doctor list to filter by the given {@code predicate}.
-         * @throws NullPointerException if {@code predicate} is null.
-         */
+        @Override
         public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
-         * @throws NullPointerException if {@code predicate} is null.
-         */
         @Override
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public Appointment getSelectedAppointment() {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public Doctor getSelectedDoctor() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Patient getSelectedPatient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedDoctor(Doctor doctor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.appointment.Appointment;
@@ -41,7 +42,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static Appointment[] getSampleAppointments() {
+    public static Appointment[] getSampleAppointments() throws CommandException {
         return new Appointment[] {
             new Appointment(new Nric("T0157283A"), new Nric("G0234723F"),
                     new AppointmentStartTime("2023-09-11 07:30"), new AppointmentEndTime("2023-09-11 08:30")),
@@ -56,7 +57,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyDatabase getSampleDatabase() {
+    public static ReadOnlyDatabase getSampleDatabase() throws CommandException {
         Database sampleDb = new Database();
         for (Patient samplePatient : getSamplePatients()) {
             sampleDb.addPatient(samplePatient);

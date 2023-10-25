@@ -227,6 +227,36 @@ public class AddPatientCommandTest {
         public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Appointment getSelectedAppointment() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Doctor getSelectedDoctor() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Patient getSelectedPatient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedDoctor(Doctor doctor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

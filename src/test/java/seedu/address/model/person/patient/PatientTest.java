@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalPatient.ALICE;
+import static seedu.address.testutil.TypicalPatient.ALICE_WITH_REMARKS;
 import static seedu.address.testutil.TypicalPatient.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,9 @@ public class PatientTest {
         // different NRIC -> returns false
         editedAlice = new PatientBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // same NRIC, different remarks -> return true
+        assertTrue(ALICE.isSame(ALICE_WITH_REMARKS));
     }
 
     @Test

@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -25,8 +26,14 @@ import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindPatientCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
 
     @Test
     public void equals() {

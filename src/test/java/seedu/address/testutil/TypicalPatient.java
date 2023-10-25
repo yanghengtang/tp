@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.model.DataTest.DEPRESSION_TAG;
+import static seedu.address.model.DataTest.VALID_REMARK_STRING;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +22,13 @@ public class TypicalPatient {
     public static final String ALICE_PHONE = "94351253";
     public static final Patient ALICE = new PatientBuilder().withName(PersonUtil.ALICE_NAME).withPhone(ALICE_PHONE)
             .withNric(PersonUtil.ALICE_NRIC).build();
+
+    public static final Patient ALICE_WITH_REMARKS = new PatientBuilder().withName(PersonUtil.ALICE_NAME)
+            .withPhone(ALICE_PHONE)
+            .withNric(PersonUtil.ALICE_NRIC)
+            .withRemark(VALID_REMARK_STRING)
+            .withTags(DEPRESSION_TAG)
+            .build();
 
     public static final String BENSON_PHONE = "98765432";
     public static final Patient BENSON = new PatientBuilder().withName(PersonUtil.BENSON_NAME).withPhone(BENSON_PHONE)
