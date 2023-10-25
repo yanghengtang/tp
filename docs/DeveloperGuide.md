@@ -169,7 +169,7 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 Step 2. The user inputs `add_a pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30` to add an appointment into MediConnect.
-The `add_a` command calls `AddAppointmentCommandParserr#parse` which parses the parameters that build the appointment to be added.
+The `add_a` command calls `AddAppointmentCommandParser#parse` which parses the parameters that build the appointment to be added.
 A new `AddAppointmentCommand` instance will be created with the correct `Appointment` object to be added.
 
 Step 3. The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
@@ -189,6 +189,43 @@ The following sequence diagram shows how the add patient operation would work:
 
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
+
+### Delete appointmennt/doctor/patient feature
+This section describes the delete appointment/doctor/patient features.
+
+#### Implementation
+The deletion of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommandk()`.
+
+Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList in its default sorting order.
+Step 2. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
+The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
+A new `DeleteAppointmentCommand` instance will be created
+
+Step 3. The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`DeleteAppointmentCommand#execute` then calls `Model#deleteAppointment` and with the given `Index`.
+The `Appointment` at the `Index` is then deleted from the filteredAppointmentList by calling `FilteredList#deleteAppointment`.
+
+The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the delete appointment operation would work:
+![SortSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the delete doctor operation would work:
+![SortSequenceDiagram](images/DeleteDoctorSequenceDiagram.png)
+
+The following sequence diagram shows how the delete patient operation would work:
+![SortSequenceDiagram](images/DeletePatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
+![AddXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
