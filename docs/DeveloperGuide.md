@@ -154,7 +154,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### AddAppointment feature
+### Add appointmennt/doctor/patient feature
+This section describes the add appointment/doctor/patient features.
+
+#### Implementation
+The adding of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed the command. Additionally it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommandk()`.
+
+Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `add_a pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30` to add an appointment into MediConnect.
+The `add_a` command calls `AddAppointmentCommandParserr#parse` which parses the parameters that build the appointment to be added.
+A new `AddAppointmentCommand` instance will be created with the correct `Appointment` object to be added.
+
+Step 3. The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`AddAppointmentCommand#execute` then calls `Model#addAppointment` and with the given `Appointment`.
+The `Appointment` is then added to the filteredAppointmentList by calling `FilteredList#addAppointment`.
+
+The example usage scenario for the add patient and add doctor mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the add appointment operation would work:
+![SortSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the add doctor operation would work:
+![SortSequenceDiagram](images/AddDoctorSequenceDiagram.png)
+
+The following sequence diagram shows how the add patient operation would work:
+![SortSequenceDiagram](images/AddPatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
