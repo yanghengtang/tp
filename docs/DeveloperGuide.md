@@ -194,6 +194,10 @@ The following sequence diagram shows how the View Patient command results is han
 
 The sequence diagram for View Appointment and View Doctor would be similar.
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
 #### Design considerations:
 
 **Aspect: How view patient executes:**
