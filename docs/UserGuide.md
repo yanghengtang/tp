@@ -53,6 +53,8 @@ If you are new to MediConnect, you can head over to our [quick start](#quick-sta
 
 If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to horne your MediConnect sklls.
 
+return back to [Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Introduction to MediConnect
@@ -80,6 +82,8 @@ The main window can be broken down into the following components:
 - **Patient List Panel**: This panel will display the list of patient sorted by their names
 - **Doctor List Panel**: This panel will display the list of doctor sorted by their names
 
+return back to [Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Quick start
@@ -106,6 +110,8 @@ The main window can be broken down into the following components:
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+return back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,6 +185,21 @@ Examples:
 * `add_p n\John Doe ic\T0212385J p\98765432`
 * `add_p ic\S9912343G n\Betsy Crowe p\81235833`
 
+Sample Usage:
+1. Assuming you want to add a Patient named "Jonathan Reese" with NRIC "S8712461K" and phone number "81573238". 
+
+2. Enter the following command:
+```
+add_p n\Jonathan Reese n\S8712461K p\81235833
+```
+
+3. The result box will display the following message:
+```
+"New patient added: Jonathan Reese NRIC: S8712461K Phone: 81235833"
+```
+
+4. You have successfully added the patient into the database.
+
 ### Listing all patient : `list_p`
 
 Shows a list of all patients in the system.
@@ -212,6 +233,21 @@ Format: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 Examples:
 *  `edit_p 1 n\Joe Ng` Edits the name of 1st patient to be `Joe Ng`.
 *  `edit_p 2 p\91234567` Edits the phone of the 2nd patient to be `91234567`.
+
+Sample Usage:
+1. Assuming you want to edit the 4th Patient changing his phone from "81235833" to "81453894".
+
+2. Enter the following command:
+```
+edit_p 4 p\81453894
+```
+
+3. The result box will display the following message:
+```
+"Edited Patient: Jonathan Reese NRIC: S8712461K Phone: 81453894"
+```
+
+4. You have successfully edited the patient into the database.
 
 ### Locating patients by name: `find_p`
 
@@ -367,6 +403,8 @@ Format: `delete_a INDEX`
 Examples:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
 
+return back to [Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # FAQ
@@ -403,3 +441,5 @@ Examples:
 | **List Doctor**        | `list_d`                                                                                                                                                      |
 | **List Appointment**   | `list_a`                                                                                                                                                      |
 | **Help**               | `help`                                                                                                                                                        |
+
+return back to [Table of Contents](#table-of-contents)
