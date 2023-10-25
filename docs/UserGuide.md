@@ -55,6 +55,33 @@ If you are experienced with MediConnect, you can head over to view the list of [
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Introduction to MediConnect
+
+This section will give you an introduction to MediConnect and how to navigate the application.
+
+## What is MediConnect?
+
+MediConnect is a clinic management system designed to digitalize all the administrative tasking in a medical clinic
+
+## Who is MediConnect for?
+
+MediConnect is built for clinic receptionist and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+
+
+## Navigating the main window
+
+![UiLayout](images/UiLayout.png)
+
+The main window can be broken down into the following components:
+
+- **Command Box**: The command box is where you will enter your input your commands
+- **Result Display Box**: The box will display the output messages based on your entered commands
+- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
+- **Patient List Panel**: This panel will display the list of patient sorted by their names
+- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -82,23 +109,13 @@ If you are experienced with MediConnect, you can head over to view the list of [
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Introduction to MediConnect
-
-This section will give you an introduction to navigating around MediConnect and what each component does.
-
-## Layout
-
-The application can be broken down into the following components:
-
-- **Command Box**: The command box is where you will enter your input your commands
-- Result Display Box: The box will display the output messages based on your entered commands
-- Appointment List Panel: This panel will display the list of appointments sorted by their starting date and time
-- Patient List Panel: This panel will display the list of patient sorted by their names
-- Doctor List Panel: This panel will display the list of doctor sorted by their names
-
---------------------------------------------------------------------------------------------------------------------
-
 # Features
+
+The features are broken down to into:
+- [General Features](#general-features)
+- [Patient Management Features](#patient-management-features)
+- [Doctor Management Features](#doctor-management-features)
+- [Appointment Management Features](#appointment-management-features)
 
 <div markdown="block" class="alert alert-info">
 
@@ -138,7 +155,19 @@ Exits the program.
 
 Format: `exit`
 
-## Patient Features
+### Saving the data
+
+MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+</div>
+
+## Patient Management Features
 
 ### Adding a patient: `add_p`
 
@@ -215,7 +244,7 @@ Examples:
 * `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the results of the `find_p` command.
 
-## Doctor Features
+## Doctor Management Features
 
 ### Adding a doctor: `add_d`
 
@@ -291,7 +320,7 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
-## Appointment Features
+## Appointment Management Features
 
 ### Adding an appointment: `add_a`
 
@@ -337,22 +366,6 @@ Format: `delete_a INDEX`
 
 Examples:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
-
-### Saving the data
-
-MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
