@@ -154,9 +154,65 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Edit patient feature
 
 #### Proposed Implementation
+
+The proposed edit patient mechanism is facilitated by `EditPatientDescriptor` and it extends `Model`. Additionally, it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+Given below is an example usage scenario and how the edit patient mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditCommandParser#parse()` which parses the parameters to edit the current patient with. 
+A new `EditPatientDescriptor` instance will be created in the parse command call, and a new `EditPatientCommand` instance will be created with the `EditPatientDescriptor` and the given `index`.
+
+Step 3. The created `EditPatientCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`EditPatientCommand#execute` then calls `Model#setPatient` and with the patient of the given `Index` and the target patient created by the `EditPatientDescriptor`.
+
+The example usage scenario for the edit doctor and edit appointment mechanisms would be very similar to the above scenario.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#setPatient()`, so the database will not be updated.
+
+</div>
+
+The following sequence diagram shows how the add appointment operation would work:
+![SortSequenceDiagram](images/EditAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the add doctor operation would work:
+![SortSequenceDiagram](images/EditDoctorSequenceDiagram.png)
+
+The following sequence diagram shows how the add patient operation would work:
+![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
+
+
+
+The following activity diagram summarizes what happens when a user wants to edit an appointment/patient/doctor:
+
+![EditXYZCommandActivityDiagram](images/EditXYZActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: How edit patient executes:** 
+
+* **Alternative 1 (current choice):** Having a single EditPatientCommand class that can edit all patient attributes
+    * Pros: Better scalability.
+    * Cons: Increase coupling due to the usage of Optional class.
+
+* **Alternative 2:** Creating a command class for each patient attribute (eg. EditPatientNameCommand)
+    * Pros: Straightforward, no need to handle optional parameters 
+    * Cons: Limited scalability, have to implement new command classes when attributes are added to 
+    patient/doctor/appointment classes
+
+_{more aspects and alternatives to be added}_
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
