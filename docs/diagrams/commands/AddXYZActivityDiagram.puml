@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters AddXYZCommand;
+floating note right
+    XYZ = Appointment, Doctor or Patient
+end note
+:MediConnectParser parses the command;
+:AddXYZCommandParser parses the arguments provided;
+if () then ([command is valid])
+  :New XYZ object is created;
+    if() then ([XYZ object already exists])
+    :Outputs error message;
+    else ([XYZ object does not exist])
+    :FilteredXYZlist is updated with the new XYZ item;
+    endif
+else ([command is invalid])
+  :Outputs error message;
+endif
+
+stop
+
+@enduml
