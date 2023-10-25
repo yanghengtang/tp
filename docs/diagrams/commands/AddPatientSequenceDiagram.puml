@@ -1,0 +1,84 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":AddPatientCommandParser" as AddPatientCommandParser LOGIC_COLOR
+participant "a:AddPatientCommand" as AddPatientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "toAdd:Patient" as Patient MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_p n\John Doe \n ic\T0212385J p\98765432")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("add_p n\John Doe \n ic\T0212385J p\98765432")
+activate MediConnectParser
+
+create AddPatientCommandParser
+MediConnectParser -> AddPatientCommandParser
+activate AddPatientCommandParser
+
+AddPatientCommandParser --> MediConnectParser
+deactivate AddPatientCommandParser
+
+MediConnectParser -> AddPatientCommandParser : parse("n\John Doe \n ic\T0212385J p\98765432")
+activate AddPatientCommandParser
+
+create Patient
+AddPatientCommandParser -> Patient
+activate Patient
+
+Patient --> AddPatientCommandParser : toAdd
+deactivate
+
+create AddPatientCommand
+AddPatientCommandParser -> AddPatientCommand : AddPatientCommand(toAdd))
+activate AddPatientCommand
+
+AddPatientCommand --> AddPatientCommandParser : a
+deactivate AddPatientCommand
+
+AddPatientCommandParser --> MediConnectParser : a
+deactivate AddPatientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPatientCommandParser -[hidden]-> MediConnectParser
+destroy AddPatientCommandParser
+
+MediConnectParser --> LogicManager : a
+deactivate MediConnectParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MediConnectParser -[hidden]-> AddPatientCommandParser
+destroy MediConnectParser
+
+LogicManager -> AddPatientCommand : execute()
+activate AddPatientCommand
+
+AddPatientCommand -> Model : addPatient(toAdd)
+activate Model
+
+Model --> AddPatientCommand
+deactivate Model
+
+create CommandResult
+AddPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPatientCommand
+deactivate CommandResult
+
+AddPatientCommand --> LogicManager : commandResult
+deactivate AddPatientCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPatientCommand -[hidden]-> Model
+destroy AddPatientCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml
