@@ -39,7 +39,7 @@ ListAppointmentCommandParser -> ListAppointment :
 activate ListAppointment
 
 create AppointmentEqualPatientNricPredicate
-ListAppointment -> AppointmentEqualPatientNricPredicate : AppointmentEqualPatientNricPredicate("S0548254G")
+ListAppointment -> AppointmentEqualPatientNricPredicate : AppointmentEqualPatientNricPredicate("S9912343G")
 activate  AppointmentEqualPatientNricPredicate
 AppointmentEqualPatientNricPredicate --> ListAppointment : patientPredicate
 deactivate AppointmentEqualPatientNricPredicate
