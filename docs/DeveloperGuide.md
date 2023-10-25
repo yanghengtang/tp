@@ -154,6 +154,111 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Find Doctor
+
+**Introduction**
+
+The FindDoctorCommand allows users to search for doctors whose names match the given keywords. This feature is essential for users to quickly locate specific doctor entries without having to scroll through the entire list.
+
+Implementation
+
+**1. How the feature is implemented**
+
+When the FindDoctorCommand is triggered:
+
+1. The user's input keywords are parsed by FindDoctorCommandParser
+2. new FindDoctorCommand object is created with a NameContainsKeywordsDoctorPredicate that tests if a doctor's name matches the given keywords.
+3. new FindDoctorCommand object is created with a NameContainsKeywordsDoctorPredicate that tests if a doctor's name matches the given keywords.
+4. When the command is executed, the model's filtered doctor list is updated to show only the entries that satisfy the predicate.
+
+**2. Why it is implemented this way**
+* The implementation leverages the existing FilteredList infrastructure in the model layer. By updating the predicate of the filtered list, the UI can automatically reflect the changes without the need for explicit list manipulation or data retrieval. This design ensures high cohesion and low coupling, making the codebase maintainable and extensible.
+
+
+**3. Alternatives considered**
+* **Full-text Search**: Instead of just matching based on names, we considered implementing a full-text search across all doctor attributes. However, this would complicate the implementation and might return too many irrelevant results if not handled properly.
+* **Regular Expressions**: Instead of simple keyword matching, we considered using regular expressions for more flexible searches. However, this might increase the complexity for end-users.
+
+**UML Diagrams**
+1. Sequence Diagram
+   ![FindDoctorSequence](images/FindDoctorSequence.png)
+
+**Code Snippets**
+
+
+Here are some key parts of the FindDoctorCommand implementation:
+
+        public class FindDoctorCommand extends NewCommand {
+            private final NameContainsKeywordsDoctorPredicate predicate;
+       
+            @Override
+            public CommandResult execute(NewModel model) {
+                requireNonNull(model);
+                model.updateFilteredDoctorList(predicate);
+                return new CommandResult(
+                    String.format(Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW, model.getFilteredDoctorList().size()));
+            }
+        }
+
+And the parser:
+
+        public class FindDoctorCommandParser implements NewParser<FindDoctorCommand> {
+            public FindDoctorCommand parse(String args) throws ParseException {
+                String[] nameKeywords = args.trim().split("\\s+");
+                return new FindDoctorCommand(new NameContainsKeywordsDoctorPredicate(Arrays.asList(nameKeywords)));
+            }
+        }
+
+Tips for Future Developers
+* If adding new attributes for doctors, consider updating the predicate to include them in the search if necessary.
+* Always ensure that the updateFilteredDoctorList method in the model is efficient, especially if the number of doctors grows significantly.
+
+### List Doctors
+
+**Introduction**
+
+The "List Doctor" feature aims to provide users with a way to view all the doctors currently stored in the database. This is implemented with the ListDoctorCommand class, which is a part of the NewCommand hierarchy. The feature allows users to see all doctors without any filters.
+
+**How the feature is implemented**
+1. When the list_d command is entered by the user, the NewAddressBookParser recognizes the command word and returns a new instance of ListDoctorCommand.
+2. The execute method of the ListDoctorCommand class is called. This method updates the filtered doctor list in the model to show all doctors, by using the predicate PREDICATE_SHOW_ALL_DOCTORS.
+3. Finally, a CommandResult object is returned with a success message, which is then displayed to the user.
+
+**Why it is implemented this way**
+* The current implementation is straightforward and efficient. It directly interacts with the model to update the filtered doctor list, making it a clean and efficient operation. The use of a predicate ensures that there is flexibility to show different kinds of lists in the future.
+
+**Alternatives considered**
+1. Fetching the List and then Displaying: One alternative would be to fetch the list of all doctors from the model and then displaying it. However, this would be inefficient as it requires additional memory to store the fetched list.
+2. Command Parameters: Initially, it was considered to have the command accept parameters to sort or filter the list. However, this was deemed unnecessary for the scope of just listing all doctors.
+
+
+**UML Diagrams**
+![ListDoctorSequence](images/ListDoctorSequence.png)
+
+
+**Code Snippets**
+
+Here's a snippet from the ListDoctorCommand class:
+
+    public class ListDoctorCommand extends NewCommand {
+    
+        public static final String COMMAND_WORD = "list_d";
+        public static final String MESSAGE_SUCCESS = "Listed all doctors";
+    
+        @Override
+        public CommandResult execute(NewModel model) {
+            requireNonNull(model);
+            model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
+    }
+
+Tips for Future Developers
+1. Extending Functionality: If you wish to extend this command to include sorting or filtering, you can add additional parameters to the command.
+
+2. Optimization: This command is already optimized for listing all doctors. However, if you wish to add more functionality like sorting, make sure to optimize the sorting algorithm.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
