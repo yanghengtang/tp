@@ -1,0 +1,26 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes view command;
+
+switch ()
+case ( [view appointment] )
+  :Update Selected Appointment;
+case ( [view doctor] )
+  :Update Selected Doctor;
+case ( [view patient] )
+  :Update Selected Patient;
+endswitch
+
+:Update UI Text in View Window;
+
+if () then ( [view window is opened] )
+    :Toggle Focus to Window;
+else ( [view window is not opened] )
+    :Launch Window;
+end if
+
+stop
+@enduml
