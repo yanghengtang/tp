@@ -1,0 +1,84 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "toAdd:Appointment" as Appointment MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_a pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("add_a pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30")
+activate MediConnectParser
+
+create AddAppointmentCommandParser
+MediConnectParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser --> MediConnectParser
+deactivate AddAppointmentCommandParser
+
+MediConnectParser -> AddAppointmentCommandParser : parse("pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30")
+activate AddAppointmentCommandParser
+
+create Appointment
+AddAppointmentCommandParser -> Appointment
+activate Appointment
+
+Appointment --> AddAppointmentCommandParser : toAdd
+deactivate
+
+create AddAppointmentCommand
+AddAppointmentCommandParser -> AddAppointmentCommand : AddAppointmentCommand(toAdd))
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser : a
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser --> MediConnectParser : a
+deactivate AddAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAppointmentCommandParser -[hidden]-> MediConnectParser
+destroy AddAppointmentCommandParser
+
+MediConnectParser --> LogicManager : a
+deactivate MediConnectParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MediConnectParser -[hidden]-> AddAppointmentCommandParser
+destroy MediConnectParser
+
+LogicManager -> AddAppointmentCommand : execute()
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model : addAppointment(toAdd)
+activate Model
+
+Model --> AddAppointmentCommand
+deactivate Model
+
+create CommandResult
+AddAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddAppointmentCommand
+deactivate CommandResult
+
+AddAppointmentCommand --> LogicManager : commandResult
+deactivate AddAppointmentCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAppointmentCommand -[hidden]-> Model
+destroy AddAppointmentCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml
