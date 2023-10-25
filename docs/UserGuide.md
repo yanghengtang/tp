@@ -46,7 +46,7 @@ Here are some common terms that is used throughout this user guide
 
 ## Navigating this user guide
 
-As this guide aims to be as comprehensive as possible, you might the amount of information in this user guide to be overwhelming.
+As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide to be overwhelming.
 Fred not, you utilise the [Table of Content](#table-of-contents) to find the information your are looking for.
 
 If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
@@ -67,7 +67,7 @@ MediConnect is a clinic management system designed to digitalize all the adminis
 
 ## Who is MediConnect for?
 
-MediConnect is built for clinic receptionist and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
 
 
 ## Navigating the main window
