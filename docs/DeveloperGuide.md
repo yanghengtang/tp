@@ -243,7 +243,17 @@ The "List Doctor" feature aims to provide users with a way to view all the docto
 
 
 **UML Diagrams**
+1. Sequence Diagram
+The following sequence diagram shows how the list doctor operation would work:
+
+The following sequence diagram shows how the list doctor operation would work: SortSequenceDiagram
 ![ListDoctorSequence](images/ListDoctorSequence.png)
+
+The following sequence diagram shows how the list patient operation would work: SortSequenceDiagram
+![ListPatientSequence](images/ListPatientSequence.png)
+
+The following activity diagram summarizes what happens when a user wants to list a new patient/doctor: ListYZCommandActivityDiagram
+![ListCommandActivity](images/ListCommandActivityDiagram.png)
 
 
 **Code Snippets**
