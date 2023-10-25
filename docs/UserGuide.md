@@ -15,6 +15,7 @@ If you are keen to get started on using MediConnect, click [here](#quick-start) 
 
 # Table of Contents
 
+* TOC
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
