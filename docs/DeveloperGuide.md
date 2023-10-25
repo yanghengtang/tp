@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 This section describes the add appointment/doctor/patient features.
 
 #### Implementation
-The adding of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed the command. Additionally it implements the following operations:
+The adding of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
