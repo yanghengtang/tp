@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -80,7 +81,7 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getDatabaseFilePath());
     }
 
-    @Test void setDatabase_validDatabase_returnsTrue() {
+    @Test void setDatabase_validDatabase_returnsTrue() throws CommandException {
         ReadOnlyDatabase database = TypicalDatabase.getTypicalDatabase();
         modelManager.setDatabase(database);
         assertTrue(database.equals(modelManager.getDatabase()));
@@ -143,7 +144,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasAppointment_appointmentInDatabase_returnsTrue() {
+    public void hasAppointment_appointmentInDatabase_returnsTrue() throws CommandException {
         modelManager.addAppointment(APPOINTMENT_1);
         assertTrue(modelManager.hasAppointment(APPOINTMENT_1));
     }
@@ -161,7 +162,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasAppointment_appointmentRemovedFromDatabase_returnsTrue() {
+    public void hasAppointment_appointmentRemovedFromDatabase_returnsTrue() throws CommandException {
         modelManager.addAppointment(APPOINTMENT_1);
         modelManager.deleteAppointment(APPOINTMENT_1);
         assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
@@ -182,7 +183,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasAppointment_appointmentWithDifferentEndTime_returnsFalse() {
+    public void hasAppointment_appointmentWithDifferentEndTime_returnsFalse() throws CommandException {
         Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withEndTime("2023-09-11 08:30").build();
         modelManager.addAppointment(APPOINTMENT_1);
         modelManager.setAppointment(APPOINTMENT_1, editedAppointment);
@@ -221,7 +222,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAppointment_nullAppointment_throwsNullPointerException() {
+    public void setAppointment_nullAppointment_throwsNullPointerException() throws CommandException {
         modelManager.addAppointment(APPOINTMENT_1);
         assertThrows(NullPointerException.class, () -> modelManager.setAppointment(APPOINTMENT_1, null));
     }

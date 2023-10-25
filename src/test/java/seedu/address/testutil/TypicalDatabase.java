@@ -4,6 +4,7 @@ import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
 import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.doctor.Doctor;
@@ -25,7 +26,11 @@ public class TypicalDatabase {
             db.addDoctor(doctor);
         }
         for (Appointment appointment : getTypicalAppointment()) {
-            db.addAppointment(appointment);
+            try {
+                db.addAppointment(appointment);
+            } catch (CommandException e) {
+                throw new AssertionError("Invalid appointment in typical database");
+            }
         }
         return db;
     }

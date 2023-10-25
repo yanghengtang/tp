@@ -87,7 +87,8 @@ public class EditAppointmentCommand extends Command {
      * edited with {@code editAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
+                                                       EditAppointmentDescriptor editAppointmentDescriptor)
+            throws CommandException {
         assert appointmentToEdit != null;
 
         Nric updatedPatientNric = editAppointmentDescriptor.getPatientNric().orElse(appointmentToEdit.getPatientNric());

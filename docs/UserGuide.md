@@ -3,10 +3,86 @@ layout: page
 title: User Guide
 ---
 
-MediConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MediConnect can get your patient, doctor and appointment management tasks done faster than traditional GUI apps.
+MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic om their day-to-day task.
+These may include scheduling an appointment, retrieving a patient's medical history and updating the patient's medical record.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
+If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
+
+If you are keen to get started on using MediConnect, click [here](#quick-start) for our quick start guide.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Table of Contents
+
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction to this user guide
+
+This guide is designed for users of all level to master their use of MediConnect.
+
+## Icons used in this guide
+
+Here are some common icons that is used throughout this user guide
+
+| Icons                          | Representation                                    |
+|--------------------------------|---------------------------------------------------|
+| :information_source:  **Note** | Provides you with additional useful information   |
+| :exclamation: **Caution**      | Warns you on the common mistakes                  |
+| :bulb: **Tip**                 | Provides you with tips to enhance your experience |
+
+
+## Terms used in this guide
+
+Here are some common terms that is used throughout this user guide
+
+| Icons       | Representation                                                                 |
+|-------------|--------------------------------------------------------------------------------|
+| Command     | The instruction you enter into the application                                 |
+| Parameter   | The additional information you provide for the instruction you intend to enter |
+| Appointment | A scheduled medical consultation between the patient and the doctor            |
+
+## Navigating this user guide
+
+As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide to be overwhelming.
+Fred not, you utilise the [Table of Content](#table-of-contents) to find the information your are looking for.
+
+If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
+
+If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to horne your MediConnect sklls.
+
+return back to [Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Introduction to MediConnect
+
+This section will give you an introduction to MediConnect and how to navigate the application.
+
+## What is MediConnect?
+
+MediConnect is a clinic management system designed to digitalize all the administrative tasking in a medical clinic
+
+## Who is MediConnect for?
+
+MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+
+
+## Navigating the main window
+
+![UiLayout](images/UiLayout.png)
+
+The main window can be broken down into the following components:
+
+- **Command Box**: The command box is where you will enter your input your commands
+- **Result Display Box**: The box will display the output messages based on your entered commands
+- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
+- **Patient List Panel**: This panel will display the list of patient sorted by their names
+- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
+
+return back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,9 +111,17 @@ MediConnect is a **desktop app for managing contacts, optimized for use via a Co
 
 1. Refer to the [Features](#features) below for details of each command.
 
+return back to [Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
+
+The features are broken down to into:
+- [General Features](#general-features)
+- [Patient Management Features](#patient-management-features)
+- [Doctor Management Features](#doctor-management-features)
+- [Appointment Management Features](#appointment-management-features)
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,7 +161,19 @@ Exits the program.
 
 Format: `exit`
 
-## Patient Features
+### Saving the data
+
+MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+</div>
+
+## Patient Management Features
 
 ### Adding a patient: `add_p`
 
@@ -88,6 +184,21 @@ Format: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 Examples:
 * `add_p n\John Doe ic\T0212385J p\98765432`
 * `add_p ic\S9912343G n\Betsy Crowe p\81235833`
+
+Sample Usage:
+1. Assuming you want to add a Patient named "Jonathan Reese" with NRIC "S8712461K" and phone number "81573238". 
+
+2. Enter the following command:
+```
+add_p n\Jonathan Reese n\S8712461K p\81235833
+```
+
+3. The result box will display the following message:
+```
+"New patient added: Jonathan Reese NRIC: S8712461K Phone: 81235833"
+```
+
+4. You have successfully added the patient into the database.
 
 ### Listing all patient : `list_p`
 
@@ -123,6 +234,21 @@ Examples:
 *  `edit_p 1 n\Joe Ng` Edits the name of 1st patient to be `Joe Ng`.
 *  `edit_p 2 p\91234567` Edits the phone of the 2nd patient to be `91234567`.
 
+Sample Usage:
+1. Assuming you want to edit the 4th Patient changing his phone from "81235833" to "81453894".
+
+2. Enter the following command:
+```
+edit_p 4 p\81453894
+```
+
+3. The result box will display the following message:
+```
+"Edited Patient: Jonathan Reese NRIC: S8712461K Phone: 81453894"
+```
+
+4. You have successfully edited the patient into the database.
+
 ### Locating patients by name: `find_p`
 
 Finds patients whose names contain any of the given keywords.
@@ -154,7 +280,7 @@ Examples:
 * `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the results of the `find_p` command.
 
-## Doctor Features
+## Doctor Management Features
 
 ### Adding a doctor: `add_d`
 
@@ -230,7 +356,7 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
-## Appointment Features
+## Appointment Management Features
 
 ### Adding an appointment: `add_a`
 
@@ -277,21 +403,7 @@ Format: `delete_a INDEX`
 Examples:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
 
-### Saving the data
-
-MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+return back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,3 +441,5 @@ _Details coming soon ..._
 | **List Doctor**        | `list_d`                                                                                                                                                      |
 | **List Appointment**   | `list_a`                                                                                                                                                      |
 | **Help**               | `help`                                                                                                                                                        |
+
+return back to [Table of Contents](#table-of-contents)

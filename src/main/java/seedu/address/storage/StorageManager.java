@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -54,12 +55,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException {
+    public Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException, CommandException {
         return readDatabase(databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataLoadingException, CommandException {
         logger.fine("Attempting to read data from file: " + filePath);
         return databaseStorage.readDatabase(filePath);
     }

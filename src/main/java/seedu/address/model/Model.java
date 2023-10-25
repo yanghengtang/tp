@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -111,7 +112,7 @@ public interface Model {
      * Adds the given appointment.
      * {@code appointment} must not already exist in the database.
      */
-    void addAppointment(Appointment appointment);
+    void addAppointment(Appointment appointment) throws CommandException;
 
     /**
      * Adds the given doctor.
@@ -131,7 +132,7 @@ public interface Model {
      * The doctor, patient and dateTime of {@code editedAppointment} must not be the same as another existing
      * appointment in the database.
      */
-    void setAppointment(Appointment target, Appointment editedAppointment);
+    void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException;
 
     /**
      * Replaces the given doctor {@code target} with {@code editedDoctor}.
