@@ -20,5 +20,4 @@ else ([command is invalid])
 endif
 
 stop
-
 @enduml
