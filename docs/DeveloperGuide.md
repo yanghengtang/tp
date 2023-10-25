@@ -182,7 +182,16 @@ When the FindDoctorCommand is triggered:
 
 **UML Diagrams**
 1. Sequence Diagram
-   ![FindDoctorSequence](images/FindDoctorSequence.png)
+The following sequence diagram shows how the find doctor operation would work:
+
+The following sequence diagram shows how the find doctor operation would work: SortSequenceDiagram
+    ![FindDoctorSequence](images/FindDoctorSequence.png)
+
+The following sequence diagram shows how the find patient operation would work: SortSequenceDiagram
+    ![FindPatientSequence](images/FindPatientSequence.png)
+
+The following activity diagram summarizes what happens when a user wants to find a new patient/doctor: FindYZCommandActivityDiagram
+![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
 **Code Snippets**
 
