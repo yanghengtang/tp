@@ -164,7 +164,7 @@ The adding of an appointment/doctor/patient to MediConnect is facilitated by 'Lo
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommandk()`.
 
-Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
