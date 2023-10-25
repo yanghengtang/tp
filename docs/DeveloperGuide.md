@@ -187,7 +187,7 @@ The following sequence diagram shows how the add doctor operation would work:
 The following sequence diagram shows how the add patient operation would work:
 ![SortSequenceDiagram](images/AddPatientSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
