@@ -23,6 +23,11 @@ else ([sort parameter not present])
     endif
 endif
 
-:Database sorts the list using the selected Comparator;
+if () then([No error thrown])
+    :Database sorts the list using the selected Comparator;
+    :Display sorted list;
+else ([Error thrown])
+    :Display error message;
+endif
 stop
 @enduml
