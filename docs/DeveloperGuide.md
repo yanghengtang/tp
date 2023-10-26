@@ -154,11 +154,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Edit patient feature
+### Edit patient feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed edit patient mechanism is facilitated by `EditPatientDescriptor` and it extends `Model`. Additionally, it implements the following operations:
+The proposed edit patient mechanism is facilitated by `EditPatientCommand` and it extends `Model`. Additionally, it implements the following operations:
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -178,13 +178,13 @@ The example usage scenario for the edit doctor and edit appointment mechanisms w
 
 </div>
 
-The following sequence diagram shows how the add appointment operation would work:
+The following sequence diagram shows how the edit appointment operation would work:
 ![SortSequenceDiagram](images/EditAppointmentSequenceDiagram.png)
 
-The following sequence diagram shows how the add doctor operation would work:
+The following sequence diagram shows how the edit doctor operation would work:
 ![SortSequenceDiagram](images/EditDoctorSequenceDiagram.png)
 
-The following sequence diagram shows how the add patient operation would work:
+The following sequence diagram shows how the edit patient operation would work:
 ![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
 
 
