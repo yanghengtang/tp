@@ -93,10 +93,14 @@ public class UniqueItemList<S extends Listable> implements Iterable<S> {
             throws CommandException {
         requireAllNonNull(pred, transformer);
         // conditionally applies the transformation to the existing item
-        List<S> temp = internalList.stream()
-                .map(item -> pred.test(item) ? transformer.apply(item) : item)
-                .collect(Collectors.toList());
-        this.setItems(temp);
+        try {
+            List<S> temp = internalList.stream()
+                    .map(item -> pred.test(item) ? transformer.apply(item) : item)
+                    .collect(Collectors.toList());
+            this.setItems(temp);
+        } catch (RuntimeException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     /**

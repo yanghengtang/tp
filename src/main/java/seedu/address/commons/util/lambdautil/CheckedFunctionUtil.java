@@ -19,7 +19,7 @@ public class CheckedFunctionUtil {
             try {
                 return checkedFunction.apply(t);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getMessage());
             }
         };
     }
