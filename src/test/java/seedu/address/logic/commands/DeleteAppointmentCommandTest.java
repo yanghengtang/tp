@@ -105,7 +105,7 @@ public class DeleteAppointmentCommandTest {
         // null -> returns false
         assertFalse(deleteFirstAppointmentCommand.equals(null));
 
-        // different patient -> returns false
+        // different index -> returns false
         assertFalse(deleteFirstAppointmentCommand.equals(deleteSecondAppointmentCommand));
     }
 
