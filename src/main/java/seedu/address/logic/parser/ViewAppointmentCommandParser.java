@@ -13,7 +13,7 @@ public class ViewAppointmentCommandParser implements Parser<ViewAppointmentComma
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewAppointmentCommand
-     * and returns a DeleteAppointmentCommand object for execution.
+     * and returns a ViewAppointmentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewAppointmentCommand parse(String args) throws ParseException {
