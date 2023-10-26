@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -41,7 +42,7 @@ public class EditPatientCommandTest {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Patient editedPatient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON, descriptor);
@@ -56,7 +57,7 @@ public class EditPatientCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastPatient = Index.fromOneBased(model.getFilteredPatientList().size());
         Patient lastPatient = model.getFilteredPatientList().get(indexLastPatient.getZeroBased());
 
@@ -91,7 +92,7 @@ public class EditPatientCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showPatientAtIndex(model, INDEX_FIRST_PERSON);
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());

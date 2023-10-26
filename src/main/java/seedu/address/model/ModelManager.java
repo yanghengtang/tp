@@ -169,14 +169,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setDoctor(Doctor target, Doctor editedDoctor) {
+    public void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException {
         requireAllNonNull(target, editedDoctor);
 
         database.setDoctor(target, editedDoctor);
     }
 
     @Override
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireAllNonNull(target, editedPatient);
 
         database.setPatient(target, editedPatient);

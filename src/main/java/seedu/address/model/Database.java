@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.lambdautil.CheckedFunctionUtil.unchecked;
 
 import java.util.List;
 import java.util.Objects;
@@ -136,8 +137,22 @@ public class Database implements ReadOnlyDatabase {
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
      */
-    public void setDoctor(Doctor target, Doctor editedDoctor) {
+    public void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException {
         requireNonNull(editedDoctor);
+
+        if (!target.getNric().equals(editedDoctor.getNric())) {
+            appointments.setMultipleItems(
+                    appointment -> appointment.getDoctorNric().equals(target.getNric()),
+                    unchecked(appointment -> new Appointment(
+                            editedDoctor.getNric(),
+                            appointment.getPatientNric(),
+                            appointment.getStartTime(),
+                            appointment.getEndTime(),
+                            appointment.getRemark(),
+                            appointment.getTags()
+                    ))
+            );
+        }
 
         doctors.setItem(target, editedDoctor);
     }
@@ -180,8 +195,22 @@ public class Database implements ReadOnlyDatabase {
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing patient in the database.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireNonNull(editedPatient);
+
+        if (!target.getNric().equals(editedPatient.getNric())) {
+            appointments.setMultipleItems(
+                    appointment -> appointment.getPatientNric().equals(target.getNric()),
+                    unchecked(appointment -> new Appointment(
+                            appointment.getDoctorNric(),
+                            editedPatient.getNric(),
+                            appointment.getStartTime(),
+                            appointment.getEndTime(),
+                            appointment.getRemark(),
+                            appointment.getTags()
+                    ))
+            );
+        }
 
         patients.setItem(target, editedPatient);
     }

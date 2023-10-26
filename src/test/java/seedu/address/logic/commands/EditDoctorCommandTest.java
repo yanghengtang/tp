@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,7 +44,7 @@ public class EditDoctorCommandTest {
         model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Doctor editedDoctor = new DoctorBuilder().build();
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder(editedDoctor).build();
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_FIRST_DOCTOR, descriptor);
@@ -57,7 +58,7 @@ public class EditDoctorCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastDoctor = Index.fromOneBased(model.getFilteredDoctorList().size());
         Doctor lastDoctor = model.getFilteredDoctorList().get(indexLastDoctor.getZeroBased());
 
@@ -89,7 +90,7 @@ public class EditDoctorCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showDoctorAtIndex(model, INDEX_FIRST_DOCTOR);
 
         Doctor doctorInFilteredList = model.getFilteredDoctorList().get(INDEX_FIRST_DOCTOR.getZeroBased());
