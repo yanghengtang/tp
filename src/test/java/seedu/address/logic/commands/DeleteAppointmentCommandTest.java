@@ -79,7 +79,7 @@ public class DeleteAppointmentCommandTest {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDatabase().getAppointmentList().size());
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
