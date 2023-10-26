@@ -45,7 +45,7 @@ public class ViewAppointmentCommand extends Command {
         Appointment appointmentToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateSelectedAppointment(appointmentToView);
         return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS,
-                Messages.format(appointmentToView)));
+                Messages.format(appointmentToView)), true, false, false);
     }
 
     @Override

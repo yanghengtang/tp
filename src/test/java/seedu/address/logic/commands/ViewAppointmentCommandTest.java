@@ -46,7 +46,11 @@ public class ViewAppointmentCommandTest {
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.updateSelectedAppointment(appointmentToView);
 
-        assertCommandSuccess(viewAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewAppointmentCommand, model, expectedMessage,
+                true,
+                false,
+                false,
+                expectedModel);
     }
 
     @Test
@@ -70,7 +74,11 @@ public class ViewAppointmentCommandTest {
         Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         showAppointmentAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.updateSelectedAppointment(appointmentToView);
-        assertCommandSuccess(viewAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewAppointmentCommand, model, expectedMessage,
+                true,
+                false,
+                false,
+                expectedModel);
     }
 
     @Test
