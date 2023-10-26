@@ -36,12 +36,6 @@
                   <Label fx:id="nric" styleClass="cell_label" text="\$nric" />
             </children>
          </HBox>
-         <HBox>
-            <children>
-               <Label fx:id="phoneHeader" styleClass="cell_label_bold" text="Phone: " />
-                  <Label fx:id="phone" styleClass="cell_label" text="\$phone" />
-            </children>
-         </HBox>
         </VBox>
       <rowConstraints>
          <RowConstraints />
