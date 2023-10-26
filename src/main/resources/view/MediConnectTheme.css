@@ -119,6 +119,14 @@
     -fx-background-color: #6FC2AE;
 }
 
+.header2-pane {
+    -fx-background-color: #6FC2AE;
+}
+
+.header3-pane {
+    -fx-background-color: #979B9A;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "sans-serif";
@@ -136,6 +144,20 @@
 .label-header {
     -fx-font-family: "sans-serif";
     -fx-font-size: 30px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label-header2 {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 25px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label-header3 {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 20px;
     -fx-font-weight: 500;
     -fx-text-fill: #FFFFFF;
 }
