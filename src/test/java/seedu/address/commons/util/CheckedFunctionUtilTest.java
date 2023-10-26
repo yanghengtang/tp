@@ -1,8 +1,8 @@
 package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.commons.util.lambdautil.CheckedFunctionUtil.unchecked;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.function.Function;
 
@@ -12,8 +12,9 @@ import seedu.address.commons.util.lambdautil.CheckedFunction;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 public class CheckedFunctionUtilTest {
-    public static final CheckedFunction<Integer, Integer> FAILURE =
-            i -> {throw new CommandException("Test");};
+    public static final CheckedFunction<Integer, Integer> FAILURE = i -> {
+        throw new CommandException("Test");
+    };
     public static final CheckedFunction<Integer, Integer> SUCCESS = i -> i;
     public static final Function<Integer, Integer> SUCCESS_EQUIVALENT = i -> i;
 
