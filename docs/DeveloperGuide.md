@@ -170,12 +170,6 @@ and patient to be shown as `selectedPatient`, `selectedPatient` and `selectedPat
 
 The getter operations are exposed in the `Logic` interface as `Logic#getSelectedAppointment()`, `Logic#getSelectedDoctor()` and `Logic#getSelectedPatient()`.
 
-The following sequence diagram shows how the View Patient command is executed in the `Logic`:
-
-![ViewPatientLogicSequenceDiagram](images/ViewPatientLogicSequenceDiagram.png)
-
-The sequence diagram for View Appointment and View Doctor would be similar.
-
 It is also facilitated by `AppointmentWindow`, `DoctorWindow` and `PatientWindow` which extend `UiPart`. They are stored in the `MainWindow` and implements the following operations:
 
 - `AppointmentWindow#updateAppointment()`  —  Sets the Appointment to be shown in the window.
@@ -188,19 +182,47 @@ It is also facilitated by `AppointmentWindow`, `DoctorWindow` and `PatientWindow
 - `PatientWindow#show()`  —  Displays the Patient Window.
 - `PatientWindow#focus()`  —  Toggles to the Patient Window.
 
+Lastly, it is also facilitated by `CommandResult` which stores the boolean value `showAppointment`, `showDoctor` and `showPatient` and implement the following operations:
+
+- `CommandResult#isShowAppointment()`  —  Indicates if the command is View Appointment
+- `CommandResult#isShowDoctor()`  —  Indicates if the command is View Doctor
+- `CommandResult#isShowPatient()`  —  Indicates if the command is View Patient
+
+Given below is an example usage scenario and how the View Patient mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. `selectedAppointment`, `selectedDoctor` and `selectedPatient` has not been initialised and `AppointmentWindow`, `DoctorWindow` and `PatientWindow` are closed by default.
+
+Step 2: The user executes `view_p 2` command to view the 2nd patient in the patient list. The `view` command calls `ModelManager#getSelectedPatient()`, causing the `selectedPatient` to be initialised the 2nd patient in the patient list.
+The `CommandResult` returned will call `PatientWindow#updatePatient()` followed by `PatientWindow#show()`, launching the `PatientWindow` with the details of the 2nd patient.
+
+Step 3: The user toggle back to the main window and executes `view_p 4` command to view the 4th patient in the patient list. The `view` command calls `ModelManager#getSelectedPatient()`, causing the `selectedPatient` to be updated with the 4th patient in the patient list.
+The `CommandResult` returned will call `PatientWindow#updatePatient()` followed by `PatientWindow#focus()`, toggling to the `PatientWindow` with the details of the 4th patient.
+
+<div markdown="span" class="alert alert-info">
+    :information_source: **Note:** If the user decides to close the Patient Window before executing the command, `PatientWindow#focus()` will not be invoked, instead it will invoke `PatientWindow#show()` similar to Step 2.
+</div>
+
+The View Doctor and View Appointment mechanism would function similarly by utilising on their respective filtered lists, methods and windows.
+
+The following sequence diagram shows how the View Patient command is executed in the `Logic`:
+
+![ViewPatientLogicSequenceDiagram](images/ViewPatientLogicSequenceDiagram.png)
+
+The sequence diagram for View Appointment and View Doctor would be similar.
+
 The following sequence diagram shows how the View Patient command results is handled in the `Ui`:
 
 ![ViewPatientUiSequenceDiagram](images/ViewPatientUiSequenceDiagram.png)
 
 The sequence diagram for View Appointment and View Doctor would be similar.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new view command:
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How view patient executes:**
+**Aspect: How view appointment / doctor / patient executes:**
 
 * **Alternative 1 (current choice):** Store the selected Patient in the model and retrieve on `CommandResult` instruction.
     * Pros: Straight forward to implement.
