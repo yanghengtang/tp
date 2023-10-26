@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,6 +38,9 @@ public class MainWindow extends UiPart<Stage> {
     private DoctorListPanel doctorListPanel;
     private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
+    private AppointmentWindow appointmentWindow;
+    private DoctorWindow doctorWindow;
+    private PatientWindow patientWindow;
     private HelpWindow helpWindow;
 
     @FXML
@@ -73,6 +79,9 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        appointmentWindow = new AppointmentWindow();
+        doctorWindow = new DoctorWindow();
+        patientWindow = new PatientWindow();
         helpWindow = new HelpWindow();
     }
 
@@ -150,6 +159,51 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the appointment window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewAppointment() {
+        Appointment selectedAppointment = logic.getSelectedAppointment();
+        appointmentWindow.updateSelectedAppointment(selectedAppointment);
+
+        if (!appointmentWindow.isShowing()) {
+            appointmentWindow.show();
+        } else {
+            appointmentWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the doctor window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewDoctor() {
+        Doctor selectedDoctor = logic.getSelectedDoctor();
+        doctorWindow.updateSelectedDoctor(selectedDoctor);
+
+        if (!doctorWindow.isShowing()) {
+            doctorWindow.show();
+        } else {
+            doctorWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the patient window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewPatient() {
+        Patient selectedPatient = logic.getSelectedPatient();
+        patientWindow.updateSelectedPatient(selectedPatient);
+
+        if (!patientWindow.isShowing()) {
+            patientWindow.show();
+        } else {
+            patientWindow.focus();
+        }
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -199,6 +253,18 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isShowAppointment()) {
+                handleViewAppointment();
+            }
+
+            if (commandResult.isShowDoctor()) {
+                handleViewDoctor();
+            }
+
+            if (commandResult.isShowPatient()) {
+                handleViewPatient();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
