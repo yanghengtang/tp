@@ -106,7 +106,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasDoctor_doctorWithSameNricInDatabase_returnsTrue() {
+    public void hasDoctor_doctorWithSameNricInDatabase_returnsTrue() throws CommandException {
         database.addDoctor(BENSON);
         Doctor editedBenson = new DoctorBuilder(BENSON).withName(VALID_NAME_BOB).build();
         database.setDoctor(BENSON, editedBenson);
@@ -114,7 +114,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasPatient_patientWithSameNricInDatabase_returnsTrue() {
+    public void hasPatient_patientWithSameNricInDatabase_returnsTrue() throws CommandException {
         database.addPatient(TypicalPatient.DANIEL);
         Patient editedDaniel = new PatientBuilder(TypicalPatient.DANIEL).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
@@ -169,7 +169,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void setPatient() {
+    public void setPatient() throws CommandException {
         database.addDoctor(ALICE);
         database.addPatient(TypicalPatient.FIONA);
         database.addAppointment(APPOINTMENT_6);
@@ -216,7 +216,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void setDoctor() {
+    public void setDoctor() throws CommandException {
         database.addDoctor(ALICE);
         database.addPatient(TypicalPatient.FIONA);
         database.addAppointment(APPOINTMENT_6);
@@ -294,7 +294,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasDoctorWithNric_doctorWithSameNricInDatabase_returnsTrue() {
+    public void hasDoctorWithNric_doctorWithSameNricInDatabase_returnsTrue() throws CommandException {
         database.addDoctor(BENSON);
         Doctor editedBenson = new DoctorBuilder(BENSON).withName(VALID_NAME_BOB).build();
         database.setDoctor(BENSON, editedBenson);
@@ -325,7 +325,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasPatientWithNric_patientWithSameNricInDatabase_returnsTrue() {
+    public void hasPatientWithNric_patientWithSameNricInDatabase_returnsTrue() throws CommandException {
         database.addPatient(TypicalPatient.BENSON);
         Patient editedBenson = new PatientBuilder(TypicalPatient.BENSON).withName(VALID_NAME_BOB).build();
         database.setPatient(TypicalPatient.BENSON, editedBenson);

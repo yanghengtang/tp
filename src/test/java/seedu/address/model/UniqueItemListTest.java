@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.LambdaUtil.CheckedFunctionUtil.Unchecked;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -22,6 +23,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -153,20 +155,20 @@ public class UniqueItemListTest {
     }
 
     @Test
-    public void setMultipleItems_editedItemsHasDifferentIdentity_success() {
+    public void setMultipleItems_editedItemsHasDifferentIdentity_success() throws CommandException {
         uniqueAppointmentList.add(APPOINTMENT_6);
         uniqueAppointmentList.add(APPOINTMENT_6_DIFFERENT_TIME);
         uniqueAppointmentList.add(APPOINTMENT_1);
         uniqueAppointmentList.setMultipleItems(
                 appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC)),
-                appointment -> new Appointment(
+                Unchecked(appointment -> new Appointment(
                         new Nric(CARL_NRIC),
                         appointment.getPatientNric(),
                         appointment.getStartTime(),
                         appointment.getEndTime(),
                         appointment.getRemark(),
                         appointment.getTags()
-                )
+                ))
         );
         // appointment list no longer has appointments with alice as doctor nric
         assertFalse(uniqueAppointmentList.contains(

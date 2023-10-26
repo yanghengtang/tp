@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.LambdaUtil.CheckedFunctionUtil.Unchecked;
 
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
@@ -136,7 +138,7 @@ public class Database implements ReadOnlyDatabase {
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
      */
-    public void setDoctor(Doctor target, Doctor editedDoctor) {
+    public void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException {
         requireNonNull(editedDoctor);
 
         doctors.setItem(target, editedDoctor);
@@ -144,14 +146,14 @@ public class Database implements ReadOnlyDatabase {
         if (!target.getNric().equals(editedDoctor.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getDoctorNric().equals(target.getNric()),
-                    appointment -> new Appointment(
+                    Unchecked(appointment -> new Appointment(
                             editedDoctor.getNric(),
                             appointment.getPatientNric(),
                             appointment.getStartTime(),
                             appointment.getEndTime(),
                             appointment.getRemark(),
                             appointment.getTags()
-                    )
+                    ))
             );
         }
     }
@@ -194,7 +196,7 @@ public class Database implements ReadOnlyDatabase {
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing patient in the database.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireNonNull(editedPatient);
 
         patients.setItem(target, editedPatient);
@@ -202,14 +204,14 @@ public class Database implements ReadOnlyDatabase {
         if (!target.getNric().equals(editedPatient.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getPatientNric().equals(target.getNric()),
-                    appointment -> new Appointment(
+                    Unchecked(appointment -> new Appointment(
                             appointment.getDoctorNric(),
                             editedPatient.getNric(),
                             appointment.getStartTime(),
                             appointment.getEndTime(),
                             appointment.getRemark(),
                             appointment.getTags()
-                    )
+                    ))
             );
         }
     }
