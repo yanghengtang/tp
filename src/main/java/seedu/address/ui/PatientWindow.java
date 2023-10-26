@@ -47,6 +47,10 @@ public class PatientWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Updates the displayed patient in the window.
+     * @param patient The given patient to be displayed
+     */
     public void updateSelectedPatient(Patient patient) {
         this.patient = patient;
         name.setText(patient.getName().fullName);

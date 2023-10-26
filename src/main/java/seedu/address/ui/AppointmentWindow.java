@@ -50,6 +50,10 @@ public class AppointmentWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Updates the displayed appointment in the window.
+     * @param appointment The given appointment to be displayed
+     */
     public void updateSelectedAppointment(Appointment appointment) {
         this.appointment = appointment;
         startDateTime.setText(appointment.getStartTime().getTime().format(DateTimeFormatter

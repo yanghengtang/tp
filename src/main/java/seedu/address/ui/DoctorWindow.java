@@ -45,6 +45,10 @@ public class DoctorWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Updates the displayed doctor in the window.
+     * @param doctor The given doctor to be displayed
+     */
     public void updateSelectedDoctor(Doctor doctor) {
         this.doctor = doctor;
         name.setText(doctor.getName().fullName);
