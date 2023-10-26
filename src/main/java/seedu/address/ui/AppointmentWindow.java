@@ -62,6 +62,7 @@ public class AppointmentWindow extends UiPart<Stage> {
         patientNric.setText(appointment.getPatientNric().nric);
         doctorNric.setText(appointment.getDoctorNric().nric);
         remark.setText(appointment.getRemark().remark);
+        tags.getChildren().clear();
         appointment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
