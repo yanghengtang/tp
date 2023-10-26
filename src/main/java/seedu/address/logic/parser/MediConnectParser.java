@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
+import seedu.address.logic.commands.ViewPatientCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -105,6 +106,9 @@ public class MediConnectParser {
 
         case ViewAppointmentCommand.COMMAND_WORD:
             return new ViewAppointmentCommandParser().parse(arguments);
+
+        case ViewPatientCommand.COMMAND_WORD:
+            return new ViewPatientCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
