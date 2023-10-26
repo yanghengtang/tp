@@ -141,8 +141,6 @@ public class Database implements ReadOnlyDatabase {
     public void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException {
         requireNonNull(editedDoctor);
 
-        doctors.setItem(target, editedDoctor);
-
         if (!target.getNric().equals(editedDoctor.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getDoctorNric().equals(target.getNric()),
@@ -156,6 +154,8 @@ public class Database implements ReadOnlyDatabase {
                     ))
             );
         }
+
+        doctors.setItem(target, editedDoctor);
     }
 
     /**
@@ -199,8 +199,6 @@ public class Database implements ReadOnlyDatabase {
     public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireNonNull(editedPatient);
 
-        patients.setItem(target, editedPatient);
-
         if (!target.getNric().equals(editedPatient.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getPatientNric().equals(target.getNric()),
@@ -214,6 +212,8 @@ public class Database implements ReadOnlyDatabase {
                     ))
             );
         }
+
+        patients.setItem(target, editedPatient);
     }
 
     /**
