@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_d 5 p\23456789")
+[-> LogicManager : execute("edit_d 5 ic\T0123456B")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("edit_d 5 p\23456789")
+LogicManager -> MediConnectParser : parseCommand("edit_d 5 ic\T0123456B")
 activate MediConnectParser
 
 create EditDoctorCommandParser
@@ -28,7 +28,7 @@ activate EditDoctorCommandParser
 EditDoctorCommandParser --> MediConnectParser
 deactivate EditDoctorCommandParser
 
-MediConnectParser -> EditDoctorCommandParser : parse("edit_d 5 p\23456789")
+MediConnectParser -> EditDoctorCommandParser : parse("edit_d 5 ic\T0123456B")
 activate EditDoctorCommandParser
 
 create EditDoctorDescriptor
