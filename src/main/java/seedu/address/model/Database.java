@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -17,6 +18,11 @@ import seedu.address.model.person.patient.Patient;
  * Duplicates are not allowed (by .isSame comparison)
  */
 public class Database implements ReadOnlyDatabase {
+    public static final String MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS =
+            "Appointment overlaps with an existing appointment of Patient";
+    public static final String MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS =
+            "Appointment overlaps with an existing appointment of Doctor";
+
     private final UniqueItemList<Appointment> appointments;
     private final UniqueItemList<Doctor> doctors;
     private final UniqueItemList<Patient> patients;
@@ -76,7 +82,8 @@ public class Database implements ReadOnlyDatabase {
      * Adds an appointment to the database.
      * The appointment must not already exist in the database.
      */
-    public void addAppointment(Appointment appointment) {
+    public void addAppointment(Appointment appointment) throws CommandException {
+        validateAddAppointment(appointment);
         appointments.add(appointment);
     }
 
@@ -85,9 +92,10 @@ public class Database implements ReadOnlyDatabase {
      * {@code target} must exist in the database.
      * The key fields of {@code editedAppointment} must not be the same as another existing appointment in the database.
      */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
         requireNonNull(editedAppointment);
 
+        validateAddAppointment(target, editedAppointment);
         appointments.setItem(target, editedAppointment);
     }
 
@@ -254,6 +262,33 @@ public class Database implements ReadOnlyDatabase {
         return appointments.equals(otherDatabase.appointments)
                 && doctors.equals(otherDatabase.doctors)
                 && patients.equals(otherDatabase.patients);
+    }
+
+    /**
+     * Checks if the appointment is valid to be inserted into the appointment list
+     * @throws CommandException if {@code predicate} is null.
+     */
+    void validateAddAppointment(Appointment reference, Appointment toAdd) throws CommandException {
+        for (Appointment a : appointments) {
+            if (toAdd.getPatientNric().equals(a.getPatientNric())
+                    && (toAdd.overlaps(a))
+                    && !a.equals(reference)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
+            }
+            if (toAdd.getDoctorNric().equals(a.getDoctorNric())
+                    && (toAdd.overlaps(a))
+                    && !a.equals(reference)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
+            }
+        }
+    }
+
+    /**
+     * Checks if the appointment is valid to be inserted into the appointment list
+     * @throws CommandException if {@code predicate} is null.
+     */
+    void validateAddAppointment(Appointment toAdd) throws CommandException {
+        validateAddAppointment(null, toAdd);
     }
 
     @Override

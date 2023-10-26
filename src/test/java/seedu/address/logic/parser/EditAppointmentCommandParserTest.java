@@ -22,7 +22,6 @@ import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentCommandParserTest {
 
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE);
 

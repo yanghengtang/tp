@@ -12,17 +12,22 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Database;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,8 +41,12 @@ import seedu.address.testutil.EditAppointmentDescriptorBuilder;
  */
 public class EditAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
 
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Appointment editedAppointment = new AppointmentBuilder().build();
@@ -48,13 +57,18 @@ public class EditAppointmentCommandTest {
                 Messages.format(editedAppointment));
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
+
+        try {
+            expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
+        } catch (CommandException e) {
+            throw new AssertionError(e.getMessage());
+        }
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastAppointment = Index.fromOneBased(model.getFilteredAppointmentList().size());
         Appointment lastAppointment = model.getFilteredAppointmentList().get(indexLastAppointment.getZeroBased());
 
@@ -98,16 +112,22 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
 
         Appointment appointmentInFilteredList =
                 model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment = new AppointmentBuilder(appointmentInFilteredList)
                 .withPatientNric(VALID_PATIENT_NRIC)
+                .withStartTime(VALID_APPOINTMENT_START_TIME)
+                .withEndTime(VALID_APPOINTMENT_END_TIME)
                 .build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
-                new EditAppointmentDescriptorBuilder().withPatientNric(VALID_PATIENT_NRIC).build());
+                new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(VALID_PATIENT_NRIC)
+                        .withStartTime(VALID_APPOINTMENT_START_TIME)
+                        .withEndTime(VALID_APPOINTMENT_END_TIME)
+                        .build());
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
@@ -150,6 +170,35 @@ public class EditAppointmentCommandTest {
 
         assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_overlappingAppointmentsUnfilteredList_failure() {
+        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
+
+        // overlapping patient appointment
+        EditAppointmentDescriptor editAppointmentDescriptor =
+                new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(BENSON_NRIC)
+                        .withDoctorNric(FIONA_NRIC)
+                        .withStartTime("2023-09-12 07:15")
+                        .withEndTime("2023-09-12 07:45").build();
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
+                editAppointmentDescriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, Database.MESSAGE_OVERLAPPING_PATIENT_APPOINTMENTS);
+
+        // overlapping doctor appointment
+        editAppointmentDescriptor = new EditAppointmentDescriptorBuilder()
+                        .withPatientNric(FIONA_NRIC)
+                        .withDoctorNric(CARL_NRIC)
+                        .withStartTime("2023-09-12 07:15")
+                        .withEndTime("2023-09-12 07:45").build();
+        editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
+                editAppointmentDescriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, Database.MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS);
+    }
+
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
