@@ -155,34 +155,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Find Doctor
+### Find Doctor / Patient
 
 **Introduction**
 
-The FindDoctorCommand allows users to search for doctors whose names match the given keywords. This feature is essential for users to quickly locate specific doctor entries without having to scroll through the entire list.
+This section describes the feature that allows users to find doctors/patient in the MediConnect database by name.
 
-Implementation
+#### Implementation
+The finding of a doctor/patient in MediConnect is facilitated by LogicManager, which extends Logic. It holds a mediConnectParser that parses the user input, and a Model where the command is executed. Key methods involved include:
 
-**1. How the feature is implemented**
+LogicManager#execute() — Executes the given user String input and returns a CommandResult
+FindDoctorCommandParser/FindPatientCommandParser#parse() — Parses the user input to create a FindDoctorCommand/FindPatientCommand
+FindDoctorCommand/FindPatientCommand#execute() — Filters the list of doctors/patient based on the given predicate
+These operations are exposed in the Ui interface as Ui#executeCommand().
 
-When the FindDoctorCommand is triggered:
+Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
-1. The user's input keywords are parsed by FindDoctorCommandParser
-2. new FindDoctorCommand object is created with a NameContainsKeywordsDoctorPredicate that tests if a doctor's name matches the given keywords.
-3. new FindDoctorCommand object is created with a NameContainsKeywordsDoctorPredicate that tests if a doctor's name matches the given keywords.
-4. When the command is executed, the model's filtered doctor list is updated to show only the entries that satisfy the predicate.
+Step 1: The user inputs find_d/find_n John to search for doctors/patients named "John" in MediConnect.
+* The find_d/find_n command triggers mediConnectParser#parseCommand, which identifies the command word and calls FindDoctorCommandParser/FindPatientCommandParser#parse to handle the arguments.
 
-**2. Why it is implemented this way**
-* The implementation leverages the existing FilteredList infrastructure in the model layer. By updating the predicate of the filtered list, the UI can automatically reflect the changes without the need for explicit list manipulation or data retrieval. This design ensures high cohesion and low coupling, making the codebase maintainable and extensible.
+Step 2: The FindDoctorCommandParser/FindPatientCommandParser#parse method splits the argument "John" into a list of keywords. It then creates a NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object, using the list of keywords.
 
+Step 3: A new FindDoctorCommand/FindPatientCommand instance is created using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object.
 
-**3. Alternatives considered**
-* **Full-text Search**: Instead of just matching based on names, we considered implementing a full-text search across all doctor attributes. However, this would complicate the implementation and might return too many irrelevant results if not handled properly.
-* **Regular Expressions**: Instead of simple keyword matching, we considered using regular expressions for more flexible searches. However, this might increase the complexity for end-users.
+Step 4: The created FindDoctorCommand/FindPatientCommand instance is returned to LogicManager, and its execute method is called.
+FindDoctorCommand/FindPatientCommand#execute filters the list of doctors/patients in Model using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate.
 
-**UML Diagrams**
-1. Sequence Diagram
-The following sequence diagram shows how the find doctor operation would work:
+Step 5: The filtered list is displayed to the user through the UI.
 
 The following sequence diagram shows how the find doctor operation would work: SortSequenceDiagram
     ![FindDoctorSequence](images/FindDoctorSequence.png)
@@ -190,61 +189,37 @@ The following sequence diagram shows how the find doctor operation would work: S
 The following sequence diagram shows how the find patient operation would work: SortSequenceDiagram
     ![FindPatientSequence](images/FindPatientSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to find a new patient/doctor: FindYZCommandActivityDiagram
-![FindCommandActivity](images/FindCommandActivityDiagram.png)
+The following activity diagram summarizes what happens when a user wants to find a new doctor/patient: FindYZCommandActivityDiagram
+    ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
-**Code Snippets**
-
-
-Here are some key parts of the FindDoctorCommand implementation:
-
-        public class FindDoctorCommand extends NewCommand {
-            private final NameContainsKeywordsDoctorPredicate predicate;
-       
-            @Override
-            public CommandResult execute(NewModel model) {
-                requireNonNull(model);
-                model.updateFilteredDoctorList(predicate);
-                return new CommandResult(
-                    String.format(Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW, model.getFilteredDoctorList().size()));
-            }
-        }
-
-And the parser:
-
-        public class FindDoctorCommandParser implements NewParser<FindDoctorCommand> {
-            public FindDoctorCommand parse(String args) throws ParseException {
-                String[] nameKeywords = args.trim().split("\\s+");
-                return new FindDoctorCommand(new NameContainsKeywordsDoctorPredicate(Arrays.asList(nameKeywords)));
-            }
-        }
-
-Tips for Future Developers
-* If adding new attributes for doctors, consider updating the predicate to include them in the search if necessary.
-* Always ensure that the updateFilteredDoctorList method in the model is efficient, especially if the number of doctors grows significantly.
-
-### List Doctors
+### List Doctors / Patients
 
 **Introduction**
 
-The "List Doctor" feature aims to provide users with a way to view all the doctors currently stored in the database. This is implemented with the ListDoctorCommand class, which is a part of the NewCommand hierarchy. The feature allows users to see all doctors without any filters.
+The listing of all doctors/patient in the database is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-**How the feature is implemented**
-1. When the list_d command is entered by the user, the NewAddressBookParser recognizes the command word and returns a new instance of ListDoctorCommand.
-2. The execute method of the ListDoctorCommand class is called. This method updates the filtered doctor list in the model to show all doctors, by using the predicate PREDICATE_SHOW_ALL_DOCTORS.
-3. Finally, a CommandResult object is returned with a success message, which is then displayed to the user.
+LogicManager#execute(String commandText) — Executes the given user String input and returns a CommandResult.
 
-**Why it is implemented this way**
-* The current implementation is straightforward and efficient. It directly interacts with the model to update the filtered doctor list, making it a clean and efficient operation. The use of a predicate ensures that there is flexibility to show different kinds of lists in the future.
+These operations are exposed in the Ui interface as Ui#executeCommand().
 
-**Alternatives considered**
-1. Fetching the List and then Displaying: One alternative would be to fetch the list of all doctors from the model and then displaying it. However, this would be inefficient as it requires additional memory to store the fetched list.
-2. Command Parameters: Initially, it was considered to have the command accept parameters to sort or filter the list. However, this was deemed unnecessary for the scope of just listing all doctors.
+Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
+Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList in its default sorting order.
+
+* The list_d/list_p command calls mediConnectParser#parseCommand which recognizes the command word as list_d/list_p.
+
+* A new ListDoctorCommand/ListPatientCommand instance will be created.
+
+Step 2: The created ListDoctorCommand/ListPatientCommand instance is returned to NewLogicManager and its execute method is called.
+
+* ListDoctorCommand/ListPatientCommand#execute then calls NewModel#updateFilteredDoctorList/updateFilteredPatientList with the predicate PREDICATE_SHOW_ALL_DOCTORS/PREDICATE_SHOW_ALL_PATIENTS.
+
+* The FilteredDoctorList/FilteredPatientList is updated to show all doctors/patient by calling ObservableList#setPredicate.
+
+Step 3: A CommandResult object is created with a message indicating success, and this result is returned to the Ui to be displayed to the user.
 
 **UML Diagrams**
 1. Sequence Diagram
-The following sequence diagram shows how the list doctor operation would work:
 
 The following sequence diagram shows how the list doctor operation would work: SortSequenceDiagram
 ![ListDoctorSequence](images/ListDoctorSequence.png)
@@ -254,29 +229,6 @@ The following sequence diagram shows how the list patient operation would work: 
 
 The following activity diagram summarizes what happens when a user wants to list a new patient/doctor: ListYZCommandActivityDiagram
 ![ListCommandActivity](images/ListCommandActivityDiagram.png)
-
-
-**Code Snippets**
-
-Here's a snippet from the ListDoctorCommand class:
-
-    public class ListDoctorCommand extends NewCommand {
-    
-        public static final String COMMAND_WORD = "list_d";
-        public static final String MESSAGE_SUCCESS = "Listed all doctors";
-    
-        @Override
-        public CommandResult execute(NewModel model) {
-            requireNonNull(model);
-            model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
-            return new CommandResult(MESSAGE_SUCCESS);
-        }
-    }
-
-Tips for Future Developers
-1. Extending Functionality: If you wish to extend this command to include sorting or filtering, you can add additional parameters to the command.
-
-2. Optimization: This command is already optimized for listing all doctors. However, if you wish to add more functionality like sorting, make sure to optimize the sorting algorithm.
 
 ### \[Proposed\] Undo/redo feature
 
