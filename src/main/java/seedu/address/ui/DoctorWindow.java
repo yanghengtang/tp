@@ -54,6 +54,7 @@ public class DoctorWindow extends UiPart<Stage> {
         name.setText(doctor.getName().fullName);
         nric.setText(doctor.getNric().nric);
         remark.setText(doctor.getRemark().remark);
+        tags.getChildren().clear();
         doctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
