@@ -6,9 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.PersonUtil.*;
-import static seedu.address.testutil.TypicalAppointment.*;
-import static seedu.address.testutil.TypicalDoctor.*;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6_DIFFERENT_TIME;
+import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
+import static seedu.address.testutil.TypicalDoctor.ALICE;
+import static seedu.address.testutil.TypicalDoctor.BENSON;
+import static seedu.address.testutil.TypicalDoctor.CARL;
+import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
 import java.util.ArrayList;
@@ -30,7 +39,6 @@ import seedu.address.model.person.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPatient;
 
 
@@ -298,7 +306,7 @@ public class DatabaseTest {
         database.addDoctor(BENSON);
         Doctor editedBenson = new DoctorBuilder(BENSON).withName(VALID_NAME_BOB).build();
         database.setDoctor(BENSON, editedBenson);
-        assertTrue(database.hasDoctorWithNric(new Nric(PersonUtil.BENSON_NRIC)));
+        assertTrue(database.hasDoctorWithNric(new Nric(BENSON_NRIC)));
     }
 
     @Test
@@ -329,7 +337,7 @@ public class DatabaseTest {
         database.addPatient(TypicalPatient.BENSON);
         Patient editedBenson = new PatientBuilder(TypicalPatient.BENSON).withName(VALID_NAME_BOB).build();
         database.setPatient(TypicalPatient.BENSON, editedBenson);
-        assertTrue(database.hasPatientWithNric(new Nric(PersonUtil.BENSON_NRIC)));
+        assertTrue(database.hasPatientWithNric(new Nric(BENSON_NRIC)));
     }
 
     @Test

@@ -1,14 +1,13 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.LambdaUtil.CheckedFunctionUtil.Unchecked;
+import static seedu.address.commons.util.lambdautil.CheckedFunctionUtil.unchecked;
 
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
@@ -144,7 +143,7 @@ public class Database implements ReadOnlyDatabase {
         if (!target.getNric().equals(editedDoctor.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getDoctorNric().equals(target.getNric()),
-                    Unchecked(appointment -> new Appointment(
+                    unchecked(appointment -> new Appointment(
                             editedDoctor.getNric(),
                             appointment.getPatientNric(),
                             appointment.getStartTime(),
@@ -202,7 +201,7 @@ public class Database implements ReadOnlyDatabase {
         if (!target.getNric().equals(editedPatient.getNric())) {
             appointments.setMultipleItems(
                     appointment -> appointment.getPatientNric().equals(target.getNric()),
-                    Unchecked(appointment -> new Appointment(
+                    unchecked(appointment -> new Appointment(
                             appointment.getDoctorNric(),
                             editedPatient.getNric(),
                             appointment.getStartTime(),

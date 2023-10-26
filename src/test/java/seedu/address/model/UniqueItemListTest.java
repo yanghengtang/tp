@@ -3,12 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.LambdaUtil.CheckedFunctionUtil.Unchecked;
+import static seedu.address.commons.util.lambdautil.CheckedFunctionUtil.unchecked;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.PersonUtil.*;
-import static seedu.address.testutil.TypicalAppointment.*;
+import static seedu.address.testutil.PersonUtil.ALICE_NAME;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
+import static seedu.address.testutil.PersonUtil.BENSON_NAME;
+import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6_DIFFERENT_TIME;
 import static seedu.address.testutil.TypicalPatient.ALICE;
 import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
 import static seedu.address.testutil.TypicalPatient.BENSON;
@@ -148,10 +154,10 @@ public class UniqueItemListTest {
     @Test
     public void setMultipleItems_nullArgument_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePatientList.setMultipleItems(null, null));
-        assertThrows(NullPointerException.class,
-                () -> uniquePatientList.setMultipleItems(null, patient -> patient));
-        assertThrows(NullPointerException.class,
-                () -> uniquePatientList.setMultipleItems(patient -> true, null));
+        assertThrows(NullPointerException.class, () ->
+                uniquePatientList.setMultipleItems(null, patient -> patient));
+        assertThrows(NullPointerException.class, () ->
+                uniquePatientList.setMultipleItems(patient -> true, null));
     }
 
     @Test
@@ -161,7 +167,7 @@ public class UniqueItemListTest {
         uniqueAppointmentList.add(APPOINTMENT_1);
         uniqueAppointmentList.setMultipleItems(
                 appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC)),
-                Unchecked(appointment -> new Appointment(
+                unchecked(appointment -> new Appointment(
                         new Nric(CARL_NRIC),
                         appointment.getPatientNric(),
                         appointment.getStartTime(),
