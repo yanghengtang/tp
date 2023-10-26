@@ -57,6 +57,7 @@ public class PatientWindow extends UiPart<Stage> {
         nric.setText(patient.getNric().nric);
         phone.setText(patient.getPhone().value);
         remark.setText(patient.getRemark().remark);
+        tags.getChildren().clear();
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
