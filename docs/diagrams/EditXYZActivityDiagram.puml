@@ -11,12 +11,17 @@ end note
 if () then ([command is valid])
   :New EditXYZCommand instance is created;
   if () then ([XYZ object already exists])
-    :Outputs error message;
+    :Parser throws exception;
   else ([XYZ object does not exist])
   :FilteredXYZList is updated with the new XYZ item;
   endif
 else ([command is invalid])
-  :Outputs error message;
+  :Parser throws exception;
+endif
+if () then ([no error thrown])
+  :Display updated FilteredXYZList;
+else ([error thrown])
+  :Display error message;
 endif
 stop
 
