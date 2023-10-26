@@ -12,6 +12,7 @@ import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NAME;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6_DIFFERENT_TIME;
@@ -193,6 +194,23 @@ public class UniqueItemListTest {
         // appointment with patient nric as the changed doctor nric are unchanged
         assertTrue(uniqueAppointmentList.contains(
                 appointment -> appointment.getPatientNric().equals(new Nric(ALICE_NRIC))));
+    }
+
+    @Test
+    public void setMultipleItems_transformationThrowsCommandException() throws CommandException {
+        uniqueAppointmentList.add(APPOINTMENT_6);
+        uniqueAppointmentList.add(APPOINTMENT_6_DIFFERENT_TIME);
+        assertThrows(CommandException.class, () -> uniqueAppointmentList.setMultipleItems(
+                appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC)),
+                unchecked(appointment -> new Appointment(
+                        new Nric(FIONA_NRIC),
+                        appointment.getPatientNric(),
+                        appointment.getStartTime(),
+                        appointment.getEndTime(),
+                        appointment.getRemark(),
+                        appointment.getTags()
+                ))
+        ));
     }
 
     @Test
