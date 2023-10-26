@@ -1,19 +1,11 @@
 @startuml
 start
-:User enters command;
+:User enters ListYZCommand;
 floating note right
     YZ = Doctor or Patient
 endnote
-:Parse command using MediConnectParser;
-if (command is valid) then (yes)
-    :Parse arguments; (no arguments in this case)
-    :Create ListYZCommand object;
-    :Execute ListYZCommand;
-    :Update YZ list with PREDICATE_SHOW_ALL_YZ;
-    :Return full list to user;
-    stop
-else (no)
-    :Proceed with other commands;
-    stop
-endif
+:MediConnectParser parses command;
+:Update YZ list with PREDICATE_SHOW_ALL_YZ;
+:Return full list to user;
+stop
 @enduml

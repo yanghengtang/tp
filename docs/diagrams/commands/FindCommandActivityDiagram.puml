@@ -4,22 +4,12 @@ start
 floating note right
     YZ = Doctor or Patient
 endnote
-:Parse command using MediConnectParser;
-if (command is valid) then (yes)
-    :Parse arguments using FindYZCommandParser;
-    if (Is argument valid?) then (yes)
-        :Create NameContainsKeywordsYZPredicate;
-        :Create FindYZCommand object;
-        :Execute FindYZCommand;
-        :Filter YZ list based on predicate;
-        :Return filtered list to user;
-        stop
-    else (no)
-        :Show error message;
-        stop
-    endif
-else (no)
-    :Proceed with other commands;
-    stop
+:MediConnectParser parses the command;
+:FindYZCommandParser parses the command;
+if () then ([argument is valid])
+    :Return filtered YZ list to user \n based on name predicate;
+else ([argument is not valid])
+    :Show error message;
 endif
+stop
 @enduml
