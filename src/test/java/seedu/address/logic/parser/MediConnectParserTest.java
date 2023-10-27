@@ -33,6 +33,7 @@ import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
+import seedu.address.logic.commands.ViewDoctorCommand;
 import seedu.address.logic.commands.ViewPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -171,6 +172,13 @@ public class MediConnectParserTest {
         ViewAppointmentCommand command = (ViewAppointmentCommand) parser.parseCommand(
                 "view_a 1");
         assertEquals(new ViewAppointmentCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_viewDoctor() throws Exception {
+        ViewDoctorCommand command = (ViewDoctorCommand) parser.parseCommand(
+                "view_d 1");
+        assertEquals(new ViewDoctorCommand(INDEX_FIRST_DOCTOR), command);
     }
 
     @Test

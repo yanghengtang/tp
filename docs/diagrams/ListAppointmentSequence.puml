@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box NewLogic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":ListAppointmentCommandParser" as ListAppointmentCommandParser LOGIC_COLOR
+participant "a:ListAppointment" as ListAppointment LOGIC_COLOR
+participant ":AppointmentEqualDoctorNricPredicate" as AppointmentEqualDoctorNricPredicate LOGIC_COLOR
+participant ":AppointmentEqualPatientNricPredicate" as AppointmentEqualPatientNricPredicate LOGIC_COLOR
+participant ":AppointmentFilterByNricPredicate" as AppointmentFilterByNricPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list_a pic\S9912343G dic\S0548254G")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("list_a pic\S9912343G dic\S0548254G")
+activate MediConnectParser
+
+create ListAppointmentCommandParser
+MediConnectParser -> ListAppointmentCommandParser
+activate ListAppointmentCommandParser
+
+
+ListAppointmentCommandParser --> MediConnectParser
+deactivate ListAppointmentCommandParser
+
+MediConnectParser -> ListAppointmentCommandParser : parse("pic\S9912343G dic\S0548254G")
+activate ListAppointmentCommandParser
+
+create ListAppointment
+ListAppointmentCommandParser -> ListAppointment :
+activate ListAppointment
+
+create AppointmentEqualPatientNricPredicate
+ListAppointment -> AppointmentEqualPatientNricPredicate : AppointmentEqualPatientNricPredicate("S9912343G")
+activate  AppointmentEqualPatientNricPredicate
+AppointmentEqualPatientNricPredicate --> ListAppointment : patientPredicate
+deactivate AppointmentEqualPatientNricPredicate
+
+create AppointmentEqualDoctorNricPredicate
+ListAppointment -> AppointmentEqualDoctorNricPredicate : AppointmentEqualDoctorNricPredicate("S0548254G")
+activate AppointmentEqualDoctorNricPredicate
+AppointmentEqualDoctorNricPredicate --> ListAppointment : doctorPredicate
+deactivate AppointmentEqualDoctorNricPredicate
+
+create AppointmentFilterByNricPredicate
+ListAppointment -> AppointmentFilterByNricPredicate : AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate)
+activate AppointmentFilterByNricPredicate
+AppointmentFilterByNricPredicate --> ListAppointment : predicate
+deactivate AppointmentFilterByNricPredicate
+
+
+ListAppointment --> ListAppointmentCommandParser : a
+deactivate ListAppointment
+
+ListAppointmentCommandParser --> MediConnectParser : a
+deactivate ListAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListAppointmentCommandParser -[hidden]-> MediConnectParser
+destroy ListAppointmentCommandParser
+
+MediConnectParser --> LogicManager : a
+deactivate MediConnectParser
+
+LogicManager -> ListAppointment : execute()
+activate ListAppointment
+
+ListAppointment -> Model : updateFilteredAppointmentList(predicate)
+activate Model
+
+Model --> ListAppointment
+deactivate Model
+
+create CommandResult
+ListAppointment -> CommandResult
+activate CommandResult
+
+CommandResult --> ListAppointment
+deactivate CommandResult
+
+ListAppointment --> LogicManager : result
+deactivate ListAppointment
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

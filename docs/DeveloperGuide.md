@@ -154,6 +154,121 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find Doctor / Patient
+
+**Introduction**
+
+This section describes the feature that allows users to find doctors/patient in the MediConnect database by name.
+
+#### Implementation
+The finding of a doctor/patient in MediConnect is facilitated by LogicManager, which extends Logic. It holds a mediConnectParser that parses the user input, and a Model where the command is executed. Key methods involved include:
+
+LogicManager#execute() — Executes the given user String input and returns a CommandResult
+FindDoctorCommandParser/FindPatientCommandParser#parse() — Parses the user input to create a FindDoctorCommand/FindPatientCommand
+FindDoctorCommand/FindPatientCommand#execute() — Filters the list of doctors/patient based on the given predicate
+These operations are exposed in the Ui interface as Ui#executeCommand().
+
+Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
+
+Step 1: The user inputs find_d/find_n John to search for doctors/patients named "John" in MediConnect.
+* The find_d/find_n command triggers mediConnectParser#parseCommand, which identifies the command word and calls FindDoctorCommandParser/FindPatientCommandParser#parse to handle the arguments.
+
+Step 2: The FindDoctorCommandParser/FindPatientCommandParser#parse method splits the argument "John" into a list of keywords. It then creates a NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object, using the list of keywords.
+
+Step 3: A new FindDoctorCommand/FindPatientCommand instance is created using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object.
+
+Step 4: The created FindDoctorCommand/FindPatientCommand instance is returned to LogicManager, and its execute method is called.
+FindDoctorCommand/FindPatientCommand#execute filters the list of doctors/patients in Model using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate.
+
+Step 5: The filtered list is displayed to the user through the UI.
+
+The following sequence diagram shows how the find doctor operation would work:
+    ![FindDoctorSequence](images/FindDoctorSequence.png)
+
+The following sequence diagram shows how the find patient operation would work:
+    ![FindPatientSequence](images/FindPatientSequence.png)
+
+The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
+    ![FindCommandActivity](images/FindCommandActivityDiagram.png)
+
+### List Doctors / Patients
+
+**Introduction**
+
+The listing of all doctors/patient in the database is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+
+#### Implementation
+
+LogicManager#execute(String commandText) — Executes the given user String input and returns a CommandResult.
+
+These operations are exposed in the Ui interface as Ui#executeCommand().
+
+Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
+
+Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList in its default sorting order.
+
+* The list_d/list_p command calls mediConnectParser#parseCommand which recognizes the command word as list_d/list_p.
+
+* A new ListDoctorCommand/ListPatientCommand instance will be created.
+
+Step 2: The created ListDoctorCommand/ListPatientCommand instance is returned to NewLogicManager and its execute method is called.
+
+* ListDoctorCommand/ListPatientCommand#execute then calls NewModel#updateFilteredDoctorList/updateFilteredPatientList with the predicate PREDICATE_SHOW_ALL_DOCTORS/PREDICATE_SHOW_ALL_PATIENTS.
+
+* The FilteredDoctorList/FilteredPatientList is updated to show all doctors/patient by calling ObservableList#setPredicate.
+
+Step 3: A CommandResult object is created with a message indicating success, and this result is returned to the Ui to be displayed to the user.
+
+**UML Diagrams**
+1. Sequence Diagram
+
+The following sequence diagram shows how the list doctor operation would work:
+![ListDoctorSequence](images/ListDoctorSequence.png)
+
+The following sequence diagram shows how the list patient operation would work:
+![ListPatientSequence](images/ListPatientSequence.png)
+
+The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
+![ListCommandActivity](images/ListCommandActivityDiagram.png)
+
+### List Appointments
+
+**Introduction**
+
+This section describes the feature that allows users to list appointments in the MediConnect database. Users can either list all appointments or filter them based on the NRIC of doctors or patients.
+
+#### Implementation
+
+The listing of appointments in MediConnect is facilitated by the NewLogicManager, which implements the NewLogic interface. It holds a NewAddressBookParser that parses the user input, and a NewModel where the command is executed. Key methods involved include:
+
+NewLogicManager#execute() — Executes the given user String input and returns a CommandResult.
+ListAppointmentCommandParser#parse() — Parses the user input to create a ListAppointmentCommand.
+ListAppointmentCommand#execute() — Filters the list of appointments based on the given predicate.
+These operations are exposed in the UI interface as Ui#executeCommand().
+
+
+Here's how the ListAppointmentCommand mechanism behaves at each step:
+
+Step 1: The user inputs list_a to list all appointments or list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC to filter appointments.
+* The list_a command triggers NewAddressBookParser#parseCommand, which identifies the command word and calls ListAppointmentCommandParser#parse to handle the arguments.
+
+Step 2: The ListAppointmentCommandParser#parse method checks for the presence of optional flags like -dic for doctor NRIC and -pic for patient NRIC. Based on these, it creates appropriate Predicate objects.
+
+Step 3: A new ListAppointmentCommand instance is created using the Predicate object(s).
+
+Step 4: The created ListAppointmentCommand instance is returned to NewLogicManager, and its execute method is called.
+* ListAppointmentCommand#execute filters the list of appointments in NewModel using the specified predicate(s).
+
+Step 5: The filtered list is displayed to the user through the UI.
+
+**UML Diagrams**
+
+The following sequence diagram shows how the list appointment operation would work:
+![ListPatientSequence](images/ListAppointmentSequence.png)
+
+The following activity diagram summarizes what happens when a user wants to list a new appointment:
+![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
+
 ### Add appointmennt/doctor/patient feature
 This section describes the add appointment/doctor/patient features.
 
@@ -304,7 +419,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Store selected Patient in `CommandResult` and retrieve directly from there.
     * Pros: No changes to the `Model` and `Logic` interface required.
     * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
-
 
 ### \[Proposed\] Undo/redo feature
 
