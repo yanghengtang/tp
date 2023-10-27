@@ -34,6 +34,7 @@ import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewDoctorCommand;
+import seedu.address.logic.commands.ViewPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
@@ -172,11 +173,19 @@ public class MediConnectParserTest {
                 "view_a 1");
         assertEquals(new ViewAppointmentCommand(INDEX_FIRST_PERSON), command);
     }
+
     @Test
     public void parseCommand_viewDoctor() throws Exception {
         ViewDoctorCommand command = (ViewDoctorCommand) parser.parseCommand(
                 "view_d 1");
         assertEquals(new ViewDoctorCommand(INDEX_FIRST_DOCTOR), command);
+    }
+
+    @Test
+    public void parseCommand_viewPatient() throws Exception {
+        ViewPatientCommand command = (ViewPatientCommand) parser.parseCommand(
+                "view_p 1");
+        assertEquals(new ViewPatientCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
