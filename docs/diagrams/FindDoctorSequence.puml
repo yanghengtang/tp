@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box NewLogic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":FindDoctorCommandParser" as FindDoctorCommandParser LOGIC_COLOR
+participant "d:FindDoctor" as FindDoctor LOGIC_COLOR
+participant ":NameContainsKeywordsDoctorPredicate" as NameContainsKeywordsDoctorPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find_d John")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("find_d John")
+activate MediConnectParser
+
+create FindDoctorCommandParser
+MediConnectParser -> FindDoctorCommandParser
+activate FindDoctorCommandParser
+
+
+FindDoctorCommandParser --> MediConnectParser
+deactivate FindDoctorCommandParser
+
+MediConnectParser -> FindDoctorCommandParser : parse("John")
+activate FindDoctorCommandParser
+
+create FindDoctor
+FindDoctorCommandParser -> FindDoctor :
+activate FindDoctor
+
+create NameContainsKeywordsDoctorPredicate
+FindDoctor -> NameContainsKeywordsDoctorPredicate : NameContainsKeywordsDoctorPredicate([John])
+activate NameContainsKeywordsDoctorPredicate
+NameContainsKeywordsDoctorPredicate --> FindDoctor : predicate
+deactivate NameContainsKeywordsDoctorPredicate
+
+
+FindDoctor --> FindDoctorCommandParser : d
+deactivate FindDoctor
+
+FindDoctorCommandParser --> MediConnectParser : d
+deactivate FindDoctorCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindDoctorCommandParser -[hidden]-> MediConnectParser
+destroy FindDoctorCommandParser
+
+MediConnectParser --> LogicManager : d
+deactivate MediConnectParser
+
+LogicManager -> FindDoctor : execute()
+activate FindDoctor
+
+FindDoctor -> Model : getFilteredDoctorList(predicate)
+activate Model
+
+Model --> FindDoctor
+deactivate Model
+
+create CommandResult
+FindDoctor -> CommandResult
+activate CommandResult
+
+CommandResult --> FindDoctor
+deactivate CommandResult
+
+FindDoctor --> LogicManager : result
+deactivate FindDoctor
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

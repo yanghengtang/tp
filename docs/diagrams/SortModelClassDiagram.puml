@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nComparable" as Comparable
+Class Nric
+Class Name
+Class Phone
+Class "{abstract}\nAppointmentTime" as AppointmentTime
+Class AppointmentStartTime
+Class AppointmentEndTime
+
+Name .up.|> Comparable
+Nric .up.|> Comparable
+Phone .up.|> Comparable
+AppointmentTime .up.|> Comparable
+AppointmentStartTime -up-|> AppointmentTime
+AppointmentEndTime -up-|> AppointmentTime
+@enduml

@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents a time to be used in Appointment.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointmentTime(String)}
  */
-public abstract class AppointmentTime {
+public abstract class AppointmentTime implements Comparable<AppointmentTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment %s date and time should be of the format YYYY-MM-DD HH:mm ";
     public static final String DATETIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
@@ -68,6 +68,16 @@ public abstract class AppointmentTime {
     @Override
     public int hashCode() {
         return time.hashCode();
+    }
+
+    @Override
+    public int compareTo(AppointmentTime time) {
+        if (this.time.isBefore(time.time)) {
+            return -1;
+        } else if (this.time.isAfter(time.time)) {
+            return 1;
+        }
+        return 0;
     }
 
     /**

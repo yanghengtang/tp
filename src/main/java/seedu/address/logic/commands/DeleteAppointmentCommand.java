@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Deletes a patient identified using it's displayed index from the database.
+ * Deletes an Appointment identified using it's displayed index from the database.
  */
 public class DeleteAppointmentCommand extends Command {
 
