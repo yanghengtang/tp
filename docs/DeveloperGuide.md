@@ -183,13 +183,13 @@ FindDoctorCommand/FindPatientCommand#execute filters the list of doctors/patient
 
 Step 5: The filtered list is displayed to the user through the UI.
 
-The following sequence diagram shows how the find doctor operation would work: SortSequenceDiagram
+The following sequence diagram shows how the find doctor operation would work:
     ![FindDoctorSequence](images/FindDoctorSequence.png)
 
-The following sequence diagram shows how the find patient operation would work: SortSequenceDiagram
+The following sequence diagram shows how the find patient operation would work:
     ![FindPatientSequence](images/FindPatientSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to find a new doctor/patient: FindYZCommandActivityDiagram
+The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
     ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
 ### List Doctors / Patients
@@ -223,13 +223,13 @@ Step 3: A CommandResult object is created with a message indicating success, and
 **UML Diagrams**
 1. Sequence Diagram
 
-The following sequence diagram shows how the list doctor operation would work: SortSequenceDiagram
+The following sequence diagram shows how the list doctor operation would work:
 ![ListDoctorSequence](images/ListDoctorSequence.png)
 
-The following sequence diagram shows how the list patient operation would work: SortSequenceDiagram
+The following sequence diagram shows how the list patient operation would work:
 ![ListPatientSequence](images/ListPatientSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to list a new patient/doctor: ListYZCommandActivityDiagram
+The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
 ![ListCommandActivity](images/ListCommandActivityDiagram.png)
 
 ### List Appointments
@@ -263,12 +263,11 @@ Step 4: The created ListAppointmentCommand instance is returned to NewLogicManag
 Step 5: The filtered list is displayed to the user through the UI.
 
 **UML Diagrams**
-1. Sequence Diagram
 
-The following sequence diagram shows how the list appointment operation would work: SortSequenceDiagram
+The following sequence diagram shows how the list appointment operation would work:
 ![ListPatientSequence](images/ListAppointmentSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to list a new appointment: ListAppointmentCommandActivityDiagram
+The following activity diagram summarizes what happens when a user wants to list a new appointment:
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
