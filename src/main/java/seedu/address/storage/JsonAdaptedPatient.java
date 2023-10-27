@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import java.util.HashSet;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,16 +11,16 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Patient}.
  */
-class JsonAdaptedPatient {
+class JsonAdaptedPatient extends JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s field is missing!";
 
-    private final String nric;
-    private final String name;
     private final String phone;
 
     /**
@@ -25,18 +28,17 @@ class JsonAdaptedPatient {
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
-                              @JsonProperty("phone") String phone) {
-        this.name = name;
+                              @JsonProperty("phone") String phone, @JsonProperty("remark") String remark,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        super(nric, name, remark, tags);
         this.phone = phone;
-        this.nric = nric;
     }
 
     /**
      * Converts a given {@code Patient} into this class for Jackson use.
      */
     public JsonAdaptedPatient(Patient source) {
-        nric = source.getNric().nric;
-        name = source.getName().fullName;
+        super(source);
         phone = source.getPhone().value;
     }
 
@@ -46,13 +48,10 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
+        final Name modelName = getModelName();
+        final Nric modelNric = getModelNric();
+        final Remark modelRemark = getModelRemark();
+        final HashSet<Tag> modelTags = getModelTags();
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -62,15 +61,6 @@ class JsonAdaptedPatient {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
-        }
-        if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
-        }
-        final Nric modelNric = new Nric(nric);
-
-        return new Patient(modelName, modelPhone, modelNric);
+        return new Patient(modelName, modelPhone, modelNric, modelRemark, modelTags);
     }
-
 }
