@@ -18,6 +18,7 @@ public class AppointmentWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(AppointmentWindow.class);
     private static final String FXML = "AppointmentWindow.fxml";
+    private static final String DATE_TIME_FORMAT = "MMM d yyyy HH:mm";
 
     private Appointment appointment;
 
@@ -57,8 +58,8 @@ public class AppointmentWindow extends UiPart<Stage> {
     public void updateSelectedAppointment(Appointment appointment) {
         this.appointment = appointment;
         startDateTime.setText(appointment.getStartTime().getTime().format(DateTimeFormatter
-                .ofPattern("MMM d yyyy HH:mm")));
-        endDateTime.setText(appointment.getEndTime().getTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
+                .ofPattern(DATE_TIME_FORMAT)));
+        endDateTime.setText(appointment.getEndTime().getTime().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
         patientNric.setText(appointment.getPatientNric().nric);
         doctorNric.setText(appointment.getDoctorNric().nric);
         remark.setText(appointment.getRemark().remark);

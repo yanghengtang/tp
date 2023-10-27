@@ -13,6 +13,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class AppointmentCard extends UiPart<Region> {
     private static final String FXML = "AppointmentListCard.fxml";
+    private static final String DATE_TIME_FORMAT = "MMM d yyyy HH:mm";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -45,8 +46,8 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(String.format("%d", displayedIndex));
         startDateTime.setText(appointment.getStartTime().getTime().format(DateTimeFormatter
-                .ofPattern("MMM d yyyy HH:mm")));
-        endDateTime.setText(appointment.getEndTime().getTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
+                .ofPattern(DATE_TIME_FORMAT)));
+        endDateTime.setText(appointment.getEndTime().getTime().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
         patientNric.setText(appointment.getPatientNric().nric);
         doctorNric.setText(appointment.getDoctorNric().nric);
     }
