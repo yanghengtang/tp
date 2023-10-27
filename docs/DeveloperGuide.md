@@ -479,13 +479,9 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: No changes to the `Model` and `Logic` interface required.
     * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
 
+
 ### \[Proposed\] Undo/redo feature
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+#### Proposed implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
