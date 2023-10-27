@@ -154,6 +154,79 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add appointmennt/doctor/patient feature
+This section describes the add appointment/doctor/patient features.
+
+#### Implementation
+The adding of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
+
+Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `add_a pic\T0123456J \n dic\S9876543F \n from\2023-12-01 07:30 \n to\2023-12-01 08:30` to add an appointment into MediConnect.
+The `add_a` command calls `AddAppointmentCommandParser#parse` which parses the parameters that build the appointment to be added.
+A new `AddAppointmentCommand` instance will be created with the correct `Appointment` object to be added.
+
+Step 3. The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`AddAppointmentCommand#execute` then calls `Model#addAppointment` and with the given `Appointment`.
+The `Appointment` is then added to the filteredAppointmentList by calling `FilteredList#addAppointment`.
+
+The example usage scenario for the add patient and add doctor mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the add appointment operation would work:
+![AddAppoointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the add doctor operation would work:
+![AddDoctorSequenceDiagram](images/AddDoctorSequenceDiagram.png)
+
+The following sequence diagram shows how the add patient operation would work:
+![AddPatientSequenceDiagram](images/AddPatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
+![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
+
+### Delete appointmennt/doctor/patient feature
+This section describes the delete appointment/doctor/patient features.
+
+#### Implementation
+The deletion of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
+
+Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList in its default sorting order.
+Step 2. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
+The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
+A new `DeleteAppointmentCommand` instance will be created
+
+Step 3. The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`DeleteAppointmentCommand#execute` then calls `Model#deleteAppointment` and with the given `Index`.
+The `Appointment` at the `Index` is then deleted from the filteredAppointmentList by calling `FilteredList#deleteAppointment`.
+
+The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the delete appointment operation would work:
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the delete doctor operation would work:
+![DeleteAppointmentSequenceDiagram](images/DeleteDoctorSequenceDiagram.png)
+
+The following sequence diagram shows how the delete patient operation would work:
+![DeleteAppointmentSequenceDiagram](images/DeletePatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
+![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
+
 ### \[Proposed\] View Appointment / Doctor / Patient feature
 
 #### Proposed implementation
@@ -335,7 +408,7 @@ Given below is an example usage scenario on how the sort mechanism behaves at ea
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 todo: insert diagram
 
-Step 2. The user executes `list_a s\start o\asc` to sort the patients in ascending order by name. 
+Step 2. The user executes `list_a s\start o\asc` to sort the patients in ascending order by name.
 The `list_a` command calls `ListAppointmentCommandParser#parse` which parses the parameters to sort the list by.
 A new `ListAppointmentCommand` instance will be created with the correct `Predicate` and `Comparator`.
 If no parameters for the sorting order is provided, the `Comparator` with the default field to sort by and order will be selected instead.
@@ -350,7 +423,7 @@ The following sequence diagram shows how the sort operation work:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 The sort doctor and sort patient functionality works in a similar manner. It selects the relevant `Comparator`, constructs the `ListDoctorCommand`/`ListPatientCommand`,
-and sorts the corresponding `FilteredList` within `Database`. 
+and sorts the corresponding `FilteredList` within `Database`.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -367,7 +440,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Let `Patient`, `Doctor`, and `Appointment` implement `Comparable` interface.
     * Pros: Easy to implement, works with `Arrays.sort()` and `Collection.sort()`.
     * Cons: There can only be 1 way to sort `Patient`, `Doctor`, and `Appointment`.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
