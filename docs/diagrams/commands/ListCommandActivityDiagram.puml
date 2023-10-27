@@ -1,0 +1,11 @@
+@startuml
+start
+:User enters ListYZCommand;
+floating note right
+    YZ = Doctor or Patient
+endnote
+:MediConnectParser parses command;
+:Update YZ list with PREDICATE_SHOW_ALL_YZ;
+:Return full list to user;
+stop
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters ListAppointmentCommand;
+:MediConnectParser parses command;
+:FindAppointmentCommandParser Parse arguments;
+
+if () then ([command is valid])
+    :Return filtered list based on \n(doctor and/or patient) predicate;
+else ([command is not valid])
+    :Show error message;
+endif
+stop
+@enduml
