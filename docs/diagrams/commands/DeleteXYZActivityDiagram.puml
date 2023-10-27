@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters DeleteYZCommand with a specified index;
+floating note right
+    XYZ = Appointment, Doctor or Patient
+end note
+:MediConnectParser parses the command;
+:AddXYZCommandParser parses the index specified provided;
+if () then ([command is valid])
+  :The XYZ item at specified index is removed \n from the FilteredXYZlist in database;
+else ([command is invalid])
+  :Outputs error message;
+endif
+
+stop
+
+@enduml
