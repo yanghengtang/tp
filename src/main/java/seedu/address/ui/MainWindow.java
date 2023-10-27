@@ -227,6 +227,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        appointmentWindow.hide();
+        doctorWindow.hide();
+        patientWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
