@@ -21,7 +21,7 @@ public class ViewPatientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the details of the patient identified by the "
-            + "index number used in the displayed appointment list.\n"
+            + "index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
