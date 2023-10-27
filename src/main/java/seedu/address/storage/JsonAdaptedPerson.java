@@ -7,6 +7,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
+/**
+ * A parallel class to {@link Person} for saving to/loading from file.
+ * Handles and validates name and nric.
+ */
 public abstract class JsonAdaptedPerson extends JsonAdaptedData {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s field is missing!";
 

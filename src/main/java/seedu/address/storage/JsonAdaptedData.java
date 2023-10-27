@@ -10,6 +10,10 @@ import seedu.address.model.Data;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A parallel class to {@link Data} for saving to/loading from file.
+ * Handles and validates remark and tags.
+ */
 public abstract class JsonAdaptedData {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s field is missing!";
 
