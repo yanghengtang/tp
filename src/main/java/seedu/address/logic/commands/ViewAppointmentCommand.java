@@ -13,22 +13,23 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Deletes an Appointment identified using it's displayed index from the database.
+ * Views an appointment identified using it's displayed index from the database.
  */
-public class DeleteAppointmentCommand extends Command {
+public class ViewAppointmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete_a";
+    public static final String COMMAND_WORD = "view_a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
+            + ": Views the details of the appointment identified by the "
+            + "index number used in the displayed appointment list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
+    public static final String MESSAGE_VIEW_APPOINTMENT_SUCCESS = "View Appointment: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteAppointmentCommand(Index targetIndex) {
+    public ViewAppointmentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,10 +42,10 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteAppointment(appointmentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                Messages.format(appointmentToDelete)));
+        Appointment appointmentToView = lastShownList.get(targetIndex.getZeroBased());
+        model.updateSelectedAppointment(appointmentToView);
+        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS,
+                Messages.format(appointmentToView)), true, false, false);
     }
 
     @Override
@@ -54,12 +55,12 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteAppointmentCommand)) {
+        if (!(other instanceof ViewAppointmentCommand)) {
             return false;
         }
 
-        DeleteAppointmentCommand otherDeleteAppointmentCommand = (DeleteAppointmentCommand) other;
-        return targetIndex.equals(otherDeleteAppointmentCommand.targetIndex);
+        ViewAppointmentCommand otherViewAppointmentCommand = (ViewAppointmentCommand) other;
+        return targetIndex.equals(otherViewAppointmentCommand.targetIndex);
     }
 
     @Override
@@ -73,5 +74,4 @@ public class DeleteAppointmentCommand extends Command {
                 .add("targetIndex", targetIndex)
                 .toString();
     }
-
 }

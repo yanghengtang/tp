@@ -139,14 +139,14 @@ public interface Model {
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
      */
-    void setDoctor(Doctor target, Doctor editedDoctor);
+    void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException;
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
      * {@code target} must exist in the database.
      * The NRIC of {@code editedPatient} must not be the same as another existing patient in the database.
      */
-    void setPatient(Patient target, Patient editedPatient);
+    void setPatient(Patient target, Patient editedPatient) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();

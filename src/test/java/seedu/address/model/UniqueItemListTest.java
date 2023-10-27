@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.lambdautil.CheckedFunctionUtil.unchecked;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -10,6 +11,11 @@ import static seedu.address.testutil.PersonUtil.ALICE_NAME;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NAME;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
+import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6_DIFFERENT_TIME;
 import static seedu.address.testutil.TypicalPatient.ALICE;
 import static seedu.address.testutil.TypicalPatient.ALICE_PHONE;
 import static seedu.address.testutil.TypicalPatient.BENSON;
@@ -24,6 +30,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -39,6 +47,7 @@ public class UniqueItemListTest {
     private final UniqueItemList<Patient> uniquePatientList = new UniqueItemList<>();
     private final UniqueItemList<Patient> uniquePatientList2 = new UniqueItemList<>();
     private final UniqueItemList<Doctor> uniqueDoctorList = new UniqueItemList<>();
+    private final UniqueItemList<Appointment> uniqueAppointmentList = new UniqueItemList<>();
 
     @Test
     public void contains_nullItem_throwsNullPointerException() {
@@ -141,6 +150,67 @@ public class UniqueItemListTest {
         uniquePatientList.add(TypicalPatient.ALICE);
         uniquePatientList.add(BOB);
         assertThrows(DuplicateItemException.class, () -> uniquePatientList.setItem(TypicalPatient.ALICE, BOB));
+    }
+
+    @Test
+    public void setMultipleItems_nullArgument_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePatientList.setMultipleItems(null, null));
+        assertThrows(NullPointerException.class, () ->
+                uniquePatientList.setMultipleItems(null, patient -> patient));
+        assertThrows(NullPointerException.class, () ->
+                uniquePatientList.setMultipleItems(patient -> true, null));
+    }
+
+    @Test
+    public void setMultipleItems_editedItemsHasDifferentIdentity_success() throws CommandException {
+        uniqueAppointmentList.add(APPOINTMENT_6);
+        uniqueAppointmentList.add(APPOINTMENT_6_DIFFERENT_TIME);
+        uniqueAppointmentList.add(APPOINTMENT_1);
+        uniqueAppointmentList.setMultipleItems(
+                appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC)),
+                unchecked(appointment -> new Appointment(
+                        new Nric(CARL_NRIC),
+                        appointment.getPatientNric(),
+                        appointment.getStartTime(),
+                        appointment.getEndTime(),
+                        appointment.getRemark(),
+                        appointment.getTags()
+                ))
+        );
+        // appointment list no longer has appointments with alice as doctor nric
+        assertFalse(uniqueAppointmentList.contains(
+                appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC))));
+
+        // appointments have been changed to the correct doctor nric
+        assertTrue(uniqueAppointmentList.contains(
+                appointment -> appointment.getDoctorNric().equals(new Nric(CARL_NRIC))
+        ));
+
+        // other appointments are not edited
+        assertTrue(uniqueAppointmentList.contains(
+                appointment -> appointment.getDoctorNric().equals(new Nric(BENSON_NRIC))
+        ));
+
+        // appointment with patient nric as the changed doctor nric are unchanged
+        assertTrue(uniqueAppointmentList.contains(
+                appointment -> appointment.getPatientNric().equals(new Nric(ALICE_NRIC))));
+    }
+
+    @Test
+    public void setMultipleItems_transformationThrowsCommandException() throws CommandException {
+        uniqueAppointmentList.add(APPOINTMENT_6);
+        uniqueAppointmentList.add(APPOINTMENT_6_DIFFERENT_TIME);
+        assertThrows(CommandException.class, () -> uniqueAppointmentList.setMultipleItems(
+                appointment -> appointment.getDoctorNric().equals(new Nric(ALICE_NRIC)),
+                unchecked(appointment -> new Appointment(
+                        new Nric(FIONA_NRIC),
+                        appointment.getPatientNric(),
+                        appointment.getStartTime(),
+                        appointment.getEndTime(),
+                        appointment.getRemark(),
+                        appointment.getTags()
+                ))
+        ));
     }
 
     @Test
