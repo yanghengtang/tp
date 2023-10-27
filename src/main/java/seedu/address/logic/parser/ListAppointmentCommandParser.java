@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
-import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -19,7 +19,7 @@ import seedu.address.model.person.Nric;
 /**
  * Parses input arguments and creates a new ListAppointmentCommand object
  */
-public class ListAppointmentCommandParser implements NewParser<ListAppointmentCommand> {
+public class ListAppointmentCommandParser implements Parser<ListAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListAppointmentCommand

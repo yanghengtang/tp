@@ -24,12 +24,15 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
+import seedu.address.logic.commands.EditPatientCommand;
+import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.FindDoctorCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
+import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
@@ -42,12 +45,13 @@ import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.DoctorUtil;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PatientUtil;
 
-public class NewAddressBookParserTest {
+public class MediConnectParserTest {
 
-    private final NewAddressBookParser parser = new NewAddressBookParser();
+    private final MediConnectParser parser = new MediConnectParser();
 
     @Test
     public void parseCommand_addAppointment() throws Exception {
@@ -103,6 +107,16 @@ public class NewAddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_editPatient() throws Exception {
+        Patient patient = new PatientBuilder().build();
+        EditPatientDescriptor descriptor =
+                new EditPatientDescriptorBuilder(patient).build();
+        EditPatientCommand command = (EditPatientCommand) parser.parseCommand("edit_p 1 "
+                + PatientUtil.getEditPatientDescriptorDetails(descriptor));
+        assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_editAppointment() throws Exception {
         EditAppointmentCommand command = (EditAppointmentCommand) parser.parseCommand(
                 "edit_a 1 pic\\T0123456N dic\\T0234872G from\\2023-09-11 11:00 to\\2023-09-11 11:15");
@@ -149,6 +163,13 @@ public class NewAddressBookParserTest {
         assertTrue(parser.parseCommand(ListAppointmentCommand.COMMAND_WORD
                 + " pic\\ T0123456J dic\\ S2936283D") instanceof ListAppointmentCommand);
 
+    }
+
+    @Test
+    public void parseCommand_viewAppointment() throws Exception {
+        ViewAppointmentCommand command = (ViewAppointmentCommand) parser.parseCommand(
+                "view_a 1");
+        assertEquals(new ViewAppointmentCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

@@ -10,14 +10,14 @@ import java.util.Objects;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.patient.Patient;
 
 /**
  * Adds a patient to the database.
  */
-public class AddPatientCommand extends NewCommand {
+public class AddPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "add_p";
 
@@ -48,7 +48,7 @@ public class AddPatientCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.addPatient(toAdd);

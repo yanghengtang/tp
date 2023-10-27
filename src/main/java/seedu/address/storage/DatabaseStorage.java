@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyDatabase;
 
 /**
@@ -23,13 +24,13 @@ public interface DatabaseStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException;
+    Optional<ReadOnlyDatabase> readDatabase() throws DataLoadingException, CommandException;
 
     /**
      * @see #getDatabaseFilePath()
      */
     Optional<ReadOnlyDatabase> readDatabase(Path filePath)
-            throws DataLoadingException;
+            throws DataLoadingException, CommandException;
 
     /**
      * Saves the given {@link ReadOnlyDatabase} to the storage.

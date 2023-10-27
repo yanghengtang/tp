@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":PatientWindow" as PatientWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("view_p 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("view_p 1")
+activate LogicManager
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow -> LogicManager : getSelectedPatient()
+activate LogicManager
+
+LogicManager --> MainWindow : patient
+deactivate LogicManager
+
+MainWindow -> PatientWindow : updatePatient(patient)
+activate PatientWindow
+
+PatientWindow --> MainWindow
+deactivate PatientWindow
+
+alt PatientWindow is opened
+    MainWindow -> PatientWindow : focus()
+    activate PatientWindow
+
+    PatientWindow --> MainWindow
+    deactivate PatientWindow
+
+else PatientWindow not opened
+    MainWindow -> PatientWindow : show()
+    activate PatientWindow
+
+    PatientWindow --> MainWindow
+    deactivate PatientWindow
+end
+
+
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

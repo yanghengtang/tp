@@ -1,9 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Patient objects.
@@ -16,6 +21,8 @@ public class PatientBuilder {
     private Name name;
     private Phone phone;
     private Nric nric;
+    private Remark remark;
+    private HashSet<Tag> tags;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -33,6 +40,8 @@ public class PatientBuilder {
         name = patientToCopy.getName();
         phone = patientToCopy.getPhone();
         nric = patientToCopy.getNric();
+        remark = patientToCopy.getRemark();
+        tags = patientToCopy.getTags();
     }
 
     /**
@@ -59,7 +68,30 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code remark} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withTags(Tag... tags) {
+        HashSet<Tag> tagSet = new HashSet<>(Arrays.asList(tags));
+        this.tags = tagSet;
+        return this;
+    }
+
+    /**
+     * Builds a {@code Patient} with the same attributes.
+     */
     public Patient build() {
-        return new Patient(name, phone, nric);
+        if (this.remark == null || this.tags == null) {
+            return new Patient(name, phone, nric);
+        }
+        return new Patient(name, phone, nric, remark, tags);
     }
 }

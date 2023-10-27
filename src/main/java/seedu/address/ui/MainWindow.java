@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.NewLogic;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private NewLogic newLogic;
+    private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
@@ -61,15 +61,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, NewLogic newLogic) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        this.newLogic = newLogic;
+        this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(newLogic.getGuiSettings());
+        setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -118,19 +118,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        appointmentListPanel = new AppointmentListPanel(newLogic.getFilteredAppointmentList());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        patientListPanel = new PatientListPanel(newLogic.getFilteredPatientList());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        doctorListPanel = new DoctorListPanel(newLogic.getFilteredDoctorList());
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(newLogic.getDatabaseFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDatabaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -172,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        newLogic.setGuiSettings(guiSettings);
+        logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -196,7 +196,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = newLogic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

@@ -15,18 +15,18 @@ import seedu.address.model.Database;
 import seedu.address.model.ReadOnlyDatabase;
 import seedu.address.model.UserPrefs;
 
-public class NewStorageManagerTest {
+public class StorageManagerTest {
 
     @TempDir
     public Path testFolder;
 
-    private NewStorageManager storageManager;
+    private StorageManager storageManager;
 
     @BeforeEach
     public void setUp() {
         JsonDatabaseStorage databaseStorage = new JsonDatabaseStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new NewStorageManager(databaseStorage, userPrefsStorage);
+        storageManager = new StorageManager(databaseStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,9 +48,9 @@ public class NewStorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void databaseReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the NewStorageManager is properly wired to the
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonDatabaseStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonDatabaseStorageTest} class.
          */
@@ -61,8 +61,13 @@ public class NewStorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getDatabaseFilePath() {
         assertNotNull(storageManager.getDatabaseFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
 }

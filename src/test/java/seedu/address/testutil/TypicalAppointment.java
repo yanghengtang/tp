@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_END_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_START_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DOCTOR_NRIC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.model.DataTest.PARACETAMOL_TAG;
+import static seedu.address.model.DataTest.PEDIATRICIAN_TAG;
+import static seedu.address.model.DataTest.VALID_REMARK_STRING;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
@@ -27,6 +30,14 @@ public class TypicalAppointment {
             .withPatientNric(ALICE_NRIC)
             .withStartTime("2023-09-11 07:30")
             .withEndTime("2023-09-11 08:00")
+            .build();
+
+    public static final Appointment APPOINTMENT_1_WITH_REMARKS = new AppointmentBuilder().withDoctorNric(BENSON_NRIC)
+            .withPatientNric(ALICE_NRIC)
+            .withStartTime("2023-09-11 07:30")
+            .withEndTime("2023-09-11 08:00")
+            .withRemark(VALID_REMARK_STRING)
+            .withTags(PEDIATRICIAN_TAG, PARACETAMOL_TAG)
             .build();
 
     public static final Appointment APPOINTMENT_2 = new AppointmentBuilder().withDoctorNric(CARL_NRIC)
@@ -57,6 +68,13 @@ public class TypicalAppointment {
             .withPatientNric(FIONA_NRIC)
             .withStartTime("2023-09-11 13:30")
             .withEndTime("2023-09-11 14:00")
+            .build();
+
+    public static final Appointment APPOINTMENT_6_DIFFERENT_TIME = new AppointmentBuilder()
+            .withDoctorNric(ALICE_NRIC)
+            .withPatientNric(FIONA_NRIC)
+            .withStartTime("2023-09-11 14:00")
+            .withEndTime("2023-09-11 14:30")
             .build();
 
     // Manually added - Doctor's and Patient's details found in {@code CommandTestUtil}

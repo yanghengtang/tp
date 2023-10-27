@@ -3,19 +3,41 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.model.appointment.AppointmentStartTime.DATE_TIME_INPUT_FORMATTER;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1_WITH_REMARKS;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_2;
 
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {
+
+    @Test
+    public void appointmentConsturctor() {
+        //same patient and doctor nric
+        Nric duplicateNric = new Nric(VALID_NRIC_AMY);
+        AppointmentStartTime startTime = new AppointmentStartTime(VALID_APPOINTMENT_START_TIME);
+        AppointmentEndTime endTime = new AppointmentEndTime(VALID_APPOINTMENT_END_TIME);
+        assertThrows(CommandException.class, () -> new Appointment(duplicateNric, duplicateNric, startTime, endTime));
+
+        //swapped end time and start time
+        Nric patientNric = new Nric(VALID_NRIC_AMY);
+        Nric doctorNric = new Nric(VALID_NRIC_BOB);
+        AppointmentStartTime startTime2 = new AppointmentStartTime(VALID_APPOINTMENT_END_TIME);
+        AppointmentEndTime endTime2 = new AppointmentEndTime(VALID_APPOINTMENT_START_TIME);
+        assertThrows(CommandException.class, () -> new Appointment(patientNric, doctorNric, startTime2, endTime2));
+    }
 
     @Test
     public void isSame() {
@@ -35,7 +57,10 @@ public class AppointmentTest {
 
         // different Date Time -> returns false
         assertFalse(APPOINTMENT_1.isSame(new AppointmentBuilder(APPOINTMENT_1)
-                .withStartTime("2023-12-01 10:30").build()));
+                .withStartTime("2023-09-11 07:00").build()));
+
+        // same appointment with remarks and tags -> returns true
+        assertTrue(APPOINTMENT_1.isSame(APPOINTMENT_1_WITH_REMARKS));
     }
 
     @Test
@@ -65,7 +90,7 @@ public class AppointmentTest {
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different startTime -> returns false
-        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-12-01 12:00").build();
+        editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withStartTime("2023-09-11 07:00").build();
         assertFalse(APPOINTMENT_1.equals(editedAppointment));
 
         // different endTime -> returns false

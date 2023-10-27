@@ -33,7 +33,9 @@ public abstract class Data implements Listable {
     public Data(Remark remark, HashSet<? extends Tag> tags) {
         requireAllNonNull(remark, tags);
         this.remark = remark;
-        this.tags = (HashSet<Tag>) tags.clone();
+        @SuppressWarnings("unchecked")
+        HashSet<Tag> tagsClone = (HashSet<Tag>) tags.clone();
+        this.tags = tagsClone;
     }
 
     public final Remark getRemark() {
@@ -41,6 +43,8 @@ public abstract class Data implements Listable {
     }
 
     public final HashSet<Tag> getTags() {
-        return (HashSet<Tag>) this.tags.clone();
+        @SuppressWarnings("unchecked")
+        HashSet<Tag> clone = (HashSet<Tag>) this.tags.clone();
+        return clone;
     }
 }

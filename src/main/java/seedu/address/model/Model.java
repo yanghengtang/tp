@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.doctor.Doctor;
@@ -13,7 +14,7 @@ import seedu.address.model.person.patient.Patient;
 /**
  * The API of the Model component.
  */
-public interface NewModel {
+public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
@@ -111,7 +112,7 @@ public interface NewModel {
      * Adds the given appointment.
      * {@code appointment} must not already exist in the database.
      */
-    void addAppointment(Appointment appointment);
+    void addAppointment(Appointment appointment) throws CommandException;
 
     /**
      * Adds the given doctor.
@@ -131,21 +132,21 @@ public interface NewModel {
      * The doctor, patient and dateTime of {@code editedAppointment} must not be the same as another existing
      * appointment in the database.
      */
-    void setAppointment(Appointment target, Appointment editedAppointment);
+    void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException;
 
     /**
      * Replaces the given doctor {@code target} with {@code editedDoctor}.
      * {@code target} must exist in the database.
      * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
      */
-    void setDoctor(Doctor target, Doctor editedDoctor);
+    void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException;
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
      * {@code target} must exist in the database.
      * The NRIC of {@code editedPatient} must not be the same as another existing patient in the database.
      */
-    void setPatient(Patient target, Patient editedPatient);
+    void setPatient(Patient target, Patient editedPatient) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
@@ -173,4 +174,31 @@ public interface NewModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /** Returns the selected appointment in the model */
+    Appointment getSelectedAppointment();
+
+    /** Returns the selected doctor in the model */
+    Doctor getSelectedDoctor();
+
+    /** Returns the selected patient in the model */
+    Patient getSelectedPatient();
+
+    /**
+     * Updates the selected appointment with the given {@code appointment}.
+     * @throws NullPointerException if {@code appointment} is null.
+     */
+    void updateSelectedAppointment(Appointment appointment);
+
+    /**
+     * Updates the selected doctor with the given {@code doctor}.
+     * @throws NullPointerException if {@code doctor} is null.
+     */
+    void updateSelectedDoctor(Doctor doctor);
+
+    /**
+     * Updates the selected patient with the given {@code patient}.
+     * @throws NullPointerException if {@code patient} is null.
+     */
+    void updateSelectedPatient(Patient patient);
 }

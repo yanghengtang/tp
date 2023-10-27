@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_NRIC;
-import static seedu.address.model.NewModel.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +16,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.NewModel;
+import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
@@ -25,7 +25,7 @@ import seedu.address.model.person.Nric;
 /**
  * Edits the details of an existing appointment in the database.
  */
-public class EditAppointmentCommand extends NewCommand {
+public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_a";
 
@@ -62,7 +62,7 @@ public class EditAppointmentCommand extends NewCommand {
     }
 
     @Override
-    public CommandResult execute(NewModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
@@ -87,7 +87,8 @@ public class EditAppointmentCommand extends NewCommand {
      * edited with {@code editAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
+                                                       EditAppointmentDescriptor editAppointmentDescriptor)
+            throws CommandException {
         assert appointmentToEdit != null;
 
         Nric updatedPatientNric = editAppointmentDescriptor.getPatientNric().orElse(appointmentToEdit.getPatientNric());

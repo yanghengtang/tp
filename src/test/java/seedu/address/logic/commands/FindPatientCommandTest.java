@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalPatient.CARL;
 import static seedu.address.testutil.TypicalPatient.ELLE;
@@ -14,19 +14,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.NewModel;
-import seedu.address.model.NewModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 
 /**
- * Contains integration tests (interaction with the NewModel) for {@code FindPatientCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindPatientCommand}.
  */
 public class FindPatientCommandTest {
-    private NewModel model = new NewModelManager(getTypicalDatabase(), new UserPrefs());
-    private NewModel expectedModel = new NewModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    }
 
     @Test
     public void equals() {

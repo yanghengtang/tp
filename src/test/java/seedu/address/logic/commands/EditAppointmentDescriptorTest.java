@@ -3,14 +3,14 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_1;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_APPOINTMENT_2;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_END_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_APPOINTMENT_START_TIME;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DOCTOR_NRIC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_1;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
 
 import java.util.Objects;
 
