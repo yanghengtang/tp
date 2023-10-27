@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":ViewPatientCommandParser" as ViewPatientCommandParser LOGIC_COLOR
+participant "vp:ViewPatientCommand" as ViewPatientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view_p 1")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("view_p 1")
+activate MediConnectParser
+
+create ViewPatientCommandParser
+MediConnectParser -> ViewPatientCommandParser
+activate ViewPatientCommandParser
+
+ViewPatientCommandParser --> MediConnectParser
+deactivate ViewPatientCommandParser
+
+MediConnectParser -> ViewPatientCommandParser : parse("1")
+activate ViewPatientCommandParser
+
+create ViewPatientCommand
+ViewPatientCommandParser -> ViewPatientCommand
+activate ViewPatientCommand
+
+ViewPatientCommand --> ViewPatientCommandParser : vp
+deactivate ViewPatientCommand
+
+ViewPatientCommandParser --> MediConnectParser : vp
+deactivate ViewPatientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewPatientCommandParser -[hidden]-> MediConnectParser
+destroy ViewPatientCommandParser
+
+MediConnectParser --> LogicManager : vp
+deactivate MediConnectParser
+
+LogicManager -> ViewPatientCommand : execute()
+activate ViewPatientCommand
+
+ViewPatientCommand -> Model : updateSelectedPatient(patient)
+activate Model
+
+Model --> ViewPatientCommand
+deactivate Model
+
+create CommandResult
+ViewPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewPatientCommand
+deactivate CommandResult
+
+ViewPatientCommand --> LogicManager : result
+deactivate ViewPatientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

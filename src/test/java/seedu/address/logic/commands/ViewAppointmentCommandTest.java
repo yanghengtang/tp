@@ -55,10 +55,10 @@ public class ViewAppointmentCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        ViewAppointmentCommand viewPatientCommand = new ViewAppointmentCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
+        ViewAppointmentCommand viewAppointmentCommand = new ViewAppointmentCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewPatientCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertCommandFailure(viewAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test

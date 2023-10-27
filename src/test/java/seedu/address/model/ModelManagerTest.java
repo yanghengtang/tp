@@ -191,7 +191,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasDoctor_doctorWithDifferentName_returnsTrue() {
+    public void hasDoctor_doctorWithDifferentName_returnsTrue() throws CommandException {
         Doctor editedAlice = new DoctorBuilder(ALICE).withName(VALID_NAME_BOB).build();
         modelManager.addDoctor(ALICE);
         modelManager.setDoctor(ALICE, editedAlice);
@@ -199,7 +199,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPatient_patientWithDifferentName_returnsTrue() {
+    public void hasPatient_patientWithDifferentName_returnsTrue() throws CommandException {
         Patient editedCarl = new PatientBuilder(CARL).withName(VALID_NAME_BOB).build();
         modelManager.addPatient(CARL);
         modelManager.setPatient(CARL, editedCarl);

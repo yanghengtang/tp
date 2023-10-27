@@ -154,6 +154,85 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] View Appointment / Doctor / Patient feature
+
+#### Proposed implementation
+
+The proposed View Patient mechanism is facilitated by `ModelManager`. It extends `Model` and stores the appointment, doctor 
+and patient to be shown as `selectedPatient`, `selectedPatient` and `selectedPatient` respectively. Additionally, it implements the following operations:
+
+- `ModelManager#getSelectedAppointment()`  —  Returns the Appointment currently selected in the Model.
+- `ModelManager#updateSelectedAppointment()`  —  Sets the selected Appointment currently in the Model.
+- `ModelManager#getSelectedDoctor()`  —  Returns the Doctor currently selected in the Model.
+- `ModelManager#updateSelectedDoctor()`  —  Sets the selected Doctor currently in the Model.
+- `ModelManager#getSelectedPatient()`  —  Returns the Patient currently selected in the Model.
+- `ModelManager#updateSelectedPatient()`  —  Sets the selected Patient currently in the Model.
+
+The getter operations are exposed in the `Logic` interface as `Logic#getSelectedAppointment()`, `Logic#getSelectedDoctor()` and `Logic#getSelectedPatient()`.
+
+It is also facilitated by `AppointmentWindow`, `DoctorWindow` and `PatientWindow` which extend `UiPart`. They are stored in the `MainWindow` and implements the following operations:
+
+- `AppointmentWindow#updateAppointment()`  —  Sets the Appointment to be shown in the window.
+- `AppointmentWindow#show()`  —  Displays the Appointment Window.
+- `AppointmentWindow#focus()`  —  Toggles to the Appointment Window.
+- `DoctorWindow#updatePatient()`  —  Sets the Doctor to be shown in the window.
+- `DoctorWindow#show()`  —  Displays the Doctor Window.
+- `DoctorWindow#focus()`  —  Toggles to the Doctor Window.
+- `PatientWindow#updatePatient()`  —  Sets the Patient to be shown in the window.
+- `PatientWindow#show()`  —  Displays the Patient Window.
+- `PatientWindow#focus()`  —  Toggles to the Patient Window.
+
+Lastly, it is also facilitated by `CommandResult` which stores the boolean value `showAppointment`, `showDoctor` and `showPatient` and implement the following operations:
+
+- `CommandResult#isShowAppointment()`  —  Indicates if the command is View Appointment
+- `CommandResult#isShowDoctor()`  —  Indicates if the command is View Doctor
+- `CommandResult#isShowPatient()`  —  Indicates if the command is View Patient
+
+Given below is an example usage scenario and how the View Patient mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. `selectedAppointment`, `selectedDoctor` and `selectedPatient` has not been initialised and `AppointmentWindow`, `DoctorWindow` and `PatientWindow` are closed by default.
+
+Step 2: The user executes `view_p 2` command to view the 2nd patient in the patient list. The `view` command calls `ModelManager#getSelectedPatient()`, causing the `selectedPatient` to be initialised the 2nd patient in the patient list.
+The `CommandResult` returned will call `PatientWindow#updatePatient()` followed by `PatientWindow#show()`, launching the `PatientWindow` with the details of the 2nd patient.
+
+Step 3: The user toggle back to the main window and executes `view_p 4` command to view the 4th patient in the patient list. The `view` command calls `ModelManager#getSelectedPatient()`, causing the `selectedPatient` to be updated with the 4th patient in the patient list.
+The `CommandResult` returned will call `PatientWindow#updatePatient()` followed by `PatientWindow#focus()`, toggling to the `PatientWindow` with the details of the 4th patient.
+
+<div markdown="span" class="alert alert-info">
+    :information_source: **Note:** If the user decides to close the Patient Window before executing the command, `PatientWindow#focus()` will not be invoked, instead it will invoke `PatientWindow#show()` similar to Step 2.
+</div>
+
+The View Doctor and View Appointment mechanism would function similarly by utilising on their respective filtered lists, methods and windows.
+
+The following sequence diagram shows how the View Patient command is executed in the `Logic`:
+
+![ViewPatientLogicSequenceDiagram](images/ViewPatientLogicSequenceDiagram.png)
+
+The sequence diagram for View Appointment and View Doctor would be similar.
+
+The following sequence diagram shows how the View Patient command results is handled in the `Ui`:
+
+![ViewPatientUiSequenceDiagram](images/ViewPatientUiSequenceDiagram.png)
+
+The sequence diagram for View Appointment and View Doctor would be similar.
+
+The following activity diagram summarizes what happens when a user executes a new view command:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How view appointment / doctor / patient executes:**
+
+* **Alternative 1 (current choice):** Store the selected Patient in the model and retrieve on `CommandResult` instruction.
+    * Pros: Straight forward to implement.
+    * Cons: Requires extensive additions to the `Model` and `Logic` interface.
+
+* **Alternative 2:** Store selected Patient in `CommandResult` and retrieve directly from there.
+    * Pros: No changes to the `Model` and `Logic` interface required.
+    * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -238,6 +317,56 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] sort feature
+The proposed sorting feature
+
+#### Proposed Implementation
+The proposed sorting mechanism is facilitated by implementing a `Comparator` for every sortable field to sort the `UnmodifiableList`.
+The `Comparator`s will be stored as public static final variables within a helper class `Comparators`.
+This will require all sortable fields to implement the `Comparable` interface, and have a concrete implementation of the `compareTo` method to have a predetermined ordering.
+`ListAppointCommand`, `ListDoctorCommand`, and `ListPatientCommand` will have an additional attribute `comparator` to store the selected `Comparator`.
+
+The updated class diagrams for the models following the changes are as follows:
+
+![SortModelClassDiagram](images/SortModelClassDiagram.png)
+
+Given below is an example usage scenario on how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+todo: insert diagram
+
+Step 2. The user executes `list_a s\start o\asc` to sort the patients in ascending order by name. 
+The `list_a` command calls `ListAppointmentCommandParser#parse` which parses the parameters to sort the list by.
+A new `ListAppointmentCommand` instance will be created with the correct `Predicate` and `Comparator`.
+If no parameters for the sorting order is provided, the `Comparator` with the default field to sort by and order will be selected instead.
+todo: insert diagram
+
+Step 3. The created `ListAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`ListAppointmentCommand#execute` then calls `Model#updateFilterAppointmentList` and with the given `Predicate` and `Comparator`.
+The `Predicate` is used to filter the filteredAppointmentList by calling `FilteredList#setPredicate` and sorted by calling `FilteredList#sort` with the `Comparator`.
+todo: insert diagram
+
+The following sequence diagram shows how the sort operation work:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The sort doctor and sort patient functionality works in a similar manner. It selects the relevant `Comparator`, constructs the `ListDoctorCommand`/`ListPatientCommand`,
+and sorts the corresponding `FilteredList` within `Database`. 
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SortActivityDiagram.png" />
+
+#### Design considerations:
+
+**Aspect: How to sort the filteredLists in Database:**
+
+* **Alternative 1 (current choice):** Create multiple `Comparator`s and select them accordingly.
+    * Pros: Allows multiple ways of sorting the lists of items based on various attribute.
+    * Cons: Requires multiple `Comparator` to be implemented, requires code changes on the client's side.
+
+* **Alternative 2:** Let `Patient`, `Doctor`, and `Appointment` implement `Comparable` interface.
+    * Pros: Easy to implement, works with `Arrays.sort()` and `Collection.sort()`.
+    * Cons: There can only be 1 way to sort `Patient`, `Doctor`, and `Appointment`.
 
 --------------------------------------------------------------------------------------------------------------------
 
