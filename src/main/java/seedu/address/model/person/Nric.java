@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's NRIC in the system.
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
-public class Nric {
+public class Nric implements Comparable<Nric> {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should only contain alphanumeric characters and it should not be blank";
 
@@ -62,5 +62,10 @@ public class Nric {
     @Override
     public int hashCode() {
         return nric.hashCode();
+    }
+
+    @Override
+    public int compareTo(Nric nric) {
+        return this.nric.compareTo(nric.nric);
     }
 }
