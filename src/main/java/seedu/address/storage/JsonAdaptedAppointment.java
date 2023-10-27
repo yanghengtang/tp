@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import java.util.HashSet;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,11 +12,13 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentEndTime;
 import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Nric;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Appointment}.
  */
-class JsonAdaptedAppointment {
+class JsonAdaptedAppointment extends JsonAdaptedData {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
@@ -29,7 +34,10 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(@JsonProperty("doctorNric") String doctorNric,
                                   @JsonProperty("patientNric") String patientNric,
                                   @JsonProperty("startTime") String startTime,
-                                  @JsonProperty("endTime") String endTime) {
+                                  @JsonProperty("endTime") String endTime,
+                                  @JsonProperty("remark") String remark,
+                                  @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        super(remark, tags);
         this.doctorNric = doctorNric;
         this.patientNric = patientNric;
         this.startTime = startTime;
@@ -40,6 +48,7 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Patient} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
+        super(source);
         doctorNric = source.getDoctorNric().nric;
         patientNric = source.getPatientNric().nric;
         startTime = source.getStartTime().toString();
@@ -86,6 +95,10 @@ class JsonAdaptedAppointment {
         }
         final AppointmentEndTime modelAppointmentEndTime = new AppointmentEndTime(endTime);
 
-        return new Appointment(modelDoctorNric, modelPatientNric, modelAppointmentStartTime, modelAppointmentEndTime);
+        final Remark modelRemark = getModelRemark();
+        final HashSet<Tag> modelTags = getModelTags();
+
+        return new Appointment(modelDoctorNric, modelPatientNric, modelAppointmentStartTime, modelAppointmentEndTime,
+                modelRemark, modelTags);
     }
 }

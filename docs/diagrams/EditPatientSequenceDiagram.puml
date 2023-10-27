@@ -1,0 +1,81 @@
+@startuml
+!include ./style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant ":EditPatientCommandParser" as EditPatientCommandParser LOGIC_COLOR
+participant "e:EditPatientCommand" as EditPatientCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+participant "d:EditPatientDescriptor" as EditPatientDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit_p 5 p\23456789")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("edit_p 5 p\23456789")
+activate MediConnectParser
+
+create EditPatientCommandParser
+MediConnectParser -> EditPatientCommandParser
+activate EditPatientCommandParser
+
+EditPatientCommandParser --> MediConnectParser
+deactivate EditPatientCommandParser
+
+MediConnectParser -> EditPatientCommandParser : parse("edit_p 5 p\23456789")
+activate EditPatientCommandParser
+
+create EditPatientDescriptor
+EditPatientCommandParser -> EditPatientDescriptor
+activate EditPatientDescriptor
+
+EditPatientDescriptor --> EditPatientCommandParser : d
+deactivate EditPatientDescriptor
+
+create EditPatientCommand
+EditPatientCommandParser -> EditPatientCommand : EditPatientCommand(5, d)
+activate EditPatientCommand
+
+EditPatientCommand --> EditPatientCommandParser : e
+deactivate EditPatientCommand
+
+EditPatientCommandParser --> MediConnectParser : e
+deactivate EditPatientCommandParser
+
+EditPatientCommandParser -[hidden]-> MediConnectParser
+destroy EditPatientCommandParser
+
+MediConnectParser --> LogicManager : e
+deactivate MediConnectParser
+
+LogicManager -> EditPatientCommand : execute()
+activate EditPatientCommand
+
+EditPatientCommand -> EditPatientCommand : createEditedPatient(5, d)
+activate EditPatientCommand
+
+EditPatientCommand --> EditPatientCommand : editedPatient
+deactivate EditPatientCommand
+
+EditPatientCommand -> Model : setPatient(5, editedPatient)
+activate Model
+
+Model --> EditPatientCommand
+deactivate Model
+
+create CommandResult
+EditPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditPatientCommand : c
+deactivate CommandResult
+
+EditPatientCommand --> LogicManager : c
+deactivate EditPatientCommand
+@enduml
