@@ -55,10 +55,10 @@ public class ViewDoctorCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        ViewDoctorCommand viewPatientCommand = new ViewDoctorCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDoctorList().size() + 1);
+        ViewDoctorCommand viewDoctorCommand = new ViewDoctorCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewPatientCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+        assertCommandFailure(viewDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
 
     @Test
