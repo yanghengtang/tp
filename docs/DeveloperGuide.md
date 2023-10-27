@@ -179,13 +179,13 @@ The `Appointment` is then added to the filteredAppointmentList by calling `Filte
 The example usage scenario for the add patient and add doctor mechanisms would be very similar to the above scenario.
 
 The following sequence diagram shows how the add appointment operation would work:
-![SortSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+![AddAppoointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 The following sequence diagram shows how the add doctor operation would work:
-![SortSequenceDiagram](images/AddDoctorSequenceDiagram.png)
+![AddDoctorSequenceDiagram](images/AddDoctorSequenceDiagram.png)
 
 The following sequence diagram shows how the add patient operation would work:
-![SortSequenceDiagram](images/AddPatientSequenceDiagram.png)
+![AddPatientSequenceDiagram](images/AddPatientSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
@@ -198,7 +198,7 @@ The deletion of an appointment/doctor/patient to MediConnect is facilitated by '
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
-These operations are exposed in the `Ui` interface as `Ui#executeCommandk()`.
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
 
@@ -216,16 +216,16 @@ The `Appointment` at the `Index` is then deleted from the filteredAppointmentLis
 The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
 
 The following sequence diagram shows how the delete appointment operation would work:
-![SortSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
 The following sequence diagram shows how the delete doctor operation would work:
-![SortSequenceDiagram](images/DeleteDoctorSequenceDiagram.png)
+![DeleteAppointmentSequenceDiagram](images/DeleteDoctorSequenceDiagram.png)
 
 The following sequence diagram shows how the delete patient operation would work:
-![SortSequenceDiagram](images/DeletePatientSequenceDiagram.png)
+![DeleteAppointmentSequenceDiagram](images/DeletePatientSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
-![AddXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
+![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
 ### \[Proposed\] View Appointment / Doctor / Patient feature
 
