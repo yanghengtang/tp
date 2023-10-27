@@ -162,7 +162,7 @@ The adding of an appointment/doctor/patient to MediConnect is facilitated by 'Lo
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
-These operations are exposed in the `Ui` interface as `Ui#executeCommandk()`.
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
 
