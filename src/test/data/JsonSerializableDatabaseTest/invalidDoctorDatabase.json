@@ -2,7 +2,9 @@
   "patients": [],
   "doctors": [ {
     "name": "Hans Muster",
-    "nric": "X6543210P"
+    "nric": "X6543210P",
+    "remark": "",
+    "tags": []
   } ],
   "appointments": []
 }

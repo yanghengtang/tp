@@ -2,10 +2,14 @@
   "patients": [],
   "doctors": [ {
     "name": "Alice Pauline",
-    "nric": "T0123456F"
+    "nric": "T0123456F",
+    "remark": "",
+    "tags": []
   }, {
     "name": "Alice Pauline",
-    "nric": "T0123456F"
+    "nric": "T0123456F",
+    "remark": "",
+    "tags": []
   } ],
   "appointments": []
 }
