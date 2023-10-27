@@ -390,7 +390,56 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] sort feature
+The proposed sorting feature
 
+#### Proposed Implementation
+The proposed sorting mechanism is facilitated by implementing a `Comparator` for every sortable field to sort the `UnmodifiableList`.
+The `Comparator`s will be stored as public static final variables within a helper class `Comparators`.
+This will require all sortable fields to implement the `Comparable` interface, and have a concrete implementation of the `compareTo` method to have a predetermined ordering.
+`ListAppointCommand`, `ListDoctorCommand`, and `ListPatientCommand` will have an additional attribute `comparator` to store the selected `Comparator`.
+
+The updated class diagrams for the models following the changes are as follows:
+
+![SortModelClassDiagram](images/SortModelClassDiagram.png)
+
+Given below is an example usage scenario on how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+todo: insert diagram
+
+Step 2. The user executes `list_a s\start o\asc` to sort the patients in ascending order by name.
+The `list_a` command calls `ListAppointmentCommandParser#parse` which parses the parameters to sort the list by.
+A new `ListAppointmentCommand` instance will be created with the correct `Predicate` and `Comparator`.
+If no parameters for the sorting order is provided, the `Comparator` with the default field to sort by and order will be selected instead.
+todo: insert diagram
+
+Step 3. The created `ListAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`ListAppointmentCommand#execute` then calls `Model#updateFilterAppointmentList` and with the given `Predicate` and `Comparator`.
+The `Predicate` is used to filter the filteredAppointmentList by calling `FilteredList#setPredicate` and sorted by calling `FilteredList#sort` with the `Comparator`.
+todo: insert diagram
+
+The following sequence diagram shows how the sort operation work:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The sort doctor and sort patient functionality works in a similar manner. It selects the relevant `Comparator`, constructs the `ListDoctorCommand`/`ListPatientCommand`,
+and sorts the corresponding `FilteredList` within `Database`.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SortActivityDiagram.png" />
+
+#### Design considerations:
+
+**Aspect: How to sort the filteredLists in Database:**
+
+* **Alternative 1 (current choice):** Create multiple `Comparator`s and select them accordingly.
+    * Pros: Allows multiple ways of sorting the lists of items based on various attribute.
+    * Cons: Requires multiple `Comparator` to be implemented, requires code changes on the client's side.
+
+* **Alternative 2:** Let `Patient`, `Doctor`, and `Appointment` implement `Comparable` interface.
+    * Pros: Easy to implement, works with `Arrays.sort()` and `Collection.sort()`.
+    * Cons: There can only be 1 way to sort `Patient`, `Doctor`, and `Appointment`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
