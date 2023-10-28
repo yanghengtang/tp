@@ -32,6 +32,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
+import seedu.address.logic.commands.PatientRemarkCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewDoctorCommand;
 import seedu.address.logic.commands.ViewPatientCommand;
@@ -41,6 +42,7 @@ import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.remark.Remark;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
@@ -188,6 +190,13 @@ public class MediConnectParserTest {
         assertEquals(new ViewPatientCommand(INDEX_FIRST_PERSON), command);
     }
 
+    @Test
+    public void parseCommand_patientRemark() throws Exception {
+        PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
+                "remark_p 1 r\\Patient to follow up in 1 month");
+        assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
+                new Remark("Patient to follow up in 1 month")), command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
