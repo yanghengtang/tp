@@ -169,6 +169,7 @@ public class AppointmentTest {
                 + ", patientNric=" + APPOINTMENT_1.getPatientNric()
                 + ", startTime=" + APPOINTMENT_1.getStartTime()
                 + ", endTime=" + APPOINTMENT_1.getEndTime()
+                + ", remark=" + APPOINTMENT_1.getRemark()
                 + "}";
         assertEquals(expected, APPOINTMENT_1.toString());
     }
