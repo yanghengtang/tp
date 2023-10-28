@@ -12,6 +12,8 @@ import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -166,5 +168,17 @@ public class AppointmentRemarkCommandTest {
         // different remark -> returns false
         assertFalse(firstCommand.equals(new AppointmentRemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(VALID_REMARK_2))));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        AppointmentRemarkCommand command =
+                new AppointmentRemarkCommand(targetIndex,
+                        new Remark(""));
+
+        // same value -> returns same hashcode
+        assertEquals(command.hashCode(), Objects.hash(targetIndex,
+                new Remark("")));
     }
 }

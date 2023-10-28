@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -71,6 +72,11 @@ public class AppointmentRemarkCommand extends Command {
     private String generateSuccessMessage(Appointment appointmentToEdit) {
         String message = !remark.remark.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, appointmentToEdit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.index, this.remark);
     }
 
     @Override
