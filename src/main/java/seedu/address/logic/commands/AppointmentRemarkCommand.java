@@ -35,8 +35,8 @@ public class AppointmentRemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the person in the filtered appointment list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the appointment in the filtered appointment list to edit the remark
+     * @param remark of the appointment to be updated to
      */
     public AppointmentRemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
