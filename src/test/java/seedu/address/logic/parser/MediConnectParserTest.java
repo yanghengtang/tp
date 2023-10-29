@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
@@ -41,6 +42,7 @@ import seedu.address.model.person.NameContainsKeywordsDoctorPredicate;
 import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.remark.Remark;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
@@ -186,6 +188,14 @@ public class MediConnectParserTest {
         ViewPatientCommand command = (ViewPatientCommand) parser.parseCommand(
                 "view_p 1");
         assertEquals(new ViewPatientCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_appointmentRemark() throws Exception {
+        AppointmentRemarkCommand command = (AppointmentRemarkCommand) parser.parseCommand(
+                "remark_a 1 r\\Patient to follow up in 1 month");
+        assertEquals(new AppointmentRemarkCommand(INDEX_FIRST_PERSON,
+                new Remark("Patient to follow up in 1 month")), command);
     }
 
     @Test

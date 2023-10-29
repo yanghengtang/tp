@@ -45,14 +45,14 @@ public class CommandTestUtil {
     public static final String VALID_DOCTOR_NRIC = "T0123456J";
     public static final String VALID_APPOINTMENT_START_TIME = "2023-12-01 07:30";
     public static final String VALID_APPOINTMENT_END_TIME = "2023-12-01 08:00";
-
     public static final String APPOINTMENT_START_TIME_DESC = " "
             + PREFIX_APPOINTMENT_START_TIME
             + VALID_APPOINTMENT_START_TIME;
     public static final String APPOINTMENT_END_TIME_DESC = " "
             + PREFIX_APPOINTMENT_END_TIME
             + VALID_APPOINTMENT_END_TIME;
-
+    public static final String VALID_REMARK_1 = "Patient to follow up in 1 month";
+    public static final String VALID_REMARK_2 = "Patient recommended to undergo surgery";
     public static final String PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + VALID_PATIENT_NRIC;
     public static final String DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + VALID_DOCTOR_NRIC;
 
