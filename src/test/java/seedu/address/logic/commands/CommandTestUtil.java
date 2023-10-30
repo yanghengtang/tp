@@ -45,7 +45,6 @@ public class CommandTestUtil {
     public static final String VALID_DOCTOR_NRIC = "T0123456J";
     public static final String VALID_APPOINTMENT_START_TIME = "2023-12-01 07:30";
     public static final String VALID_APPOINTMENT_END_TIME = "2023-12-01 08:00";
-
     public static final String APPOINTMENT_START_TIME_DESC = " "
             + PREFIX_APPOINTMENT_START_TIME
             + VALID_APPOINTMENT_START_TIME;

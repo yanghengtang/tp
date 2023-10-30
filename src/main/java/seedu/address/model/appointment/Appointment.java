@@ -161,6 +161,7 @@ public class Appointment extends Data {
                 .add("patientNric", patientNric)
                 .add("startTime", startTime)
                 .add("endTime", endTime)
+                .add("remark", getRemark())
                 .toString();
     }
 }

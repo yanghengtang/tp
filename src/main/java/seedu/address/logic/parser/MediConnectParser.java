@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
@@ -114,6 +115,9 @@ public class MediConnectParser {
 
         case ViewPatientCommand.COMMAND_WORD:
             return new ViewPatientCommandParser().parse(arguments);
+
+        case AppointmentRemarkCommand.COMMAND_WORD:
+            return new AppointmentRemarkCommandParser().parse(arguments);
 
         case PatientRemarkCommand.COMMAND_WORD:
             return new PatientRemarkCommandParser().parse(arguments);
