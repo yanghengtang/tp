@@ -51,11 +51,10 @@ public class CommandTestUtil {
     public static final String APPOINTMENT_END_TIME_DESC = " "
             + PREFIX_APPOINTMENT_END_TIME
             + VALID_APPOINTMENT_END_TIME;
+
     public static final String VALID_REMARK_1 = "Patient to follow up in 1 month";
     public static final String VALID_REMARK_2 = "Patient recommended to undergo surgery";
-
     public static final String VALID_REMARK_3 = "Doctor to be back by 30/12/2023";
-
     public static final String VALID_REMARK_4 = "Doctor is not available from Thursday - Sunday";
     public static final String PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + VALID_PATIENT_NRIC;
     public static final String DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + VALID_DOCTOR_NRIC;

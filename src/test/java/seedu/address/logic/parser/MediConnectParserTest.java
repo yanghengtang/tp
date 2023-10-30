@@ -34,6 +34,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
+import seedu.address.logic.commands.PatientRemarkCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewDoctorCommand;
 import seedu.address.logic.commands.ViewPatientCommand;
@@ -205,6 +206,13 @@ public class MediConnectParserTest {
                 "remark_d 1 r\\Doctor to be back by 30/12/2023");
         assertEquals(new DoctorRemarkCommand(INDEX_FIRST_DOCTOR,
                 new Remark("Doctor to be back by 30/12/2023")), command);
+    }
+
+    public void parseCommand_patientRemark() throws Exception {
+        PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
+                "remark_p 1 r\\Patient to follow up in 1 month");
+        assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
+                new Remark("Patient to follow up in 1 month")), command);
     }
 
     @Test
