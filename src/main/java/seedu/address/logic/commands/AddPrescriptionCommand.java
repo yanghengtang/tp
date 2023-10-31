@@ -27,7 +27,7 @@ public class AddPrescriptionCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + " [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "CoughSyrup Panadol";
+            + PREFIX_TAG + "CoughSyrup";
 
     public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "Added prescription to Appointment: %1$s";
     public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "The prescription "
