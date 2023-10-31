@@ -58,7 +58,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_4 = "Doctor is not available from Thursday - Sunday";
     public static final String VALID_PRESCRIPTION_1 = "CoughSyrup";
     public static final String VALID_PRESCRIPTION_2 = "Panadol";
-
+    public static final String VALID_SPECIALISATION_1 = "Orthopaedic";
+    public static final String VALID_SPECIALISATION_2 = "Dermatology";
     public static final String PATIENT_NRIC_DESC = " " + PREFIX_PATIENT_NRIC + VALID_PATIENT_NRIC;
     public static final String DOCTOR_NRIC_DESC = " " + PREFIX_DOCTOR_NRIC + VALID_DOCTOR_NRIC;
 
