@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a medical condition to an existing patient in the database.
  */
-public class AddPatientTagCommand extends Command {
+public class AddMedicalConditionCommand extends Command {
     public static final String COMMAND_WORD = "add_tag_p";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a medical condition to the patient identified "
@@ -38,7 +38,7 @@ public class AddPatientTagCommand extends Command {
      * @param index of the patient in the filtered patient list to add the tag
      * @param medicalCondition of the patient to be updated to
      */
-    public AddPatientTagCommand(Index index, Tag medicalCondition) {
+    public AddMedicalConditionCommand(Index index, Tag medicalCondition) {
         requireAllNonNull(index, medicalCondition);
 
         this.index = index;
@@ -80,11 +80,11 @@ public class AddPatientTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddPatientTagCommand)) {
+        if (!(other instanceof AddMedicalConditionCommand)) {
             return false;
         }
 
-        AddPatientTagCommand command = (AddPatientTagCommand) other;
+        AddMedicalConditionCommand command = (AddMedicalConditionCommand) other;
         return index.equals(command.index)
                 && medicalCondition.equals(command.medicalCondition);
     }
