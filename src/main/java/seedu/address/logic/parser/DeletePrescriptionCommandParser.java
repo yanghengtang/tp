@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new DeleterescriptionCommand object
+ * Parses input arguments and creates a new DeletePrescriptionCommand object
  */
 public class DeletePrescriptionCommandParser implements Parser<DeletePrescriptionCommand> {
 
