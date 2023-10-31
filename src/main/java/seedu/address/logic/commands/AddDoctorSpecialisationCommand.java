@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DOCTORS;
 
@@ -25,10 +24,13 @@ public class AddDoctorSpecialisationCommand extends Command {
 
     public static final String COMMAND_WORD = "add_spec";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a specialisation to doctor. "
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC "
-            + PREFIX_TAG + "specialisation";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a specialisation tag to the doctor identified "
+            + "by the index number used in the displayed doctor list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + PREFIX_TAG + "[SPECIALISATION]\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "Orthopaedic";
+
 
     public static final String MESSAGE_SUCCESS = "New specialisation for doctor added: %1$s";
     public static final String MESSAGE_DUPLICATE_TAG = "This specialisation already exists on the doctor";
