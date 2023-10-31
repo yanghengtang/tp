@@ -29,9 +29,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PatientBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddPatientTagCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for DeleteMedicalConditionCommand.
  */
-public class DeletePatientTagCommandTest {
+public class DeleteMedicalConditionCommandTest {
 
     private static final Tag TAG_STUB = new Tag("example");
 
@@ -47,12 +47,12 @@ public class DeletePatientTagCommandTest {
                 new PatientBuilder(firstPatient)
                         .withTags(DEPRESSION_TAG).build();
 
-        DeletePatientTagCommand deletePatientTagCommand =
-                new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        DeleteMedicalConditionCommand deletePatientTagCommand =
+                new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                         DEPRESSION_TAG);
 
         String expectedMessage =
-                String.format(DeletePatientTagCommand.MESSAGE_DELETE_CONDITION_SUCCESS, DEPRESSION_TAG.tagName);
+                String.format(DeleteMedicalConditionCommand.MESSAGE_DELETE_CONDITION_SUCCESS, DEPRESSION_TAG.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -74,11 +74,11 @@ public class DeletePatientTagCommandTest {
                 .get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTags(DEPRESSION_TAG).build();
 
-        DeletePatientTagCommand deletePatientTagCommand =
-                new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        DeleteMedicalConditionCommand deletePatientTagCommand =
+                new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                         DEPRESSION_TAG);
 
-        String expectedMessage = String.format(DeletePatientTagCommand.MESSAGE_DELETE_CONDITION_SUCCESS,
+        String expectedMessage = String.format(DeleteMedicalConditionCommand.MESSAGE_DELETE_CONDITION_SUCCESS,
                 DEPRESSION_TAG.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
@@ -95,8 +95,8 @@ public class DeletePatientTagCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        DeletePatientTagCommand command =
-                new DeletePatientTagCommand(outOfBoundIndex, DEPRESSION_TAG);
+        DeleteMedicalConditionCommand command =
+                new DeleteMedicalConditionCommand(outOfBoundIndex, DEPRESSION_TAG);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
@@ -112,8 +112,8 @@ public class DeletePatientTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDatabase().getPatientList().size());
 
-        DeletePatientTagCommand command =
-                new DeletePatientTagCommand(outOfBoundIndex, DEPRESSION_TAG);
+        DeleteMedicalConditionCommand command =
+                new DeleteMedicalConditionCommand(outOfBoundIndex, DEPRESSION_TAG);
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
@@ -123,20 +123,20 @@ public class DeletePatientTagCommandTest {
     @Test
     public void execute_missingTag_failure() {
 
-        DeletePatientTagCommand command =
-                new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        DeleteMedicalConditionCommand command =
+                new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                         TAG_STUB);
         String expectedMessage =
-                String.format(DeletePatientTagCommand.MESSAGE_DELETE_CONDITION_FAILURE, TAG_STUB.tagName);
+                String.format(DeleteMedicalConditionCommand.MESSAGE_DELETE_CONDITION_FAILURE, TAG_STUB.tagName);
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        DeletePatientTagCommand firstCommand = new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        DeleteMedicalConditionCommand firstCommand = new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_1));
         // same values -> returns true
-        DeletePatientTagCommand commandWithSameValues = new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        DeleteMedicalConditionCommand commandWithSameValues = new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_1));
         assertTrue(firstCommand.equals(commandWithSameValues));
         // same object -> returns true
@@ -146,18 +146,18 @@ public class DeletePatientTagCommandTest {
         // different types -> returns false
         assertFalse(firstCommand.equals(new ListAppointmentCommand()));
         // different index -> returns false
-        assertFalse(firstCommand.equals(new DeletePatientTagCommand(INDEX_SECOND_PERSON,
+        assertFalse(firstCommand.equals(new DeleteMedicalConditionCommand(INDEX_SECOND_PERSON,
                 new Tag(VALID_PATIENT_TAG_1))));
         // different tag -> returns false
-        assertFalse(firstCommand.equals(new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+        assertFalse(firstCommand.equals(new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_2))));
     }
 
     @Test
     public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeletePatientTagCommand command =
-                new DeletePatientTagCommand(targetIndex,
+        DeleteMedicalConditionCommand command =
+                new DeleteMedicalConditionCommand(targetIndex,
                         DEPRESSION_TAG);
 
         // same value -> returns same hashcode
