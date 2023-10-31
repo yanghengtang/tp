@@ -86,6 +86,7 @@ public class Patient extends Person {
                 .add("phone", phone)
                 .add("nric", getNric())
                 .add("remark", getRemark())
+                .add("conditions", getTags())
                 .toString();
     }
 
