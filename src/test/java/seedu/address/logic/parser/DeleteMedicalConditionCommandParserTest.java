@@ -8,16 +8,16 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeletePatientTagCommand;
+import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.model.tag.Tag;
 
 
-public class DeletePatientTagCommandParserTest {
-    private DeletePatientTagCommandParser parser = new DeletePatientTagCommandParser();
+public class DeleteMedicalConditionCommandParserTest {
+    private DeleteMedicalConditionCommandParser parser = new DeleteMedicalConditionCommandParser();
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1 t\\diabetes",
-                new DeletePatientTagCommand(INDEX_FIRST_PERSON,
+                new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                         new Tag(VALID_PATIENT_TAG_1)));
     }
 
@@ -25,13 +25,13 @@ public class DeletePatientTagCommandParserTest {
     public void parse_noPrescription_throwsParseException() {
         assertParseFailure(parser, "1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeletePatientTagCommand.MESSAGE_USAGE));
+                        DeleteMedicalConditionCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
         assertParseFailure(parser, "a t\\diabetes",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeletePatientTagCommand.MESSAGE_USAGE));
+                        DeleteMedicalConditionCommand.MESSAGE_USAGE));
     }
 }
