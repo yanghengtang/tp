@@ -212,7 +212,7 @@ public class MediConnectParserTest {
     @Test
     public void parseCommand_addPresription() throws Exception {
         AddPrescriptionCommand command = (AddPrescriptionCommand ) parser.parseCommand(
-                "add_pres 1 t\\Panadol");
+                "add_tag_a 1 t\\Panadol");
         assertEquals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
     }

@@ -19,13 +19,13 @@ import seedu.address.model.tag.Tag;
  * Adds a prescription to an existing appointment in the database.
  */
 public class AddPrescriptionCommand extends Command {
-    public static final String COMMAND_WORD = "add_pres";
+    public static final String COMMAND_WORD = "add_tag_a";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the prescription to the appointment identified "
             + "by the index number used in the last appointment listing. "
             + "Existing tags will not be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + " [REMARK]\n"
+            + PREFIX_TAG + " [PRESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
 
