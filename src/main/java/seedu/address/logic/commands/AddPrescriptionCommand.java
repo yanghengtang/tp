@@ -30,15 +30,15 @@ public class AddPrescriptionCommand extends Command {
             + PREFIX_TAG + "CoughSyrup Panadol";
 
     public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "Added prescription to Appointment: %1$s";
-    public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "The prescription " +
-            "already exist in Appointment: %1$s";
+    public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "The prescription "
+            + "already exist in Appointment: %1$s";
 
     private final Index index;
     private final Tag prescription;
 
     /**
      * @param index of the appointment in the filtered appointment list to edit the remark
-     * @param prescription of the appointment to be updated to
+     * @param prescription of the appointment to be updated
      */
     public AddPrescriptionCommand(Index index, Tag prescription) {
         requireAllNonNull(index, prescription);
@@ -56,10 +56,12 @@ public class AddPrescriptionCommand extends Command {
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
-        HashSet<Tag> currentPrescriptions =  appointmentToEdit.getTags();
+        HashSet<Tag> currentPrescriptions = appointmentToEdit.getTags();
+
         if (currentPrescriptions.contains(prescription)) {
             throw new CommandException(String.format(MESSAGE_ADD_PRESCRIPTION_FAILURE, prescription));
         }
+
         currentPrescriptions.add(prescription);
         Appointment editedAppointment = new Appointment(
                 appointmentToEdit.getDoctorNric(), appointmentToEdit.getPatientNric(),
@@ -69,7 +71,7 @@ public class AddPrescriptionCommand extends Command {
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_PRESCRIPTION_SUCCESS, prescription));
+        return new CommandResult(String.format(MESSAGE_ADD_PRESCRIPTION_SUCCESS, editedAppointment));
     }
 
     @Override
@@ -84,7 +86,7 @@ public class AddPrescriptionCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AppointmentRemarkCommand)) {
+        if (!(other instanceof AddPrescriptionCommand)) {
             return false;
         }
 
@@ -93,4 +95,3 @@ public class AddPrescriptionCommand extends Command {
                 && prescription.equals(c.prescription);
     }
 }
-
