@@ -22,6 +22,7 @@ import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditDoctorCommand;
@@ -202,12 +203,20 @@ public class MediConnectParserTest {
     }
 
     @Test
+    public void parseCommand_doctorRemark() throws Exception {
+        DoctorRemarkCommand command = (DoctorRemarkCommand) parser.parseCommand(
+                "remark_d 1 r\\Doctor to be back by 30/12/2023");
+        assertEquals(new DoctorRemarkCommand(INDEX_FIRST_DOCTOR,
+                new Remark("Doctor to be back by 30/12/2023")), command);
+    }
+
     public void parseCommand_patientRemark() throws Exception {
         PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
                 "remark_p 1 r\\Patient to follow up in 1 month");
         assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
                 new Remark("Patient to follow up in 1 month")), command);
     }
+
 
     @Test
     public void parseCommand_addPresription() throws Exception {

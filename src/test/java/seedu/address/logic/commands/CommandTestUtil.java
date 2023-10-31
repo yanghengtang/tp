@@ -54,6 +54,8 @@ public class CommandTestUtil {
 
     public static final String VALID_REMARK_1 = "Patient to follow up in 1 month";
     public static final String VALID_REMARK_2 = "Patient recommended to undergo surgery";
+    public static final String VALID_REMARK_3 = "Doctor to be back by 30/12/2023";
+    public static final String VALID_REMARK_4 = "Doctor is not available from Thursday - Sunday";
     public static final String VALID_PRESCRIPTION_1 = "CoughSyrup";
     public static final String VALID_PRESCRIPTION_2 = "Panadol";
 
