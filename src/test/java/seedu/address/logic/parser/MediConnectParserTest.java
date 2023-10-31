@@ -212,7 +212,7 @@ public class MediConnectParserTest {
     @Test
     public void parseCommand_deletePresription() throws Exception {
         DeletePrescriptionCommand command = (DeletePrescriptionCommand) parser.parseCommand(
-                "delete_pres 1 t\\Panadol");
+                "delete_tag_a 1 t\\Panadol");
         assertEquals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
     }

@@ -19,12 +19,12 @@ import seedu.address.model.tag.Tag;
  * Deletes a prescription from an existing appointment in the database.
  */
 public class DeletePrescriptionCommand extends Command {
-    public static final String COMMAND_WORD = "delete_pres";
+    public static final String COMMAND_WORD = "delete_tag_a";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the prescription from the appointment identified "
             + "by the index number used in the last appointment listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + " [REMARK]\n"
+            + PREFIX_TAG + " [PRESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
 
