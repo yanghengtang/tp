@@ -23,7 +23,7 @@ public class DeleteMedicalConditionCommand extends Command {
             + ": Deletes a medical condition of the patient "
             + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "t\\ [REMARK]\n"
+            + "t\\ [MEDICAL CONDITION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "t\\ diabetes ";
 

@@ -24,7 +24,7 @@ public class AddMedicalConditionCommand extends Command {
             + ": Adds a medical condition to the patient identified "
             + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + "[REMARK]\n"
+            + PREFIX_TAG + "[MEDICAL CONDITION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "diabetes";
 
