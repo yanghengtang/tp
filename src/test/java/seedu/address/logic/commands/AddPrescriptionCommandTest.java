@@ -39,13 +39,13 @@ public class AddPrescriptionCommandTest {
     @Test
     public void execute_addPrescriptionUnfilteredList_success() {
         Appointment firstAppointment =
-                model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
+                model.getFilteredAppointmentList().get(INDEX_SECOND_PERSON.getZeroBased());
         Appointment editedAppointment =
                 new AppointmentBuilder(firstAppointment)
                         .withTags(PRESCRIPTION_STUB).build();
 
         AddPrescriptionCommand addPrescriptionCommand =
-                new AddPrescriptionCommand(INDEX_FIRST_PERSON,
+                new AddPrescriptionCommand(INDEX_SECOND_PERSON,
                         PRESCRIPTION_STUB);
 
         String expectedMessage =
@@ -65,7 +65,7 @@ public class AddPrescriptionCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
+        showAppointmentAtIndex(model, INDEX_SECOND_PERSON);
 
         Appointment firstAppointment = model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment = new AppointmentBuilder(model.getFilteredAppointmentList()

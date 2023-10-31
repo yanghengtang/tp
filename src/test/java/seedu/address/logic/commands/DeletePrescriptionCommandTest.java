@@ -44,7 +44,7 @@ public class DeletePrescriptionCommandTest {
                 new AppointmentBuilder(firstAppointment)
                         .withTags(PEDIATRICIAN_TAG).build();
 
-        DeletePrescriptionCommand addPrescriptionCommand =
+        DeletePrescriptionCommand deletePrescriptionCommand =
                 new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                         PARACETAMOL_TAG);
 
@@ -59,7 +59,7 @@ public class DeletePrescriptionCommandTest {
             throw new AssertionError(e.getMessage());
         }
 
-        assertCommandSuccess(addPrescriptionCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePrescriptionCommand, model, expectedMessage, expectedModel);
     }
 
 

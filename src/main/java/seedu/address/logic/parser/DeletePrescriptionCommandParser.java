@@ -40,9 +40,9 @@ public class DeletePrescriptionCommandParser implements Parser<DeletePrescriptio
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
-        Tag prescrption = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        Tag prescription = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new DeletePrescriptionCommand(index, prescrption);
+        return new DeletePrescriptionCommand(index, prescription);
     }
 
     /**
