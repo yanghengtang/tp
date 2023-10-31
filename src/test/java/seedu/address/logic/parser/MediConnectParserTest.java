@@ -33,6 +33,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListDoctorCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
+import seedu.address.logic.commands.PatientRemarkCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewDoctorCommand;
 import seedu.address.logic.commands.ViewPatientCommand;
@@ -198,6 +199,13 @@ public class MediConnectParserTest {
                 new Remark("Patient to follow up in 1 month")), command);
     }
 
+    @Test
+    public void parseCommand_patientRemark() throws Exception {
+        PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
+                "remark_p 1 r\\Patient to follow up in 1 month");
+        assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
+                new Remark("Patient to follow up in 1 month")), command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
