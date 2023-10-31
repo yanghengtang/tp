@@ -16,7 +16,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a prescripton to an existing appointment in the database.
+ * Adds a prescription to an existing appointment in the database.
  */
 public class AddPrescriptionCommand extends Command {
     public static final String COMMAND_WORD = "add_pres";
@@ -37,7 +37,7 @@ public class AddPrescriptionCommand extends Command {
     private final Tag prescription;
 
     /**
-     * @param index of the appointment in the filtered appointment list to edit the remark
+     * @param index of the appointment in the filtered appointment list to add prescription to
      * @param prescription of the appointment to be updated
      */
     public AddPrescriptionCommand(Index index, Tag prescription) {

@@ -161,7 +161,7 @@ public class AddPrescriptionCommandTest {
         // different index -> returns false
         assertFalse(firstCommand.equals(new AddPrescriptionCommand(INDEX_SECOND_PERSON,
                 new Tag(VALID_PRESCRIPTION_1))));
-        // different remark -> returns false
+        // different prescription -> returns false
         assertFalse(firstCommand.equals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PRESCRIPTION_2))));
     }
