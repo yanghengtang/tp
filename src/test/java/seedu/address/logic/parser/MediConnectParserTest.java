@@ -18,11 +18,13 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditDoctorCommand;
@@ -203,6 +205,13 @@ public class MediConnectParserTest {
     }
 
     @Test
+    public void parseCommand_doctorRemark() throws Exception {
+        DoctorRemarkCommand command = (DoctorRemarkCommand) parser.parseCommand(
+                "remark_d 1 r\\Doctor to be back by 30/12/2023");
+        assertEquals(new DoctorRemarkCommand(INDEX_FIRST_DOCTOR,
+                new Remark("Doctor to be back by 30/12/2023")), command);
+    }
+
     public void parseCommand_patientRemark() throws Exception {
         PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
                 "remark_p 1 r\\Patient to follow up in 1 month");
@@ -224,6 +233,15 @@ public class MediConnectParserTest {
                 "delete_tag_p 1 t\\diabetes");
         assertEquals(new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag("diabetes")), command);
+    }
+
+
+    @Test
+    public void parseCommand_addPresription() throws Exception {
+        AddPrescriptionCommand command = (AddPrescriptionCommand ) parser.parseCommand(
+                "add_tag_a 1 t\\Panadol");
+        assertEquals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
+                new Tag("Panadol")), command);
     }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

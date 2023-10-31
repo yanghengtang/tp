@@ -12,12 +12,14 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditDoctorCommand;
 import seedu.address.logic.commands.EditPatientCommand;
@@ -121,8 +123,14 @@ public class MediConnectParser {
         case AppointmentRemarkCommand.COMMAND_WORD:
             return new AppointmentRemarkCommandParser().parse(arguments);
 
+        case DoctorRemarkCommand.COMMAND_WORD:
+            return new DoctorRemarkCommandParser().parse(arguments);
+
         case PatientRemarkCommand.COMMAND_WORD:
             return new PatientRemarkCommandParser().parse(arguments);
+
+        case AddPrescriptionCommand.COMMAND_WORD:
+            return (new AddPrescriptionCommandParser().parse(arguments));
 
         case AddMedicalConditionCommand.COMMAND_WORD:
             return new AddMedicalConditionCommandParser().parse(arguments);

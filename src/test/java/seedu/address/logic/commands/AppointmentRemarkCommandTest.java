@@ -124,7 +124,7 @@ public class AppointmentRemarkCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
         AppointmentRemarkCommand remarkCommand =
                 new AppointmentRemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));

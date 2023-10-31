@@ -162,6 +162,7 @@ public class Appointment extends Data {
                 .add("startTime", startTime)
                 .add("endTime", endTime)
                 .add("remark", getRemark())
+                .add("prescriptions", getTags())
                 .toString();
     }
 }
