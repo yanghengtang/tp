@@ -74,7 +74,7 @@ public class AddDoctorSpecialisationCommand extends Command {
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
 
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, doctorToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedDoctor));
     }
 
     @Override
