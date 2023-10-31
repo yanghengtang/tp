@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
@@ -45,6 +46,7 @@ import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
@@ -215,6 +217,14 @@ public class MediConnectParserTest {
                 new Remark("Patient to follow up in 1 month")), command);
     }
 
+
+    @Test
+    public void parseCommand_addPresription() throws Exception {
+        AddPrescriptionCommand command = (AddPrescriptionCommand ) parser.parseCommand(
+                "add_tag_a 1 t\\Panadol");
+        assertEquals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
+                new Tag("Panadol")), command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

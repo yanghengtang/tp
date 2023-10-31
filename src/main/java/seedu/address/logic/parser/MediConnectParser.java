@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -125,6 +126,9 @@ public class MediConnectParser {
 
         case PatientRemarkCommand.COMMAND_WORD:
             return new PatientRemarkCommandParser().parse(arguments);
+
+        case AddPrescriptionCommand.COMMAND_WORD:
+            return (new AddPrescriptionCommandParser().parse(arguments));
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
