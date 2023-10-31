@@ -22,6 +22,7 @@ import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DeleteSpecialisationCommand;
 import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -225,6 +226,15 @@ public class MediConnectParserTest {
         assertEquals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
     }
+
+    @Test
+    public void parseCommand_deleteSpecialisation() throws Exception {
+        DeleteSpecialisationCommand command = (DeleteSpecialisationCommand) parser.parseCommand(
+                "delete_spec 1 t\\Dermatology");
+        assertEquals(new DeleteSpecialisationCommand(INDEX_FIRST_PERSON,
+                new Tag("Dermatology")), command);
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
