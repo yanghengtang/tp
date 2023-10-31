@@ -77,6 +77,7 @@ public class Doctor extends Person {
         return new ToStringBuilder(this)
                 .add("name", getName())
                 .add("nric", getNric())
+                .add("remark", getRemark())
                 .toString();
     }
 }
