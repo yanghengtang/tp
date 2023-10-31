@@ -124,7 +124,7 @@ public class DoctorRemarkCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidDoctorIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDoctorList().size() + 1);
         DoctorRemarkCommand remarkCommand =
                 new DoctorRemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
@@ -137,7 +137,7 @@ public class DoctorRemarkCommandTest {
      * but smaller than size of database
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidDoctorIndexFilteredList_failure() {
         showDoctorAtIndex(model, INDEX_FIRST_DOCTOR);
         Index outOfBoundIndex = INDEX_SECOND_DOCTOR;
         // ensures that outOfBoundIndex is still in bounds of database list
