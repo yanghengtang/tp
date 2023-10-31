@@ -124,7 +124,7 @@ public class MediConnectParser {
             return new PatientRemarkCommandParser().parse(arguments);
 
         case AddDoctorSpecialisationCommand.COMMAND_WORD:
-            return new AddDoctorTagCommandParser().parse(arguments);
+            return new AddDoctorSpecialisationCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
