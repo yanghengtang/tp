@@ -30,7 +30,7 @@ import seedu.address.testutil.DoctorBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddDoctorSpecialisationCommand.
  */
-public class AddDoctorSpecialisationCommandTest {
+public class AddSpecialisationCommandTest {
 
     private static final Tag SPECIALISATION_STUB = new Tag("SomeSpecialisation");
 
@@ -44,12 +44,12 @@ public class AddDoctorSpecialisationCommandTest {
                 new DoctorBuilder(firstDoctor)
                         .withTags(SPECIALISATION_STUB).build();
 
-        AddDoctorSpecialisationCommand addSpecialisationCommand =
-                new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        AddSpecialisationCommand addSpecialisationCommand =
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         SPECIALISATION_STUB);
 
         String expectedMessage =
-                String.format(AddDoctorSpecialisationCommand.MESSAGE_SUCCESS, editedDoctor);
+                String.format(AddSpecialisationCommand.MESSAGE_SUCCESS, editedDoctor);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -74,11 +74,11 @@ public class AddDoctorSpecialisationCommandTest {
                 .get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTags(SPECIALISATION_STUB).build();
 
-        AddDoctorSpecialisationCommand addSpecialisationCommand =
-                new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        AddSpecialisationCommand addSpecialisationCommand =
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         SPECIALISATION_STUB);
 
-        String expectedMessage = String.format(AddDoctorSpecialisationCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(AddSpecialisationCommand.MESSAGE_SUCCESS,
                 editedDoctor);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
@@ -95,8 +95,8 @@ public class AddDoctorSpecialisationCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDoctorList().size() + 1);
-        AddDoctorSpecialisationCommand command =
-                new AddDoctorSpecialisationCommand(outOfBoundIndex, SPECIALISATION_STUB);
+        AddSpecialisationCommand command =
+                new AddSpecialisationCommand(outOfBoundIndex, SPECIALISATION_STUB);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
@@ -112,8 +112,8 @@ public class AddDoctorSpecialisationCommandTest {
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDatabase().getDoctorList().size());
 
-        AddDoctorSpecialisationCommand command =
-                new AddDoctorSpecialisationCommand(outOfBoundIndex, SPECIALISATION_STUB);
+        AddSpecialisationCommand command =
+                new AddSpecialisationCommand(outOfBoundIndex, SPECIALISATION_STUB);
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
 
@@ -129,8 +129,8 @@ public class AddDoctorSpecialisationCommandTest {
                 new DoctorBuilder(firstDoctor)
                         .withTags(SPECIALISATION_STUB).build();
 
-        AddDoctorSpecialisationCommand command =
-                new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        AddSpecialisationCommand command =
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         SPECIALISATION_STUB);
         try {
             command.execute(model);
@@ -138,20 +138,20 @@ public class AddDoctorSpecialisationCommandTest {
             throw new AssertionError(e.getMessage());
         }
 
-        AddDoctorSpecialisationCommand duplicateCommand =
-                new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        AddSpecialisationCommand duplicateCommand =
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         SPECIALISATION_STUB);
         String expectedMessage =
-                String.format(AddDoctorSpecialisationCommand.MESSAGE_DUPLICATE_TAG, SPECIALISATION_STUB);
+                String.format(AddSpecialisationCommand.MESSAGE_DUPLICATE_TAG, SPECIALISATION_STUB);
         assertCommandFailure(duplicateCommand, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        final AddDoctorSpecialisationCommand firstCommand = new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        final AddSpecialisationCommand firstCommand = new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_SPECIALISATION_1));
         // same values -> returns true
-        AddDoctorSpecialisationCommand commandWithSameValues = new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        AddSpecialisationCommand commandWithSameValues = new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_SPECIALISATION_1));
         assertTrue(firstCommand.equals(commandWithSameValues));
         // same object -> returns true
@@ -161,18 +161,18 @@ public class AddDoctorSpecialisationCommandTest {
         // different types -> returns false
         assertFalse(firstCommand.equals(new ListDoctorCommand()));
         // different index -> returns false
-        assertFalse(firstCommand.equals(new AddDoctorSpecialisationCommand(INDEX_SECOND_PERSON,
+        assertFalse(firstCommand.equals(new AddSpecialisationCommand(INDEX_SECOND_PERSON,
                 new Tag(VALID_SPECIALISATION_1))));
         // different remark -> returns false
-        assertFalse(firstCommand.equals(new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        assertFalse(firstCommand.equals(new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_SPECIALISATION_2))));
     }
 
     @Test
     public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        AddDoctorSpecialisationCommand command =
-                new AddDoctorSpecialisationCommand(targetIndex,
+        AddSpecialisationCommand command =
+                new AddSpecialisationCommand(targetIndex,
                         SPECIALISATION_STUB);
 
         // same value -> returns same hashcode

@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
-import seedu.address.logic.commands.AddDoctorSpecialisationCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -123,8 +123,8 @@ public class MediConnectParser {
         case PatientRemarkCommand.COMMAND_WORD:
             return new PatientRemarkCommandParser().parse(arguments);
 
-        case AddDoctorSpecialisationCommand.COMMAND_WORD:
-            return new AddDoctorSpecialisationCommandParser().parse(arguments);
+        case AddSpecialisationCommand.COMMAND_WORD:
+            return new AddSpecialisationCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

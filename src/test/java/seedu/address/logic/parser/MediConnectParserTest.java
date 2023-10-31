@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
-import seedu.address.logic.commands.AddDoctorSpecialisationCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
@@ -210,10 +210,10 @@ public class MediConnectParserTest {
     }
     @Test
     public void parseCommand_doctorSpecialisation() throws Exception {
-        AddDoctorSpecialisationCommand command =
-                (AddDoctorSpecialisationCommand) parser.parseCommand(
+        AddSpecialisationCommand command =
+                (AddSpecialisationCommand) parser.parseCommand(
                 "add_spec 1 t\\Orthopaedic");
-        assertEquals(new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+        assertEquals(new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag("Orthopaedic")), command);
     }
     @Test

@@ -6,21 +6,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddDoctorSpecialisationCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddDoctorSpecialisationCommand object
  */
-public class AddDoctorSpecialisationCommandParser implements Parser<AddDoctorSpecialisationCommand> {
+public class AddSpecialisationCommandParser implements Parser<AddSpecialisationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddDoctorSpecialisationCommand parse(String args) throws ParseException {
+    public AddSpecialisationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
@@ -30,19 +30,19 @@ public class AddDoctorSpecialisationCommandParser implements Parser<AddDoctorSpe
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddDoctorSpecialisationCommand.MESSAGE_USAGE),
+                    AddSpecialisationCommand.MESSAGE_USAGE),
                     pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddDoctorSpecialisationCommand.MESSAGE_USAGE));
+                    AddSpecialisationCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
         Tag specialisation = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new AddDoctorSpecialisationCommand(index, specialisation);
+        return new AddSpecialisationCommand(index, specialisation);
     }
 
     /**

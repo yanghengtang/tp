@@ -8,15 +8,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddDoctorSpecialisationCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.model.tag.Tag;
 
-public class AddDoctorSpecialisationCommandParserTest {
-    private AddDoctorSpecialisationCommandParser parser = new AddDoctorSpecialisationCommandParser();
+public class AddSpecialisationCommandParserTest {
+    private AddSpecialisationCommandParser parser = new AddSpecialisationCommandParser();
     @Test
     public void parse_validArgs_returnsAddDoctorSpecialisationCommand() {
         assertParseSuccess(parser, "1 t\\" + VALID_SPECIALISATION_1,
-                new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         new Tag(VALID_SPECIALISATION_1)));
     }
 
@@ -24,13 +24,13 @@ public class AddDoctorSpecialisationCommandParserTest {
     public void parse_noPrescription_throwsParseException() {
         assertParseFailure(parser, "1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddDoctorSpecialisationCommand.MESSAGE_USAGE));
+                        AddSpecialisationCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
         assertParseFailure(parser, "a t\\" + VALID_SPECIALISATION_1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddDoctorSpecialisationCommand.MESSAGE_USAGE));
+                        AddSpecialisationCommand.MESSAGE_USAGE));
     }
 }

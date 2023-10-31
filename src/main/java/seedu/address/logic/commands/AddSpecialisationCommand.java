@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a doctor to the database.
  */
-public class AddDoctorSpecialisationCommand extends Command {
+public class AddSpecialisationCommand extends Command {
 
     public static final String COMMAND_WORD = "add_spec";
 
@@ -41,7 +41,7 @@ public class AddDoctorSpecialisationCommand extends Command {
     /**
      * Creates an AddDoctorTagCommand to add the specified {@code Doctor}
      */
-    public AddDoctorSpecialisationCommand(Index index, Tag specialisation) {
+    public AddSpecialisationCommand(Index index, Tag specialisation) {
         requireAllNonNull(index, specialisation);
 
         this.index = index;
@@ -86,11 +86,11 @@ public class AddDoctorSpecialisationCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddDoctorSpecialisationCommand)) {
+        if (!(other instanceof AddSpecialisationCommand)) {
             return false;
         }
 
-        AddDoctorSpecialisationCommand otherAddCommand = (AddDoctorSpecialisationCommand) other;
+        AddSpecialisationCommand otherAddCommand = (AddSpecialisationCommand) other;
         return index.equals(otherAddCommand.index)
                 && specialisation.equals(otherAddCommand.specialisation);
     }
