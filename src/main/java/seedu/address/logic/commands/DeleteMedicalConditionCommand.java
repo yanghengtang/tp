@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Deletes a medical condition of an existing patient in the database.
  */
-public class DeletePatientTagCommand extends Command {
+public class DeleteMedicalConditionCommand extends Command {
     public static final String COMMAND_WORD = "delete_tag_p";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a medical condition of the patient "
@@ -37,7 +37,7 @@ public class DeletePatientTagCommand extends Command {
      * @param index of the patient in the filtered patient list to delete the medical condition
      * @param medicalCondition of the patient to be updated to
      */
-    public DeletePatientTagCommand(Index index, Tag medicalCondition) {
+    public DeleteMedicalConditionCommand(Index index, Tag medicalCondition) {
         requireAllNonNull(index, medicalCondition);
 
         this.index = index;
@@ -82,11 +82,11 @@ public class DeletePatientTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeletePatientTagCommand)) {
+        if (!(other instanceof DeleteMedicalConditionCommand)) {
             return false;
         }
 
-        DeletePatientTagCommand command = (DeletePatientTagCommand) other;
+        DeleteMedicalConditionCommand command = (DeleteMedicalConditionCommand) other;
         return index.equals(command.index)
                 && medicalCondition.equals(command.medicalCondition);
     }
