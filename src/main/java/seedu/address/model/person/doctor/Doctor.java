@@ -78,6 +78,7 @@ public class Doctor extends Person {
                 .add("name", getName())
                 .add("nric", getNric())
                 .add("tags", getTags())
+                .add("remark", getRemark())
                 .toString();
     }
 }

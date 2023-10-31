@@ -170,6 +170,7 @@ public class AppointmentTest {
                 + ", startTime=" + APPOINTMENT_1.getStartTime()
                 + ", endTime=" + APPOINTMENT_1.getEndTime()
                 + ", remark=" + APPOINTMENT_1.getRemark()
+                + ", prescriptions=" + APPOINTMENT_1.getTags()
                 + "}";
         assertEquals(expected, APPOINTMENT_1.toString());
     }
