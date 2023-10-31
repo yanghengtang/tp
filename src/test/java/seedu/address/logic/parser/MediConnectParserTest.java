@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddDoctorSpecialisationCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -44,6 +45,7 @@ import seedu.address.model.person.NameContainsKeywordsPatientPredicate;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.DoctorBuilder;
@@ -205,6 +207,14 @@ public class MediConnectParserTest {
                 "remark_p 1 r\\Patient to follow up in 1 month");
         assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
                 new Remark("Patient to follow up in 1 month")), command);
+    }
+    @Test
+    public void parseCommand_doctorSpecialisation() throws Exception {
+        AddDoctorSpecialisationCommand command =
+                (AddDoctorSpecialisationCommand) parser.parseCommand(
+                "add_spec 1 t\\Orthopaedic");
+        assertEquals(new AddDoctorSpecialisationCommand(INDEX_FIRST_PERSON,
+                new Tag("Orthopaedic")), command);
     }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
