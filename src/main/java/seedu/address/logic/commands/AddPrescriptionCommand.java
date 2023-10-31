@@ -16,7 +16,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * Changes the remark of an existing appointment in the database.
+ * Adds a prescripton to an existing appointment in the database.
  */
 public class AddPrescriptionCommand extends Command {
     public static final String COMMAND_WORD = "add_pres";
@@ -29,8 +29,8 @@ public class AddPrescriptionCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup Panadol";
 
-    public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "Added prescription(s) to Appointment: %1$s";
-    public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "Following prescription(s) " +
+    public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "Added prescription to Appointment: %1$s";
+    public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "The prescription " +
             "already exist in Appointment: %1$s";
 
     private final Index index;
@@ -58,7 +58,7 @@ public class AddPrescriptionCommand extends Command {
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         HashSet<Tag> currentPrescriptions =  appointmentToEdit.getTags();
         if (currentPrescriptions.contains(prescription)) {
-            throw new CommandException(String.format(MESSAGE_ADD_PRESCRIPTION_FAILURE, intersection));
+            throw new CommandException(String.format(MESSAGE_ADD_PRESCRIPTION_FAILURE, prescription));
         }
         currentPrescriptions.add(prescription);
         Appointment editedAppointment = new Appointment(
