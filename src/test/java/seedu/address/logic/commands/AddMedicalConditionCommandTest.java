@@ -29,9 +29,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PatientBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddPatientTagCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AddMedicalConditionCommand.
  */
-public class AddPatientTagCommandTest {
+public class AddMedicalConditionCommandTest {
 
     private static final Tag CONDITION_STUB = new Tag("example");
 
@@ -45,12 +45,12 @@ public class AddPatientTagCommandTest {
                 new PatientBuilder(firstPatient)
                         .withTags(CONDITION_STUB).build();
 
-        AddPatientTagCommand addPatientTagCommand =
-                new AddPatientTagCommand(INDEX_FIRST_PERSON,
+        AddMedicalConditionCommand addPatientTagCommand =
+                new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                         CONDITION_STUB);
 
         String expectedMessage =
-                String.format(AddPatientTagCommand.MESSAGE_ADD_CONDITION_SUCCESS, CONDITION_STUB.tagName);
+                String.format(AddMedicalConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS, CONDITION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -72,11 +72,11 @@ public class AddPatientTagCommandTest {
                 .get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTags(CONDITION_STUB).build();
 
-        AddPatientTagCommand addPatientTagCommand =
-                new AddPatientTagCommand(INDEX_FIRST_PERSON,
+        AddMedicalConditionCommand addPatientTagCommand =
+                new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                         CONDITION_STUB);
 
-        String expectedMessage = String.format(AddPatientTagCommand.MESSAGE_ADD_CONDITION_SUCCESS,
+        String expectedMessage = String.format(AddMedicalConditionCommand.MESSAGE_ADD_CONDITION_SUCCESS,
                 CONDITION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
@@ -93,8 +93,8 @@ public class AddPatientTagCommandTest {
     @Test
     public void execute_invalidPatientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        AddPatientTagCommand tagCommand =
-                new AddPatientTagCommand(outOfBoundIndex, CONDITION_STUB);
+        AddMedicalConditionCommand tagCommand =
+                new AddMedicalConditionCommand(outOfBoundIndex, CONDITION_STUB);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
@@ -110,17 +110,17 @@ public class AddPatientTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDatabase().getPatientList().size());
 
-        AddPatientTagCommand tagCommand =
-                new AddPatientTagCommand(outOfBoundIndex, CONDITION_STUB);
+        AddMedicalConditionCommand tagCommand =
+                new AddMedicalConditionCommand(outOfBoundIndex, CONDITION_STUB);
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        AddPatientTagCommand firstCommand = new AddPatientTagCommand(INDEX_FIRST_PERSON,
+        AddMedicalConditionCommand firstCommand = new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_1));
         // same values -> returns true
-        AddPatientTagCommand commandWithSameValues = new AddPatientTagCommand(INDEX_FIRST_PERSON,
+        AddMedicalConditionCommand commandWithSameValues = new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_1));
         assertTrue(firstCommand.equals(commandWithSameValues));
         // same object -> returns true
@@ -130,18 +130,18 @@ public class AddPatientTagCommandTest {
         // different types -> returns false
         assertFalse(firstCommand.equals(new ListAppointmentCommand()));
         // different index -> returns false
-        assertFalse(firstCommand.equals(new AddPatientTagCommand(INDEX_SECOND_PERSON,
+        assertFalse(firstCommand.equals(new AddMedicalConditionCommand(INDEX_SECOND_PERSON,
                 new Tag(VALID_PATIENT_TAG_1))));
         // different tag -> returns false
-        assertFalse(firstCommand.equals(new AddPatientTagCommand(INDEX_FIRST_PERSON,
+        assertFalse(firstCommand.equals(new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_2))));
     }
 
     @Test
     public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        AddPatientTagCommand command =
-                new AddPatientTagCommand(targetIndex,
+        AddMedicalConditionCommand command =
+                new AddMedicalConditionCommand(targetIndex,
                         DEPRESSION_TAG);
 
         // same value -> returns same hashcode
