@@ -6,20 +6,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddPatientTagCommand;
+import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new {@code AddPatientTagCommand} object
+ * Parses input arguments and creates a new {@code AddMedicalConditionCommand} object
  */
-public class AddPatientTagCommandParser implements Parser<AddPatientTagCommand> {
+public class AddMedicalConditionCommandParser implements Parser<AddMedicalConditionCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AddPatientTagCommand}
-     * and returns a {@code AddPatientTagCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddMedicalConditionCommand}
+     * and returns a {@code AddMedicalConditionCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddPatientTagCommand parse(String args) throws ParseException {
+    public AddMedicalConditionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
@@ -29,19 +29,19 @@ public class AddPatientTagCommandParser implements Parser<AddPatientTagCommand> 
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPatientTagCommand.MESSAGE_USAGE),
+                    AddMedicalConditionCommand.MESSAGE_USAGE),
                     pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPatientTagCommand.MESSAGE_USAGE));
+                    AddMedicalConditionCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
         Tag condition = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new AddPatientTagCommand(index, condition);
+        return new AddMedicalConditionCommand(index, condition);
     }
 
     /**
