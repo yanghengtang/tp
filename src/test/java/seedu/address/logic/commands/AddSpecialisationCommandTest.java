@@ -39,13 +39,13 @@ public class AddSpecialisationCommandTest {
     @Test
     public void execute_addSpecialisationUnfilteredList_success() {
         Doctor firstDoctor =
-                model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
+                model.getFilteredDoctorList().get(INDEX_SECOND_PERSON.getZeroBased());
         Doctor editedDoctor =
                 new DoctorBuilder(firstDoctor)
                         .withTags(SPECIALISATION_STUB).build();
 
         AddSpecialisationCommand addSpecialisationCommand =
-                new AddSpecialisationCommand(INDEX_FIRST_PERSON,
+                new AddSpecialisationCommand(INDEX_SECOND_PERSON,
                         SPECIALISATION_STUB);
 
         String expectedMessage =
@@ -67,7 +67,7 @@ public class AddSpecialisationCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showDoctorAtIndex(model, INDEX_FIRST_PERSON);
+        showDoctorAtIndex(model, INDEX_SECOND_PERSON);
 
         Doctor firstDoctor = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
         Doctor editedDoctor = new DoctorBuilder(model.getFilteredDoctorList()
