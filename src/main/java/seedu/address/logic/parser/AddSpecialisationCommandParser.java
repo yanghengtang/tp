@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddDoctorSpecialisationCommand object
+ * Parses input arguments and creates a new AddSpecialisationCommand object
  */
 public class AddSpecialisationCommandParser implements Parser<AddSpecialisationCommand> {
 
