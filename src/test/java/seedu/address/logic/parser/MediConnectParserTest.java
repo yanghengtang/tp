@@ -19,6 +19,7 @@ import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddPrescriptionCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
@@ -251,6 +252,14 @@ public class MediConnectParserTest {
                 "delete_tag_a 1 t\\Panadol");
         assertEquals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
+    }
+    @Test
+    public void parseCommand_doctorSpecialisation() throws Exception {
+        AddSpecialisationCommand command =
+                (AddSpecialisationCommand) parser.parseCommand(
+                "add_tag_d 1 t\\Orthopaedic");
+        assertEquals(new AddSpecialisationCommand(INDEX_FIRST_PERSON,
+                new Tag("Orthopaedic")), command);
     }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

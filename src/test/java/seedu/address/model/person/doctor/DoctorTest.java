@@ -50,7 +50,8 @@ public class DoctorTest {
     @Test
     public void toStringMethod() {
         String expected = Doctor.class.getCanonicalName() + "{name=" + ALICE.getName() + ", nric="
-                + ALICE.getNric() + ", remark=" + ALICE.getRemark() + "}";
+                + ALICE.getNric() + ", tags=" + ALICE.getTags()
+                + ", remark=" + ALICE.getRemark() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
