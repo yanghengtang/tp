@@ -65,7 +65,7 @@ public class Appointment extends Data {
     public static void validateFields(Nric doctorNric, Nric patientNric,
                                       AppointmentStartTime startTime, AppointmentEndTime endTime)
             throws CommandException {
-        if (!endTime.getTime().isAfter(startTime.getTime())) {
+        if (startTime.getTime().isAfter(endTime.getTime())) {
             throw new CommandException(MESSAGE_INVALID_APPOINTMENT_TIME);
         }
 
