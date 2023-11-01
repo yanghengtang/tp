@@ -59,7 +59,7 @@ public class AddMedicalConditionCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
         if (patientToEdit.getTags().contains(medicalCondition)) {
-            throw new CommandException(String.format(MESSAGE_ADD_CONDITION_FAILURE, this.medicalCondition));
+            throw new CommandException(String.format(MESSAGE_ADD_CONDITION_FAILURE, this.medicalCondition.tagName));
         }
         HashSet<Tag> currentConditions = patientToEdit.getTags();
         currentConditions.add(this.medicalCondition);

@@ -116,6 +116,30 @@ public class AddMedicalConditionCommandTest {
     }
 
     @Test
+    public void execute_duplicateTag_failure() {
+        Patient firstPatient =
+                model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient editedAppointment =
+                new PatientBuilder(firstPatient)
+                        .withTags(CONDITION_STUB).build();
+
+        AddMedicalConditionCommand command =
+                new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
+                        CONDITION_STUB);
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            throw new AssertionError(e.getMessage());
+        }
+
+        AddMedicalConditionCommand duplicateCommand =
+                new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
+                        CONDITION_STUB);
+        String expectedMessage =
+                String.format(AddMedicalConditionCommand.MESSAGE_ADD_CONDITION_FAILURE, CONDITION_STUB.tagName);
+        assertCommandFailure(duplicateCommand, model, expectedMessage);
+    }
+    @Test
     public void equals() {
         AddMedicalConditionCommand firstCommand = new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
                 new Tag(VALID_PATIENT_TAG_1));
