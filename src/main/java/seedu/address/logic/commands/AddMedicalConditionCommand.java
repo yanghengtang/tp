@@ -35,7 +35,7 @@ public class AddMedicalConditionCommand extends Command {
     private final Tag medicalCondition;
 
     /**
-     * @param index of the patient in the filtered patient list to add the tag
+     * @param index of the patient in the filtered patient list to add the medical condition
      * @param medicalCondition of the patient to be updated to
      */
     public AddMedicalConditionCommand(Index index, Tag medicalCondition) {

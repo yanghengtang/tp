@@ -28,7 +28,7 @@ public class DeleteMedicalConditionCommand extends Command {
             + "t\\ diabetes ";
 
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Medical condition deleted: %1$s";
-    public static final String MESSAGE_DELETE_CONDITION_FAILURE = "Medical condition does not exist: %1$s";
+    public static final String MESSAGE_DELETE_CONDITION_FAILURE = "Medical condition does not exist in patient: %1$s";
 
     private final Index index;
     private final Tag medicalCondition;
