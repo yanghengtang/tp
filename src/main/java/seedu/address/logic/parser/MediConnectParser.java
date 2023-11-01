@@ -10,12 +10,14 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
+import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.DeletePrescriptionCommand;
 import seedu.address.logic.commands.DoctorRemarkCommand;
@@ -133,6 +135,12 @@ public class MediConnectParser {
 
         case DeletePrescriptionCommand.COMMAND_WORD:
             return (new DeletePrescriptionCommandParser().parse(arguments));
+
+        case AddMedicalConditionCommand.COMMAND_WORD:
+            return new AddMedicalConditionCommandParser().parse(arguments);
+
+        case DeleteMedicalConditionCommand.COMMAND_WORD:
+            return new DeleteMedicalConditionCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
