@@ -20,10 +20,9 @@ public class ViewDoctorCommand extends Command {
     public static final String COMMAND_WORD = "view_d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the details of the doctor identified by the "
-            + "index number used in the displayed doctor list.\n"
+            + ": Views the specified doctor from the system.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_VIEW_DOCTOR_SUCCESS = "View Doctor: %1$s";
 

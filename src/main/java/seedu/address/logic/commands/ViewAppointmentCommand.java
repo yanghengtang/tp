@@ -20,10 +20,9 @@ public class ViewAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "view_a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the details of the appointment identified by the "
-            + "index number used in the displayed appointment list.\n"
+            + ": Views the specified appointment from the system.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_VIEW_APPOINTMENT_SUCCESS = "View Appointment: %1$s";
 

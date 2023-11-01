@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.model.DataTest.PEDIATRICIAN_TAG;
+import static seedu.address.model.DataTest.DERMATOLOGY_TAG;
 import static seedu.address.model.DataTest.VALID_REMARK_STRING;
 import static seedu.address.testutil.PersonUtil.ALICE_NAME;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
@@ -40,7 +40,7 @@ public class TypicalDoctor {
             .withNric(ALICE_NRIC).build();
 
     public static final Doctor ALICE_WITH_REMARKS = new DoctorBuilder().withName(ALICE_NAME)
-            .withNric(ALICE_NRIC).withRemark(VALID_REMARK_STRING).withTags(PEDIATRICIAN_TAG).build();
+            .withNric(ALICE_NRIC).withRemark(VALID_REMARK_STRING).withTags(DERMATOLOGY_TAG).build();
     public static final Doctor BENSON = new DoctorBuilder().withName(BENSON_NAME)
             .withNric(BENSON_NRIC).build();
     public static final Doctor CARL = new DoctorBuilder().withName(CARL_NAME)
@@ -68,7 +68,7 @@ public class TypicalDoctor {
     private TypicalDoctor() {} // prevents instantiation
 
     public static List<Doctor> getTypicalDoctor() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE_WITH_REMARKS, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
     public static Database getTypicalDatabase() {

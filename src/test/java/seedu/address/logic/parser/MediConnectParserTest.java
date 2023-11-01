@@ -19,12 +19,14 @@ import seedu.address.logic.commands.AddDoctorCommand;
 import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddPrescriptionCommand;
+import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.DeletePrescriptionCommand;
+import seedu.address.logic.commands.DeleteSpecialisationCommand;
 import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -213,6 +215,7 @@ public class MediConnectParserTest {
                 new Remark("Doctor to be back by 30/12/2023")), command);
     }
 
+    @Test
     public void parseCommand_patientRemark() throws Exception {
         PatientRemarkCommand command = (PatientRemarkCommand) parser.parseCommand(
                 "remark_p 1 r\\Patient to follow up in 1 month");
@@ -246,11 +249,28 @@ public class MediConnectParserTest {
     }
 
     @Test
+    public void parseCommand_deleteSpecialisation() throws Exception {
+        DeleteSpecialisationCommand command = (DeleteSpecialisationCommand) parser.parseCommand(
+                "delete_tag_d 1 t\\Dermatology");
+        assertEquals(new DeleteSpecialisationCommand(INDEX_FIRST_PERSON,
+                new Tag("Dermatology")), command);
+    }
+
+    @Test
     public void parseCommand_deletePresription() throws Exception {
         DeletePrescriptionCommand command = (DeletePrescriptionCommand) parser.parseCommand(
                 "delete_tag_a 1 t\\Panadol");
         assertEquals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
+    }
+
+    @Test
+    public void parseCommand_addSpecialisation() throws Exception {
+        AddSpecialisationCommand command =
+                (AddSpecialisationCommand) parser.parseCommand(
+                "add_tag_d 1 t\\Orthopaedic");
+        assertEquals(new AddSpecialisationCommand(INDEX_FIRST_PERSON,
+                new Tag("Orthopaedic")), command);
     }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
@@ -262,4 +282,5 @@ public class MediConnectParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
 }
