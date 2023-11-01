@@ -138,7 +138,7 @@ public class MediConnectParser {
         case DeleteSpecialisationCommand.COMMAND_WORD:
             return (new DeleteSpecialisationCommandParser().parse(arguments));
 
-          case AddSpecialisationCommand.COMMAND_WORD:
+        case AddSpecialisationCommand.COMMAND_WORD:
             return new AddSpecialisationCommandParser().parse(arguments);
 
         case DeletePrescriptionCommand.COMMAND_WORD:
