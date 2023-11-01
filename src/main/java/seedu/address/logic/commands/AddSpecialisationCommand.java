@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class AddSpecialisationCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_spec";
+    public static final String COMMAND_WORD = "add_tag_d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a specialisation tag to the doctor identified "
@@ -31,9 +31,8 @@ public class AddSpecialisationCommand extends Command {
             + PREFIX_TAG + "[SPECIALISATION]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "Orthopaedic";
 
-
-    public static final String MESSAGE_SUCCESS = "New specialisation for doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This specialisation already exists on the doctor";
+    public static final String MESSAGE_ADD_SPECIALISATION_SUCCESS = "New Specialisation added: %1$s";
+    public static final String MESSAGE_ADD_SPECIALISATION_FAILURE = "The Specialisation already exists in doctor";
 
     private final Index index;
     private final Tag specialisation;
@@ -63,7 +62,7 @@ public class AddSpecialisationCommand extends Command {
         HashSet<Tag> doctorTags = doctorToEdit.getTags();
 
         if (doctorTags.contains(specialisation)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            throw new CommandException(MESSAGE_ADD_SPECIALISATION_FAILURE);
         }
 
         doctorTags.add(specialisation);
@@ -76,7 +75,7 @@ public class AddSpecialisationCommand extends Command {
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
 
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedDoctor));
+        return new CommandResult(String.format(MESSAGE_ADD_SPECIALISATION_SUCCESS, editedDoctor));
     }
 
     @Override
