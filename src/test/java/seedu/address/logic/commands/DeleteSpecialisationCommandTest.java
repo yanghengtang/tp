@@ -119,7 +119,7 @@ public class DeleteSpecialisationCommandTest {
     }
 
     /**
-     * Edit patient where condition is not already present
+     * Delete a missing specialisation from a doctor
      */
     @Test
     public void execute_missingTag_failure() {

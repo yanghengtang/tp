@@ -35,7 +35,7 @@ public class DeleteSpecialisationCommand extends Command {
 
     /**
      * @param index of the doctor in the filtered doctor list to delete the specialisation
-     * @param specialisation of the doctor to be updated to
+     * @param specialisation of the doctor to be deleted to
      */
     public DeleteSpecialisationCommand(Index index, Tag specialisation) {
         requireAllNonNull(index, specialisation);
