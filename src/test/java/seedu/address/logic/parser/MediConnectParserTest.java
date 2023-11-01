@@ -251,7 +251,7 @@ public class MediConnectParserTest {
     @Test
     public void parseCommand_deleteSpecialisation() throws Exception {
         DeleteSpecialisationCommand command = (DeleteSpecialisationCommand) parser.parseCommand(
-                "delete_spec 1 t\\Dermatology");
+                "delete_tag_d 1 t\\Dermatology");
         assertEquals(new DeleteSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag("Dermatology")), command);
     }
@@ -265,7 +265,7 @@ public class MediConnectParserTest {
     }
 
     @Test
-    public void parseCommand_doctorSpecialisation() throws Exception {
+    public void parseCommand_addSpecialisation() throws Exception {
         AddSpecialisationCommand command =
                 (AddSpecialisationCommand) parser.parseCommand(
                 "add_tag_d 1 t\\Orthopaedic");
