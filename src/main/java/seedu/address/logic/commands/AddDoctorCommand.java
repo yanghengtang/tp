@@ -24,7 +24,10 @@ public class AddDoctorCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a doctor to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_NRIC + "NRIC";
+            + PREFIX_NRIC + "NRIC \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_NRIC + "T0212385J\n ";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
     public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the database";

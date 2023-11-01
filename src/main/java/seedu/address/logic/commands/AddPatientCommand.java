@@ -24,12 +24,12 @@ public class AddPatientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_NRIC + "NRIC "
+            + PREFIX_PHONE + "PHONE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_NRIC + "A0123456B ";
+            + PREFIX_NRIC + "T0212385J "
+            + PREFIX_PHONE + "98765432 ";
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the database";
     private final Patient toAdd;
