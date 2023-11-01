@@ -32,8 +32,8 @@ public class AddSpecialisationCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "Orthopaedic";
 
     public static final String MESSAGE_ADD_SPECIALISATION_SUCCESS = "New Specialisation added: %1$s";
-    public static final String MESSAGE_ADD_SPECIALISATION_FAILURE = "The Specialisation already exists in doctor";
-
+    public static final String MESSAGE_ADD_SPECIALISATION_FAILURE = "The specialisation "
+            + "already exists in doctor: %1$s";
     private final Index index;
     private final Tag specialisation;
 
@@ -62,7 +62,7 @@ public class AddSpecialisationCommand extends Command {
         HashSet<Tag> doctorTags = doctorToEdit.getTags();
 
         if (doctorTags.contains(specialisation)) {
-            throw new CommandException(MESSAGE_ADD_SPECIALISATION_FAILURE);
+            throw new CommandException(String.format(MESSAGE_ADD_SPECIALISATION_FAILURE, specialisation));
         }
 
         doctorTags.add(specialisation);
