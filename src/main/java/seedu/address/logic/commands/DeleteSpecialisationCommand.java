@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  * Deletes a specialisation of an existing doctor in the database.
  */
 public class DeleteSpecialisationCommand extends Command {
-    public static final String COMMAND_WORD = "delete_spec";
+    public static final String COMMAND_WORD = "delete_tag_d";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a specialisation of the doctor "
             + "by the index number used in the last doctor listing. "
