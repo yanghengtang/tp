@@ -87,7 +87,7 @@ public class TypicalAppointment {
     public TypicalAppointment() {} // prevents instantiation
 
     public static List<Appointment> getTypicalAppointment() {
-        return new ArrayList<>(Arrays.asList(APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3, APPOINTMENT_4,
+        return new ArrayList<>(Arrays.asList(APPOINTMENT_1_WITH_REMARKS, APPOINTMENT_2, APPOINTMENT_3, APPOINTMENT_4,
                 APPOINTMENT_5, APPOINTMENT_6));
     }
 }
