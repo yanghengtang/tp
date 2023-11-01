@@ -179,4 +179,15 @@ public class AddSpecialisationCommandTest {
         assertEquals(command.hashCode(), Objects.hash(targetIndex,
                 SPECIALISATION_STUB));
     }
+
+    @Test
+    public void toStringMethod() {
+        AddSpecialisationCommand addSpecialisationCommand =
+                new AddSpecialisationCommand(INDEX_FIRST_PERSON, SPECIALISATION_STUB);
+        String expected = AddSpecialisationCommand.class.getCanonicalName()
+                + "{index=" + INDEX_FIRST_PERSON
+                + ", specialisation=" + SPECIALISATION_STUB + "}";
+        assertEquals(expected, addSpecialisationCommand.toString());
+    }
+
 }
