@@ -18,7 +18,7 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a doctor to the database.
+ * Adds a prescription to an existing appointment in the database.
  */
 public class AddSpecialisationCommand extends Command {
 
@@ -38,7 +38,7 @@ public class AddSpecialisationCommand extends Command {
     private final Tag specialisation;
 
     /**
-     * Creates an AddDoctorTagCommand to add the specified {@code Doctor}
+     * Creates an AddSpecialisationCommand to add the specified {@code Doctor}
      */
     public AddSpecialisationCommand(Index index, Tag specialisation) {
         requireAllNonNull(index, specialisation);
