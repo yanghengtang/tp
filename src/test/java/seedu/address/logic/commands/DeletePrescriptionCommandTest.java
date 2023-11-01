@@ -3,11 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRESCRIPTION_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.model.DataTest.PARACETAMOL_TAG;
+import static seedu.address.model.DataTest.PEDIATRICIAN_TAG;
 import static seedu.address.testutil.TypicalDatabase.getTypicalDatabase;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -28,9 +28,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AppointmentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddPrescriptionCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for DeletePrescriptionCommand.
  */
-public class AddPrescriptionCommandTest {
+public class DeletePrescriptionCommandTest {
 
     private static final Tag PRESCRIPTION_STUB = new Tag("SomePrescription");
 
@@ -39,17 +39,17 @@ public class AddPrescriptionCommandTest {
     @Test
     public void execute_addPrescriptionUnfilteredList_success() {
         Appointment firstAppointment =
-                model.getFilteredAppointmentList().get(INDEX_SECOND_PERSON.getZeroBased());
+                model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment =
                 new AppointmentBuilder(firstAppointment)
-                        .withTags(PRESCRIPTION_STUB).build();
+                        .withTags(PEDIATRICIAN_TAG).build();
 
-        AddPrescriptionCommand addPrescriptionCommand =
-                new AddPrescriptionCommand(INDEX_SECOND_PERSON,
-                        PRESCRIPTION_STUB);
+        DeletePrescriptionCommand deletePrescriptionCommand =
+                new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                        PARACETAMOL_TAG);
 
         String expectedMessage =
-                String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_SUCCESS, editedAppointment);
+                String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_SUCCESS, editedAppointment);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -59,24 +59,24 @@ public class AddPrescriptionCommandTest {
             throw new AssertionError(e.getMessage());
         }
 
-        assertCommandSuccess(addPrescriptionCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePrescriptionCommand, model, expectedMessage, expectedModel);
     }
 
 
     @Test
     public void execute_filteredList_success() {
-        showAppointmentAtIndex(model, INDEX_SECOND_PERSON);
+        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
 
         Appointment firstAppointment = model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment = new AppointmentBuilder(model.getFilteredAppointmentList()
                 .get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withTags(PRESCRIPTION_STUB).build();
+                .withTags(PEDIATRICIAN_TAG).build();
 
-        AddPrescriptionCommand addPrescriptionCommand =
-                new AddPrescriptionCommand(INDEX_FIRST_PERSON,
-                        PRESCRIPTION_STUB);
+        DeletePrescriptionCommand deletePrescriptionCommand =
+                new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                        PARACETAMOL_TAG);
 
-        String expectedMessage = String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_SUCCESS,
+        String expectedMessage = String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_SUCCESS,
                 editedAppointment);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
@@ -87,14 +87,14 @@ public class AddPrescriptionCommandTest {
             throw new AssertionError(e.getMessage());
         }
 
-        assertCommandSuccess(addPrescriptionCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePrescriptionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
-        AddPrescriptionCommand command =
-                new AddPrescriptionCommand(outOfBoundIndex, PRESCRIPTION_STUB);
+        DeletePrescriptionCommand command =
+                new DeletePrescriptionCommand(outOfBoundIndex, PARACETAMOL_TAG);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
@@ -110,47 +110,32 @@ public class AddPrescriptionCommandTest {
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDatabase().getAppointmentList().size());
 
-        AddPrescriptionCommand command =
-                new AddPrescriptionCommand(outOfBoundIndex, PRESCRIPTION_STUB);
+        DeletePrescriptionCommand command =
+                new DeletePrescriptionCommand(outOfBoundIndex, PARACETAMOL_TAG);
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of database
+     * Edit appointment where tag is not already present
      */
     @Test
-    public void execute_duplicateTag_failure() {
-        Appointment firstAppointment =
-                model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Appointment editedAppointment =
-                new AppointmentBuilder(firstAppointment)
-                        .withTags(PRESCRIPTION_STUB).build();
+    public void execute_missingTag_failure() {
 
-        AddPrescriptionCommand command =
-                new AddPrescriptionCommand(INDEX_FIRST_PERSON,
-                        PRESCRIPTION_STUB);
-        try {
-            command.execute(model);
-        } catch (CommandException e) {
-            throw new AssertionError(e.getMessage());
-        }
-
-        AddPrescriptionCommand duplicateCommand =
-                new AddPrescriptionCommand(INDEX_FIRST_PERSON,
+        DeletePrescriptionCommand command =
+                new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                         PRESCRIPTION_STUB);
         String expectedMessage =
-                String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_FAILURE, PRESCRIPTION_STUB);
-        assertCommandFailure(duplicateCommand, model, expectedMessage);
+                String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_FAILURE, PRESCRIPTION_STUB);
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        final AddPrescriptionCommand firstCommand = new AddPrescriptionCommand(INDEX_FIRST_PERSON,
-                new Tag(VALID_PRESCRIPTION_1));
+        final DeletePrescriptionCommand firstCommand = new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                PARACETAMOL_TAG);
         // same values -> returns true
-        AddPrescriptionCommand commandWithSameValues = new AddPrescriptionCommand(INDEX_FIRST_PERSON,
-                new Tag(VALID_PRESCRIPTION_1));
+        DeletePrescriptionCommand commandWithSameValues = new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                PARACETAMOL_TAG);
         assertTrue(firstCommand.equals(commandWithSameValues));
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
@@ -159,18 +144,18 @@ public class AddPrescriptionCommandTest {
         // different types -> returns false
         assertFalse(firstCommand.equals(new ListAppointmentCommand()));
         // different index -> returns false
-        assertFalse(firstCommand.equals(new AddPrescriptionCommand(INDEX_SECOND_PERSON,
-                new Tag(VALID_PRESCRIPTION_1))));
+        assertFalse(firstCommand.equals(new DeletePrescriptionCommand(INDEX_SECOND_PERSON,
+               PARACETAMOL_TAG)));
         // different prescription -> returns false
-        assertFalse(firstCommand.equals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
-                new Tag(VALID_PRESCRIPTION_2))));
+        assertFalse(firstCommand.equals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                PEDIATRICIAN_TAG)));
     }
 
     @Test
     public void hashCodeMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        AddPrescriptionCommand command =
-                new AddPrescriptionCommand(targetIndex,
+        DeletePrescriptionCommand command =
+                new DeletePrescriptionCommand(targetIndex,
                         PRESCRIPTION_STUB);
 
         // same value -> returns same hashcode

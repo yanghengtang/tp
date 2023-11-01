@@ -22,6 +22,7 @@ import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DeletePrescriptionCommand;
 import seedu.address.logic.commands.DeleteSpecialisationCommand;
 import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
@@ -233,6 +234,13 @@ public class MediConnectParserTest {
                 "delete_spec 1 t\\Dermatology");
         assertEquals(new DeleteSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag("Dermatology")), command);
+    }
+
+    public void parseCommand_deletePresription() throws Exception {
+        DeletePrescriptionCommand command = (DeletePrescriptionCommand) parser.parseCommand(
+                "delete_tag_a 1 t\\Panadol");
+        assertEquals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
+                new Tag("Panadol")), command);
     }
 
     @Test
