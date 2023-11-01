@@ -257,7 +257,7 @@ public class MediConnectParserTest {
     public void parseCommand_doctorSpecialisation() throws Exception {
         AddSpecialisationCommand command =
                 (AddSpecialisationCommand) parser.parseCommand(
-                "add_spec 1 t\\Orthopaedic");
+                "add_tag_d 1 t\\Orthopaedic");
         assertEquals(new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                 new Tag("Orthopaedic")), command);
     }
