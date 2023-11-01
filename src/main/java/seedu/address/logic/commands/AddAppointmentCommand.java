@@ -25,9 +25,14 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the database. "
             + "Parameters: "
             + PREFIX_PATIENT_NRIC + "PATIENT_NRIC "
-            + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC "
+            + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC \n"
             + PREFIX_APPOINTMENT_START_TIME + "START_TIME "
-            + PREFIX_APPOINTMENT_END_TIME + "END_TIME ";
+            + PREFIX_APPOINTMENT_END_TIME + "END_TIME \n"
+            + "Example: "
+            + PREFIX_PATIENT_NRIC + "S9912343G "
+            + PREFIX_DOCTOR_NRIC + "T0212385J "
+            + PREFIX_APPOINTMENT_START_TIME + "2023-09-11 07:30 "
+            + PREFIX_APPOINTMENT_END_TIME + "2023-09-11 08:00 ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =

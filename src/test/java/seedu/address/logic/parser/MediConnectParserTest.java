@@ -16,11 +16,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
+import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.DeletePrescriptionCommand;
 import seedu.address.logic.commands.DeleteSpecialisationCommand;
@@ -218,6 +220,22 @@ public class MediConnectParserTest {
                 "remark_p 1 r\\Patient to follow up in 1 month");
         assertEquals(new PatientRemarkCommand(INDEX_FIRST_PERSON,
                 new Remark("Patient to follow up in 1 month")), command);
+    }
+
+    @Test
+    public void parseCommand_addMedicalCondition() throws Exception {
+        AddMedicalConditionCommand command = (AddMedicalConditionCommand) parser.parseCommand(
+                "add_tag_p 1 t\\diabetes");
+        assertEquals(new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
+                new Tag("diabetes")), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMedicalCondition() throws Exception {
+        DeleteMedicalConditionCommand command = (DeleteMedicalConditionCommand) parser.parseCommand(
+                "delete_tag_p 1 t\\diabetes");
+        assertEquals(new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
+                new Tag("diabetes")), command);
     }
 
 
