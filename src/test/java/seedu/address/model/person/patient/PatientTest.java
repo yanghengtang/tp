@@ -60,6 +60,7 @@ public class PatientTest {
                 + ", phone=" + ALICE_WITH_REMARKS.getPhone()
                 + ", nric=" + ALICE_WITH_REMARKS.getNric()
                 + ", remark=" + ALICE_WITH_REMARKS.getRemark()
+                + ", conditions=" + ALICE_WITH_REMARKS.getTags()
                 + "}";
         assertEquals(expected, ALICE_WITH_REMARKS.toString());
     }

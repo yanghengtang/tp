@@ -16,13 +16,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddMedicalConditionCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddPrescriptionCommand;
 import seedu.address.logic.commands.AddSpecialisationCommand;
 import seedu.address.logic.commands.AppointmentRemarkCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteDoctorCommand;
+import seedu.address.logic.commands.DeleteMedicalConditionCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.DeletePrescriptionCommand;
 import seedu.address.logic.commands.DoctorRemarkCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -218,12 +221,36 @@ public class MediConnectParserTest {
                 new Remark("Patient to follow up in 1 month")), command);
     }
 
+    @Test
+    public void parseCommand_addMedicalCondition() throws Exception {
+        AddMedicalConditionCommand command = (AddMedicalConditionCommand) parser.parseCommand(
+                "add_tag_p 1 t\\diabetes");
+        assertEquals(new AddMedicalConditionCommand(INDEX_FIRST_PERSON,
+                new Tag("diabetes")), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMedicalCondition() throws Exception {
+        DeleteMedicalConditionCommand command = (DeleteMedicalConditionCommand) parser.parseCommand(
+                "delete_tag_p 1 t\\diabetes");
+        assertEquals(new DeleteMedicalConditionCommand(INDEX_FIRST_PERSON,
+                new Tag("diabetes")), command);
+    }
+
 
     @Test
     public void parseCommand_addPresription() throws Exception {
         AddPrescriptionCommand command = (AddPrescriptionCommand ) parser.parseCommand(
                 "add_tag_a 1 t\\Panadol");
         assertEquals(new AddPrescriptionCommand(INDEX_FIRST_PERSON,
+                new Tag("Panadol")), command);
+    }
+
+    @Test
+    public void parseCommand_deletePresription() throws Exception {
+        DeletePrescriptionCommand command = (DeletePrescriptionCommand) parser.parseCommand(
+                "delete_tag_a 1 t\\Panadol");
+        assertEquals(new DeletePrescriptionCommand(INDEX_FIRST_PERSON,
                 new Tag("Panadol")), command);
     }
     @Test

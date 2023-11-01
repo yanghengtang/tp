@@ -74,6 +74,6 @@ public class TypicalPatient {
     private TypicalPatient() {} // prevents instantiation
 
     public static List<Patient> getTypicalPatient() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE_WITH_REMARKS, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
