@@ -18,7 +18,7 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a prescription to an existing appointment in the database.
+ * Adds a specialisation for a doctor in the database.
  */
 public class AddSpecialisationCommand extends Command {
 

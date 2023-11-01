@@ -28,7 +28,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.DoctorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddDoctorSpecialisationCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AddSpecialisationCommand.
  */
 public class AddSpecialisationCommandTest {
 
