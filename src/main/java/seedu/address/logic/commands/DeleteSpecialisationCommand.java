@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DOCTORS;
 
 import java.util.HashSet;
@@ -23,9 +24,9 @@ public class DeleteSpecialisationCommand extends Command {
             + ": Deletes a specialisation of the doctor "
             + "by the index number used in the last doctor listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "t\\ [SPECIALISATION]\n"
+            + PREFIX_TAG + " [SPECIALISATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "t\\ Orthopaedic ";
+            + PREFIX_TAG + " Orthopaedic ";
 
     public static final String MESSAGE_DELETE_SPECIALISATION_SUCCESS = "Specialisation deleted: %1$s";
     public static final String MESSAGE_DELETE_SPECIALISATION_FAILURE = "Specialisation does not exist: %1$s";
