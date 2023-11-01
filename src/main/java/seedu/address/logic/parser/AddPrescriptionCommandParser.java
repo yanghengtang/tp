@@ -40,9 +40,9 @@ public class AddPrescriptionCommandParser implements Parser<AddPrescriptionComma
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
-        Tag prescrption = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        Tag prescription = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new AddPrescriptionCommand(index, prescrption);
+        return new AddPrescriptionCommand(index, prescription);
     }
 
     /**
