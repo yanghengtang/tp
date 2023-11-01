@@ -30,8 +30,8 @@ public class DoctorRemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + " Doctor will not be in clinic until  30/12/2023.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Doctor: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Doctor: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Doctor at index %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Doctor at index %1$s";
 
     private final Index index;
     private final Remark remark;
@@ -64,7 +64,7 @@ public class DoctorRemarkCommand extends Command {
         model.setDoctor(doctorToEdit, editedDoctor);
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
 
-        return new CommandResult(generateSuccessMessage(editedDoctor));
+        return new CommandResult(generateSuccessMessage(index));
     }
 
     /**
@@ -72,9 +72,9 @@ public class DoctorRemarkCommand extends Command {
      * the remark is added to or removed from
      * {@code doctorToEdit}.
      */
-    private String generateSuccessMessage(Doctor doctorToEdit) {
+    private String generateSuccessMessage(Index index) {
         String message = !remark.remark.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, doctorToEdit);
+        return String.format(message, index.getZeroBased());
     }
 
     @Override

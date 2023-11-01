@@ -20,7 +20,7 @@ public class ListAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "list_a";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists appointments in the database. "
             + "Parameters: "
-            + PREFIX_PATIENT_NRIC + "PATIENT_NRIC"
+            + PREFIX_PATIENT_NRIC + "PATIENT_NRIC "
             + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC";
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments";

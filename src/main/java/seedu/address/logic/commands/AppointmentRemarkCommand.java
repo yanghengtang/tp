@@ -28,8 +28,8 @@ public class AppointmentRemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + " Patient to follow up in 1 month.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Appointment: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Appointment: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Appointment at index %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Appointment at index %1$s";
 
     private final Index index;
     private final Remark remark;
@@ -62,7 +62,7 @@ public class AppointmentRemarkCommand extends Command {
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        return new CommandResult(generateSuccessMessage(editedAppointment));
+        return new CommandResult(generateSuccessMessage(index));
     }
 
     /**
@@ -70,9 +70,9 @@ public class AppointmentRemarkCommand extends Command {
      * the remark is added to or removed from
      * {@code appointmentToEdit}.
      */
-    private String generateSuccessMessage(Appointment appointmentToEdit) {
+    private String generateSuccessMessage(Index index) {
         String message = !remark.remark.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, appointmentToEdit);
+        return String.format(message, index.getZeroBased());
     }
 
     @Override
