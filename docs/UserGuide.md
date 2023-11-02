@@ -323,7 +323,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
-You can view detail information about a specific doctor from the system.
+You can view detail information about a specific doctor such as basic information, doctor's specialisation and remarks stored in the system.
 
 Format: `view_d INDEX`
 
@@ -334,6 +334,10 @@ Format: `view_d INDEX`
 Examples:
 * `list_d` followed by `view_d 2` views the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `view_d 1` views the 1st doctor in the results of the `find_d` command.
+
+Below is the image of a successful result that you should have encountered.
+
+![ViewDoctorMainWindow](images/view-doctor.jpg)
 
 Back to [Doctor Management Features](#doctor-management-features).
 
