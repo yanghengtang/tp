@@ -479,7 +479,7 @@ Examples:
 * `list_a` followed by `delete_tag_a 2 Panadol` deletes the prescription `Panadol` from the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `delete_tag_a 1 Panadol` deletes the prescription `Panadol` form the 1st appointment in the results of the `list_a` command.
 
-### Editing a remark : `remark_a`
+### Editing a remark of an appointment : `remark_a`
 
 You can edit an appointment's remark in the system, such as appointment notes or follow-up details.
 
@@ -490,8 +490,8 @@ Format: `remark_a INDEX [r\REMARK]`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-<div markdown = "span" class = "alert alert-note">
-:information_source: Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
+<div markdown="span" class="alert alert-note">:information_source: **Note:**
+Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
 </div>
 
 Examples:
@@ -549,7 +549,7 @@ Back to [General Features](#general-features).
 
 MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: :information_source:
 If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
