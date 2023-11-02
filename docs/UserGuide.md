@@ -350,6 +350,21 @@ Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 Examples:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
 
+Sample Usage:
+1. Assuming you want to edit the 4th Doctor changing his phone from "T0212384J" to "T0212385J".
+
+2. Enter the following command:
+```
+edit_d 4 ic\T0212385J
+```
+
+3. The result box will display the following message:
+```
+"Edited Doctor: Joe Ng Nric: T0212385J"
+```
+
+4. You have successfully edited the patient into the database.
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
