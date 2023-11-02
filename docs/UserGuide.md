@@ -150,9 +150,9 @@ The features are broken down to into:
 
 ## Parameters used in this guide
 
-The following table 
+The following table gives an overview of what each parameter used in the Features section is for.
 
-| Icons        | Representation                                                       |
+| Parameter    | Description                                                          |
 |--------------|----------------------------------------------------------------------|
 | NAME         | The full name of the doctor/patient                                  |
 | NRIC         | The National Registration Identity Card number of the doctor/patient |
@@ -508,7 +508,9 @@ Back to [Table of Contents](#table-of-contents).
 
 # Known issues
 
-1. _Details coming soon ..._
+1. If Appointment/Doctor/Patient window is opened and `edit`, `remark`, `add_tag` or `delete_tag` command is applied on 
+the selected appointment/doctor/patient, the window will not reflect the changes. To refresh and see the updated details,
+run the `view` command again.
 
 Back to [Table of Contents](#table-of-contents).
 
