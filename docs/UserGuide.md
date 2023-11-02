@@ -2,18 +2,24 @@
 layout: page
 title: User Guide
 ---
-# MediConnect
 
-Welcome to the User Guide of MediConnect!
+Welcome to the user guide of MediConnect!
 
 ## What is MediConnect?
 
-MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic om their day-to-day task.
-These may include scheduling an appointment, retrieving a patient's medical history and updating the patient's medical record.
+MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic on their day-to-day task.
 
 ## Who is MediConnect for?
 
 MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+
+## What can MediConnect do for you?
+
+MediConnect is here to help you with your administrative task in the clinic. These include:
+- Scheduling an appointment
+- Retrieving a patient's medical history
+- Checking a doctor's availability
+- Updating a patient's medical record
 
 ## How can you get started?
 
@@ -141,6 +147,18 @@ The features are broken down to into:
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+## Parameters used in this guide
+
+The following table 
+
+| Icons        | Representation                                                       |
+|--------------|----------------------------------------------------------------------|
+| NAME         | The full name of the doctor/patient                                  |
+| NRIC         | The National Registration Identity Card number of the doctor/patient |
+| PHONE_NUMBER | The phone number of the doctor/patient                               |
+| INDEX        | The position of the appointment/doctor/patient in the filtered list  |
+
 
 ## Patient Management Features
 
