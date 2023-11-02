@@ -288,7 +288,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a doctor: `add_d`
 
-Adds a doctor to the system.
+You can simply add a doctor to the system.
 
 Format: `add_d n\NAME ic\NRIC`
 
@@ -297,7 +297,7 @@ Examples:
 * `add_d ic\S9912343G n\Betsy Crowe`
 
 Sample Usage:
-1. Assuming you want to add a Doctor named "John Doe" with NRIC "T0212385J".
+1. Assuming you want to add a doctor named "John Doe" with NRIC "T0212385J".
 
 2. Enter the following command:
 ```
@@ -315,7 +315,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Listing all doctor : `list_d`
 
-Shows a list of all doctors in the system.
+You can get a list of all doctors in the system.
 
 Format: `list_d`
 
@@ -323,7 +323,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
-Views the specified doctor from the system.
+You can view detail information about a specific doctor from the system.
 
 Format: `view_d INDEX`
 
@@ -339,7 +339,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-Edits an existing doctor in the system.
+You can easily edit an existing doctor in the system.
 
 Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
@@ -363,13 +363,13 @@ edit_d 4 ic\T0212385J
 "Edited Doctor: Joe Ng Nric: T0212385J"
 ```
 
-4. You have successfully edited the patient into the database.
+4. You have successfully edited the doctor into the database.
 
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
 
-Finds doctor whose names contain any of the given keywords.
+You can quickly locate doctor whose names contain any of the given keywords.
 
 Format: `find_d KEYWORD [MORE_KEYWORDS]`
 
@@ -388,7 +388,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Deleting a doctor : `delete_d`
 
-Deletes the specified doctor from the system.
+You can also delete a specific doctor from the system.
 
 Format: `delete_d INDEX`
 
@@ -402,7 +402,7 @@ Examples:
 
 ### Adding a specialisation : `add_tag_d`
 
-Adds the specified specialisation from a doctor from the system.
+You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
 
 Format: `add_tag_d INDEX [t\SPECIALISATION]`
 
@@ -416,7 +416,7 @@ Examples:
 
 ### Deleting a specialisation : `delete_tag_d`
 
-Deletes the specified specialisation from a doctor from the system.
+You can delete the doctor's specialisation from the system.
 
 Format: `delete_tag_d INDEX [t\SPECIALISATION]`
 
@@ -430,7 +430,7 @@ Examples:
 
 ### Editing a remark : `remark_d`
 
-Edits the remark of a doctor from the system.
+You can edit a doctor's remark in the system, such as preferred timing or availability.
 
 Format: `remark_d INDEX [r\REMARK]`
 
