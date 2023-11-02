@@ -416,7 +416,7 @@ If doctor is being removed, the appointments of the doctor's will also be delete
 
 You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
 
-Format: `add_tag_d INDEX [t\SPECIALISATION]`
+Format: `add_tag_d INDEX t\SPECIALISATION`
 
 * Adds the specialisation of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
@@ -430,7 +430,7 @@ Examples:
 
 You can delete the doctor's specialisation from the system.
 
-Format: `delete_tag_d INDEX [t\SPECIALISATION]`
+Format: `delete_tag_d INDEX t\SPECIALISATION`
 
 * Adds the specialisation of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
