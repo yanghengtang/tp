@@ -408,6 +408,10 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If doctor is being removed, the appointments of the doctor's will also be deleted too!.
+</div>
+
 ### Adding a specialisation : `add_tag_d`
 
 You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
