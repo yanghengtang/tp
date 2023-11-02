@@ -6,21 +6,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddPrescriptionCommand;
+import seedu.address.logic.commands.DeleteSpecialisationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-
 /**
- * Parses input arguments and creates a new AddPrescriptionCommand object
+ * Parses input arguments and creates a new DeleteSpecialisationCommand object
  */
-public class AddPrescriptionCommandParser implements Parser<AddPrescriptionCommand> {
+public class DeleteSpecialisationCommandParser implements Parser<DeleteSpecialisationCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPrescriptionCommand
-     * and returns an AddPrescriptionCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteSpecialisationCommand
+     * and returns an DeleteSpecialisationCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddPrescriptionCommand parse(String args) throws ParseException {
+    public DeleteSpecialisationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
@@ -30,19 +29,19 @@ public class AddPrescriptionCommandParser implements Parser<AddPrescriptionComma
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPrescriptionCommand.MESSAGE_USAGE),
+                    DeleteSpecialisationCommand.MESSAGE_USAGE),
                     pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPrescriptionCommand.MESSAGE_USAGE));
+                    DeleteSpecialisationCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
-        Tag prescription = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        Tag specialisation = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new AddPrescriptionCommand(index, prescription);
+        return new DeleteSpecialisationCommand(index, specialisation);
     }
 
     /**

@@ -2,10 +2,20 @@
 layout: page
 title: User Guide
 ---
+# MediConnect
+
+Welcome to the User Guide of MediConnect!
+
+## What is MediConnect?
 
 MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic om their day-to-day task.
 These may include scheduling an appointment, retrieving a patient's medical history and updating the patient's medical record.
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+## Who is MediConnect for?
+
+MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+
+## How can you get started?
 
 If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
 
@@ -58,36 +68,9 @@ return back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Introduction to MediConnect
-
-This section will give you an introduction to MediConnect and how to navigate the application.
-
-## What is MediConnect?
-
-MediConnect is a clinic management system designed to digitalize all the administrative tasking in a medical clinic
-
-## Who is MediConnect for?
-
-MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
-
-
-## Navigating the main window
-
-![UiLayout](images/UiLayout.png)
-
-The main window can be broken down into the following components:
-
-- **Command Box**: The command box is where you will enter your input your commands
-- **Result Display Box**: The box will display the output messages based on your entered commands
-- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
-- **Patient List Panel**: This panel will display the list of patient sorted by their names
-- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
-
-return back to [Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
 # Quick start
+
+## Installing MediConnect
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -112,7 +95,20 @@ return back to [Table of Contents](#table-of-contents)
 
 1. Refer to the [Features](#features) below for details of each command.
 
-return back to [Table of Contents](#table-of-contents)
+
+## Navigating the application
+
+![UiLayout](images/UiLayout.png)
+
+The main window can be broken down into the following components:
+
+- **Command Box**: The command box is where you will enter your input your commands
+- **Result Display Box**: The box will display the output messages based on your entered commands
+- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
+- **Patient List Panel**: This panel will display the list of patient sorted by their names
+- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
+
+Back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -146,35 +142,17 @@ The features are broken down to into:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-## General Features
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
-</div>
-
 ## Patient Management Features
+
+These are a list of features that help you manage the records of patient:
+- [Adding patient](#adding-a-patient--addp)
+- [Listing patient](#listing-all-patient--listp)
+- [Viewing patient](#viewing-a-patient--viewp)
+- [Editing patient](#editing-a-patient--editp)
+- [Finding patient](#locating-patients-by-name--findp)
+- [Deleting patient](#deleting-a-patient--deletep)
+
+Back to [Table of Contents](#table-of-contents).
 
 ### Adding a patient: `add_p`
 
@@ -201,11 +179,15 @@ add_p n\Jonathan Reese n\S8712461K p\81235833
 
 4. You have successfully added the patient into the database.
 
+Back to [Patient Management Features](#patient-management-features).
+
 ### Listing all patient : `list_p`
 
 Shows a list of all patients in the system.
 
 Format: `list_p`
+
+Back to [Patient Management Features](#patient-management-features).
 
 ### Viewing a patient : `view_p`
 
@@ -220,6 +202,8 @@ Format: `view_p INDEX`
 Examples:
 * `list_p` followed by `view_p 2` views the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `view_p 1` views the 1st patient in the results of the `find_p` command.
+
+Back to [Patient Management Features](#patient-management-features).
 
 ### Editing a patient : `edit_p`
 
@@ -250,6 +234,8 @@ edit_p 4 p\81453894
 
 4. You have successfully edited the patient into the database.
 
+Back to [Patient Management Features](#patient-management-features).
+
 ### Locating patients by name: `find_p`
 
 Finds patients whose names contain any of the given keywords.
@@ -267,6 +253,8 @@ Examples:
 * `find_p John` returns `john` and `John Doe`
 * `find_p alex david` returns `Alex Yeoh`, `David Li`<br>
 
+Back to [Patient Management Features](#patient-management-features).
+
 ### Deleting a patient : `delete_p`
 
 Deletes the specified patient from the system.
@@ -281,7 +269,19 @@ Examples:
 * `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the results of the `find_p` command.
 
+Back to [Patient Management Features](#patient-management-features).
+
 ## Doctor Management Features
+
+These are a list of features that help you manage the records of doctor:
+- [Adding doctor](#adding-a-doctor--addd)
+- [Listing doctor](#listing-all-doctor--listd)
+- [Viewing doctor](#viewing-a-doctor--viewd)
+- [Editing doctor](#editing-a-doctor--editd)
+- [Finding doctor](#locating-doctors-by-name--findd)
+- [Deleting doctor](#deleting-a-doctor--deleted)
+
+Back to [Table of Contents](#table-of-contents).
 
 ### Adding a doctor: `add_d`
 
@@ -293,11 +293,15 @@ Examples:
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
+Back to [Doctor Management Features](#doctor-management-features).
+
 ### Listing all doctor : `list_d`
 
 Shows a list of all doctors in the system.
 
 Format: `list_d`
+
+Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
@@ -313,6 +317,8 @@ Examples:
 * `list_d` followed by `view_d 2` views the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `view_d 1` views the 1st doctor in the results of the `find_d` command.
 
+Back to [Doctor Management Features](#doctor-management-features).
+
 ### Editing a doctor : `edit_d`
 
 Edits an existing doctor in the system.
@@ -325,6 +331,8 @@ Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
 Examples:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
+
+Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
 
@@ -342,6 +350,8 @@ Format: `find_d KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find_d John` returns `john` and `John Doe`
 * `find_d alex david` returns `Alex Yeoh`, `David Li`<br>
+
+Back to [Doctor Management Features](#doctor-management-features).
 
 ### Deleting a doctor : `delete_d`
 
@@ -410,6 +420,8 @@ Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 Examples:
 * `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00 `
 
+Back to [Appointment Management Features](#appointment-management-features).
+
 ### Listing all appointments, or by patient or doctor NRIC: `list_a`
 
 Shows a list of appointments in the system depending on the fields given.
@@ -421,6 +433,8 @@ Format: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
 Examples:
 * `list_a pic\S9912343G` returns all the appointment the patient with NRIC `S9912343G` has.
+
+Back to [Appointment Management Features](#appointment-management-features).
 
 ### Viewing an appointment: `view_a`
 
@@ -435,6 +449,8 @@ Format: `view_a INDEX`
 Examples:
 * `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
+Back to [Appointment Management Features](#appointment-management-features).
+
 ### Deleting an appointment : `delete_a`
 
 Deletes the specified appointment from the system.
@@ -446,7 +462,51 @@ Format: `delete_a INDEX`
 Examples:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
 
-return back to [Table of Contents](#table-of-contents)
+Back to [Appointment Management Features](#appointment-management-features).
+
+## General Features
+
+These are the list of general features built into MediConnect:
+- [Help](#viewing-help--help)
+- [Exit](#exiting-the-program--exit)
+- [Saving the data](#saving-the-data)
+- [Editing the data](#editing-the-data-file)
+
+Back to [Table of Contents](#table-of-contents).
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+Back to [General Features](#general-features).
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+Back to [General Features](#general-features).
+
+### Saving the data
+
+MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+Back to [General Features](#general-features).
+
+### Editing the data file
+
+MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+</div>
+
+Back to [General Features](#general-features).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -455,11 +515,15 @@ return back to [Table of Contents](#table-of-contents)
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediConnect home folder.
 
+Back to [Table of Contents](#table-of-contents).
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Known issues
 
 1. _Details coming soon ..._
+
+Back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -482,10 +546,10 @@ return back to [Table of Contents](#table-of-contents)
 | **Find Patient**          | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                                                |
 | **List Patient**          | `list_p`                                                                                                                                                      |
 | **List Doctor**           | `list_d`                                                                                                                                                      |
-| **List Appointment**      | `list_a`                                                                                                                                                      |
+| **List Appointment**      | `list_a`                                                                                                                                                       |
 | **Add Specialisation**    | `add_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `add_tag_d 1 Orthopaedic`                                                                                     |
 | **Delete Specialisation** | `delete_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                               |
 | **Edit Doctor Remark**    | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
 | **Help**                  | `help`                                                                                                                                                        |
 
-return back to [Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents).

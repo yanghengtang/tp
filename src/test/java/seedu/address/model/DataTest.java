@@ -18,9 +18,13 @@ public class DataTest {
     public static final String DEPRESSION_TAG_STRING = "Depression";
     public static final String PARACETAMOL_TAG_STRING = "Paracetamol";
     public static final String PEDIATRICIAN_TAG_STRING = "Pediatrician";
+    public static final String ORTHOPAEDIC_TAG_STRING = "Orthopaedic";
+    public static final String DERMATOLOGY_TAG_STRING = "Dermatology";
     public static final Tag DEPRESSION_TAG = new Tag(DEPRESSION_TAG_STRING);
     public static final Tag PARACETAMOL_TAG = new Tag(PARACETAMOL_TAG_STRING);
     public static final Tag PEDIATRICIAN_TAG = new Tag(PEDIATRICIAN_TAG_STRING);
+    public static final Tag ORTHOPAEDIC_TAG = new Tag(ORTHOPAEDIC_TAG_STRING);
+    public static final Tag DERMATOLOGY_TAG = new Tag(DERMATOLOGY_TAG_STRING);
     public static final HashSet<Tag> TAGS = new HashSet<>();
     public static final HashSet<Tag> TAGS_WITH_TAG = new HashSet<>(Arrays.asList(PEDIATRICIAN_TAG, PARACETAMOL_TAG));
     public static final Data DATA_1 = new DataStub();

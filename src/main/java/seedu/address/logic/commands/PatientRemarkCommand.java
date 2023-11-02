@@ -27,8 +27,8 @@ public class PatientRemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Patient to follow up in 1 month.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Patient: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Patient: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Patient at index %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Patient at index %1$s";
 
     private final Index index;
     private final Remark remark;
@@ -64,7 +64,7 @@ public class PatientRemarkCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(generateSuccessMessage(editedPatient));
+        return new CommandResult(generateSuccessMessage(index));
     }
 
     /**
@@ -72,9 +72,9 @@ public class PatientRemarkCommand extends Command {
      * the remark is added to or removed from
      * {@code patientToEdit}.
      */
-    private String generateSuccessMessage(Patient patientToEdit) {
+    private String generateSuccessMessage(Index index) {
         String message = !remark.remark.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, patientToEdit);
+        return String.format(message, index.getZeroBased());
     }
 
     @Override

@@ -49,7 +49,8 @@ public class AppointmentRemarkCommandTest {
                         new Remark(editedAppointment.getRemark().remark));
 
         String expectedMessage =
-                String.format(AppointmentRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedAppointment);
+                String.format(AppointmentRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                        INDEX_FIRST_PERSON.getZeroBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -75,7 +76,7 @@ public class AppointmentRemarkCommandTest {
                 new Remark(editedAppointment.getRemark().toString()));
 
         String expectedMessage = String.format(AppointmentRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
-                editedAppointment);
+                INDEX_FIRST_PERSON.getZeroBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -106,7 +107,7 @@ public class AppointmentRemarkCommandTest {
                         new Remark(editedAppointment.getRemark().remark));
 
         String expectedMessage = String.format(AppointmentRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                editedAppointment);
+                INDEX_FIRST_PERSON.getZeroBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
