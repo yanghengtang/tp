@@ -280,6 +280,9 @@ These are a list of features that help you manage the records of doctor:
 - [Editing doctor](#editing-a-doctor--editd)
 - [Finding doctor](#locating-doctors-by-name--findd)
 - [Deleting doctor](#deleting-a-doctor--deleted)
+- [Adding Specialisation](#adding-a-specialisation--addtagd)
+- [Deleting Specialisation](#deleting-a-specialisation--deletetagd)
+- [Editing Remark](#editing-a-remark--remarkd)
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -367,21 +370,7 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
-### Editing the remark on doctor : `add_tag_d`
-
-Edits the remark of a doctor from the system.
-
-Format: `remark_d INDEX [r\REMARK]`
-
-* Edits the remark of doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
-* `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
-
-### Adding a specialisation on doctor : `add_tag_d`
+### Adding a specialisation : `add_tag_d`
 
 Adds the specified specialisation from a doctor from the system.
 
@@ -395,7 +384,7 @@ Examples:
 * `list_d` followed by `add_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `add_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
-### Deleting a specialisation from doctor : `delete_tag_d`
+### Deleting a specialisation : `delete_tag_d`
 
 Deletes the specified specialisation from a doctor from the system.
 
@@ -409,7 +398,32 @@ Examples:
 * `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
+### Editing a remark : `remark_d`
+
+Edits the remark of a doctor from the system.
+
+Format: `remark_d INDEX [r\REMARK]`
+
+* Edits the remark of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
+
+* Back to [Doctor Management Features](#doctor-management-features).
+
 ## Appointment Management Features
+
+These are a list of features that help you manage the records of appointment:
+- [Adding appointment](#adding-an-appointment--adda)
+- [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--lista)
+- [Viewing appointment](#viewing-an-appointment--viewa)
+- [Editing appointment](#editing-a-appointment--edita)
+- [Deleting appointment](#deleting-an-appointment--deletea)
+
+Back to [Table of Contents](#table-of-contents).
 
 ### Adding an appointment: `add_a`
 
