@@ -412,7 +412,7 @@ Examples:
 * `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
 
-* Back to [Doctor Management Features](#doctor-management-features).
+Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
 
