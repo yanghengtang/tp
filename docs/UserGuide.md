@@ -72,7 +72,9 @@ return back to [Table of Contents](#table-of-contents)
 
 ## Installing MediConnect
 
-1. Ensure you have Java `11` or above installed in your Computer. If you do not have it installed yet, refer to the following guides based on your operating system:
+1. Ensure you have Java `11` or above installed in your Computer. If you already have it installed, follow this [guide](https://blog.hubspot.com/website/check-java-verison) to check your Java version.
+
+    If you do not have it installed yet or your Java version is below `11`, refer to the following guides based on your operating system:
 
     [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
 
@@ -84,7 +86,11 @@ return back to [Table of Contents](#table-of-contents)
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MediConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mediconnect.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in
+
+1. Use the `java -jar mediconnect.jar` command to run the application.<br>
+    
+    The commands you give should look similar to what is shown below:
    ![Terminal](images/terminalcommand.png)
 
     A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
