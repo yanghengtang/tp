@@ -296,6 +296,21 @@ Examples:
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
+Sample Usage:
+1. Assuming you want to add a Doctor named "John Doe" with NRIC "T0212385J".
+
+2. Enter the following command:
+```
+add_d n\John Doe ic\T0212385J
+```
+
+3. The result box will display the following message:
+```
+"New doctor added: John Doe Nric: T0212385J"
+```
+
+4. You have successfully added the doctor into the database.
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Listing all doctor : `list_d`
