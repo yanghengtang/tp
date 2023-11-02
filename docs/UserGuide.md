@@ -602,9 +602,9 @@ Back to [Table of Contents](#table-of-contents).
 | **Find Patient**          | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                                                |
 | **List Patient**          | `list_p`                                                                                                                                                      |
 | **List Doctor**           | `list_d`                                                                                                                                                      |
-| **List Appointment**      | `list_a`                                                                                                                                                       |
-| **Add Specialisation**    | `add_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `add_tag_d 1 Orthopaedic`                                                                                     |
-| **Delete Specialisation** | `delete_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                               |
+| **List Appointment**      | `list_a`                                                                                                                                                      |
+| **Add Specialisation**    | `add_tag_d INDEX t\SPECIALISATION` <br> e.g., `add_tag_d 1 Orthopaedic`                                                                                       |
+| **Delete Specialisation** | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                                 |
 | **Edit Doctor Remark**    | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
 | **Help**                  | `help`                                                                                                                                                        |
 
