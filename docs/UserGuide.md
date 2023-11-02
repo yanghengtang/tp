@@ -369,6 +369,10 @@ edit_d 4 ic\T0212385J
 
 4. You have successfully edited the doctor into the database.
 
+<div markdown="span" class="alert alert-note">**:information_source: 
+Note that the nric in doctor's appointment will be updated if the nric is updated!:**<br>
+</div>
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
