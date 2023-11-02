@@ -58,11 +58,11 @@ Here are some common terms that is used throughout this user guide
 ## Navigating this user guide
 
 As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide to be overwhelming.
-Fred not, you utilise the [Table of Content](#table-of-contents) to find the information your are looking for.
+Fret not, you can utilise the [Table of Content](#table-of-contents) to find the information you are looking for.
 
 If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
 
-If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to horne your MediConnect sklls.
+If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to hone your MediConnect skills.
 
 return back to [Table of Contents](#table-of-contents)
 
@@ -72,14 +72,22 @@ return back to [Table of Contents](#table-of-contents)
 
 ## Installing MediConnect
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you do not have it installed yet, refer to the following guides based on your operating system:
+
+    [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
+
+    [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-F575EB4A-70D3-4AB4-A20E-DBE95171AB5F)
+
+    [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-4A6BD592-1840-4BB4-A758-4CD49E9EE88B)
 
 1. Download the latest `mediconnect.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MediConnect.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mediconnect.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Terminal](images/terminalcommand.png)
+
+    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
