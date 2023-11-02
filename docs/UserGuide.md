@@ -351,7 +351,7 @@ Examples:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
 
 Sample Usage:
-1. Assuming you want to edit the 4th Doctor changing his phone from "T0212384J" to "T0212385J".
+1. Assuming you want to edit the 4th doctor changing his NRIC from "T0212384J" to "T0212385J".
 
 2. Enter the following command:
 ```
