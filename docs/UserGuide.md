@@ -357,6 +357,48 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
+### Editing the remark on doctor : `add_tag_d`
+
+Edits the remark of a doctor from the system.
+
+Format: `remark_d INDEX [r\REMARK]`
+
+* Edits the remark of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
+
+### Adding a specialisation on doctor : `add_tag_d`
+
+Adds the specified specialisation from a doctor from the system.
+
+Format: `add_tag_d INDEX [t\SPECIALISATION]`
+
+* Adds the specialisation of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `add_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `add_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
+
+### Deleting a specialisation from doctor : `delete_tag_d`
+
+Deletes the specified specialisation from a doctor from the system.
+
+Format: `delete_tag_d INDEX [t\SPECIALISATION]`
+
+* Adds the specialisation of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
+
 ## Appointment Management Features
 
 ### Adding an appointment: `add_a`
@@ -423,24 +465,27 @@ return back to [Table of Contents](#table-of-contents)
 
 # Command summary
 
-| Action                 | Format, Examples                                                                                                                                              |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**        | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                                                   |
-| **Add Doctor**         | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                                                             |
-| **Add Appointment**    | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:30` |
-| **Delete Patient**     | `delete_p INDEX`<br> e.g., `delete_p 1`                                                                                                                       |
-| **Delete Doctor**      | `delete_d INDEX`<br> e.g., `delete_d 2`                                                                                                                       |
-| **Delete Appointment** | `delete_a INDEX`<br> e.g., `delete_a 3`                                                                                                                       |
-| **View Patient**       | `view_p INDEX`<br> e.g., `view_p 1`                                                                                                                           |
-| **View Doctor**        | `view_d INDEX`<br> e.g., `view_d 2`                                                                                                                           |
-| **View Appointment**   | `view_a INDEX`<br> e.g., `view_a 3`                                                                                                                           |
-| **Edit Patient**       | `edit_p INDEX [ic\NRIC] [n\NAME] [p\PHONE]`<br> e.g.,`edit_p 3 ic\T0212385J n\Joe Ng`                                                                         |
-| **Edit Doctor**        | `edit_d INDEX [ic\NRIC] [n\NAME]`<br> e.g.,`edit_d 2 ic\T0212385J n\Joe Ng`                                                                                   |
-| **Find Patient**       | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                                                |
-| **Find Patient**       | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                                                |
-| **List Patient**       | `list_p`                                                                                                                                                      |
-| **List Doctor**        | `list_d`                                                                                                                                                      |
-| **List Appointment**   | `list_a`                                                                                                                                                      |
-| **Help**               | `help`                                                                                                                                                        |
+| Action                    | Format, Examples                                                                                                                                              |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**           | `add_p n\NAME ic\NRIC p\PHONE_NUMBER` <br> e.g., `add_p n\John Doe ic\T0212385J p\98765432`                                                                   |
+| **Add Doctor**            | `add_d n\NAME ic\NRIC` <br> e.g., `add_d n\John Doe ic\T0212385J`                                                                                             |
+| **Add Appointment**       | `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME` <br> e.g., `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:30` |
+| **Delete Patient**        | `delete_p INDEX`<br> e.g., `delete_p 1`                                                                                                                       |
+| **Delete Doctor**         | `delete_d INDEX`<br> e.g., `delete_d 2`                                                                                                                       |
+| **Delete Appointment**    | `delete_a INDEX`<br> e.g., `delete_a 3`                                                                                                                       |
+| **View Patient**          | `view_p INDEX`<br> e.g., `view_p 1`                                                                                                                           |
+| **View Doctor**           | `view_d INDEX`<br> e.g., `view_d 2`                                                                                                                           |
+| **View Appointment**      | `view_a INDEX`<br> e.g., `view_a 3`                                                                                                                           |
+| **Edit Patient**          | `edit_p INDEX [ic\NRIC] [n\NAME] [p\PHONE]`<br> e.g.,`edit_p 3 ic\T0212385J n\Joe Ng`                                                                         |
+| **Edit Doctor**           | `edit_d INDEX [ic\NRIC] [n\NAME]`<br> e.g.,`edit_d 2 ic\T0212385J n\Joe Ng`                                                                                   |
+| **Find Patient**          | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                                                |
+| **Find Patient**          | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d James Jake`                                                                                                |
+| **List Patient**          | `list_p`                                                                                                                                                      |
+| **List Doctor**           | `list_d`                                                                                                                                                      |
+| **List Appointment**      | `list_a`                                                                                                                                                      |
+| **Add Specialisation**    | `add_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `add_tag_d 1 Orthopaedic`                                                                                     |
+| **Delete Specialisation** | `delete_tag_d INDEX [t\SPECIALISATION]` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                               |
+| **Edit Doctor Remark**    | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
+| **Help**                  | `help`                                                                                                                                                        |
 
 return back to [Table of Contents](#table-of-contents)
