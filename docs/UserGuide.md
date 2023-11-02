@@ -375,8 +375,10 @@ These are a list of features that help you manage the records of appointment:
 - [Adding appointment](#adding-an-appointment--adda)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--lista)
 - [Viewing appointment](#viewing-an-appointment--viewa)
-- [Editing appointment](#editing-a-appointment--edita)
-- [Adding a remark to an appointment](#deleting-an-appointment--deletea)
+- [Editing appointment](#editing-an-appointment--edita)
+- [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--addtaga)
+- [Deleting a prescription from an appointment](#deleting-a-prescription-from-an-appointment--deletetaga)
+- [Editing a remark of an appointment](#editing-a-remark-of-an-appointment--remarka)
 - [Deleting appointment](#deleting-an-appointment--deletea)
 
 Back to [Table of Contents](#table-of-contents).
@@ -408,7 +410,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing an appointment : `edit_a`
 
-Edits an existing doctor in the system.
+Edits an existing appointment in the system.
 
 Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
 
@@ -451,7 +453,7 @@ Examples:
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Adding a prescription to an appointment : `add_tag_a`
+### Adding a prescription to an appointment: `add_tag_a`
 
 You can easily add a prescription for an appointment within the system.
 
