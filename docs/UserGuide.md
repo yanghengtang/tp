@@ -369,8 +369,8 @@ edit_d 4 ic\T0212385J
 
 4. You have successfully edited the doctor into the database.
 
-<div markdown="span" class="alert alert-note">**:information_source: 
-Note that the nric in doctor's appointment will be updated if the nric is updated!:**<br>
+<div markdown="span" class="alert alert-note">
+information_source: <b>Note:</b> that the nric in doctor's appointment will be updated if the nric is updated!<br>
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -408,7 +408,7 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If doctor is being removed, the appointments of the doctor's will also be deleted too!.
 </div>
 
