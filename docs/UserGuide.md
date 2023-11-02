@@ -376,6 +376,7 @@ These are a list of features that help you manage the records of appointment:
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--lista)
 - [Viewing appointment](#viewing-an-appointment--viewa)
 - [Editing appointment](#editing-a-appointment--edita)
+- [Adding a remark to an appointment](#deleting-an-appointment--deletea)
 - [Deleting appointment](#deleting-an-appointment--deletea)
 
 Back to [Table of Contents](#table-of-contents).
@@ -405,6 +406,36 @@ Examples:
 
 Back to [Appointment Management Features](#appointment-management-features).
 
+### Editing an appointment : `edit_a`
+
+Edits an existing doctor in the system.
+
+Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
+
+* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` Edits the patient and doctor NRIC of the 1st appointment to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
+
+Sample Usage:
+1. Assuming you want to edit the 4th Appointment changing the doctor nric  from "S9823343G" to "S9923334G".
+
+2. Enter the following command:
+```
+edit_a 4 pic\S9923334G
+```
+
+3. The result box will display the following message:
+```
+"Edited Appointment: Patient NRIC: S9923334G; Doctor NRIC: S6912483J; From: 2023-09-09 10:30; to: 2023-09-09 10:45"
+```
+
+4. You have successfully edited the appointment at index 4 in the database.
+
+Back to [Appointment Management Features](#appointment-management-features).
+
 ### Viewing an appointment: `view_a`
 
 Views the specified appointment from the system.
@@ -419,6 +450,53 @@ Examples:
 * `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
 Back to [Appointment Management Features](#appointment-management-features).
+
+### Adding a prescription to an appointment : `add_tag_a`
+
+You can easily add a prescription for an appointment within the system.
+
+Format: `add_tag_a INDEX [t\PRESCRIPTION]`
+
+* Adds a prescription to the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_a` followed by `add_tag_a 2 Panadol` adds the prescription `Panadol` to the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `add_tag_a 1 Panadol` adds the prescription to the 1st appointment in the result of the `list_a` command.
+
+### Deleting a prescription from an appointment : `delete_tag_a`
+
+You can delete a prescription from an appointment within the system.
+
+Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
+
+* Deletes the prescription of the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed apppointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_a` followed by `delete_tag_a 2 Panadol` deletes the prescription `Panadol` from the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `delete_tag_a 1 Panadol` deletes the prescription `Panadol` form the 1st appointment in the results of the `list_a` command.
+
+### Editing a remark : `remark_a`
+
+You can edit an appointment's remark in the system, such as appointment notes or follow-up details.
+
+Format: `remark_a INDEX [r\REMARK]`
+
+* Edits the remark the appointment at the specified `INDEX`.
+* If the specified appointment already has a remark, it will be overwritten by `REMARK`
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+<div markdown = "span" class = "alert alert-note">
+:information_source: Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
+</div>
+
+Examples:
+* `list_a` followed by `remark_a 2 Patient does not need any follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `remark_a 1 Patient does not need nay follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the results of the `list_a` command.
 
 ### Deleting an appointment : `delete_a`
 
