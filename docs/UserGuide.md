@@ -370,7 +370,7 @@ edit_d 4 ic\T0212385J
 4. You have successfully edited the doctor into the database.
 
 <div markdown="span" class="alert alert-note">
-information_source: <b>Note:</b> that the nric in doctor's appointment will be updated if the nric is updated!<br>
+information_source: <b>Note:</b> Note that the nric in doctor's appointment will be updated if the nric is updated!<br>
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
