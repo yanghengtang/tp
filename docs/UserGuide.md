@@ -451,6 +451,10 @@ Format: `view_a INDEX`
 Examples:
 * `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
+Below is the image of a successful result that you should have encountered.
+
+![ViewAppointmentMainWindow](images/ViewAppointment.png)
+
 Back to [Appointment Management Features](#appointment-management-features).
 
 ### Adding a prescription to an appointment: `add_tag_a`
