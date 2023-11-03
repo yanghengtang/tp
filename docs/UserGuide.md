@@ -2,18 +2,24 @@
 layout: page
 title: User Guide
 ---
-# MediConnect
 
-Welcome to the User Guide of MediConnect!
+Welcome to the user guide of MediConnect!
 
 ## What is MediConnect?
 
-MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic om their day-to-day task.
-These may include scheduling an appointment, retrieving a patient's medical history and updating the patient's medical record.
+MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic on their day-to-day task.
 
 ## Who is MediConnect for?
 
 MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+
+## What can MediConnect do for you?
+
+MediConnect is here to help you with your administrative task in the clinic. These include:
+- Scheduling an appointment
+- Retrieving a patient's medical history
+- Checking a doctor's availability
+- Updating a patient's medical record
 
 ## How can you get started?
 
@@ -58,11 +64,11 @@ Here are some common terms that is used throughout this user guide
 ## Navigating this user guide
 
 As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide to be overwhelming.
-Fred not, you utilise the [Table of Content](#table-of-contents) to find the information your are looking for.
+Fret not, you can utilise the [Table of Content](#table-of-contents) to find the information you are looking for.
 
 If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
 
-If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to horne your MediConnect sklls.
+If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to hone your MediConnect skills.
 
 return back to [Table of Contents](#table-of-contents)
 
@@ -72,17 +78,31 @@ return back to [Table of Contents](#table-of-contents)
 
 ## Installing MediConnect
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you already have it installed, follow this [guide](https://blog.hubspot.com/website/check-java-verison) to check your Java version.
 
-1. Download the latest `mediconnect.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-1/tp/releases).
+    If you do not have it installed yet or your Java version is below `11`, refer to the following guides based on your operating system:
 
-1. Copy the file to the folder you want to use as the _home folder_ for your MediConnect.
+    [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mediconnect.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+    [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-F575EB4A-70D3-4AB4-A20E-DBE95171AB5F)
+
+    [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-4A6BD592-1840-4BB4-A758-4CD49E9EE88B)
+
+2. Download the latest `mediconnect.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-1/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your MediConnect.
+
+4. Open a command terminal, `cd` into the folder you put the jar file in
+
+5. Use the `java -jar mediconnect.jar` command to run the application.<br>
+    
+    The commands you give should look similar to what is shown below:
+   ![Terminal](images/terminalcommand.png)
+
+    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list_a` : Lists all appointments.
@@ -93,7 +113,7 @@ return back to [Table of Contents](#table-of-contents)
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 
 ## Navigating the application
@@ -128,7 +148,7 @@ The features are broken down to into:
   e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n\NAME [t\TAG]` can be used as `n\John Doe t\friend` or as `n\John Doe`.
+  e.g. `n\NAME [t\TAG]` can be used as `n\John Doe t\friend` or as `n\John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t\TAG]…​` can be used as ` ` (i.e. 0 times), `t\friend`, `t\friend t\family` etc.
@@ -141,6 +161,18 @@ The features are broken down to into:
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+## Parameters used in this guide
+
+The following table gives an overview of what each parameter used in the Features section is for.
+
+| Parameter    | Description                                                          |
+|--------------|----------------------------------------------------------------------|
+| NAME         | The full name of the doctor/patient                                  |
+| NRIC         | The National Registration Identity Card number of the doctor/patient |
+| PHONE_NUMBER | The phone number of the doctor/patient                               |
+| INDEX        | The position of the appointment/doctor/patient in the filtered list  |
+
 
 ## Patient Management Features
 
@@ -250,7 +282,7 @@ Finds patients whose names contain any of the given keywords.
 
 Format: `find_p KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name of the patient is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -346,12 +378,15 @@ These are a list of features that help you manage the records of doctor:
 - [Editing doctor](#editing-a-doctor--editd)
 - [Finding doctor](#locating-doctors-by-name--findd)
 - [Deleting doctor](#deleting-a-doctor--deleted)
+- [Adding Specialisation](#adding-a-specialisation--addtagd)
+- [Deleting Specialisation](#deleting-a-specialisation--deletetagd)
+- [Editing Remark](#editing-a-remark--remarkd)
 
 Back to [Table of Contents](#table-of-contents).
 
 ### Adding a doctor: `add_d`
 
-Adds a doctor to the system.
+You can simply add a doctor to the system.
 
 Format: `add_d n\NAME ic\NRIC`
 
@@ -359,11 +394,26 @@ Examples:
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
+Sample Usage:
+1. Assuming you want to add a doctor named "John Doe" with NRIC "T0212385J".
+
+2. Enter the following command:
+```
+add_d n\John Doe ic\T0212385J
+```
+
+3. The result box will display the following message:
+```
+"New doctor added: John Doe Nric: T0212385J"
+```
+
+4. You have successfully added the doctor into the database.
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Listing all doctor : `list_d`
 
-Shows a list of all doctors in the system.
+You can get a list of all doctors in the system.
 
 Format: `list_d`
 
@@ -371,7 +421,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
-Views the specified doctor from the system.
+You can view detail information about a specific doctor such as basic information, doctor's specialisation and remarks stored in the system.
 
 Format: `view_d INDEX`
 
@@ -383,11 +433,15 @@ Examples:
 * `list_d` followed by `view_d 2` views the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `view_d 1` views the 1st doctor in the results of the `find_d` command.
 
+Below is the image of a successful result that you should have encountered.
+
+![ViewDoctorMainWindow](images/view-doctor.jpg)
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-Edits an existing doctor in the system.
+You can easily edit an existing doctor in the system.
 
 Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
@@ -398,15 +452,34 @@ Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 Examples:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
 
+Sample Usage:
+1. Assuming you want to edit the 4th doctor changing his NRIC from "T0212384J" to "T0212385J".
+
+2. Enter the following command:
+```
+edit_d 4 ic\T0212385J
+```
+
+3. The result box will display the following message:
+```
+"Edited Doctor: Joe Ng Nric: T0212385J"
+```
+
+4. You have successfully edited the doctor into the database.
+
+<div markdown="span" class="alert alert-note">
+information_source: <b>Note:</b> Note that the nric in doctor's appointment will be updated if the nric is updated!<br>
+</div>
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
 
-Finds doctor whose names contain any of the given keywords.
+You can quickly locate doctor whose names contain any of the given keywords.
 
 Format: `find_d KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name of the doctor is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -421,7 +494,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Deleting a doctor : `delete_d`
 
-Deletes the specified doctor from the system.
+You can also delete a specific doctor from the system.
 
 Format: `delete_d INDEX`
 
@@ -433,6 +506,52 @@ Examples:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+If doctor is being removed, the appointments of the doctor's will also be deleted too!.
+</div>
+
+### Adding a specialisation : `add_tag_d`
+
+You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
+
+Format: `add_tag_d INDEX t\SPECIALISATION`
+
+* Adds the specialisation of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `add_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `add_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
+
+### Deleting a specialisation : `delete_tag_d`
+
+You can delete the doctor's specialisation from the system.
+
+Format: `delete_tag_d INDEX t\SPECIALISATION`
+
+* Adds the specialisation of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
+
+### Editing a remark : `remark_d`
+
+You can edit a doctor's remark in the system, such as preferred timing or availability.
+
+Format: `remark_d INDEX [r\REMARK]`
+
+* Edits the remark of doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
+* `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
@@ -441,7 +560,10 @@ These are a list of features that help you manage the records of appointment:
 - [Adding appointment](#adding-an-appointment--adda)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--lista)
 - [Viewing appointment](#viewing-an-appointment--viewa)
-- [Editing appointment](#editing-a-appointment--edita)
+- [Editing appointment](#editing-an-appointment--edita)
+- [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--addtaga)
+- [Deleting a prescription from an appointment](#deleting-a-prescription-from-an-appointment--deletetaga)
+- [Editing a remark of an appointment](#editing-a-remark-of-an-appointment--remarka)
 - [Deleting appointment](#deleting-an-appointment--deletea)
 
 Back to [Table of Contents](#table-of-contents).
@@ -471,6 +593,36 @@ Examples:
 
 Back to [Appointment Management Features](#appointment-management-features).
 
+### Editing an appointment : `edit_a`
+
+Edits an existing appointment in the system.
+
+Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
+
+* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` Edits the patient and doctor NRIC of the 1st appointment to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
+
+Sample Usage:
+1. Assuming you want to edit the 4th Appointment changing the doctor nric  from "S9823343G" to "S9923334G".
+
+2. Enter the following command:
+```
+edit_a 4 pic\S9923334G
+```
+
+3. The result box will display the following message:
+```
+"Edited Appointment: Patient NRIC: S9923334G; Doctor NRIC: S6912483J; From: 2023-09-09 10:30; to: 2023-09-09 10:45"
+```
+
+4. You have successfully edited the appointment at index 4 in the database.
+
+Back to [Appointment Management Features](#appointment-management-features).
+
 ### Viewing an appointment: `view_a`
 
 Views the specified appointment from the system.
@@ -484,7 +636,58 @@ Format: `view_a INDEX`
 Examples:
 * `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
+Below is the image of a successful result that you should have encountered.
+
+![ViewAppointmentMainWindow](images/ViewAppointment.png)
+
 Back to [Appointment Management Features](#appointment-management-features).
+
+### Adding a prescription to an appointment: `add_tag_a`
+
+You can easily add a prescription for an appointment within the system.
+
+Format: `add_tag_a INDEX [t\PRESCRIPTION]`
+
+* Adds a prescription to the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_a` followed by `add_tag_a 2 Panadol` adds the prescription `Panadol` to the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `add_tag_a 1 Panadol` adds the prescription to the 1st appointment in the result of the `list_a` command.
+
+### Deleting a prescription from an appointment : `delete_tag_a`
+
+You can delete a prescription from an appointment within the system.
+
+Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
+
+* Deletes the prescription of the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed apppointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list_a` followed by `delete_tag_a 2 Panadol` deletes the prescription `Panadol` from the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `delete_tag_a 1 Panadol` deletes the prescription `Panadol` form the 1st appointment in the results of the `list_a` command.
+
+### Editing a remark of an appointment : `remark_a`
+
+You can edit an appointment's remark in the system, such as appointment notes or follow-up details.
+
+Format: `remark_a INDEX [r\REMARK]`
+
+* Edits the remark the appointment at the specified `INDEX`.
+* If the specified appointment already has a remark, it will be overwritten by `REMARK`
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+<div markdown="span" class="alert alert-note">:information_source: **Note:**
+Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
+</div>
+
+Examples:
+* `list_a` followed by `remark_a 2 Patient does not need any follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the appointment list.
+* `list_a pic\S9923334G` followed by `remark_a 1 Patient does not need nay follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the results of the `list_a` command.
 
 ### Deleting an appointment : `delete_a`
 
@@ -537,7 +740,7 @@ Back to [General Features](#general-features).
 
 MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: :information_source:
 If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
@@ -556,7 +759,9 @@ Back to [Table of Contents](#table-of-contents).
 
 # Known issues
 
-1. _Details coming soon ..._
+1. If Appointment/Doctor/Patient window is opened and `edit`, `remark`, `add_tag` or `delete_tag` command is applied on 
+the selected appointment/doctor/patient, the window will not reflect the changes. To refresh and see the updated details,
+run the `view` command again.
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -582,9 +787,12 @@ Back to [Table of Contents](#table-of-contents).
 | **List Patient**             | `list_p`                                                                                                                                                      |
 | **List Doctor**              | `list_d`                                                                                                                                                      |
 | **List Appointment**         | `list_a`                                                                                                                                                      |
- | **Add Patient Remark**       | `remark_p INDEX [r\REMARK]`  <br/> e.g., `remark_p 2 r\family history of diabetes`                                                                            |
+| **Add Patient Remark**       | `remark_p INDEX [r\REMARK]`  <br/> e.g., `remark_p 2 r\family history of diabetes`                                                                            |
 | **Add Medical Condition**    | `add_tag_p INDEX t\MEDICAL_CONDTION`  <br/> e.g., `add_tag_p 1 t\diabetes`                                                                                    |
 | **Delete Medical Condition** | `delete_tag_p INDEX t\MEDICAL_CONDITION`  <br/> e.g., `delete_tag_p 1 t\diabetes`                                                                             |
+| **Add Specialisation**       | `add_tag_d INDEX t\SPECIALISATION` <br> e.g., `add_tag_d 1 Orthopaedic`                                                                                       |
+| **Delete Specialisation**    | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                                 |
+| **Edit Doctor Remark**       | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
 | **Help**                     | `help`                                                                                                                                                        |
 
 Back to [Table of Contents](#table-of-contents).
