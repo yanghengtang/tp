@@ -7,8 +7,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyDatabase;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * API of the Logic component
@@ -24,19 +27,34 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the database.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getDatabase()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDatabase getDatabase();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of Appointments */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /** Returns an unmodifiable view of the filtered list of Patients */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /** Returns an unmodifiable view of the filtered list of Doctors */
+    ObservableList<Doctor> getFilteredDoctorList();
+
+    /** Returns the selected appointment in the model */
+    Appointment getSelectedAppointment();
+
+    /** Returns the selected doctor in the model */
+    Doctor getSelectedDoctor();
+
+    /** Returns the selected patient in the model */
+    Patient getSelectedPatient();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

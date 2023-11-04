@@ -1,0 +1,17 @@
+{
+  "patients": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "nric": "T0123456F",
+    "remark": "",
+    "tags": []
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "nric": "T0123456F",
+    "remark": "",
+    "tags": []
+  } ],
+  "doctors": [],
+  "appointments": []
+}

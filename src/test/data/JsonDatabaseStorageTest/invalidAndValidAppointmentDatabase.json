@@ -1,0 +1,21 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "phone": "9482424",
+    "nric": "T0123456F"
+  } ],
+  "doctors": [ {
+    "name": "Valid Doctor",
+    "phone": "9482424",
+    "nric": "S6543210Z"
+  } ],
+  "appointments": [ {
+    "doctorNric": "S6543210Z",
+    "patientNric": "T0123456F",
+    "dateTime" : "2023-12-01T07:30"
+  }, {
+    "doctorNric": "T0123456F",
+    "patientNric": "S210Z",
+    "dateTime" : "2023-12-11T07:30"
+  } ]
+}

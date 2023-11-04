@@ -1,0 +1,125 @@
+{
+  "_comment": "Database save file which contains the same values as in TypicalDatabase#getTypicalDatabase()",
+  "patients" : [ {
+    "nric" : "T0123456J",
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "S2936283D",
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "T3856391A",
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "S9754123F",
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "G4123573C",
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "G6739542H",
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "T0359320R",
+    "name" : "George Best",
+    "phone" : "9482442",
+    "remark": "",
+    "tags": []
+  } ],
+  "doctors" : [ {
+    "nric" : "T0123456J",
+    "name" : "Alice Pauline",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "S2936283D",
+    "name" : "Benson Meier",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "T3856391A",
+    "name" : "Carl Kurz",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "S9754123F",
+    "name" : "Daniel Meier",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "G4123573C",
+    "name" : "Elle Meyer",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "G6739542H",
+    "name" : "Fiona Kunz",
+    "remark": "",
+    "tags": []
+  }, {
+    "nric" : "T0359320R",
+    "name" : "George Best",
+    "remark": "",
+    "tags": []
+  } ],
+  "appointments" : [ {
+    "doctorNric" : "S2936283D",
+    "patientNric" : "T0123456J",
+    "startTime" : "2023-09-11 07:30",
+    "endTime" : "2023-09-11 08:00",
+    "remark": "",
+    "tags": []
+  }, {
+    "doctorNric" : "T3856391A",
+    "patientNric" : "S2936283D",
+    "startTime" : "2023-09-12 07:30",
+    "endTime" : "2023-09-12 08:00",
+    "remark": "",
+    "tags": []
+  }, {
+    "doctorNric" : "S9754123F",
+    "patientNric" : "T3856391A",
+    "startTime" : "2023-09-11 10:30",
+    "endTime" : "2023-09-11 11:00",
+    "remark": "",
+    "tags": []
+  }, {
+    "doctorNric" : "G4123573C",
+    "patientNric" : "S9754123F",
+    "startTime" : "2023-09-11 17:30",
+    "endTime" : "2023-09-11 18:00",
+    "remark": "",
+    "tags": []
+  }, {
+    "doctorNric" : "G6739542H",
+    "patientNric" : "G4123573C",
+    "startTime" : "2023-09-11 09:30",
+    "endTime" : "2023-09-11 10:00",
+    "remark": "",
+    "tags": []
+  }, {
+    "doctorNric" : "T0123456J",
+    "patientNric" : "G6739542H",
+    "startTime" : "2023-09-11 13:30",
+    "endTime" : "2023-09-11 14:00",
+    "remark": "",
+    "tags": []
+  } ]
+}

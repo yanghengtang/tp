@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,8 +34,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
+    private DoctorListPanel doctorListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
+    private AppointmentWindow appointmentWindow;
+    private DoctorWindow doctorWindow;
+    private PatientWindow patientWindow;
     private HelpWindow helpWindow;
 
     @FXML
@@ -42,7 +50,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane patientListPanelPlaceholder;
+
+    @FXML
+    private StackPane doctorListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,6 +79,9 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        appointmentWindow = new AppointmentWindow();
+        doctorWindow = new DoctorWindow();
+        patientWindow = new PatientWindow();
         helpWindow = new HelpWindow();
     }
 
@@ -110,13 +127,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
+        doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDatabaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -132,6 +155,51 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Opens the appointment window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewAppointment() {
+        Appointment selectedAppointment = logic.getSelectedAppointment();
+        appointmentWindow.updateSelectedAppointment(selectedAppointment);
+
+        if (!appointmentWindow.isShowing()) {
+            appointmentWindow.show();
+        } else {
+            appointmentWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the doctor window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewDoctor() {
+        Doctor selectedDoctor = logic.getSelectedDoctor();
+        doctorWindow.updateSelectedDoctor(selectedDoctor);
+
+        if (!doctorWindow.isShowing()) {
+            doctorWindow.show();
+        } else {
+            doctorWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the patient window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleViewPatient() {
+        Patient selectedPatient = logic.getSelectedPatient();
+        patientWindow.updateSelectedPatient(selectedPatient);
+
+        if (!patientWindow.isShowing()) {
+            patientWindow.show();
+        } else {
+            patientWindow.focus();
         }
     }
 
@@ -159,12 +227,23 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        appointmentWindow.hide();
+        doctorWindow.hide();
+        patientWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public AppointmentListPanel getAppointmentListPanel() {
+        return appointmentListPanel;
+    }
+
+    public DoctorListPanel getDoctorListPanel() {
+        return doctorListPanel;
+    }
+
+    public PatientListPanel getPatientListPanel() {
+        return patientListPanel;
     }
 
     /**
@@ -177,6 +256,18 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isShowAppointment()) {
+                handleViewAppointment();
+            }
+
+            if (commandResult.isShowDoctor()) {
+                handleViewDoctor();
+            }
+
+            if (commandResult.isShowPatient()) {
+                handleViewPatient();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

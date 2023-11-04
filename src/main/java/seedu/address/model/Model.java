@@ -5,14 +5,25 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Doctor> PREDICATE_SHOW_ALL_DOCTORS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +46,159 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' database file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
+
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' database file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setDatabaseFilePath(Path addressBookFilePath);
+
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces current Database data with the data in {@code database}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setDatabase(ReadOnlyDatabase database);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Database */
+    ReadOnlyDatabase getDatabase();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an appointment with the same fields as {@code appointment} exists in the database.
      */
-    boolean hasPerson(Person person);
+    boolean hasAppointment(Appointment appointment);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a doctor with the same NRIC as {@code doctor} exists in the database.
      */
-    void deletePerson(Person target);
+    boolean hasDoctor(Doctor doctor);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
      */
-    void addPerson(Person person);
+    boolean hasPatient(Patient patient);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Returns true if a doctor with the same NRIC as {@code doctor} exists in the database.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    boolean hasDoctorWithNric(Nric nric);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns true if a patient with the same NRIC as {@code patient} exists in the database.
+     */
+    boolean hasPatientWithNric(Nric nric);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the database.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Deletes the given doctor.
+     * The doctor must exist in the database.
+     */
+    void deleteDoctor(Doctor target);
+
+    /**
+     * Deletes the given patient.
+     * The patient must exist in the database.
+     */
+    void deletePatient(Patient target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the database.
+     */
+    void addAppointment(Appointment appointment) throws CommandException;
+
+    /**
+     * Adds the given doctor.
+     * {@code doctor} must not already exist in the database.
+     */
+    void addDoctor(Doctor doctor);
+
+    /**
+     * Adds the patient doctor.
+     * {@code patient} must not already exist in the database.
+     */
+    void addPatient(Patient patient);
+
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the database.
+     * The doctor, patient and dateTime of {@code editedAppointment} must not be the same as another existing
+     * appointment in the database.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException;
+
+    /**
+     * Replaces the given doctor {@code target} with {@code editedDoctor}.
+     * {@code target} must exist in the database.
+     * The NRIC of {@code editedDoctor} must not be the same as another existing doctor in the database.
+     */
+    void setDoctor(Doctor target, Doctor editedDoctor) throws CommandException;
+
+    /**
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in the database.
+     * The NRIC of {@code editedPatient} must not be the same as another existing patient in the database.
+     */
+    void setPatient(Patient target, Patient editedPatient) throws CommandException;
+
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /** Returns an unmodifiable view of the filtered doctor list */
+    ObservableList<Doctor> getFilteredDoctorList();
+
+    /** Returns an unmodifiable view of the filtered patient list */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Updates the filter of the filtered doctor list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDoctorList(Predicate<Doctor> predicate);
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /** Returns the selected appointment in the model */
+    Appointment getSelectedAppointment();
+
+    /** Returns the selected doctor in the model */
+    Doctor getSelectedDoctor();
+
+    /** Returns the selected patient in the model */
+    Patient getSelectedPatient();
+
+    /**
+     * Updates the selected appointment with the given {@code appointment}.
+     * @throws NullPointerException if {@code appointment} is null.
+     */
+    void updateSelectedAppointment(Appointment appointment);
+
+    /**
+     * Updates the selected doctor with the given {@code doctor}.
+     * @throws NullPointerException if {@code doctor} is null.
+     */
+    void updateSelectedDoctor(Doctor doctor);
+
+    /**
+     * Updates the selected patient with the given {@code patient}.
+     * @throws NullPointerException if {@code patient} is null.
+     */
+    void updateSelectedPatient(Patient patient);
 }

@@ -1,0 +1,13 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "phone": "9482424",
+    "nric": "T0123456F"
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "nric": "S6543210K"
+  } ],
+  "doctors": [],
+  "appointments": []
+}

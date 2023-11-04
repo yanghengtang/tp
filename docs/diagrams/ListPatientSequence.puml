@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box NewLogic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
+participant "p:ListPatient" as ListPatient LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list_p")
+activate LogicManager
+
+LogicManager -> MediConnectParser : parseCommand("list_p")
+activate MediConnectParser
+
+create ListPatient
+
+MediConnectParser -> ListPatient : ListPatientsCommand()
+
+activate ListPatient
+
+
+
+
+ListPatient --> MediConnectParser : p
+deactivate ListPatient
+
+MediConnectParser --> LogicManager : p
+deactivate MediConnectParser
+
+LogicManager -> ListPatient : execute()
+activate ListPatient
+
+ListPatient -> Model : updateFilteredPatientList(\nPREDICATE_SHOW_ALL\n_PATIENTS)
+activate Model
+
+Model --> ListPatient
+deactivate Model
+
+create CommandResult
+ListPatient -> CommandResult
+activate CommandResult
+
+CommandResult --> ListPatient
+deactivate CommandResult
+
+ListPatient --> LogicManager : result
+deactivate ListPatient
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

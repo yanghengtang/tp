@@ -1,0 +1,15 @@
+@startuml
+start
+:User enters command;
+floating note right
+    YZ = Doctor or Patient
+endnote
+:MediConnectParser parses the command;
+:FindYZCommandParser parses the command;
+if () then ([argument is valid])
+    :Return filtered YZ list to user \n based on name predicate;
+else ([argument is not valid])
+    :Show error message;
+endif
+stop
+@enduml

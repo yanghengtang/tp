@@ -2,81 +2,76 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.Data;
+import seedu.address.model.Listable;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * A parent class for all different types of people in the system.
  */
-public class Person {
-
-    // Identity fields
+public abstract class Person extends Data {
     private final Name name;
-    private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Nric nric;
 
     /**
-     * Every field must be present and not null.
+     * Constructor for Person.
+     * @param name name of the person.
+     * @param nric nric of the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Nric nric) {
+        super();
+        requireAllNonNull(name, nric);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.nric = nric;
+    }
+
+    /**
+     * Constructor for Person to set remark and tags.
+     * @param name name of person.
+     * @param nric nric of the person.
+     * @param remark remark for the person.
+     * @param tags tags for the person.
+     */
+    public Person(Name name, Nric nric, Remark remark, HashSet<Tag> tags) {
+        super(remark, tags);
+        requireAllNonNull(name, nric);
+        this.name = name;
+        this.nric = nric;
     }
 
     public Name getName() {
-        return name;
+        return this.name;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public Nric getNric() {
+        return nric;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns true if both people have the same NRIC.
+     * This defines a weaker notion of equality between two people.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSame(Listable otherListable) {
+        if (otherListable == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (!(otherListable instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) otherListable;
+
+        return otherPerson.nric.equals(nric);
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both people have the same identity fields.
+     * This defines a stronger notion of equality between two people.
      */
     @Override
     public boolean equals(Object other) {
@@ -91,27 +86,12 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && nric.equals(otherPerson.nric);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, nric);
     }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
-    }
-
 }

@@ -1,0 +1,11 @@
+{
+  "patients": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "nric": "X6543210P",
+    "remark": "",
+    "tags": []
+  } ],
+  "doctors": [],
+  "appointments": []
+}

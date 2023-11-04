@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root minHeight="300" minWidth="500" resizable="false" title="Appointment Window" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/help_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@MediConnectTheme.css" />
+            </stylesheets>
+            <VBox>
+                <children>
+                    <StackPane styleClass="header2-pane">
+                        <children>
+                            <Label styleClass="label-header2" text="Appointment Details" />
+                        </children>
+                    </StackPane>
+                    <StackPane styleClass="header3-pane">
+                        <children>
+                            <Label styleClass="label-header3" text="Schedule Information" />
+                        </children>
+                    </StackPane>
+                    <VBox>
+                        <children>
+                            <HBox>
+                                <children>
+                                    <Label styleClass="cell_label_bold" text="Start Time: " />
+                                    <Label fx:id="startDateTime" styleClass="cell_label" text="\$start" />
+                                </children>
+                            </HBox>
+                            <HBox>
+                                <children>
+                                    <Label styleClass="cell_label_bold" text="End Time: " />
+                                    <Label fx:id="endDateTime" styleClass="cell_label" text="\$end" />
+                                </children>
+                            </HBox>
+                            <HBox>
+                                <children>
+                                    <Label styleClass="cell_label_bold" text="Patient NRIC: " />
+                                    <Label fx:id="patientNric" styleClass="cell_label" text="\$nric" />
+                                </children>
+                            </HBox>
+                            <HBox>
+                                <children>
+                                    <Label styleClass="cell_label_bold" text="Doctor NRIC: " />
+                                    <Label fx:id="doctorNric" styleClass="cell_label" text="\$nric" />
+                                </children>
+                            </HBox>
+                        </children>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                    <StackPane styleClass="header3-pane">
+                        <children>
+                            <Label styleClass="label-header3" text="Prescription" />
+                        </children>
+                    </StackPane>
+                    <FlowPane fx:id="tags" minHeight="50">
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding></FlowPane>
+                    <StackPane styleClass="header3-pane">
+                        <children>
+                            <Label styleClass="label-header3" text="Remarks" />
+                        </children>
+                    </StackPane>
+                    <StackPane alignment="TOP_LEFT">
+                        <children>
+                            <Label fx:id="remark" styleClass="cell_label" text="\$remark" />
+                        </children>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </StackPane>
+                </children>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

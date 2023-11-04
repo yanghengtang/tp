@@ -1,62 +1,25 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
-
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-
 /**
- * A utility class for Person.
+ * A utility class containing a list of valid String objects to be used in tests.
  */
 public class PersonUtil {
-
-    /**
-     * Returns an add command string for adding the {@code person}.
-     */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
-    }
-
-    /**
-     * Returns the part of command string for the given {@code person}'s details.
-     */
-    public static String getPersonDetails(Person person) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
-        return sb.toString();
-    }
-
-    /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
-     */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
-        return sb.toString();
-    }
+    public static final String ALICE_NAME = "Alice Pauline";
+    public static final String ALICE_NRIC = "T0123456J";
+    public static final String BENSON_NAME = "Benson Meier";
+    public static final String BENSON_NRIC = "S2936283D";
+    public static final String CARL_NAME = "Carl Kurz";
+    public static final String CARL_NRIC = "T3856391A";
+    public static final String DANIEL_NAME = "Daniel Meier";
+    public static final String DANIEL_NRIC = "S9754123F";
+    public static final String ELLE_NAME = "Elle Meyer";
+    public static final String ELLE_NRIC = "G4123573C";
+    public static final String FIONA_NAME = "Fiona Kunz";
+    public static final String FIONA_NRIC = "G6739542H";
+    public static final String GEORGE_NAME = "George Best";
+    public static final String GEORGE_NRIC = "T0359320R";
+    public static final String HOON_NAME = "Hoon Meier";
+    public static final String HOON_NRIC = "T0248362R";
+    public static final String IDA_NAME = "Ida Mueller";
+    public static final String IDA_NRIC = "S9348573F";
 }

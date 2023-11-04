@@ -9,9 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.appointment.AppointmentEndTime;
+import seedu.address.model.appointment.AppointmentStartTime;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -66,36 +67,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -108,6 +79,45 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code nric} into an {@code NRIC} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified nric is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        String trimmedNric = nric.trim().toUpperCase();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric);
+    }
+
+    /**
+     * Parses {@code time} into an {@code AppointmentStartTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified time is invalid (or not correct format).
+     */
+    public static AppointmentStartTime parseAppointmentStartTime(String time) throws ParseException {
+        String trimmedTime = time.trim();
+        if (!AppointmentStartTime.isValidAppointmentTime(trimmedTime)) {
+            throw new ParseException(AppointmentStartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentStartTime(trimmedTime);
+    }
+
+    /**
+     * Parses {@code time} into an {@code AppointmentEndTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified time is invalid (or not correct format).
+     */
+    public static AppointmentEndTime parseAppointmentEndTime(String time) throws ParseException {
+        String trimmedTime = time.trim();
+        if (!AppointmentEndTime.isValidAppointmentTime(trimmedTime)) {
+            throw new ParseException(AppointmentEndTime.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentEndTime(trimmedTime);
     }
 
     /**
