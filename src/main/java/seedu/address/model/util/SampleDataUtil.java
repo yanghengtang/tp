@@ -66,30 +66,30 @@ public class SampleDataUtil {
 
     public static Appointment[] getSampleAppointments() throws CommandException {
         return new Appointment[] {
-            new Appointment(new Nric("S6912483J"), new Nric("T0157283A"),
+            new Appointment(new Nric("T0157283A"), new Nric("S6912483J"),
                     new AppointmentStartTime("2023-09-09 10:30"), new AppointmentEndTime("2023-09-09 10:45"),
                     new Remark("Patient came with flu with cough, but Covid ART -ve"),
                     new HashSet<>(getTagSet("Panadol", "CoughSyrup"))),
-            new Appointment(new Nric("S2349123A"), new Nric("G0234723F"),
+            new Appointment(new Nric("G0234723F"), new Nric("S2349123A"),
                     new AppointmentStartTime("2023-09-09 14:30"), new AppointmentEndTime("2023-09-09 15:30"),
                     new Remark("Patient exhibits worsening symptoms"),
                     new HashSet<>(getTagSet("Antidepressants"))),
-            new Appointment(new Nric("S1890251D"), new Nric("T0157283A"),
+            new Appointment(new Nric("T0157283A"), new Nric("S1890251D"),
                     new AppointmentStartTime("2023-09-10 10:00"), new AppointmentEndTime("2023-09-10 10:30"),
                     new Remark("Patient to return in November for blood sugar testing"),
                     new HashSet<>(getTagSet("Chlorpropamide"))),
-            new Appointment(new Nric("S7142983F"), new Nric("T0151708E"),
+            new Appointment(new Nric("T0151708E"), new Nric("S7142983F"),
                     new AppointmentStartTime("2023-09-11 10:30"), new AppointmentEndTime("2023-09-11 11:30"),
                     new Remark("No follow up appointment required"), new HashSet<>()),
-            new Appointment(new Nric("S1348067K"), new Nric("T0123483C"),
+            new Appointment(new Nric("T0123483C"), new Nric("S1348067K"),
                     new AppointmentStartTime("2023-09-11 11:30"), new AppointmentEndTime("2023-09-11 12:30"),
                     new Remark("Patient's cholesterol level has steadily decreased"),
                     new HashSet<>(getTagSet("Atorvastatin", "Lovastatin"))),
-            new Appointment(new Nric("S2349123A"), new Nric("G0234723F"),
+            new Appointment(new Nric("G0234723F"), new Nric("S2349123A"),
                     new AppointmentStartTime("2023-11-04 14:30"), new AppointmentEndTime("2023-11-04 15:30")),
-            new Appointment(new Nric("S1890251D"), new Nric("T0157283A"),
+            new Appointment(new Nric("T0157283A"), new Nric("S1890251D"),
                     new AppointmentStartTime("2023-11-06 10:00"), new AppointmentEndTime("2023-11-06 10:30")),
-            new Appointment(new Nric("S1348067K"), new Nric("T0123483C"),
+            new Appointment(new Nric("T0123483C"), new Nric("S1348067K"),
                     new AppointmentStartTime("2023-11-11 10:30"), new AppointmentEndTime("2023-11-11 11:30"))
         };
     }
