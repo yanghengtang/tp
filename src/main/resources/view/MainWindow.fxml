@@ -35,7 +35,7 @@
         </MenuBar>
             <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="header-pane">
                <children>
-                  <Label text="MediConnect" styleClass="label-header"/>
+                  <Label styleClass="label-header" text="MediConnect" />
                </children>
             </StackPane>
 
@@ -55,11 +55,11 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <HBox VBox.vgrow="ALWAYS">
+               <HBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                   <children>
-                <StackPane fx:id="appointmentListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
-                     <StackPane fx:id="patientListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
-                     <StackPane fx:id="doctorListPanelPlaceholder" minWidth="250.0" prefWidth="300.0"/>
+                <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+                     <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+                     <StackPane fx:id="doctorListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
                   </children>
                </HBox>
         </VBox>
