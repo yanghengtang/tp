@@ -794,5 +794,6 @@ Back to [Table of Contents](#table-of-contents).
 | **Delete Specialisation**    | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                                 |
 | **Edit Doctor Remark**       | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
 | **Help**                     | `help`                                                                                                                                                        |
+| **Exit**                     | `exit`                                                                                                                                                        |
 
 Back to [Table of Contents](#table-of-contents).
