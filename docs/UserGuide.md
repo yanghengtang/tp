@@ -172,6 +172,11 @@ The following table gives an overview of what each parameter used in the Feature
 | NRIC         | The National Registration Identity Card number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and end with a uppercase alphabet                                |
 | PHONE_NUMBER | The phone number of the doctor/patient                               | Only contain numbers, and it should be at least 3 digits long. The max-length of phone number is not restricted |
 | INDEX        | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                                                       |
+| TAG          | The tag of the appointment/doctor/patient                            | Only accepts and start with alphanumeric character without spacing.                                             |
+
+<div markdown="span" class="alert alert-note">:information_source: <b>Note:</b>
+An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
+</div>
 
 ## Patient Management Features
 
