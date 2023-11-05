@@ -49,7 +49,7 @@ public class AddSpecialisationCommandTest {
                         SPECIALISATION_STUB);
 
         String expectedMessage =
-                String.format(AddSpecialisationCommand.MESSAGE_ADD_SPECIALISATION_SUCCESS, editedDoctor);
+                String.format(AddSpecialisationCommand.MESSAGE_ADD_SPECIALISATION_SUCCESS, SPECIALISATION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -79,7 +79,7 @@ public class AddSpecialisationCommandTest {
                         SPECIALISATION_STUB);
 
         String expectedMessage = String.format(AddSpecialisationCommand.MESSAGE_ADD_SPECIALISATION_SUCCESS,
-                editedDoctor);
+                SPECIALISATION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -142,7 +142,7 @@ public class AddSpecialisationCommandTest {
                 new AddSpecialisationCommand(INDEX_FIRST_PERSON,
                         SPECIALISATION_STUB);
         String expectedMessage =
-                String.format(AddSpecialisationCommand.MESSAGE_ADD_SPECIALISATION_FAILURE, SPECIALISATION_STUB);
+                String.format(AddSpecialisationCommand.MESSAGE_ADD_SPECIALISATION_FAILURE, SPECIALISATION_STUB.tagName);
         assertCommandFailure(duplicateCommand, model, expectedMessage);
     }
 
