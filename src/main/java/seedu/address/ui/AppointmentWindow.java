@@ -88,7 +88,7 @@ public class AppointmentWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing appointment page about the application.");
+        logger.fine("Showing appointment window.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -111,6 +111,10 @@ public class AppointmentWindow extends UiPart<Stage> {
      * Focuses on the appointment window.
      */
     public void focus() {
+        if (getRoot().isIconified()) {
+            getRoot().setIconified(false);
+        }
+
         getRoot().requestFocus();
     }
 }
