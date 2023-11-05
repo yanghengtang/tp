@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Nric implements Comparable<Nric> {
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should only contain alphanumeric characters and it should not be blank";
+            "NRIC should not be blank, should start with 'S', 'T', 'F', 'G' or 'M', contain 7 numbers, and end with "
+                    + "a letter";
 
     /*
      * The first character of the NRIC must either be 'S', 'T', 'F', 'G' or 'M',
