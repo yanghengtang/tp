@@ -72,7 +72,7 @@ public class AppointmentRemarkCommand extends Command {
      */
     private String generateSuccessMessage(Index index) {
         String message = !remark.remark.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, index.getZeroBased());
+        return String.format(message, index.getOneBased());
     }
 
     @Override
