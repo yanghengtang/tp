@@ -166,13 +166,17 @@ The features are broken down to into:
 
 The following table gives an overview of what each parameter used in the Features section is for.
 
-| Parameter    | Description                                                          |
-|--------------|----------------------------------------------------------------------|
-| NAME         | The full name of the doctor/patient                                  |
-| NRIC         | The National Registration Identity Card number of the doctor/patient |
-| PHONE_NUMBER | The phone number of the doctor/patient                               |
-| INDEX        | The position of the appointment/doctor/patient in the filtered list  |
+| Parameter    | Description                                                          | Valid Parameter Input                                                                                          |
+|--------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| NAME         | The full name of the doctor/patient                                  | Only accepts and start with an alphanumeric character                                                          |
+| NRIC         | The National Registration Identity Card number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and end with a uppercase alphabet                               |
+| PHONE_NUMBER | The phone number of the doctor/patient                               | Only contain numbers, and it should be at least 3 digits long.                                                 |
+| INDEX        | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                                                      |
+| TAG          | The tag of the appointment/doctor/patient                            | Only accepts and start with alphanumeric character without spacing.                                            |
 
+<div markdown="span" class="alert alert-note">:information_source: <b>Note:</b>
+An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
+</div>
 
 ## Patient Management Features
 
