@@ -50,7 +50,7 @@ public class DoctorRemarkCommandTest {
 
         String expectedMessage =
                 String.format(DoctorRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                        INDEX_FIRST_DOCTOR.getZeroBased());
+                        INDEX_FIRST_DOCTOR.getOneBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -76,7 +76,7 @@ public class DoctorRemarkCommandTest {
                 new Remark(editedDoctor.getRemark().toString()));
 
         String expectedMessage = String.format(DoctorRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
-                INDEX_FIRST_DOCTOR.getZeroBased());
+                INDEX_FIRST_DOCTOR.getOneBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -107,7 +107,7 @@ public class DoctorRemarkCommandTest {
                         new Remark(editedDoctor.getRemark().remark));
 
         String expectedMessage = String.format(DoctorRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                INDEX_FIRST_DOCTOR.getZeroBased());
+                INDEX_FIRST_DOCTOR.getOneBased());
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
