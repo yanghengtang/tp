@@ -151,6 +151,9 @@ public class MediConnectParser {
         case DeleteMedicalConditionCommand.COMMAND_WORD:
             return new DeleteMedicalConditionCommandParser().parse(arguments);
 
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

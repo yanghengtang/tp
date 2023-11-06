@@ -82,7 +82,7 @@ public class PatientWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing patient page about the application.");
+        logger.fine("Showing patient window.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -105,6 +105,10 @@ public class PatientWindow extends UiPart<Stage> {
      * Focuses on the patient window.
      */
     public void focus() {
+        if (getRoot().isIconified()) {
+            getRoot().setIconified(false);
+        }
+
         getRoot().requestFocus();
     }
 }

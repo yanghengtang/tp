@@ -62,7 +62,7 @@ public class AddSpecialisationCommand extends Command {
         HashSet<Tag> doctorTags = doctorToEdit.getTags();
 
         if (doctorTags.contains(specialisation)) {
-            throw new CommandException(String.format(MESSAGE_ADD_SPECIALISATION_FAILURE, specialisation));
+            throw new CommandException(String.format(MESSAGE_ADD_SPECIALISATION_FAILURE, this.specialisation.tagName));
         }
 
         doctorTags.add(specialisation);
@@ -75,7 +75,7 @@ public class AddSpecialisationCommand extends Command {
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
 
 
-        return new CommandResult(String.format(MESSAGE_ADD_SPECIALISATION_SUCCESS, editedDoctor));
+        return new CommandResult(String.format(MESSAGE_ADD_SPECIALISATION_SUCCESS, this.specialisation.tagName));
     }
 
     @Override

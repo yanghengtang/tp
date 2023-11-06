@@ -35,7 +35,7 @@
         </MenuBar>
             <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="header-pane">
                <children>
-                  <Label text="MediConnect" styleClass="label-header"/>
+                  <Label styleClass="label-header" text="MediConnect" />
                </children>
             </StackPane>
 

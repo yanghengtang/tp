@@ -177,15 +177,15 @@ The following table gives an overview of what each parameter used in the Feature
 ## Patient Management Features
 
 These are a list of features that help you manage the records of patient:
-- [Adding patient](#adding-a-patient--addp)
-- [Listing patient](#listing-all-patient--listp)
-- [Viewing patient](#viewing-a-patient--viewp)
-- [Editing patient](#editing-a-patient--editp)
-- [Finding patient](#locating-patients-by-name--findp)
-- [Deleting patient](#deleting-a-patient--deletep)
-- [Adding a remark to a patient](#adding-a-remark-to-a-patient--remarkp)
-- [Adding a medical condition to a patient](#adding-a-medical-condition-to-a-patient--addtagp)
-- [Deleting a medical condition of a patient](#deleting-a-medical-condition-of-a-patient--deletetagp)
+- [Adding patient](#adding-a-patient-add_p)
+- [Listing patient](#listing-all-patient--list_p)
+- [Viewing patient](#viewing-a-patient--view_p)
+- [Editing patient](#editing-a-patient--edit_p)
+- [Finding patient](#locating-patients-by-name--find_p)
+- [Deleting patient](#deleting-a-patient--delete_p)
+- [Adding a remark to a patient](#adding-a-remark-to-a-patient--remark_p)
+- [Adding a medical condition to a patient](#adding-a-medical-condition-to-a-patient--add_tag_p)
+- [Deleting a medical condition of a patient](#deleting-a-medical-condition-of-a-patient--delete_tag_p)
 
 
 Back to [Table of Contents](#table-of-contents).
@@ -372,15 +372,15 @@ Back to [Patient Management Features](#patient-management-features).
 ## Doctor Management Features
 
 These are a list of features that help you manage the records of doctor:
-- [Adding doctor](#adding-a-doctor--addd)
-- [Listing doctor](#listing-all-doctor--listd)
-- [Viewing doctor](#viewing-a-doctor--viewd)
-- [Editing doctor](#editing-a-doctor--editd)
-- [Finding doctor](#locating-doctors-by-name--findd)
-- [Deleting doctor](#deleting-a-doctor--deleted)
-- [Adding Specialisation](#adding-a-specialisation--addtagd)
-- [Deleting Specialisation](#deleting-a-specialisation--deletetagd)
-- [Editing Remark](#editing-a-remark--remarkd)
+- [Adding doctor](#adding-a-doctor--add_d)
+- [Listing doctor](#listing-all-doctor--list_d)
+- [Viewing doctor](#viewing-a-doctor--view_d)
+- [Editing doctor](#editing-a-doctor--edit_d)
+- [Finding doctor](#locating-doctors-by-name--find_d)
+- [Deleting doctor](#deleting-a-doctor--delete_d)
+- [Adding Specialisation](#adding-a-specialisation--add_tag_d)
+- [Deleting Specialisation](#deleting-a-specialisation--delete_tag_d)
+- [Editing Remark](#editing-a-remark--remark_d)
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -557,14 +557,14 @@ Back to [Doctor Management Features](#doctor-management-features).
 ## Appointment Management Features
 
 These are a list of features that help you manage the records of appointment:
-- [Adding appointment](#adding-an-appointment--adda)
-- [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--lista)
-- [Viewing appointment](#viewing-an-appointment--viewa)
-- [Editing appointment](#editing-an-appointment--edita)
-- [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--addtaga)
-- [Deleting a prescription from an appointment](#deleting-a-prescription-from-an-appointment--deletetaga)
-- [Editing a remark of an appointment](#editing-a-remark-of-an-appointment--remarka)
-- [Deleting appointment](#deleting-an-appointment--deletea)
+- [Adding appointment](#adding-an-appointment--add_a)
+- [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
+- [Viewing appointment](#viewing-an-appointment--view_a)
+- [Editing appointment](#editing-an-appointment--edit_a)
+- [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--add_tag_a)
+- [Deleting a prescription from an appointment](#deleting-a-prescription-from-an-appointment--delete_tag_a)
+- [Editing a remark of an appointment](#editing-a-remark-of-an-appointment--remark_a)
+- [Deleting appointment](#deleting-an-appointment--delete_a)
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -794,5 +794,6 @@ Back to [Table of Contents](#table-of-contents).
 | **Delete Specialisation**    | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d 1 Orthopaedic`                                                                                 |
 | **Edit Doctor Remark**       | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 Doctor will not be in clinic until 30/12/2023`                                                             |
 | **Help**                     | `help`                                                                                                                                                        |
+| **Exit**                     | `exit`                                                                                                                                                        |
 
 Back to [Table of Contents](#table-of-contents).
