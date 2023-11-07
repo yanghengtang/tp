@@ -411,24 +411,24 @@ The adding/deleting/editing of a remark for an appointment/doctor/patient in Med
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
-Given below is an example usage scenario and how the add `Appointment Remark` mechanism behaves at each step.
+Given below is an example usage scenario and how the edit `Remark` of an `Appointment` mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `remark_a 2 r\follow up required` to add a remark to the second appointment in the appointment list.
-The `remark_a` command calls `AppointmentRemarkCommandParser#parse` which parses the parameters that build the remark to be added.
-A new `AppointmentRemarkCommand` instance will be created with the correct `Remark` object to be added.
+Step 2. The user inputs `remark_a 2 r\follow up required` to edit the remark of the second appointment in the appointment list.
+The `remark_a` command calls `AppointmentRemarkCommandParser#parse` which parses the parameters that is used to edit the remark of the appointment specified.
+A new `AppointmentRemarkCommand` instance will be created with the correct `Remark` object to be added to the appointment specified.
 
 Step 3. The created `AppointmentRemarkCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AppointmentRemarkCommand#execute` then calls `Model#setAppointment` and with the given `Appointment Remark`.
+`AppointmentRemarkCommand#execute` then calls `Model#setAppointment` and with the given `Remark`.
 The edited `Appointment` is then added to the filteredAppointmentList by calling `FilteredList#setAppointment`.
 
-The example usage scenario for the add patient remark and add doctor remark mechanisms would be very similar to the above scenario.
+The example usage scenario for the edit patient remark and edit doctor remark mechanisms would be very similar to the above scenario.
 
-The following sequence diagram shows how the add appointment operation would work:
+The following sequence diagram shows how the edit remark operation would work:
 ![EditRemarkSequenceDiagram](images/EditRemarkSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
+The following activity diagram summarizes what happens when a user wants to edit the remark of an appointment/patient/doctor:
 ![EditXYZRemarkActivityDiagram](images/EditXYZRemarkActivityDiagram.png)
 
 ### \[Proposed\] View Appointment / Doctor / Patient feature
