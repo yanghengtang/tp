@@ -262,7 +262,7 @@ These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
-Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList in its default sorting order.
+Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList.
 
 * The list_d/list_p command calls mediConnectParser#parseCommand which recognizes the command word as list_d/list_p.
 
@@ -377,7 +377,7 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList in its default sorting order.
+Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList.
 Step 3. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
 The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
 A new `DeleteAppointmentCommand` instance will be created
@@ -495,17 +495,16 @@ The addition of a specialisation/medical condition/prescription to an existing d
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
-Given below is an example usage scenario and how the add prescription mechanism behaves at each step.
+Given below is an example usage scenario and how the add specialisation mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList in its default sorting order.
+Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList.
 Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription 'Orthopaedic' to the doctor at index 2 in the displayed doctor list.
-The `add_tag_d` command calls `AddSpecialisationCommandParser#parse` which parses the index argument which is the index of the doctor to delete as well as the tag argument which is the tag to be added to the doctor at the specified index.
-A new `AddSpecialisationCommand` instance will be created
+The add_tag_d command calls AddSpecialisationCommandParser#parse the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
 Step 4. The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated prescription.
+`AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated specialisation.
 The tag 'Orthopaedic' is then added to the' `Doctor` at the `Index` in the filteredDoctorList by calling `FilteredList#setDoctor`.
 
 The example usage scenario for the add prescription and add medical condition mechanisms would be very similar to the above scenario.
@@ -513,7 +512,7 @@ The example usage scenario for the add prescription and add medical condition me
 The following sequence diagram shows how the add specialisation operation would work:
 ![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
 
-The sequence diagram for the add specialisation and medical condition operations would be similar
+The sequence diagram for the add prescription and medical condition operations would be similar
 
 The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
