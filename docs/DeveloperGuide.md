@@ -414,20 +414,20 @@ Given below is an example usage scenario and how the add `Specialisation` mechan
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `delete_tag_d 2 Orthopaedic`  to delete an appointment's specialisation into MediConnect.
-The `delete_tag_d` command calls `DeleteSpecialisationtCommandParser#parse` which parses the index argument which is the index of the doctor to delete  
-A new `DeleteSpecialisationtCommand` instance will be created
+Step 2. The user inputs `delete_tag_d 2 Orthopaedic`  to delete an doctor's specialisation into MediConnect.
+The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse` which parses the index argument which is the index of the doctor to delete  
+A new `DeleteSpecialisationCommand` instance will be created
 
-Step 3. The created `DeleteSpecialisationtCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`DeleteAppointmentCommand#execute` then calls `Model#getFilteredDoctorList` and retrieve the doctor with the given `Index`. 
+Step 3. The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`DeleteSpecialisationCommand#execute` then calls `Model#getFilteredDoctorList` and retrieve the doctor with the given `Index`. 
 Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor`.
 
-The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
+The example usage scenario for delete medical condition and delete prescriptions mechanisms would be very similar to the above scenario.
 
-The following sequence diagram shows how the delete appointment operation would work and will be similar to medical condition and prescription:
+The following sequence diagram shows how the delete specialisation operation would work and will be similar to medical condition and prescription:
 ![DeleteSpecialisationSequenceDiagram](images/DeleteSpecialisationSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
+The following activity diagram summarizes what happens when a user wants to delete a specialisation/medical condition/prescription:
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### \[Proposed\] View Appointment / Doctor / Patient feature
