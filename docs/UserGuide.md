@@ -187,7 +187,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a patient: `add_p`
 
-Adds a patient to the system.
+Allows you to add a patient into the system.
 
 Format: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 
@@ -214,7 +214,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Listing all patient : `list_p`
 
-Shows a list of all patients in the system.
+Allows you to list all patients in the system.
 
 Format: `list_p`
 
@@ -222,7 +222,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Viewing a patient : `view_p`
 
-Views the specified patient in the system.
+Allows you to view details, such as basic information, medical condition and remark, of a specific patient in the system.
 
 Format: `view_p INDEX`
 
@@ -241,7 +241,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Editing a patient : `edit_p`
 
-Edits an existing patient in the system.
+Allows you to edit an existing patient in the system.
 
 Format: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
@@ -273,7 +273,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Locating patients by name: `find_p`
 
-Finds patients whose names contain any of the given keywords.
+Allows you to find patients whose name contains any of the given keywords.
 
 Format: `find_p KEYWORD [MORE_KEYWORDS]`
 
@@ -292,7 +292,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Deleting a patient : `delete_p`
 
-Deletes the specified patient from the system.
+Allows you to delete a specified patient from the system.
 
 Format: `delete_p INDEX`
 
@@ -313,7 +313,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Adding a medical condition to a patient : `add_tag_p`
 
-Adds a medical condition to a specified patient in the system.
+Allow you to add a medical condition to a specified patient in the system.
 
 Format: `add_tag_p INDEX t\MEDICAL_CONDITION`
 
@@ -329,7 +329,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Deleting a medical condition of a patient : `delete_tag_p`
 
-Deletes a medical condition to a specified patient in the system.
+Allows you to delete a medical condition from a specified patient in the system.
 
 Format: `delete_tag_p INDEX t\MEDICAL_CONDITION`
 
@@ -346,7 +346,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Editing the remark of a patient : `remark_p`
 
-Edits a remark of a specified patient in the system.
+Allows you to edit the remark of a specified patient in the system. The patient's remark can be used to store temporary information such as family health history and current medications/treatments patients are on.
 
 Format: `remark_p INDEX [r\REMARK]`
 
@@ -355,7 +355,6 @@ Format: `remark_p INDEX [r\REMARK]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The remark will be updated with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
-* Remark can be used to store temporary information such as family history and current medications patients are on.
 
 
 Examples:
@@ -385,7 +384,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a doctor: `add_d`
 
-You can simply add a doctor to the system.
+Allows you to add a doctor to the system.
 
 Format: `add_d n\NAME ic\NRIC`
 
@@ -412,7 +411,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Listing all doctor : `list_d`
 
-You can get a list of all doctors in the system.
+Allows you to list all the doctors in the system.
 
 Format: `list_d`
 
@@ -420,7 +419,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
-You can view detail information about a specific doctor such as basic information, doctor's specialisation and remarks stored in the system.
+Allows you to view details, such as basic information, specialisation and remark, of a specific doctor in the system.
 
 Format: `view_d INDEX`
 
@@ -440,7 +439,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-You can easily edit an existing doctor in the system.
+Allows you to edit an existing doctor in the system.
 
 Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
@@ -474,7 +473,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
 
-You can quickly locate doctor whose names contain any of the given keywords.
+Allow you to locate doctors whose name contains any of the given keywords.
 
 Format: `find_d KEYWORD [MORE_KEYWORDS]`
 
@@ -493,7 +492,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Deleting a doctor : `delete_d`
 
-You can also delete a specific doctor from the system.
+Allows you to delete a specific doctor from the system.
 
 Format: `delete_d INDEX`
 
@@ -511,7 +510,7 @@ If doctor is being removed, the appointments of the doctor's will also be delete
 
 ### Adding a specialisation : `add_tag_d`
 
-You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
+Allows you to add specialisation for a doctor in the system.
 
 Format: `add_tag_d INDEX t\SPECIALISATION`
 
@@ -525,7 +524,7 @@ Examples:
 
 ### Deleting a specialisation : `delete_tag_d`
 
-You can delete the doctor's specialisation from the system.
+Allows you to delete a specialisation from a specific doctor in the system.
 
 Format: `delete_tag_d INDEX t\SPECIALISATION`
 
@@ -539,7 +538,7 @@ Examples:
 
 ### Editing a remark of a doctor: `remark_d`
 
-You can edit a doctor's remark in the system, such as preferred timing or availability.
+Allows you to edit the remark of a specified doctor in the system. The doctor's remark is usually used to indicate the doctor's availability.
 
 Format: `remark_d INDEX [r\REMARK]`
 
@@ -573,7 +572,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding an appointment: `add_a`
 
-Adds an appointment into the system.
+Allows you to add an appointment into the system.
 
 Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
@@ -584,7 +583,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Listing all appointments, or by patient or doctor NRIC: `list_a`
 
-Shows a list of appointments in the system depending on the fields given.
+Allows you to either display all the appointments in the system, or the list of appointments a specified patient/doctor has in the system.
 
 Format: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
@@ -598,7 +597,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing an appointment : `edit_a`
 
-Edits an existing appointment in the system.
+Allows you to edit an existing appointment in the system.
 
 Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
 
@@ -628,7 +627,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Viewing an appointment: `view_a`
 
-Views the specified appointment from the system.
+Allows you to view details, such as basic information, prescription given and remark, of a specific appointment in the system.
 
 Format: `view_a INDEX`
 
@@ -647,7 +646,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Adding a prescription to an appointment: `add_tag_a`
 
-You can easily add a prescription for an appointment within the system.
+Allows you to add a prescription for an appointment in the system.
 
 Format: `add_tag_a INDEX [t\PRESCRIPTION]`
 
@@ -661,7 +660,7 @@ Examples:
 
 ### Deleting a prescription from an appointment : `delete_tag_a`
 
-You can delete a prescription from an appointment within the system.
+Allows you to delete a prescription from an appointment in the system.
 
 Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
 
@@ -675,7 +674,7 @@ Examples:
 
 ### Editing a remark of an appointment : `remark_a`
 
-You can edit an appointment's remark in the system, such as appointment notes or follow-up details.
+Allows you to edit the remark of a specified appointment in the system. The appointment's remark is usually used to record any comments the doctor would like to note for that particular appointment.
 
 Format: `remark_a INDEX [r\REMARK]`
 
@@ -698,7 +697,7 @@ Keep your remarks concise as extremely long remarks might not be fully displayed
 
 ### Deleting an appointment : `delete_a`
 
-Deletes the specified appointment from the system.
+Allows you to delete the specified appointment from the system.
 
 Format: `delete_a INDEX`
 
