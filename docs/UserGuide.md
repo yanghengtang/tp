@@ -131,7 +131,7 @@ The features are broken down to into:
 - [Doctor Management Features](#doctor-management-features)
 - [Appointment Management Features](#appointment-management-features)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -165,7 +165,7 @@ The following table gives an overview of what each parameter used in the Feature
 | INDEX        | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                                                      |
 | TAG          | The tag of the appointment/doctor/patient                            | Only accepts and start with alphanumeric character without spacing.                                            |
 
-<div markdown="span" class="alert alert-note">:information_source: <b>Note:</b>
+<div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
 </div>
 
@@ -462,7 +462,7 @@ edit_d 4 ic\T0212385J
 
 4. You have successfully edited the doctor into the database.
 
-<div markdown="span" class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
 information_source: <b>Note:</b> Note that the nric in doctor's appointment will be updated if the nric is updated!<br>
 </div>
 
@@ -676,7 +676,7 @@ Format: `remark_a INDEX [r\REMARK]`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-<div markdown="span" class="alert alert-note">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
 </div>
 
