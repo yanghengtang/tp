@@ -329,6 +329,10 @@ Examples:
 * `list_p` followed by `remark_p 2 r\need follow up` adds the remark `need follow up` to the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `remark_p 1 r\new patient` adds the remark `new patient` to the 1st patient in the results of the `find_p` command.
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Patient Window
+</div>
+
 Back to [Patient Management Features](#patient-management-features).
 
 ### Adding a medical condition to a patient : `add_tag_p`
@@ -547,6 +551,10 @@ Examples:
 * `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Doctor Window
+</div>
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
@@ -683,6 +691,10 @@ Note that if the `REMARK` is empty, the existing remarks of the appointment will
 Examples:
 * `list_a` followed by `remark_a 2 Patient does not need any follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `remark_a 1 Patient does not need nay follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the results of the `list_a` command.
+
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window
+</div>
 
 ### Deleting an appointment : `delete_a`
 
