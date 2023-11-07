@@ -14,7 +14,7 @@ if () then ([command is valid])
   :The existing XYZ in database is replaced by the
   edited XYZ and FilteredXYZList is updated;
 else ([command is invalid])
-  :Parser throws error message;
+  :Parser throws exception;
 endif
 if () then ([no error thrown])
   :Display updated FilteredXYZList;
