@@ -7,7 +7,7 @@ Welcome to the user guide of MediConnect!
 
 MediConnect is a clinic management system (CMS) application designed for clinic receptionists. It aims to help them to be more efficient and effective at accomplishing their administrative tasks.
 
-These administrative task can include:
+These administrative tasks can include:
 - Scheduling an appointment
 - Retrieving a patient's medical history
 - Checking a doctor's availability
@@ -32,7 +32,7 @@ This guide is designed for users of all level to master their use of MediConnect
 
 ## Icons used in this guide
 
-Here are some common icons that is used throughout this user guide
+Here are some common icons that are used throughout this user guide
 
 | Icons                          | Representation                                    |
 |--------------------------------|---------------------------------------------------|
@@ -43,7 +43,7 @@ Here are some common icons that is used throughout this user guide
 
 ## Terms used in this guide
 
-Here are some common terms that is used throughout this user guide
+Here are some common terms that are used throughout this user guide
 
 | Icons       | Representation                                                                 |
 |-------------|--------------------------------------------------------------------------------|
@@ -114,10 +114,10 @@ Back to [Table of Contents](#table-of-contents).
 The main window can be broken down into the following components:
 
 - **Command Box**: The command box is where you will enter your input your commands
-- **Result Display Box**: The box will display the output messages based on your entered commands
-- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
-- **Patient List Panel**: This panel will display the list of patient sorted by their names
-- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
+- **Result Display Box**: The box will display the output messages in response to your commands
+- **Appointment List Panel**: This panel will display the list of filtered appointments
+- **Patient List Panel**: This panel will display the list of filtered patient
+- **Doctor List Panel**: This panel will display the list of filtered doctor
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -126,10 +126,10 @@ Back to [Table of Contents](#table-of-contents).
 # Features
 
 The features are broken down to into:
-- [General Features](#general-features)
 - [Patient Management Features](#patient-management-features)
 - [Doctor Management Features](#doctor-management-features)
 - [Appointment Management Features](#appointment-management-features)
+- [General Features](#general-features)
 
 <div markdown="block" class="alert alert-primary">
 
@@ -171,7 +171,7 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 ## Patient Management Features
 
-These are a list of features that help you manage the records of patient:
+These are the list of features that help you manage the records of patient:
 - [Adding patient](#adding-a-patient-add_p)
 - [Listing patient](#listing-all-patient--list_p)
 - [Viewing patient](#viewing-a-patient--view_p)
@@ -222,7 +222,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Viewing a patient : `view_p`
 
-Views the specified patient from the system.
+Views the specified patient in the system.
 
 Format: `view_p INDEX`
 
@@ -666,7 +666,7 @@ You can delete a prescription from an appointment within the system.
 Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
 
 * Deletes the prescription of the appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed apppointment list.
+* The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
