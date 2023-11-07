@@ -114,10 +114,10 @@ Back to [Table of Contents](#table-of-contents).
 The main window can be broken down into the following components:
 
 - **Command Box**: The command box is where you will enter your input your commands
-- **Result Display Box**: The box will display the output messages in response to your commands
+- **Result Display Box**: This box will display the output messages in response to your commands
 - **Appointment List Panel**: This panel will display the list of filtered appointments
-- **Patient List Panel**: This panel will display the list of filtered patient
-- **Doctor List Panel**: This panel will display the list of filtered doctor
+- **Patient List Panel**: This panel will display the list of filtered patients
+- **Doctor List Panel**: This panel will display the list of filtered doctors
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -311,9 +311,42 @@ If patient is deleted, the patient's appointments will also be deleted.
 
 Back to [Patient Management Features](#patient-management-features).
 
-### Adding a remark to a patient : `remark_p`
+### Adding a medical condition to a patient : `add_tag_p`
 
-Adds a remark to a specified patient from the system.
+Adds a medical condition to a specified patient in the system.
+
+Format: `add_tag_p INDEX t\MEDICAL_CONDITION`
+
+* Adds the input medical condition to the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_p` followed by `add_tag_p 2 t\diabetes` adds the medical condition `diabetes` to the 2nd patient in the patient list.
+* `find_p Jonathan` followed by `add_tag_p 1 t\cancer` adds the medical condition `cancer` to the 1st patient in the results of the `find_p` command.
+
+Back to [Patient Management Features](#patient-management-features).
+
+### Deleting a medical condition of a patient : `delete_tag_p`
+
+Deletes a medical condition to a specified patient in the system.
+
+Format: `delete_tag_p INDEX t\MEDICAL_CONDITION`
+
+* Deletes the input medical condition to the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Input `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
+
+Examples:
+* `list_p` followed by `delete_tag_p 2 t\diabetes` deletes the medical condition `diabetes` of the 2nd patient in the patient list.
+* `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` of the 1st patient in the results of the `find_p` command.
+
+Back to [Patient Management Features](#patient-management-features).
+
+### Editing the remark of a patient : `remark_p`
+
+Edits a remark of a specified patient in the system.
 
 Format: `remark_p INDEX [r\REMARK]`
 
@@ -332,39 +365,6 @@ Examples:
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
 Keep your remarks concise as extremely long remarks might not be fully displayed in the Patient Window
 </div>
-
-Back to [Patient Management Features](#patient-management-features).
-
-### Adding a medical condition to a patient : `add_tag_p`
-
-Adds a medical condition to a specified patient from the system.
-
-Format: `add_tag_p INDEX t\MEDICAL_CONDITION`
-
-* Adds the input medical condition to the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list_p` followed by `add_tag_p 2 t\diabetes` adds the medical condition `diabetes` to the 2nd patient in the patient list.
-* `find_p Jonathan` followed by `add_tag_p 1 t\cancer` adds the medical condition `cancer` to the 1st patient in the results of the `find_p` command.
-
-Back to [Patient Management Features](#patient-management-features).
-
-### Deleting a medical condition of a patient : `delete_tag_p`
-
-Deletes a medical condition to a specified patient from the system.
-
-Format: `delete_tag_p INDEX t\MEDICAL_CONDITION`
-
-* Deletes the input medical condition to the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Input `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
-
-Examples:
-* `list_p` followed by `delete_tag_p 2 t\diabetes` deletes the medical condition `diabetes` of the 2nd patient in the patient list.
-* `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` of the 1st patient in the results of the `find_p` command.
 
 Back to [Patient Management Features](#patient-management-features).
 
@@ -537,7 +537,7 @@ Examples:
 * `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
-### Editing a remark : `remark_d`
+### Editing a remark of a doctor: `remark_d`
 
 You can edit a doctor's remark in the system, such as preferred timing or availability.
 
