@@ -766,9 +766,10 @@ Back to [Table of Contents](#table-of-contents).
 
 # Known issues
 
-1. If Appointment/Doctor/Patient window is opened and `edit`, `remark`, `add_tag` or `delete_tag` command is applied on 
-the selected appointment/doctor/patient, the window will not reflect the changes. To refresh and see the updated details,
-run the `view` command again.
+### 1. Refreshing the View Window after updating details
+If you have any of the Appointment/Doctor/Patient window opened, and you update any of the details of the selected 
+appointment/doctor/patient, the view window will not reflect the changes. To refresh and see the updated details,
+run the respective view appointment/doctor/patient command again.
 
 Back to [Table of Contents](#table-of-contents).
 
