@@ -171,7 +171,7 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 ## Patient Management Features
 
-These are the list of features that help you manage the records of patient:
+This is the list of features that help you manage the records of patient:
 - [Adding patient](#adding-a-patient-add_p)
 - [Listing patient](#listing-all-patient--list_p)
 - [Viewing patient](#viewing-a-patient--view_p)
@@ -370,7 +370,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ## Doctor Management Features
 
-These are a list of features that help you manage the records of doctor:
+This is the list of features that help you manage the records of doctor:
 - [Adding doctor](#adding-a-doctor--add_d)
 - [Listing doctor](#listing-all-doctor--list_d)
 - [Viewing doctor](#viewing-a-doctor--view_d)
@@ -559,7 +559,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
 
-These are a list of features that help you manage the records of appointment:
+This is the list of features that help you manage the records of appointment:
 - [Adding appointment](#adding-an-appointment--add_a)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
 - [Viewing appointment](#viewing-an-appointment--view_a)
