@@ -346,7 +346,6 @@ A new `AddAppointmentCommand` instance will be created with the correct `Appoint
 
 Step 3. The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `AddAppointmentCommand#execute` then calls `Model#addAppointment` and with the given `Appointment`.
-The `Appointment` is then added to the filteredAppointmentList by calling `FilteredList#addAppointment`.
 
 The example usage scenario for the add patient and add doctor mechanisms would be very similar to the above scenario.
 
@@ -384,7 +383,6 @@ A new `DeleteAppointmentCommand` instance will be created
 
 Step 4. The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteAppointmentCommand#execute` then calls `Model#deleteAppointment` and with the given `Index`.
-The `Appointment` at the `Index` is then deleted from the filteredAppointmentList by calling `FilteredList#deleteAppointment`.
 
 The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
 
@@ -500,12 +498,12 @@ Given below is an example usage scenario and how the add specialisation mechanis
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList.
+
 Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription 'Orthopaedic' to the doctor at index 2 in the displayed doctor list.
 The add_tag_d command calls AddSpecialisationCommandParser#parse the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
 Step 4. The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated specialisation.
-The tag 'Orthopaedic' is then added to the' `Doctor` at the `Index` in the filteredDoctorList by calling `FilteredList#setDoctor`.
 
 The example usage scenario for the add prescription and add medical condition mechanisms would be very similar to the above scenario.
 
