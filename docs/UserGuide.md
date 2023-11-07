@@ -105,6 +105,7 @@ return back to [Table of Contents](#table-of-contents)
 
 7. Refer to the [Features](#features) below for details of each command.
 
+Back to [Table of Contents](#table-of-contents).
 
 ## Navigating the application
 
