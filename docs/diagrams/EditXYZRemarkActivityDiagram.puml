@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters EditXYZRemarkCommand with a specified index and parameter;
+floating note right
+    XYZ = Appointment, Doctor or Patient
+end note
+:MediConnectParser parses the command;
+:EditXYZRemarkCommandParser parses the arguments provided;
+if () then ([command is valid])
+  :New EditXYZRemarkCommand instance is created;
+  :XYZRemark item is added to XYZ with the specified index;
+  :The existing XYZ in database is replaced by the
+  edited XYZ and FilteredXYZList is updated;
+else ([command is invalid])
+  :Parser throws error message;
+endif
+if () then ([no error thrown])
+  :Display updated FilteredXYZList;
+else ([error thrown])
+  :Display error message;
+endif
+stop
+
+@enduml
