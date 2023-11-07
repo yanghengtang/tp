@@ -5,23 +5,13 @@ title: User Guide
 
 Welcome to the user guide of MediConnect!
 
-## What is MediConnect?
+MediConnect is a clinic management system (CMS) application designed for clinic receptionists. It aims to help them to be more efficient and effective at accomplishing their administrative tasks.
 
-MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic on their day-to-day task.
-
-## Who is MediConnect for?
-
-MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
-
-## What can MediConnect do for you?
-
-MediConnect is here to help you with your administrative task in the clinic. These include:
+These administrative task can include:
 - Scheduling an appointment
 - Retrieving a patient's medical history
 - Checking a doctor's availability
 - Updating a patient's medical record
-
-## How can you get started?
 
 If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
 
