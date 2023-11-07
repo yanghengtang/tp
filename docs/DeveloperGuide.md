@@ -364,7 +364,7 @@ The following sequence diagram shows how the add patient operation would work:
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
-### Delete appointmennt/doctor/patient feature
+### Delete appointment/doctor/patient feature
 This section describes the delete appointment/doctor/patient features.
 
 #### Implementation
@@ -378,7 +378,6 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList in its default sorting order.
 Step 2. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
 The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
 A new `DeleteAppointmentCommand` instance will be created
