@@ -154,11 +154,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit patient feature
+### Edit doctor/patient/appointment feature
+
+**Introduction**
+
+This section describes the feature that allows users to edit doctors/patients/appointments in the MediConnect database by index.
 
 #### Implementation
 
-The proposed edit patient mechanism is facilitated by `EditPatientCommand` and it extends `Model`. Additionally, it implements the following operations:
+The proposed edit doctors/patient/appointment mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `mediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -178,16 +182,12 @@ The example usage scenario for the edit doctor and edit appointment mechanisms w
 
 </div>
 
-The following sequence diagram shows how the edit appointment operation would work:
-![SortSequenceDiagram](images/EditAppointmentSequenceDiagram.png)
-
-The following sequence diagram shows how the edit doctor operation would work:
-![SortSequenceDiagram](images/EditDoctorSequenceDiagram.png)
+**UML Diagrams**
 
 The following sequence diagram shows how the edit patient operation would work:
 ![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
 
-
+The sequence diagram for editing an appointment and editing a doctor would be similar
 
 The following activity diagram summarizes what happens when a user wants to edit an appointment/patient/doctor:
 
@@ -209,10 +209,6 @@ The following activity diagram summarizes what happens when a user wants to edit
 
 _{more aspects and alternatives to be added}_
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
 ### Find Doctor / Patient
 
 **Introduction**
@@ -220,12 +216,11 @@ This section describes some noteworthy details on how certain features are imple
 This section describes the feature that allows users to find doctors/patient in the MediConnect database by name.
 
 #### Implementation
-The finding of a doctor/patient in MediConnect is facilitated by LogicManager, which extends Logic. It holds a mediConnectParser that parses the user input, and a Model where the command is executed. Key methods involved include:
+The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `mediConnectParser` that parses the user input, and a Model where the command is executed. Additionally, it implements the following operations:
 
-LogicManager#execute() — Executes the given user String input and returns a CommandResult
-FindDoctorCommandParser/FindPatientCommandParser#parse() — Parses the user input to create a FindDoctorCommand/FindPatientCommand
-FindDoctorCommand/FindPatientCommand#execute() — Filters the list of doctors/patient based on the given predicate
-These operations are exposed in the Ui interface as Ui#executeCommand().
+* LogicManager#execute() — Executes the given user String input and returns a CommandResult
+
+These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
@@ -241,11 +236,12 @@ FindDoctorCommand/FindPatientCommand#execute filters the list of doctors/patient
 
 Step 5: The filtered list is displayed to the user through the UI.
 
+**UML Diagrams**
+
 The following sequence diagram shows how the find doctor operation would work:
 ![FindDoctorSequence](images/FindDoctorSequence.png)
 
-The following sequence diagram shows how the find patient operation would work:
-![FindPatientSequence](images/FindPatientSequence.png)
+The sequence diagram for the find patient operation would be similar
 
 The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
@@ -254,17 +250,19 @@ The following activity diagram summarizes what happens when a user wants to find
 
 **Introduction**
 
-The listing of all doctors/patient in the database is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+This section describes the feature that allows users to list doctors/patient in the MediConnect database.
 
 #### Implementation
 
-LogicManager#execute(String commandText) — Executes the given user String input and returns a CommandResult.
+The listing of all doctors/patient in the database is facilitated by `LogicManager`. It extends `Logic` and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-These operations are exposed in the Ui interface as Ui#executeCommand().
+* LogicManager#execute(String commandText) — Executes the given user String input and returns a CommandResult.
+
+These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
-Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList in its default sorting order.
+Step 1: The user inputs list_d/list_p. The application will display the FilteredDoctorList/FilteredPatientList.
 
 * The list_d/list_p command calls mediConnectParser#parseCommand which recognizes the command word as list_d/list_p.
 
@@ -279,13 +277,11 @@ Step 2: The created ListDoctorCommand/ListPatientCommand instance is returned to
 Step 3: A CommandResult object is created with a message indicating success, and this result is returned to the Ui to be displayed to the user.
 
 **UML Diagrams**
-1. Sequence Diagram
 
 The following sequence diagram shows how the list doctor operation would work:
 ![ListDoctorSequence](images/ListDoctorSequence.png)
 
-The following sequence diagram shows how the list patient operation would work:
-![ListPatientSequence](images/ListPatientSequence.png)
+The sequence diagram for the list patient operation would be similar
 
 The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
 ![ListCommandActivity](images/ListCommandActivityDiagram.png)
@@ -298,24 +294,23 @@ This section describes the feature that allows users to list appointments in the
 
 #### Implementation
 
-The listing of appointments in MediConnect is facilitated by the NewLogicManager, which implements the NewLogic interface. It holds a NewAddressBookParser that parses the user input, and a NewModel where the command is executed. Key methods involved include:
+The listing of appointments in MediConnect is facilitated by the `LogicManager`, which implements the `Logic` interface. It holds a mediConnectParser that parses the user input, and a model where the command is executed. Additionally, it implements the following operations:
 
-NewLogicManager#execute() — Executes the given user String input and returns a CommandResult.
-ListAppointmentCommandParser#parse() — Parses the user input to create a ListAppointmentCommand.
-ListAppointmentCommand#execute() — Filters the list of appointments based on the given predicate.
+* `LogicManager#execute()` — Executes the given user String input and returns a CommandResult.
+
 These operations are exposed in the UI interface as Ui#executeCommand().
 
 
-Here's how the ListAppointmentCommand mechanism behaves at each step:
+Given below is an example usage scenario and how the ListAppointmentCommand mechanism behaves at each step:
 
 Step 1: The user inputs list_a to list all appointments or list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC to filter appointments.
-* The list_a command triggers NewAddressBookParser#parseCommand, which identifies the command word and calls ListAppointmentCommandParser#parse to handle the arguments.
+* The list_a command triggers MediConnectParser#parseCommand, which identifies the command word and calls ListAppointmentCommandParser#parse to handle the arguments.
 
 Step 2: The ListAppointmentCommandParser#parse method checks for the presence of optional flags like -dic for doctor NRIC and -pic for patient NRIC. Based on these, it creates appropriate Predicate objects.
 
 Step 3: A new ListAppointmentCommand instance is created using the Predicate object(s).
 
-Step 4: The created ListAppointmentCommand instance is returned to NewLogicManager, and its execute method is called.
+Step 4: The created ListAppointmentCommand instance is returned to LogicManager, and its execute method is called.
 * ListAppointmentCommand#execute filters the list of appointments in NewModel using the specified predicate(s).
 
 Step 5: The filtered list is displayed to the user through the UI.
@@ -328,11 +323,14 @@ The following sequence diagram shows how the list appointment operation would wo
 The following activity diagram summarizes what happens when a user wants to list a new appointment:
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
-### Add appointmennt/doctor/patient feature
+### Add appointment/doctor/patient feature
+
+**Introduction**
+
 This section describes the add appointment/doctor/patient features.
 
 #### Implementation
-The adding of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+The adding of an appointment/doctor/patient to MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -348,29 +346,29 @@ A new `AddAppointmentCommand` instance will be created with the correct `Appoint
 
 Step 3. The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `AddAppointmentCommand#execute` then calls `Model#addAppointment` and with the given `Appointment`.
-The `Appointment` is then added to the filteredAppointmentList by calling `FilteredList#addAppointment`.
 
 The example usage scenario for the add patient and add doctor mechanisms would be very similar to the above scenario.
+
+**UML Diagrams**
 
 The following sequence diagram shows how the add appointment operation would work:
 ![AddAppoointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
-The following sequence diagram shows how the add doctor operation would work:
-![AddDoctorSequenceDiagram](images/AddDoctorSequenceDiagram.png)
-
-The following sequence diagram shows how the add patient operation would work:
-![AddPatientSequenceDiagram](images/AddPatientSequenceDiagram.png)
+The sequence diagram for the add patient/doctor operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
-### Delete appointmennt/doctor/patient feature
+### Delete appointment/doctor/patient feature
+
+**Introduction**
+
 This section describes the delete appointment/doctor/patient features.
 
 #### Implementation
-The deletion of an appointment/doctor/patient to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+The deletion of an appointment/doctor/patient from MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
 
-* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
@@ -378,34 +376,35 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList in its default sorting order.
-Step 2. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
+Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList.
+Step 3. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
 The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
 A new `DeleteAppointmentCommand` instance will be created
 
-Step 3. The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
+Step 4. The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteAppointmentCommand#execute` then calls `Model#deleteAppointment` and with the given `Index`.
-The `Appointment` at the `Index` is then deleted from the filteredAppointmentList by calling `FilteredList#deleteAppointment`.
 
 The example usage scenario for the delete patient and delete doctor mechanisms would be very similar to the above scenario.
+
+**UML Diagrams**
 
 The following sequence diagram shows how the delete appointment operation would work:
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
-The following sequence diagram shows how the delete doctor operation would work:
-![DeleteAppointmentSequenceDiagram](images/DeleteDoctorSequenceDiagram.png)
-
-The following sequence diagram shows how the delete patient operation would work:
-![DeleteAppointmentSequenceDiagram](images/DeletePatientSequenceDiagram.png)
+The sequence diagram for the delete patient and doctor operations would be similar
 
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
 ![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
-### \[Proposed\] View Appointment / Doctor / Patient feature
+### View appointment/doctor/patient feature
 
-#### Proposed implementation
+**Introduction**
 
-The proposed View Patient mechanism is facilitated by `ModelManager`. It extends `Model` and stores the appointment, doctor
+This section describes the feature that allows users to view the full details of doctors/patients/appointments in the MediConnect database by index.
+
+**Implementation**
+
+The View Patient mechanism is facilitated by `ModelManager`. It extends `Model` and stores the appointment, doctor
 and patient to be shown as `selectedPatient`, `selectedPatient` and `selectedPatient` respectively. Additionally, it implements the following operations:
 
 - `ModelManager#getSelectedAppointment()`  —  Returns the Appointment currently selected in the Model.
@@ -449,7 +448,9 @@ The `CommandResult` returned will call `PatientWindow#updatePatient()` followed 
     :information_source: **Note:** If the user decides to close the Patient Window before executing the command, `PatientWindow#focus()` will not be invoked, instead it will invoke `PatientWindow#show()` similar to Step 2.
 </div>
 
-The View Doctor and View Appointment mechanism would function similarly by utilising on their respective filtered lists, methods and windows.
+The View Doctor and View Appointment mechanism function similarly by utilising on their respective filtered lists, methods and windows.
+
+**UML Diagrams**
 
 The following sequence diagram shows how the View Patient command is executed in the `Logic`:
 
@@ -479,140 +480,41 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: No changes to the `Model` and `Logic` interface required.
     * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
 
+### Adding specialisations/medical conditions/prescriptions feature
 
-### \[Proposed\] Undo/redo feature
-#### Proposed implementation
+**Introduction**
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This section describes the add specialisations/medical conditions/prescriptions features.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Implementation
+The addition of a specialisation/medical condition/prescription to an existing doctor/patient/appointment respectively in MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] sort feature
-The proposed sorting feature
-
-#### Proposed Implementation
-The proposed sorting mechanism is facilitated by implementing a `Comparator` for every sortable field to sort the `UnmodifiableList`.
-The `Comparator`s will be stored as public static final variables within a helper class `Comparators`.
-This will require all sortable fields to implement the `Comparable` interface, and have a concrete implementation of the `compareTo` method to have a predetermined ordering.
-`ListAppointCommand`, `ListDoctorCommand`, and `ListPatientCommand` will have an additional attribute `comparator` to store the selected `Comparator`.
-
-The updated class diagrams for the models following the changes are as follows:
-
-![SortModelClassDiagram](images/SortModelClassDiagram.png)
-
-Given below is an example usage scenario on how the sort mechanism behaves at each step.
+Given below is an example usage scenario and how the add specialisation mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
-todo: insert diagram
 
-Step 2. The user executes `list_a s\start o\asc` to sort the patients in ascending order by name.
-The `list_a` command calls `ListAppointmentCommandParser#parse` which parses the parameters to sort the list by.
-A new `ListAppointmentCommand` instance will be created with the correct `Predicate` and `Comparator`.
-If no parameters for the sorting order is provided, the `Comparator` with the default field to sort by and order will be selected instead.
-todo: insert diagram
+Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList.
 
-Step 3. The created `ListAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`ListAppointmentCommand#execute` then calls `Model#updateFilterAppointmentList` and with the given `Predicate` and `Comparator`.
-The `Predicate` is used to filter the filteredAppointmentList by calling `FilteredList#setPredicate` and sorted by calling `FilteredList#sort` with the `Comparator`.
-todo: insert diagram
+Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription 'Orthopaedic' to the doctor at index 2 in the displayed doctor list.
+The add_tag_d command calls AddSpecialisationCommandParser#parse the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
-The following sequence diagram shows how the sort operation work:
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
+Step 4. The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated specialisation.
 
-The sort doctor and sort patient functionality works in a similar manner. It selects the relevant `Comparator`, constructs the `ListDoctorCommand`/`ListPatientCommand`,
-and sorts the corresponding `FilteredList` within `Database`.
+The example usage scenario for the add prescription and add medical condition mechanisms would be very similar to the above scenario.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the add specialisation operation would work:
+![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
 
-<img src="images/SortActivityDiagram.png" />
+The sequence diagram for the add prescription and medical condition operations would be similar
 
-#### Design considerations:
+The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
+![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
-**Aspect: How to sort the filteredLists in Database:**
-
-* **Alternative 1 (current choice):** Create multiple `Comparator`s and select them accordingly.
-    * Pros: Allows multiple ways of sorting the lists of items based on various attribute.
-    * Cons: Requires multiple `Comparator` to be implemented, requires code changes on the client's side.
-
-* **Alternative 2:** Let `Patient`, `Doctor`, and `Appointment` implement `Comparable` interface.
-    * Pros: Easy to implement, works with `Arrays.sort()` and `Collection.sort()`.
-    * Cons: There can only be 1 way to sort `Patient`, `Doctor`, and `Appointment`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
