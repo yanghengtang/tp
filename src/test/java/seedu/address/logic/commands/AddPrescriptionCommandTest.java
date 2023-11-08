@@ -49,7 +49,7 @@ public class AddPrescriptionCommandTest {
                         PRESCRIPTION_STUB);
 
         String expectedMessage =
-                String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_SUCCESS, editedAppointment);
+                String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_SUCCESS, PRESCRIPTION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -77,7 +77,7 @@ public class AddPrescriptionCommandTest {
                         PRESCRIPTION_STUB);
 
         String expectedMessage = String.format(AddPrescriptionCommand.MESSAGE_ADD_PRESCRIPTION_SUCCESS,
-                editedAppointment);
+                PRESCRIPTION_STUB.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 

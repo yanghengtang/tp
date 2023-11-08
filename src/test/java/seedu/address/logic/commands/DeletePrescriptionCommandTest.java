@@ -49,7 +49,7 @@ public class DeletePrescriptionCommandTest {
                         PARACETAMOL_TAG);
 
         String expectedMessage =
-                String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_SUCCESS, editedAppointment);
+                String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_SUCCESS, PARACETAMOL_TAG.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
@@ -77,7 +77,7 @@ public class DeletePrescriptionCommandTest {
                         PARACETAMOL_TAG);
 
         String expectedMessage = String.format(DeletePrescriptionCommand.MESSAGE_DELETE_PRESCRIPTION_SUCCESS,
-                editedAppointment);
+                PARACETAMOL_TAG.tagName);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
