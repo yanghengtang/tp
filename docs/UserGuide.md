@@ -139,7 +139,7 @@ The features are broken down to into:
   e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
 
 * Parameters in square brackets are optional.<br>
-  e.g. `n\NAME [ic\NRIC]` can be used as `n\John Doe ic\T0148821G` or as `n\John Doe`.
+  e.g. for `INDEX [dic\DOCTOR_NRIC] [pic\PATIENT_NRIC]`, both `DOCTOR_NRIC` and `PATIENT_NRIC` are optional. Valid inputs include `3 dic\T1023470J pic\S1875409K`, `3 pic\S1875409K` or even `3`.
 
 * Parameters can be entered in any order.<br>
   e.g. if the command specifies `n\NAME p\PHONE_NUMBER`, `p\PHONE_NUMBER n\NAME` is also acceptable.
@@ -154,13 +154,13 @@ The features are broken down to into:
 
 The following table gives an overview of what each parameter used in the Features section is for.
 
-| Parameter    | Description                                                                                      | Valid Parameter Input                                                             |
-|--------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| NAME         | The full name of the doctor/patient                                                              | Only accepts and start with an alphanumeric character                             |
-| NRIC         | The National Registration Identity Card number of the doctor/patient                             | Starts with S/T/F/G/M and followed by 7 digits and end with an uppercase alphabet |
-| PHONE_NUMBER | The phone number of the doctor/patient                                                           | Only contain numbers, and it should be at least 3 digits long.                    |
-| INDEX        | The position of the appointment/doctor/patient in the filtered list                              | Must be a positive integer (1, 2, 3, ...)                                         |
-| TAG          | The prescription/specialisation/medical condition of the appointment/doctor/patient respectively | Only accepts and start with alphanumeric character without spacing.               |
+| Parameter    | Description                                                                                      | Valid Parameter Input                                                              |
+|--------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| NAME         | The full name of the doctor/patient                                                              | Only accepts alphanumeric characters and spaces                                    |
+| NRIC         | The National Registration Identity Card number of the doctor/patient                             | Starts with S/T/F/G/M and followed by 7 digits and ends with an uppercase alphabet |
+| PHONE_NUMBER | The phone number of the doctor/patient                                                           | Only contain numbers, and it should be at least 3 digits long.                     |
+| INDEX        | The position of the appointment/doctor/patient in the filtered list                              | Must be a positive integer (1, 2, 3, ...)                                          |
+| TAG          | The prescription/specialisation/medical condition of the appointment/doctor/patient respectively | Only accepts alphanumeric characters without any spaces                            |
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
@@ -242,7 +242,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Editing a patient : `edit_p`
 
-Allows you to edit an existing patient in the system. This is useful to correct any mistake made when adding or updating a patient.
+Allows you to edit an existing patient in the system. This is useful to correct any mistakes made when adding or updating a patient.
 
 **Format**: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
@@ -270,7 +270,7 @@ edit_p 4 p\81453894
 4. You have successfully edited the patient into the database.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: <b>Note:</b> Note that the NRIC in patient's appointment will be updated if the NRIC is updated!<br>
+:information_source: <b>Note:</b> Note that any appointments containing the patient's old NRIC will be updated to the new NRIC.<br>
 </div>
 
 Back to [Patient Management Features](#patient-management-features).
@@ -382,9 +382,9 @@ This is the list of features that help you manage the records of doctor:
 - [Editing doctor](#editing-a-doctor--edit_d)
 - [Finding doctor](#locating-doctors-by-name--find_d)
 - [Deleting doctor](#deleting-a-doctor--delete_d)
-- [Adding Specialisation](#adding-a-specialisation-to-a-doctor--add_tag_d)
-- [Deleting Specialisation](#deleting-a-specialisation-from-a-doctor--delete_tag_d)
-- [Editing Remark](#editing-the-remark-of-a-doctor--remark_d)
+- [Adding a Specialisation to a doctor](#adding-a-specialisation-to-a-doctor--add_tag_d)
+- [Deleting a Specialisation from a doctor](#deleting-a-specialisation-from-a-doctor--delete_tag_d)
+- [Editing the Remark of a doctor](#editing-the-remark-of-a-doctor--remark_d)
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -445,7 +445,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-Allows you to edit an existing doctor in the system. This is useful to correct any mistake made when adding or updating a doctor.
+Allows you to edit an existing doctor in the system. This is useful to correct any mistakes made when adding or updating a doctor.
 
 **Format**: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
@@ -472,7 +472,7 @@ edit_d 4 ic\T0212385J
 4. You have successfully edited the doctor into the database.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: <b>Note:</b> Note that the NRIC in doctor's appointment will be updated if the NRIC is updated!<br>
+:information_source: <b>Note:</b> Note that any appointments containing the doctor's old NRIC will be updated to the new NRIC.<br>
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -518,7 +518,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Adding a specialisation to a doctor : `add_tag_d`
 
-Allows you to add specialisation for a specified doctor in the system.
+Allows you to add a specialisation for a specified doctor in the system.
 
 **Format**: `add_tag_d INDEX t\SPECIALISATION`
 
@@ -578,10 +578,10 @@ This is the list of features that help you manage the records of appointment:
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
 - [Viewing appointment](#viewing-an-appointment--view_a)
 - [Editing appointment](#editing-an-appointment--edit_a)
+- [Deleting appointment](#deleting-an-appointment--delete_a)
 - [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--add_tag_a)
 - [Deleting a prescription from an appointment](#deleting-a-prescription-from-an-appointment--delete_tag_a)
-- [Editing a remark of an appointment](#editing-a-remark-of-an-appointment--remark_a)
-- [Deleting appointment](#deleting-an-appointment--delete_a)
+- [Editing the remark of an appointment](#editing-the-remark-of-an-appointment--remark_a)
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -612,7 +612,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing an appointment : `edit_a`
 
-Allows you to edit an existing appointment in the system. This is useful to correct any mistake made when adding or updating an appointment.
+Allows you to edit an existing appointment in the system. This is useful to correct any mistakes made when adding or updating an appointment.
 
 **Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
 
@@ -707,7 +707,7 @@ Allows you to delete a prescription from an appointment in the system.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Editing a remark of an appointment : `remark_a`
+### Editing the remark of an appointment : `remark_a`
 
 Allows you to edit the remark of a specified appointment in the system. The appointment's remark is usually used to record any comments the doctor would like to note for that particular appointment.
 
