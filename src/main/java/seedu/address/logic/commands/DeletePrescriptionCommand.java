@@ -28,9 +28,9 @@ public class DeletePrescriptionCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
 
-    public static final String MESSAGE_DELETE_PRESCRIPTION_SUCCESS = "Deleted prescription from Appointment: %1$s";
-    public static final String MESSAGE_DELETE_PRESCRIPTION_FAILURE = "The prescription "
-            + "does not exist in Appointment: %1$s";
+    public static final String MESSAGE_DELETE_PRESCRIPTION_SUCCESS = "Prescription deleted: %1$s";
+    public static final String MESSAGE_DELETE_PRESCRIPTION_FAILURE = "Prescription "
+            + "does not exist in appointment: %1$s";
 
     private final Index index;
     private final Tag prescription;
@@ -70,7 +70,7 @@ public class DeletePrescriptionCommand extends Command {
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PRESCRIPTION_SUCCESS, editedAppointment));
+        return new CommandResult(String.format(MESSAGE_DELETE_PRESCRIPTION_SUCCESS, prescription.tagName));
     }
 
     @Override

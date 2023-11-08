@@ -29,9 +29,9 @@ public class AddPrescriptionCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
 
-    public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "Added prescription to Appointment: %1$s";
+    public static final String MESSAGE_ADD_PRESCRIPTION_SUCCESS = "New prescription added: %1$s";
     public static final String MESSAGE_ADD_PRESCRIPTION_FAILURE = "The prescription "
-            + "already exist in Appointment: %1$s";
+            + "already exist in appointment: %1$s";
 
     private final Index index;
     private final Tag prescription;
@@ -71,7 +71,7 @@ public class AddPrescriptionCommand extends Command {
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_PRESCRIPTION_SUCCESS, editedAppointment));
+        return new CommandResult(String.format(MESSAGE_ADD_PRESCRIPTION_SUCCESS, prescription.tagName));
     }
 
     @Override
