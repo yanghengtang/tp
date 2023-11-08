@@ -362,7 +362,6 @@ The following activity diagram summarizes what happens when a user wants to add 
 ### Delete appointment/doctor/patient feature
 
 **Introduction**
-
 This section describes the delete appointment/doctor/patient features.
 
 #### Implementation
@@ -376,8 +375,7 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_a `. MediConnect will display the FilteredAppointmentList.
-Step 3. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
+Step 2. The user inputs `delete_a 2`  to delete an appointment into MediConnect.
 The `delete_a` command calls `DeleteAppointmentCommandParser#parse` which parses the index argument which is the index of the appointment to delete
 A new `DeleteAppointmentCommand` instance will be created
 
@@ -395,6 +393,36 @@ The sequence diagram for the delete patient and doctor operations would be simil
 
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
 ![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
+
+### Delete specialisation/medical condition/prescription feature
+This section describes the delete specialisation/medical condition/prescription features.
+
+#### Implementation
+The deletion of a specialisation/medical condition/prescription to MediConnect is facilitated by 'LogicManager'. It extends 'Logic' and stores the mediConnectParser that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
+
+Given below is an example usage scenario and how the add `Specialisation` mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `delete_tag_d 2 Orthopaedic`  to delete an doctor's specialisation into MediConnect.
+The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse` which parses the index argument which is the index of the doctor to delete  
+A new `DeleteSpecialisationCommand` instance will be created
+
+Step 3. The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`DeleteSpecialisationCommand#execute` then calls `Model#getFilteredDoctorList` and retrieve the doctor with the given `Index`. 
+Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor`.
+
+The example usage scenario for delete medical condition and delete prescriptions mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the delete specialisation operation would work and will be similar to medical condition and prescription:
+![DeleteSpecialisationSequenceDiagram](images/DeleteSpecialisationSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user wants to delete a specialisation/medical condition/prescription:
+![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### View appointment/doctor/patient feature
 
