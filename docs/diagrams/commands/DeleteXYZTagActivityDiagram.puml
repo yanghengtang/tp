@@ -4,12 +4,14 @@
 start
 :User enters DeleteXYZCommand with a specified index;
 floating note right
-    XYZ = Appointment, Doctor or Patient
+    XYZ = Medical Condition, Specialisations or Prescriptions
+    ABC = Appointment, Doctor or Patient
 end note
 :MediConnectParser parses the command;
 :DeleteXYZCommandParser parses the index specified provided;
 if () then ([command is valid])
-  :The XYZ item at specified index is removed \n from the FilteredXYZList in database;
+  :XYZ item is removed from ABC with the specified index;
+  :The Existing ABC in database is replaced with edited ABC \n and FilteredABCList is updated;
 else ([command is invalid])
   :Outputs error message;
 endif

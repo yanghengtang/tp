@@ -5,23 +5,13 @@ title: User Guide
 
 Welcome to the user guide of MediConnect!
 
-## What is MediConnect?
+MediConnect is a clinic management system (CMS) application designed for clinic receptionists. It aims to help them to be more efficient and effective at accomplishing their administrative tasks.
 
-MediConnect is a clinic management system (CMS) application designed to aid receptionist in a clinic on their day-to-day task.
-
-## Who is MediConnect for?
-
-MediConnect is built for clinic receptionists and aims to help them to be more efficient and effective at accomplishing their administrative tasks.
-
-## What can MediConnect do for you?
-
-MediConnect is here to help you with your administrative task in the clinic. These include:
+These administrative tasks can include:
 - Scheduling an appointment
 - Retrieving a patient's medical history
 - Checking a doctor's availability
 - Updating a patient's medical record
-
-## How can you get started?
 
 If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
 
@@ -42,7 +32,7 @@ This guide is designed for users of all level to master their use of MediConnect
 
 ## Icons used in this guide
 
-Here are some common icons that is used throughout this user guide
+Here are some common icons that are used throughout this user guide
 
 | Icons                          | Representation                                    |
 |--------------------------------|---------------------------------------------------|
@@ -53,7 +43,7 @@ Here are some common icons that is used throughout this user guide
 
 ## Terms used in this guide
 
-Here are some common terms that is used throughout this user guide
+Here are some common terms that are used throughout this user guide
 
 | Icons       | Representation                                                                 |
 |-------------|--------------------------------------------------------------------------------|
@@ -82,11 +72,11 @@ return back to [Table of Contents](#table-of-contents)
 
     If you do not have it installed yet or your Java version is below `11`, refer to the following guides based on your operating system:
 
-    [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
+    - [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0)
 
-    [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-F575EB4A-70D3-4AB4-A20E-DBE95171AB5F)
+    - [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-F575EB4A-70D3-4AB4-A20E-DBE95171AB5F)
 
-    [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-4A6BD592-1840-4BB4-A758-4CD49E9EE88B)
+    - [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-4A6BD592-1840-4BB4-A758-4CD49E9EE88B)
 
 2. Download the latest `mediconnect.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-1/tp/releases).
 
@@ -115,6 +105,7 @@ return back to [Table of Contents](#table-of-contents)
 
 7. Refer to the [Features](#features) below for details of each command.
 
+Back to [Table of Contents](#table-of-contents).
 
 ## Navigating the application
 
@@ -123,10 +114,10 @@ return back to [Table of Contents](#table-of-contents)
 The main window can be broken down into the following components:
 
 - **Command Box**: The command box is where you will enter your input your commands
-- **Result Display Box**: The box will display the output messages based on your entered commands
-- **Appointment List Panel**: This panel will display the list of appointments sorted by their starting date and time
-- **Patient List Panel**: This panel will display the list of patient sorted by their names
-- **Doctor List Panel**: This panel will display the list of doctor sorted by their names
+- **Result Display Box**: This box will display the output messages in response to your commands
+- **Appointment List Panel**: This panel will display the list of filtered appointments
+- **Patient List Panel**: This panel will display the list of filtered patients
+- **Doctor List Panel**: This panel will display the list of filtered doctors
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -135,12 +126,12 @@ Back to [Table of Contents](#table-of-contents).
 # Features
 
 The features are broken down to into:
-- [General Features](#general-features)
 - [Patient Management Features](#patient-management-features)
 - [Doctor Management Features](#doctor-management-features)
 - [Appointment Management Features](#appointment-management-features)
+- [General Features](#general-features)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -156,7 +147,7 @@ The features are broken down to into:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n\NAME p\PHONE_NUMBER`, `p\PHONE_NUMBER n\NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list_p` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -174,13 +165,13 @@ The following table gives an overview of what each parameter used in the Feature
 | INDEX        | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                                                      |
 | TAG          | The tag of the appointment/doctor/patient                            | Only accepts and start with alphanumeric character without spacing.                                            |
 
-<div markdown="span" class="alert alert-note">:information_source: <b>Note:</b>
+<div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
 </div>
 
 ## Patient Management Features
 
-These are a list of features that help you manage the records of patient:
+This is the list of features that help you manage the records of patient:
 - [Adding patient](#adding-a-patient-add_p)
 - [Listing patient](#listing-all-patient--list_p)
 - [Viewing patient](#viewing-a-patient--view_p)
@@ -196,7 +187,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a patient: `add_p`
 
-Adds a patient to the system.
+Allows you to add a patient into the system.
 
 Format: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 
@@ -223,7 +214,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Listing all patient : `list_p`
 
-Shows a list of all patients in the system.
+Allows you to list all patients in the system.
 
 Format: `list_p`
 
@@ -231,7 +222,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Viewing a patient : `view_p`
 
-Views the specified patient from the system.
+Allows you to view details, such as basic information, medical condition and remark, of a specific patient in the system.
 
 Format: `view_p INDEX`
 
@@ -250,7 +241,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Editing a patient : `edit_p`
 
-Edits an existing patient in the system.
+Allows you to edit an existing patient in the system.
 
 Format: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
@@ -282,7 +273,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Locating patients by name: `find_p`
 
-Finds patients whose names contain any of the given keywords.
+Allows you to find patients whose name contains any of the given keywords.
 
 Format: `find_p KEYWORD [MORE_KEYWORDS]`
 
@@ -301,7 +292,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Deleting a patient : `delete_p`
 
-Deletes the specified patient from the system.
+Allows you to delete a specified patient from the system.
 
 Format: `delete_p INDEX`
 
@@ -320,29 +311,9 @@ If patient is deleted, the patient's appointments will also be deleted.
 
 Back to [Patient Management Features](#patient-management-features).
 
-### Adding a remark to a patient : `remark_p`
-
-Adds a remark to a specified patient from the system.
-
-Format: `remark_p INDEX [r\REMARK]`
-
-* Adds the input `REMARK` to the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The remark will be updated with the input `REMARK`.
-* An empty `REMARK` input will delete the previously stored remark.
-* Remark can be used to store temporary information such as family history and current medications patients are on.
-
-
-Examples:
-* `list_p` followed by `remark_p 2 r\need follow up` adds the remark `need follow up` to the 2nd patient in the patient list.
-* `find_p Jonathan` followed by `remark_p 1 r\new patient` adds the remark `new patient` to the 1st patient in the results of the `find_p` command.
-
-Back to [Patient Management Features](#patient-management-features).
-
 ### Adding a medical condition to a patient : `add_tag_p`
 
-Adds a medical condition to a specified patient from the system.
+Allow you to add a medical condition to a specified patient in the system.
 
 Format: `add_tag_p INDEX t\MEDICAL_CONDITION`
 
@@ -358,7 +329,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Deleting a medical condition of a patient : `delete_tag_p`
 
-Deletes a medical condition to a specified patient from the system.
+Allows you to delete a medical condition from a specified patient in the system.
 
 Format: `delete_tag_p INDEX t\MEDICAL_CONDITION`
 
@@ -373,9 +344,32 @@ Examples:
 
 Back to [Patient Management Features](#patient-management-features).
 
+### Editing the remark of a patient : `remark_p`
+
+Allows you to edit the remark of a specified patient in the system. The patient's remark can be used to store temporary information such as family health history and current medications/treatments patients are on.
+
+Format: `remark_p INDEX [r\REMARK]`
+
+* Adds the input `REMARK` to the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The remark will be updated with the input `REMARK`.
+* An empty `REMARK` input will delete the previously stored remark.
+
+
+Examples:
+* `list_p` followed by `remark_p 2 r\need follow up` adds the remark `need follow up` to the 2nd patient in the patient list.
+* `find_p Jonathan` followed by `remark_p 1 r\new patient` adds the remark `new patient` to the 1st patient in the results of the `find_p` command.
+
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Patient Window
+</div>
+
+Back to [Patient Management Features](#patient-management-features).
+
 ## Doctor Management Features
 
-These are a list of features that help you manage the records of doctor:
+This is the list of features that help you manage the records of doctor:
 - [Adding doctor](#adding-a-doctor--add_d)
 - [Listing doctor](#listing-all-doctor--list_d)
 - [Viewing doctor](#viewing-a-doctor--view_d)
@@ -390,7 +384,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a doctor: `add_d`
 
-You can simply add a doctor to the system.
+Allows you to add a doctor to the system.
 
 Format: `add_d n\NAME ic\NRIC`
 
@@ -417,7 +411,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Listing all doctor : `list_d`
 
-You can get a list of all doctors in the system.
+Allows you to list all the doctors in the system.
 
 Format: `list_d`
 
@@ -425,7 +419,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Viewing a doctor : `view_d`
 
-You can view detail information about a specific doctor such as basic information, doctor's specialisation and remarks stored in the system.
+Allows you to view details, such as basic information, specialisation and remark, of a specific doctor in the system.
 
 Format: `view_d INDEX`
 
@@ -445,7 +439,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-You can easily edit an existing doctor in the system.
+Allows you to edit an existing doctor in the system.
 
 Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
@@ -471,7 +465,7 @@ edit_d 4 ic\T0212385J
 
 4. You have successfully edited the doctor into the database.
 
-<div markdown="span" class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
 information_source: <b>Note:</b> Note that the nric in doctor's appointment will be updated if the nric is updated!<br>
 </div>
 
@@ -479,7 +473,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name: `find_d`
 
-You can quickly locate doctor whose names contain any of the given keywords.
+Allow you to locate doctors whose name contains any of the given keywords.
 
 Format: `find_d KEYWORD [MORE_KEYWORDS]`
 
@@ -498,7 +492,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Deleting a doctor : `delete_d`
 
-You can also delete a specific doctor from the system.
+Allows you to delete a specific doctor from the system.
 
 Format: `delete_d INDEX`
 
@@ -516,7 +510,7 @@ If doctor is being removed, the appointments of the doctor's will also be delete
 
 ### Adding a specialisation : `add_tag_d`
 
-You can easily add the doctor's specialisation(s) within the system, and you can also add multiple specialisation as needed. 
+Allows you to add specialisation for a doctor in the system.
 
 Format: `add_tag_d INDEX t\SPECIALISATION`
 
@@ -530,7 +524,7 @@ Examples:
 
 ### Deleting a specialisation : `delete_tag_d`
 
-You can delete the doctor's specialisation from the system.
+Allows you to delete a specialisation from a specific doctor in the system.
 
 Format: `delete_tag_d INDEX t\SPECIALISATION`
 
@@ -542,9 +536,9 @@ Examples:
 * `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
-### Editing a remark : `remark_d`
+### Editing a remark of a doctor: `remark_d`
 
-You can edit a doctor's remark in the system, such as preferred timing or availability.
+Allows you to edit the remark of a specified doctor in the system. The doctor's remark is usually used to indicate the doctor's availability.
 
 Format: `remark_d INDEX [r\REMARK]`
 
@@ -556,11 +550,15 @@ Examples:
 * `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Doctor Window
+</div>
+
 Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
 
-These are a list of features that help you manage the records of appointment:
+This is the list of features that help you manage the records of appointment:
 - [Adding appointment](#adding-an-appointment--add_a)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
 - [Viewing appointment](#viewing-an-appointment--view_a)
@@ -574,7 +572,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding an appointment: `add_a`
 
-Adds an appointment into the system.
+Allows you to add an appointment into the system.
 
 Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
@@ -585,7 +583,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Listing all appointments, or by patient or doctor NRIC: `list_a`
 
-Shows a list of appointments in the system depending on the fields given.
+Allows you to either display all the appointments in the system, or the list of appointments a specified patient/doctor has in the system.
 
 Format: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
@@ -599,7 +597,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing an appointment : `edit_a`
 
-Edits an existing appointment in the system.
+Allows you to edit an existing appointment in the system.
 
 Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
 
@@ -629,7 +627,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Viewing an appointment: `view_a`
 
-Views the specified appointment from the system.
+Allows you to view details, such as basic information, prescription given and remark, of a specific appointment in the system.
 
 Format: `view_a INDEX`
 
@@ -648,7 +646,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Adding a prescription to an appointment: `add_tag_a`
 
-You can easily add a prescription for an appointment within the system.
+Allows you to add a prescription for an appointment in the system.
 
 Format: `add_tag_a INDEX [t\PRESCRIPTION]`
 
@@ -662,12 +660,12 @@ Examples:
 
 ### Deleting a prescription from an appointment : `delete_tag_a`
 
-You can delete a prescription from an appointment within the system.
+Allows you to delete a prescription from an appointment in the system.
 
 Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
 
 * Deletes the prescription of the appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed apppointment list.
+* The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -676,7 +674,7 @@ Examples:
 
 ### Editing a remark of an appointment : `remark_a`
 
-You can edit an appointment's remark in the system, such as appointment notes or follow-up details.
+Allows you to edit the remark of a specified appointment in the system. The appointment's remark is usually used to record any comments the doctor would like to note for that particular appointment.
 
 Format: `remark_a INDEX [r\REMARK]`
 
@@ -685,7 +683,7 @@ Format: `remark_a INDEX [r\REMARK]`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-<div markdown="span" class="alert alert-note">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
 </div>
 
@@ -693,9 +691,13 @@ Examples:
 * `list_a` followed by `remark_a 2 Patient does not need any follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `remark_a 1 Patient does not need nay follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the results of the `list_a` command.
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window
+</div>
+
 ### Deleting an appointment : `delete_a`
 
-Deletes the specified appointment from the system.
+Allows you to delete the specified appointment from the system.
 
 Format: `delete_a INDEX`
 
@@ -763,9 +765,10 @@ Back to [Table of Contents](#table-of-contents).
 
 # Known issues
 
-1. If Appointment/Doctor/Patient window is opened and `edit`, `remark`, `add_tag` or `delete_tag` command is applied on 
-the selected appointment/doctor/patient, the window will not reflect the changes. To refresh and see the updated details,
-run the `view` command again.
+### 1. Refreshing the View Window after updating details
+If you have any of the Appointment/Doctor/Patient window opened, and you update any of the details of the selected 
+appointment/doctor/patient, the view window will not reflect the changes. To refresh and see the updated details,
+run the respective view appointment/doctor/patient command again.
 
 Back to [Table of Contents](#table-of-contents).
 

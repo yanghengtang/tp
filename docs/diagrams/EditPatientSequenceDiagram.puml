@@ -7,7 +7,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":EditPatientCommandParser" as EditPatientCommandParser LOGIC_COLOR
 participant "e:EditPatientCommand" as EditPatientCommand LOGIC_COLOR
-participant "c:CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 participant "d:EditPatientDescriptor" as EditPatientDescriptor LOGIC_COLOR
 end box
 
@@ -73,9 +73,10 @@ create CommandResult
 EditPatientCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditPatientCommand : c
+CommandResult --> EditPatientCommand : result
 deactivate CommandResult
 
-EditPatientCommand --> LogicManager : c
+EditPatientCommand --> LogicManager : result
+[<--LogicManager : result
 deactivate EditPatientCommand
 @enduml
