@@ -135,16 +135,13 @@ The features are broken down to into:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters you would need to provide.<br>
   e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g. `n\NAME [t\TAG]` can be used as `n\John Doe t\friend` or as `n\John Doe`.
+* Parameters in square brackets are optional.<br>
+  e.g. `n\NAME [ic\NRIC]` can be used as `n\John Doe ic\T0148821G` or as `n\John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t\TAG]…​` can be used as ` ` (i.e. 0 times), `t\friend`, `t\friend t\family` etc.
-
-* Parameters can be in any order.<br>
+* Parameters can be entered in any order.<br>
   e.g. if the command specifies `n\NAME p\PHONE_NUMBER`, `p\PHONE_NUMBER n\NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list_p` and `exit`) will be ignored.<br>
@@ -157,13 +154,13 @@ The features are broken down to into:
 
 The following table gives an overview of what each parameter used in the Features section is for.
 
-| Parameter    | Description                                                          | Valid Parameter Input                                                                                          |
-|--------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| NAME         | The full name of the doctor/patient                                  | Only accepts and start with an alphanumeric character                                                          |
-| NRIC         | The National Registration Identity Card number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and end with a uppercase alphabet                               |
-| PHONE_NUMBER | The phone number of the doctor/patient                               | Only contain numbers, and it should be at least 3 digits long.                                                 |
-| INDEX        | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                                                      |
-| TAG          | The tag of the appointment/doctor/patient                            | Only accepts and start with alphanumeric character without spacing.                                            |
+| Parameter    | Description                                                                                      | Valid Parameter Input                                                             |
+|--------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| NAME         | The full name of the doctor/patient                                                              | Only accepts and start with an alphanumeric character                             |
+| NRIC         | The National Registration Identity Card number of the doctor/patient                             | Starts with S/T/F/G/M and followed by 7 digits and end with an uppercase alphabet |
+| PHONE_NUMBER | The phone number of the doctor/patient                                                           | Only contain numbers, and it should be at least 3 digits long.                    |
+| INDEX        | The position of the appointment/doctor/patient in the filtered list                              | Must be a positive integer (1, 2, 3, ...)                                         |
+| TAG          | The prescription/specialisation/medical condition of the appointment/doctor/patient respectively | Only accepts and start with alphanumeric character without spacing.               |
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
@@ -178,9 +175,9 @@ This is the list of features that help you manage the records of patient:
 - [Editing patient](#editing-a-patient--edit_p)
 - [Finding patient](#locating-patients-by-name--find_p)
 - [Deleting patient](#deleting-a-patient--delete_p)
-- [Adding a remark to a patient](#adding-a-remark-to-a-patient--remark_p)
 - [Adding a medical condition to a patient](#adding-a-medical-condition-to-a-patient--add_tag_p)
-- [Deleting a medical condition of a patient](#deleting-a-medical-condition-of-a-patient--delete_tag_p)
+- [Deleting a medical condition of a patient](#deleting-a-medical-condition-from-a-patient--delete_tag_p)
+- [Editing the remark of a patient](#editing-the-remark-of-a-patient--remark_p)
 
 
 Back to [Table of Contents](#table-of-contents).
@@ -189,13 +186,13 @@ Back to [Table of Contents](#table-of-contents).
 
 Allows you to add a patient into the system.
 
-Format: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
+**Format**: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 
-Examples:
+**Examples**:
 * `add_p n\John Doe ic\T0212385J p\98765432`
 * `add_p ic\S9912343G n\Betsy Crowe p\81235833`
 
-Sample Usage:
+**Sample Usage**:
 1. Assuming you want to add a Patient named "Jonathan Reese" with NRIC "S8712461K" and phone number "81573238". 
 
 2. Enter the following command:
@@ -212,11 +209,15 @@ add_p n\Jonathan Reese n\S8712461K p\81235833
 
 Back to [Patient Management Features](#patient-management-features).
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+Double check the phone number before pressing enter! Extremely long phone numbers may not be displayed fully in the Patient window.
+</div>
+
 ### Listing all patient : `list_p`
 
 Allows you to list all patients in the system.
 
-Format: `list_p`
+**Format**: `list_p`
 
 Back to [Patient Management Features](#patient-management-features).
 
@@ -224,37 +225,36 @@ Back to [Patient Management Features](#patient-management-features).
 
 Allows you to view details, such as basic information, medical condition and remark, of a specific patient in the system.
 
-Format: `view_p INDEX`
+**Format**: `view_p INDEX`
 
 * Displays the full detail of the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples**:
 * `list_p` followed by `view_p 2` views the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `view_p 1` views the 1st patient in the results of the `find_p` command.
 
 Below is an example of a successful view command call.
-![ViewPatientMainWindow](images/view_patient.png)
+![ViewPatientMainWindow](images/ViewPatient.png)
 
 Back to [Patient Management Features](#patient-management-features).
 
 ### Editing a patient : `edit_p`
 
-Allows you to edit an existing patient in the system.
+Allows you to edit an existing patient in the system. This is useful to correct any mistake made when adding or updating a patient.
 
-Format: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
+**Format**: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Edit feature can be used when potential typos made when adding the patient or having to update a patient's information
 
-Examples:
+**Examples**:
 *  `edit_p 1 n\Joe Ng` Edits the name of 1st patient to be `Joe Ng`.
 *  `edit_p 2 p\91234567` Edits the phone of the 2nd patient to be `91234567`.
 
-Sample Usage:
+**Sample Usage**:
 1. Assuming you want to edit the 4th Patient changing his phone from "81235833" to "81453894".
 
 2. Enter the following command:
@@ -269,13 +269,17 @@ edit_p 4 p\81453894
 
 4. You have successfully edited the patient into the database.
 
+<div markdown="span" class="alert alert-primary">
+:information_source: <b>Note:</b> Note that the NRIC in patient's appointment will be updated if the NRIC is updated!<br>
+</div>
+
 Back to [Patient Management Features](#patient-management-features).
 
 ### Locating patients by name: `find_p`
 
 Allows you to find patients whose name contains any of the given keywords.
 
-Format: `find_p KEYWORD [MORE_KEYWORDS]`
+**Format**: `find_p KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -284,7 +288,7 @@ Format: `find_p KEYWORD [MORE_KEYWORDS]`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+**Examples**:
 * `find_p John` returns `john` and `John Doe`
 * `find_p alex david` returns `Alex Yeoh`, `David Li`<br>
 
@@ -294,13 +298,13 @@ Back to [Patient Management Features](#patient-management-features).
 
 Allows you to delete a specified patient from the system.
 
-Format: `delete_p INDEX`
+**Format**: `delete_p INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples**:
 * `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the results of the `find_p` command.
 
@@ -315,30 +319,32 @@ Back to [Patient Management Features](#patient-management-features).
 
 Allow you to add a medical condition to a specified patient in the system.
 
-Format: `add_tag_p INDEX t\MEDICAL_CONDITION`
+**Format**: `add_tag_p INDEX t\MEDICAL_CONDITION`
 
-* Adds the input medical condition to the patient at the specified `INDEX`.
+* Adds the given medical condition to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Only one medical condition can be added at a time.
 
-Examples:
+**Examples**:
 * `list_p` followed by `add_tag_p 2 t\diabetes` adds the medical condition `diabetes` to the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `add_tag_p 1 t\cancer` adds the medical condition `cancer` to the 1st patient in the results of the `find_p` command.
 
 Back to [Patient Management Features](#patient-management-features).
 
-### Deleting a medical condition of a patient : `delete_tag_p`
+### Deleting a medical condition from a patient : `delete_tag_p`
 
 Allows you to delete a medical condition from a specified patient in the system.
 
-Format: `delete_tag_p INDEX t\MEDICAL_CONDITION`
+**Format**: `delete_tag_p INDEX t\MEDICAL_CONDITION`
 
 * Deletes the input medical condition to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Input `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
+* The given `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
+* Only one medical condition can be deleted at a time.
 
-Examples:
+**Examples**:
 * `list_p` followed by `delete_tag_p 2 t\diabetes` deletes the medical condition `diabetes` of the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` of the 1st patient in the results of the `find_p` command.
 
@@ -348,7 +354,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 Allows you to edit the remark of a specified patient in the system. The patient's remark can be used to store temporary information such as family health history and current medications/treatments patients are on.
 
-Format: `remark_p INDEX [r\REMARK]`
+**Format**: `remark_p INDEX [r\REMARK]`
 
 * Adds the input `REMARK` to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
@@ -357,7 +363,7 @@ Format: `remark_p INDEX [r\REMARK]`
 * An empty `REMARK` input will delete the previously stored remark.
 
 
-Examples:
+**Examples**:
 * `list_p` followed by `remark_p 2 r\need follow up` adds the remark `need follow up` to the 2nd patient in the patient list.
 * `find_p Jonathan` followed by `remark_p 1 r\new patient` adds the remark `new patient` to the 1st patient in the results of the `find_p` command.
 
@@ -376,23 +382,23 @@ This is the list of features that help you manage the records of doctor:
 - [Editing doctor](#editing-a-doctor--edit_d)
 - [Finding doctor](#locating-doctors-by-name--find_d)
 - [Deleting doctor](#deleting-a-doctor--delete_d)
-- [Adding Specialisation](#adding-a-specialisation--add_tag_d)
-- [Deleting Specialisation](#deleting-a-specialisation--delete_tag_d)
-- [Editing Remark](#editing-a-remark--remark_d)
+- [Adding Specialisation](#adding-a-specialisation-to-a-doctor--add_tag_d)
+- [Deleting Specialisation](#deleting-a-specialisation-from-a-doctor--delete_tag_d)
+- [Editing Remark](#editing-the-remark-of-a-doctor--remark_d)
 
 Back to [Table of Contents](#table-of-contents).
 
-### Adding a doctor: `add_d`
+### Adding a doctor : `add_d`
 
 Allows you to add a doctor to the system.
 
-Format: `add_d n\NAME ic\NRIC`
+**Format**: `add_d n\NAME ic\NRIC`
 
-Examples:
+**Examples**:
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
-Sample Usage:
+**Sample Usage**:
 1. Assuming you want to add a doctor named "John Doe" with NRIC "T0212385J".
 
 2. Enter the following command:
@@ -413,7 +419,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 Allows you to list all the doctors in the system.
 
-Format: `list_d`
+**Format**: `list_d`
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -421,13 +427,13 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 Allows you to view details, such as basic information, specialisation and remark, of a specific doctor in the system.
 
-Format: `view_d INDEX`
+**Format**: `view_d INDEX`
 
 * Displays the full detail of the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples**:
 * `list_d` followed by `view_d 2` views the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `view_d 1` views the 1st doctor in the results of the `find_d` command.
 
@@ -439,18 +445,18 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Editing a doctor : `edit_d`
 
-Allows you to edit an existing doctor in the system.
+Allows you to edit an existing doctor in the system. This is useful to correct any mistake made when adding or updating a doctor.
 
-Format: `edit_d INDEX [ic\NRIC] [n\NAME]`
+**Format**: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
 * Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
+**Examples**:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` Edits the name and NRIC of the 1st doctor to be `Joe Ng` and `T0212385J` respectively.
 
-Sample Usage:
+**Sample Usage**:
 1. Assuming you want to edit the 4th doctor changing his NRIC from "T0212384J" to "T0212385J".
 
 2. Enter the following command:
@@ -466,16 +472,16 @@ edit_d 4 ic\T0212385J
 4. You have successfully edited the doctor into the database.
 
 <div markdown="span" class="alert alert-primary">
-information_source: <b>Note:</b> Note that the nric in doctor's appointment will be updated if the nric is updated!<br>
+:information_source: <b>Note:</b> Note that the NRIC in doctor's appointment will be updated if the NRIC is updated!<br>
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
 
-### Locating doctors by name: `find_d`
+### Locating doctors by name : `find_d`
 
 Allow you to locate doctors whose name contains any of the given keywords.
 
-Format: `find_d KEYWORD [MORE_KEYWORDS]`
+**Format**: `find_d KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -484,7 +490,7 @@ Format: `find_d KEYWORD [MORE_KEYWORDS]`
 * Doctors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+**Examples**:
 * `find_d John` returns `john` and `John Doe`
 * `find_d alex david` returns `Alex Yeoh`, `David Li`<br>
 
@@ -494,13 +500,13 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 Allows you to delete a specific doctor from the system.
 
-Format: `delete_d INDEX`
+**Format**: `delete_d INDEX`
 
 * Deletes the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples**:
 * `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
 
@@ -508,45 +514,54 @@ Examples:
 If doctor is being removed, the appointments of the doctor's will also be deleted too!.
 </div>
 
-### Adding a specialisation : `add_tag_d`
+Back to [Doctor Management Features](#doctor-management-features).
 
-Allows you to add specialisation for a doctor in the system.
+### Adding a specialisation to a doctor : `add_tag_d`
 
-Format: `add_tag_d INDEX t\SPECIALISATION`
+Allows you to add specialisation for a specified doctor in the system.
+
+**Format**: `add_tag_d INDEX t\SPECIALISATION`
 
 * Adds the specialisation of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
+* Only one specialisation can be added at a time.
 
-Examples:
+**Examples**:
 * `list_d` followed by `add_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `add_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
-### Deleting a specialisation : `delete_tag_d`
+Back to [Doctor Management Features](#doctor-management-features).
+
+### Deleting a specialisation from a doctor : `delete_tag_d`
 
 Allows you to delete a specialisation from a specific doctor in the system.
 
-Format: `delete_tag_d INDEX t\SPECIALISATION`
+**Format**: `delete_tag_d INDEX t\SPECIALISATION`
 
 * Adds the specialisation of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
+* The given `SPECIALISATION` must be a present specialisation of the specified doctor.
+* Only one specialisation can be deleted at a time.
 
-Examples:
+**Examples**:
 * `list_d` followed by `delete_tag_d 2 Orthopaedic` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `delete_tag_d 1 Orthopaedic` add specialisation the 1st doctor in the results of the `find_d` command.
 
-### Editing a remark of a doctor: `remark_d`
+Back to [Doctor Management Features](#doctor-management-features).
+
+### Editing the remark of a doctor: `remark_d`
 
 Allows you to edit the remark of a specified doctor in the system. The doctor's remark is usually used to indicate the doctor's availability.
 
-Format: `remark_d INDEX [r\REMARK]`
+**Format**: `remark_d INDEX [r\REMARK]`
 
 * Edits the remark of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-Examples:
+**Examples**:
 * `list_d` followed by `remark_d 2 Doctor will not be in clinic until 30/12/2023` add specialisation the 2nd doctor in the doctor list.
 * `find_d Jonathan` followed by `remark_d 1 Doctor will not be in clinic until 30/12/2023` add specialisation the 1st doctor in the results of the `find_d` command.
 
@@ -570,46 +585,46 @@ This is the list of features that help you manage the records of appointment:
 
 Back to [Table of Contents](#table-of-contents).
 
-### Adding an appointment: `add_a`
+### Adding an appointment : `add_a`
 
 Allows you to add an appointment into the system.
 
-Format: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
+**Format**: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
-Examples:
+**Examples**:
 * `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00 `
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Listing all appointments, or by patient or doctor NRIC: `list_a`
+### Listing all appointments, or by patient or doctor NRIC : `list_a`
 
 Allows you to either display all the appointments in the system, or the list of appointments a specified patient/doctor has in the system.
 
-Format: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
+**Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
 * Find any appointment of the doctor or patient with the specified `NRIC`.
 * List all the appointments in the system if no fields are given.
 
-Examples:
+**Examples**:
 * `list_a pic\S9912343G` returns all the appointment the patient with NRIC `S9912343G` has.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing an appointment : `edit_a`
 
-Allows you to edit an existing appointment in the system.
+Allows you to edit an existing appointment in the system. This is useful to correct any mistake made when adding or updating an appointment.
 
-Format: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
+**Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
 
 * Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
+**Examples**:
 *  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` Edits the patient and doctor NRIC of the 1st appointment to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
 
-Sample Usage:
-1. Assuming you want to edit the 4th Appointment changing the doctor nric  from "S9823343G" to "S9923334G".
+**Sample Usage**:
+1. Assuming you want to edit the 4th Appointment, changing the doctor NRIC from "S9823343G" to "S9923334G".
 
 2. Enter the following command:
 ```
@@ -625,17 +640,17 @@ edit_a 4 pic\S9923334G
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Viewing an appointment: `view_a`
+### Viewing an appointment : `view_a`
 
 Allows you to view details, such as basic information, prescription given and remark, of a specific appointment in the system.
 
-Format: `view_a INDEX`
+**Format**: `view_a INDEX`
 
 * Displays the full detail of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+**Examples**:
 * `list_a` followed by `view_a 2` views the 2nd appointment in the appointment list.
 
 Below is the image of a successful result that you should have encountered.
@@ -644,39 +659,59 @@ Below is the image of a successful result that you should have encountered.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Adding a prescription to an appointment: `add_tag_a`
+### Deleting an appointment : `delete_a`
+
+Allows you to delete the specified appointment from the system.
+
+**Format**: `delete_a INDEX`
+
+* Deletes the appointment with the specified `INDEX`.
+
+**Examples**:
+* `delete_a 2` deletes the 2nd appointment in the appointment list.
+
+Back to [Appointment Management Features](#appointment-management-features).
+
+### Adding a prescription to an appointment : `add_tag_a`
 
 Allows you to add a prescription for an appointment in the system.
 
-Format: `add_tag_a INDEX [t\PRESCRIPTION]`
+**Format**: `add_tag_a INDEX [t\PRESCRIPTION]`
 
 * Adds a prescription to the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
+* Only one prescription can be added at a time.
 
-Examples:
+**Examples**:
 * `list_a` followed by `add_tag_a 2 Panadol` adds the prescription `Panadol` to the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `add_tag_a 1 Panadol` adds the prescription to the 1st appointment in the result of the `list_a` command.
+
+Back to [Appointment Management Features](#appointment-management-features).
 
 ### Deleting a prescription from an appointment : `delete_tag_a`
 
 Allows you to delete a prescription from an appointment in the system.
 
-Format: `delete_tag_a INDEX [t\PRESCRIPTION]`
+**Format**: `delete_tag_a INDEX [t\PRESCRIPTION]`
 
 * Deletes the prescription of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
+* The given `PRESCRIPTION` must be a present prescription of the specified appointment.
+* Only one prescription can be deleted at a time.
 
-Examples:
+**Examples**:
 * `list_a` followed by `delete_tag_a 2 Panadol` deletes the prescription `Panadol` from the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `delete_tag_a 1 Panadol` deletes the prescription `Panadol` form the 1st appointment in the results of the `list_a` command.
+
+Back to [Appointment Management Features](#appointment-management-features).
 
 ### Editing a remark of an appointment : `remark_a`
 
 Allows you to edit the remark of a specified appointment in the system. The appointment's remark is usually used to record any comments the doctor would like to note for that particular appointment.
 
-Format: `remark_a INDEX [r\REMARK]`
+**Format**: `remark_a INDEX [r\REMARK]`
 
 * Edits the remark the appointment at the specified `INDEX`.
 * If the specified appointment already has a remark, it will be overwritten by `REMARK`
@@ -687,24 +722,13 @@ Format: `remark_a INDEX [r\REMARK]`
 Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
 </div>
 
-Examples:
+**Examples**:
 * `list_a` followed by `remark_a 2 Patient does not need any follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the appointment list.
 * `list_a pic\S9923334G` followed by `remark_a 1 Patient does not need nay follow up` adds the remark `Patient does not need any follow up` to the 2nd appointment in the results of the `list_a` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
 Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window
 </div>
-
-### Deleting an appointment : `delete_a`
-
-Allows you to delete the specified appointment from the system.
-
-Format: `delete_a INDEX`
-
-* Deletes the appointment with the specified `INDEX`.
-
-Examples:
-* `delete_a 2` deletes the 2nd appointment in the appointment list.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -724,7 +748,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+**Format**: `help`
 
 Back to [General Features](#general-features).
 
@@ -732,7 +756,7 @@ Back to [General Features](#general-features).
 
 Exits the program.
 
-Format: `exit`
+**Format**: `exit`
 
 Back to [General Features](#general-features).
 
