@@ -9,6 +9,7 @@ AddressBook - MediConnect is a desktop address book application used for managin
 
 Given below are my contributions to the project.
 
+
 * **New Feature**: 
   * Add Doctor 
     * What it does: Allows user to add doctors to the database
@@ -30,35 +31,56 @@ Given below are my contributions to the project.
     * Justification: This allows receptionists to find doctor very quickly just based on the name
     * Highlights: It finds doctors that contains the input name keywords (case-insensitive)
 
+  * Add Doctor's Specialisation
+    * What it does: Add Specialisation to a Doctor
+    * Justification: It allows us to identify the doctor's specialisation like "Orthopaedic" and "Pediatric" quickly  
+    * Highlights: We are able to add multiple specialisation to a doctor 
+
+  * Delete Doctor's Specialisation
+    * What it does: Delete Specialisation from a Doctor
+    * Justification: It allows us to remove the doctor's specialisation based on the index.
+    * Highlights: We are able to remove specialisation to a doctor 
+
+  * Edit Doctor's Remark
+    * What it does: Edit Remark of a Doctor
+    * Justification: It allows us to leave a remark of the doctor which can be used to indicate doctor's availability.
+    * Highlights: We are able to edit doctor remark whenever there is a new update on availability.
+
   * View Doctor
     * What it does: View doctor's details 
-    * Justification: 
-    * Highlights: Allows user to modify the details
+    * Justification: We can see doctor's detail like his specialisations, nric and remarks.
+    * Highlights: A clean window will be prompt out with all the doctor's details.
 
   * List Doctor
-    * What it does: Doctor's Command : Add/Delete/Edit/Find/View/List,
-    * Justification: It allows the CRUD of Doctor, also allowing user to find and view the doctor's details
-    * Highlights: Allows user to modify the details
+    * What it does: List all the existing doctors in database
+    * Justification: you are able to see all the existing doctors along with their name and nric
+    * Highlights: All doctor's will be shown in a list of box form along with the name and nric.
 
-* **Code contributed**: [RepoSense link]()
+
+* **Code contributed**:  ~4kLOC [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=kimshitong&tabRepo=AY2324S1-CS2103T-T08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false%23%2F)
+  *  Test Code : 2126 LOC
+  *  Functional Code : 1046 LOC
+  *  Docs : 725 LOC
+
 
 * **Project management**:
-  * 
+  * Version control 
+  * Documentation Management
+  * Team Communication 
 
-* **Enhancements to existing features**:
-  * 
 
 * **Documentation**:
   * User Guide:
-    * 
+    * Document New Features 
+    * Updated Command Summary
+    * Updated Parameter Table 
   * Developer Guide:
-    * 
+    * User Stories
+    * Document Features for List Patient/Doctor/Appointments with Activity/Sequence UML Diagram
+    * Document Features for View Patient/Doctor/Appointments with Activity/Sequence UML Diagram
+    * Document Features for Delete Specialisation/Medical Conditions/Prescriptions with Activity/Sequence UML Diagram
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): []()
-  * Contributed to forum discussions (examples: []())
-  * Reported bugs and suggestions for other teams in the class (examples: []())
-  * Some parts of the history feature I added was adopted by several other class mates ([]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([]())
+  * PRs reviewed (with non-trivial review comments)
+  * Contributed to forum discussions
+  * Reported bugs and suggestions for other teams in the class
