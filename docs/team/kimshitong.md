@@ -12,23 +12,23 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
   * Add Doctor 
-    * What it does: Allows user to add doctors to the database
+    * What it does: Allows user to add doctor to the database
     * Justification: We are able to retrieve multiple inputs to store more details about doctor like name and nric  
     * Highlights: We check the validity of inputs with regular expressions like NRIC will check if it starts with S/T/F/G/M and followed by 7 digits and end with a uppercase alphabet to ensure data integrity
 
   * Delete Doctor
-    * What it does: Allows User to remove doctors from the database
+    * What it does: Allows User to remove doctor from the database
     * Justification: This allows the receptionists to remove invalid doctors or doctors that are going to leave the clinics.
-    * Highlights : The appointments that is associated with the doctors will also be deleted for the data integrity.
+    * Highlights : The appointments that is associated with the doctors will also be deleted for the data consistency.
 
   * Edit Doctor
-    * What it does: Edit existing doctors' details
+    * What it does: Edit existing doctor's details
     * Justification: This allows receptionists to edit the doctor's name and nric with index if there's any mistakes 
     * Highlights: With the aid of OOP, the doctor details at other classes like appointment will also be updated
 
   * Find Doctor
     * What it does: Find doctors based on the name
-    * Justification: This allows receptionists to find doctor very quickly just based on the name
+    * Justification: This allows receptionist to find doctor very quickly just based on the name
     * Highlights: It finds doctors that contains the input name keywords (case-insensitive)
 
   * Add Doctor's Specialisation
