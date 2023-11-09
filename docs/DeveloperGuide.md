@@ -607,35 +607,35 @@ The following activity diagram summarizes what happens when a user wants to add 
 
 Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo) - *
 
-| Priority | As a … | I want to …                                            | So that I can…                                                                                            |
-|----------|--------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| * * *    | user   | create an appointment in the system                    | ensure the the system has a record of this appointment.                                                   |
-| * * *    | user   | delete an appointment from the system                  | ensure the appointment that has been postponed or cancelled will not be reflected in the system.          |
-| * * *    | user   | view the list of appointment in the system             | see the information of the appointment.                                                                   |
-| * * *    | user   | add doctor profile into the system                     | ensure the the system keep tracks of all the doctor working at UHC.                                       |
-| * * *    | user   | delete doctor profile from the system                  | ensure the the system only contains doctor that is still working in UHC.                                  |
-| * * *    | user   | view the list of doctor in the system                  | assign the patient to a suitable doctor accordingly.                                                      |
-| * * *    | user   | add patient's data into the system                     | ensure the the system will have a record of a new or existing patient.                                    |
-| * * *    | user   | delete patients' profile from the system               | ensure the the system only contains current patients of UHC.                                              |
-| * * *    | user   | view the list of patient in the system                 | easily verify their identity.                                                                             |
-| * * *    | user   | edit a patient’s data in the system                    | ensure the system has the latest information about the specified patient                                  |
-| * *      | user   | view the full detail of an appointment                 | retrieve all the relevant details associated with an appointment and pass it on to the doctor or patient. |
-| * *      | user   | view the full detail of an doctor                      | retrieve the doctor's availability and view all the appointment the specified doctor has.                 |
-| * *      | user   | view the full detail of an patient                     | retrieve the specified patient's full medical history and view all the appointment the patient has.       |
-| * *      | user   | add remarks for appointment                            | keep track of any significant finding or event during the medical appointment.                            |
-| * *      | user   | add remarks for doctor                                 | note down any temporary note about the specified doctor.                                                  |
-| * *      | user   | add remarks for patient                                | note down any temporary note about the specified doctor.                                                  |
-| * *      | user   | add prescription for an appointment                    | keep track of the medicine prescribed during the specified appointment.                                   |
-| * *      | user   | remove prescription for an appointment                 | update the medicine prescribed during the specified appointment.                                          |
-| * *      | user   | add specialisation for a doctor                        | keep track of the specified  doctor's specialisation.                                                     |
-| * *      | user   | remove specialisation for a doctor                     | update the specified doctor's specialisation.                                                             |
-| * *      | user   | add medical condition for a patient                    | keep track of the medical condition the specified patient has.                                            |
-| * *      | user   | remove medical condition for a patient                 | update the specified patient's medical condition.                                                         |
-| * *      | user   | edit a doctor's detail in the system                   | ensure the system has the latest information about the specified doctor                                   |
-| * *      | user   | edit an appointment in the system                      | ensure the the system will keep track of the latest details related to the specified appointment.         |
-| *        | user   | view the list of appointment sorted by start date time | look through the list of appointment in a chronological manner.                                           |
-| *        | user   | view the list of doctor sorted by name                 | look through the list of doctors logically.                                                               |
-| *        | user   | view the list of patient sorted by name                | look through the list of patient in a logical manner.                                                     |
+| Priority  | As a …  | I want to …                                            | So that I can…                                                                      |
+|-----------|---------|--------------------------------------------------------|-------------------------------------------------------------------------------------|
+| * * *     | user    | add appointment into the system                        | keep track of a new appointment                                                     |
+| * * *     | user    | add doctor's profile into the system                   | keep track of a new doctor working in the clinic                                    |
+| * * *     | user    | add patient's data into the system                     | keep track of a new patient visiting the clinic                                     |
+| * * *     | user    | delete an appointment from the system                  | remove any appointment that has been cancelled from the system                      |
+| * * *     | user    | delete doctor profile from the system                  | remove any doctor no longer working for the clinic                                  |
+| * * *     | user    | delete patients' data from the system                  | remove any patient no longer visiting the clinic                                    |
+| * * *     | user    | view the list of appointment in the system             | see all the appointments currently in the system                                    |
+| * * *     | user    | view the list of doctor in the system                  | see all the doctors currently in the system                                         |
+| * * *     | user    | view the list of patient in the system                 | see all the patients currently in the system                                        |
+| * * *     | user    | edit an appointment in the system                      | correct any mistake made when adding or updating the appointment previously         |
+| * * *     | user    | edit a doctor's detail in the system                   | correct any mistake made when adding or updating the doctor previously              |
+| * * *     | user    | edit a patient’s data in the system                    | correct any mistake made when adding or updating the patient previously             |
+| * *       | user    | view the full detail of an appointment                 | retrieve the medicine prescribed or information discovered during that appointment. |
+| * *       | user    | view the full detail of an doctor                      | retrieve the doctor's availability and specialisation.                              |
+| * *       | user    | view the full detail of an patient                     | retrieve the specified patient's full medical history and any ongoing treatment     |
+| * *       | user    | add remarks for appointment                            | note down any significant finding during the appointment                            |
+| * *       | user    | add remarks for doctor                                 | note down the availability of the specified doctor                                  |
+| * *       | user    | add remarks for patient                                | note down any ongoing treatment of the specified patient                            |
+| * *       | user    | add prescription for an appointment                    | keep track of the medicine prescribed during the specified appointment.             |
+| * *       | user    | remove prescription for an appointment                 | update the medicine prescribed during the specified appointment.                    |
+| * *       | user    | add specialisation for a doctor                        | keep track of the specified  doctor's specialisation.                               |
+| * *       | user    | remove specialisation for a doctor                     | update the specified doctor's specialisation.                                       |
+| * *       | user    | add medical condition for a patient                    | keep track of the medical condition the specified patient has.                      |
+| * *       | user    | remove medical condition for a patient                 | update the specified patient's medical condition.                                   |
+| *         | user    | view the list of appointment sorted by start date time | look through the list of appointment in a chronological manner.                     |
+| *         | user    | view the list of doctor sorted by name                 | look through the list of doctors logically.                                         |
+| *         | user    | view the list of patient sorted by name                | look through the list of patient in a logical manner.                               |
 
 
 *{More to be added}*
