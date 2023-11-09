@@ -8,11 +8,11 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyDatabase" as ReadOnlyDatabase
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Database
 Class ModelManager
 Class UserPrefs
 
-Class UniqueItemList
+Class UniqueItemList<T extends Data>
 Class "{abstract}\nData" as Data
 
 Class I #FFFFFF
@@ -21,16 +21,16 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyDatabase
+Database .up.|> ReadOnlyDatabase
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyDatabase
-ModelManager -left-> "1" AddressBook
+ModelManager -left-> "1" Database
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueItemList
+Database *--> "3" UniqueItemList
 UniqueItemList --> "~* all" Data
 
 UniqueItemList -[hidden]right-> I
