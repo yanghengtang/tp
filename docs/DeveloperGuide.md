@@ -1064,13 +1064,10 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to handle at least 60,000 patients at any point of time.
+2. Should be able to handle at least 3,000 patients at any point of time.
 3. Should be able to add, view, edit and delete patients and doctors without a noticeable lag.
 4. Should be able to retrieve all appointments for a particular doctor or patient within 1 second.
-5. Should lose no more than 1-minute worth of data in case of system error. 
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
