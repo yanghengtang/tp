@@ -23,7 +23,8 @@ public class Database implements ReadOnlyDatabase {
             "Appointment overlaps with an existing appointment of Patient";
     public static final String MESSAGE_OVERLAPPING_DOCTOR_APPOINTMENTS =
             "Appointment overlaps with an existing appointment of Doctor";
-
+    public static final String MESSAGE_INVALID_DOCTOR = "This Doctor does not exist in the database";
+    public static final String MESSAGE_INVALID_PATIENT = "This Patient does not exist in the database";
     private final UniqueItemList<Appointment> appointments;
     private final UniqueItemList<Doctor> doctors;
     private final UniqueItemList<Patient> patients;
@@ -270,6 +271,14 @@ public class Database implements ReadOnlyDatabase {
      * @throws CommandException if {@code predicate} is null.
      */
     void validateAddAppointment(Appointment reference, Appointment toAdd) throws CommandException {
+        if (!this.hasDoctorWithNric(toAdd.getDoctorNric())) {
+            throw new CommandException(MESSAGE_INVALID_DOCTOR);
+        }
+
+        if (!this.hasPatientWithNric(toAdd.getPatientNric())) {
+            throw new CommandException(MESSAGE_INVALID_PATIENT);
+        }
+
         for (Appointment a : appointments) {
             if (toAdd.getPatientNric().equals(a.getPatientNric())
                     && (toAdd.overlaps(a))
