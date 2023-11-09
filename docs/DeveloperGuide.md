@@ -1130,6 +1130,29 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The database.json file in the data directory must exist.
+   
+   2. Test case: Delete the database.json file
+      Expected: The app launches successfully, populated with the sample data.
+   
+   3. Test case: Delete the contents of the database.json file
+      Expected: The app launches successfully, populated with no data.
+   
+   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.
+      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Dealing with wrongly edited data files
+
+   1. Prerequisites: The database.json file in the data directory must exist.
+   
+   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)
+      Expected: The app launches successfully, populated with no data.
+   
+   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)
+      Expected: Similar to previous.
+   
+   4. Test case: Remove a field from any one of the patients (e.g. patientNric, doctorNric, etc.)
+      Expected: Similar to previous. 
+   
+   5. Test case: Edit the nric of a patient without editing the corresponding appointments.
+      Expected: Similar to previous.  
