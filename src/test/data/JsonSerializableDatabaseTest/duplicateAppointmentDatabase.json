@@ -1,6 +1,17 @@
 {
-  "patients": [],
-  "doctors": [],
+  "patients": [{
+    "name": "Benson",
+    "phone": "94351253",
+    "nric": "S9348573F",
+    "remark": "",
+    "tags": []
+  }],
+  "doctors": [{
+    "name": "Alice Pauline",
+    "nric": "T0123456J",
+    "remark": "",
+    "tags": []
+  }],
   "appointments": [ {
     "doctorNric" : "T0123456J",
     "patientNric" : "S9348573F",
