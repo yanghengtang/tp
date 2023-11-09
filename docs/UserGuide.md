@@ -270,7 +270,7 @@ edit_p 4 p\81453894
 4. You have successfully edited the patient into the database.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: <b>Note:</b> Note that any appointments containing the patient's old NRIC will be updated to the new NRIC.<br>
+:information_source: <b>Note:</b> Note that all appointments containing the patient's old NRIC will be updated to the new NRIC.<br>
 </div>
 
 Back to [Patient Management Features](#patient-management-features).
@@ -429,7 +429,7 @@ Allows you to view details, such as basic information, specialisation and remark
 
 **Format**: `view_d INDEX`
 
-* Displays the full detail of the doctor at the specified `INDEX`.
+* Displays the full details of the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -472,7 +472,7 @@ edit_d 4 ic\T0212385J
 4. You have successfully edited the doctor into the database.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: <b>Note:</b> Note that any appointments containing the doctor's old NRIC will be updated to the new NRIC.<br>
+:information_source: <b>Note:</b> Note that all appointments containing the doctor's old NRIC will be updated to the new NRIC.<br>
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -606,7 +606,7 @@ Allows you to either display all the appointments in the system, or the list of 
 * List all the appointments in the system if no fields are given.
 
 **Examples**:
-* `list_a pic\S9912343G` returns all the appointment the patient with NRIC `S9912343G` has.
+* `list_a pic\S9912343G` returns all the appointments that have the patient NRIC `S9912343G`.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -646,7 +646,7 @@ Allows you to view details, such as basic information, prescription given and re
 
 **Format**: `view_a INDEX`
 
-* Displays the full detail of the appointment at the specified `INDEX`.
+* Displays the full details of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
