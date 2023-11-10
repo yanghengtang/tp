@@ -1162,14 +1162,14 @@ For greater clarity and ease of use, we plan to specify which NRIC is the invali
 
 ### Checking if the phone number is a valid Singapore number
 
-Currently, the regex restriction for any phone number enter just needs to be 3 digits or long and contains no spaces.
+Currently, the regex restriction for any phone number enter just needs to be 3 digits or longer and contains no spaces.
 
 Since we are targeting small GP clinics in Singapore, we thought it would be useful if we make the regex ensure that the number entered is a valid Singapore number.
 This is done by ensuring the first digit is 6, 8 or 9, and the number entered is exactly 8 digits.
 
 ### Limiting the length of the remarks entered and wrapping the remark text
 
-Currently, the length of the remarks entered is not restricted. Should the user decides to enter an extremely long remark,
+Currently, the length of the remarks entered is not restricted. Should the user decide to enter an extremely long remark,
 the view window might truncate the remark, resulting in the user not being able to view the full remark.
 
 To overcome this, we proposed to wrap the text of remark in the view window, so instead of the text getting truncated, it
