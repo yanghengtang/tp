@@ -647,12 +647,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
 (For all use cases below, the **System** is the `MediConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 View all patients’ records**
+**Use case: UC01 List all patients**
 
 **MSS**
 
-1.  User requests to view all patients’ records.
-2.  MediConnect shows the patients’ records.
+1.  User requests to list all the patients.
+2.  MediConnect lists all the patients.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -664,12 +665,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
       
       Use case resumes at step 1.
 
-**Use case: UC02 View a patient's records**
+**Use case: UC02 View a patient's full record**
 
 **MSS**
 
-1.  User requests to view a patient's records.
+1.  User requests to view a patient's record.
 2.  MediConnect shows the patient’s record.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -689,8 +691,9 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
 **MSS**
 
-1.  User requests to add a specific patient to the list
-2.  MediConnect adds the specific patient to the list 
+1.  User requests to add a specific patient to the system.
+2.  MediConnect adds the specific patient to the system.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -708,12 +711,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
       Use case ends.
 
 
-**Use case: UC04 Edit a patient’s details/notes**
+**Use case: UC04 Edit a patient’s particulars**
 
 **MSS**
 
-1.  User edits a specific patient’s details.
-2.  MediConnect edits the patient’s details.
+1.  User edits a specific patient’s particulars.
+2.  MediConnect edits the patient’s particulars.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -729,28 +733,105 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
   
 **MSS**
 
-1.  User requests to delete a specific patient in the list.
-2.  MediConnect deletes the person.
+1.  User requests to delete a specific patient in the system.
+2.  MediConnect deletes the patient.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. MediConnect detects that the list is empty.
+* 1a. MediConnect detects that the patient list is empty.
 
   Use case ends.
 * 1b. MediConnect detects that the given index is invalid.
     * 1b1. MediConnect shows an error message.
     * 1b2. MediConnect requests for the correct input.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-**Use case: UC06 View all doctors’ records**
+**Use case: UC06 Edit a specified patient’s remark**
 
 **MSS**
 
-1.  User requests to view all doctors’ records
-2.  MediConnect shows the doctors’ record
+1.  User requests to edit a patient’s remarks.
+2.  MediConnect edits the patient’s remarks.
+3.  MediConnect shows a success message to the User.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests the correct input
+
+      Use case resumes at step 1.
+* 1b. MediConnect detects that the given patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+  
+      Use case ends.
+
+
+**Use case: UC07 Add a medical condition to a patient**
+
+**MSS**
+
+1.  User requests to add a medical condition to a patient.
+2.  MediConnect adds a medical condition to a patient.
+3.  MediConnect shows a success message to the user.
+
+Use case ends.
+
+Extensions
+
+* 1a. MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests the correct input. 
+  
+      Use case resumes at step 1.
+* 1b. MediConnect detects that the given patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+  
+      Use case ends.
+* 1c. MediConnect detects that the patient already has the given medical condition.
+    * 1c1. MediConnect shows an error message.
+  
+      Use case ends.
+
+**Use case: UC08 Delete medical condition from a patient**
+
+**MSS**
+
+1.  User requests to delete a medical condition from a patient.
+2.  MediConnect deletes the medical condition from the patient.
+3.  MediConnect shows a success message to the User.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. MediConnect detects that the given command is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests the correct input
+      
+     Use case resumes at step 1.
+* 1b. MediConnect detects that the given patient does not exist in the system.
+    * 1b1. MediConnect shows an error message.
+  
+      Use case ends.
+* 1c. MediConnect detects that the given patient does not have the specified medical condition.
+    * 1c1. MediConnect shows an error message.
+  
+      Use case ends.
+
+**Use case: UC09 List all doctors**
+
+**MSS**
+
+1.  User requests to list all doctors.
+2.  MediConnect shows the list of all doctors.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -762,12 +843,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
     
        Use case resumes at step 1.
 
-**Use case: UC07 View a doctor’s records**
+**Use case: UC10 View a doctor’s full record**
 
 **MSS**
 
-1.  User requests to view a doctor's records
-2.  MediConnect shows the doctor’s record
+1.  User requests to view a doctor's full record.
+2.  MediConnect shows the doctor’s full record.
+3.  MediConnect shows a success message to the user
 
     Use case ends.
 
@@ -783,12 +865,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
   
       Use case resumes at step 1.
 
-**Use case: UC08 Add a doctor**
+**Use case: UC11 Add a doctor**
 
 **MSS**
 
 1. User requests to add a specific doctor to the system.
-2. MediConnect adds the specific doctor to the system.
+2. MediConnect adds the specific doctor to the system. 
+3. MediConnect shows a success message to the user
 
     Use case ends.
   
@@ -804,12 +887,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
   
      Use case ends.
 
-**Use case: UC09 Edit a doctor’s details/notes**
+**Use case: UC12 Edit a doctor’s particulars**
 
 **MSS**
 
-1.  User requests to edit a specific doctor’s details.
-2.  MediConnect edits the doctor’s details.
+1.  User requests to edit a specific doctor’s particulars.
+2.  MediConnect edits the doctor’s particulars.
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -831,6 +915,7 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
 1.  User requests to delete a specific doctor in the list.
 2.  MediConnect deletes the doctor.
+3.   MediConnect shows a success message to the user.
 
     Use case ends.
   
@@ -842,12 +927,13 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
       Use case resumes at step 1.
 
-**Use case: UC11 View a patient’s upcoming appointments**
+**Use case: UC11 List a patient’s appointments**
 
 **MSS**
 
-1. User requests to view a patient’s upcoming appointments
-2. MediConnect shows the patient’s appointment list
+1. User requests to list a patient’s appointments.
+2. MediConnect shows the patient’s appointment list. 
+3. MediConnect shows a success message to the user.
 
    Use case ends.
 
@@ -871,7 +957,8 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 **MSS**
 
 1. User requests to view a doctor’s upcoming appointments.
-2. MediConnect shows the doctor’s appointment list.
+2. MediConnect shows the doctor’s appointment list. 
+3. MediConnect shows a success message to the user.
 
    Use case ends.
 
