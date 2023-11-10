@@ -124,7 +124,7 @@ A detailed breakdown of the subclasses of `Data` is shown below:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Appointment`, `Doctor` and `Patient` objects (which are contained in a `UniqueItemList<Appointment/Doctor/Appointment>` object respectively).
+* stores the MediConnect data i.e., all `Appointment`, `Doctor` and `Patient` objects (which are contained in a `UniqueItemList<Appointment/Doctor/Appointment>` object respectively).
 * stores the currently 'selected' `Data` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Data>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -143,7 +143,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both mediConnect data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both MediConnect data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `DatabaseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -1148,7 +1148,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)
       Expected: Similar to previous.
    
-   4. Test case: Remove a field from any one of the patients (e.g. patientNric, doctorNric, etc.)
+   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)
       Expected: Similar to previous. 
    
    5. Test case: Edit the nric of a patient without editing the corresponding appointments.
