@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model as ModelPackage <<Rectangle>>{
+Class "{abstract}\nData" as Data
+Class "{abstract}\nPerson" as Person
+Class Appointment
+Class Patient
+Class Doctor
+Class Name
+Class Nric
+Class Phone
+Class Remark
+Class Tag
+Class "{abstract}\nAppointmentTime" as AppointmentTime
+Class AppointmentStartTime
+Class AppointmentEndTime
+
+Class I #FFFFFF
+}
+
+Person .up.|> Data
+Appointment .up.|> Data
+Appointment -[hidden]right-> Person
+AppointmentStartTime .up.|> AppointmentTime
+AppointmentEndTime .up.|> AppointmentTime
+Doctor .up.|> Person
+Patient .up.|> Person
+
+Data *--> Remark
+Data *--> Tag
+Appointment *--> AppointmentTime
+Appointment *--> Nric
+Person *--> Name
+Person *--> Nric
+Patient *--> Phone
+
+AppointmentTime -[hidden]right-> Nric
+AppointmentTime -[hidden]right-> Nric
+Nric -[hidden]right-> Phone
+Name -[hidden]right-> Phone
+Remark -[hidden]up-> Patient
+Tag -[hidden]up-> Patient
+Nric -[hidden]up-> Patient
+Name -[hidden]up-> Patient
+
+@enduml
