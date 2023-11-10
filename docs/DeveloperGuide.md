@@ -933,11 +933,11 @@ Use case ends.
 
       Use case resumes at step 1.
 
-**Use case: UC11 View a patient’s upcoming appointments**
+**Use case: UC11 List a patient’s appointments**
 
 **MSS**
 
-1. User requests to view a patient’s upcoming appointments.
+1. User requests to list a patient’s appointments.
 2. MediConnect shows the patient’s appointment list. 
 3. MediConnect shows a success message to the user.
 
