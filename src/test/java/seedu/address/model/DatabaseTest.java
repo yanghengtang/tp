@@ -9,15 +9,21 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
+import static seedu.address.testutil.PersonUtil.DANIEL_NRIC;
+import static seedu.address.testutil.PersonUtil.ELLE_NRIC;
 import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_4;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_6_DIFFERENT_TIME;
 import static seedu.address.testutil.TypicalAppointment.getTypicalAppointment;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
 import static seedu.address.testutil.TypicalDoctor.BENSON;
 import static seedu.address.testutil.TypicalDoctor.CARL;
+import static seedu.address.testutil.TypicalDoctor.ELLE;
 import static seedu.address.testutil.TypicalDoctor.getTypicalDoctor;
+import static seedu.address.testutil.TypicalPatient.DANIEL;
+import static seedu.address.testutil.TypicalPatient.FIONA;
 import static seedu.address.testutil.TypicalPatient.getTypicalPatient;
 
 import java.util.ArrayList;
@@ -97,8 +103,10 @@ public class DatabaseTest {
 
     @Test
     public void hasAppointment_appointmentInDatabase_returnsTrue() throws CommandException {
-        database.addAppointment(APPOINTMENT_1);
-        assertTrue(database.hasAppointment(APPOINTMENT_1));
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
+        assertTrue(database.hasAppointment(APPOINTMENT_4));
     }
 
     @Test
@@ -132,34 +140,40 @@ public class DatabaseTest {
 
     @Test
     public void hasAppointment_appointmentRemovedFromDatabase_returnsFalse() throws CommandException {
-        database.addAppointment(APPOINTMENT_1);
-        database.removeAppointment(APPOINTMENT_1);
-        assertFalse(database.hasAppointment(APPOINTMENT_1));
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
+        database.removeAppointment(APPOINTMENT_4);
+        assertFalse(database.hasAppointment(APPOINTMENT_4));
     }
 
     @Test
     public void hasAppointment_appointmentModified_returnsFalse() throws CommandException {
-        database.addAppointment(APPOINTMENT_1);
-        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1)
-                .withEndTime("2023-09-11 07:45").build();
-        database.setAppointment(APPOINTMENT_1, editedAppointment);
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
+        Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_4)
+                .withEndTime("2023-09-11 18:15").build();
+        database.setAppointment(APPOINTMENT_4, editedAppointment);
         assertTrue(database.hasAppointment(editedAppointment));
     }
 
     @Test
     public void hasAppointment_doctorRemovedFromDatabase_returnsFalse() throws CommandException {
-        database.addDoctor(BENSON);
-        database.addAppointment(APPOINTMENT_1);
-        database.removeDoctor(BENSON);
-        assertFalse(database.hasAppointment(APPOINTMENT_1));
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
+        database.removeDoctor(ELLE);
+        assertFalse(database.hasAppointment(APPOINTMENT_4));
     }
 
     @Test
     public void hasAppointment_patientRemovedFromDatabase_returnsFalse() throws CommandException {
-        database.addPatient(TypicalPatient.ALICE);
-        database.addAppointment(APPOINTMENT_1);
-        database.removePatient(TypicalPatient.ALICE);
-        assertFalse(database.hasAppointment(APPOINTMENT_1));
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
+        database.removePatient(DANIEL);
+        assertFalse(database.hasAppointment(APPOINTMENT_4));
     }
 
     @Test
@@ -179,10 +193,12 @@ public class DatabaseTest {
     @Test
     public void setPatient() throws CommandException {
         database.addDoctor(ALICE);
-        database.addPatient(TypicalPatient.FIONA);
-        database.addAppointment(APPOINTMENT_6);
+        database.addPatient(FIONA);
+        database.addAppointment(APPOINTMENT_6); // alice fiona
         database.addAppointment(APPOINTMENT_6_DIFFERENT_TIME);
-        database.addAppointment(APPOINTMENT_1);
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
         database.setPatient(TypicalPatient.FIONA, TypicalPatient.CARL);
         // previous patient no longer exists
         assertFalse(database.hasPatient(TypicalPatient.ALICE));
@@ -209,17 +225,17 @@ public class DatabaseTest {
                 new AppointmentEndTime("2023-09-11 14:00")
         )));
         assertFalse(database.hasAppointment(new Appointment(
-                new Nric(ALICE_NRIC),
-                new Nric(FIONA_NRIC),
+                new Nric(ELLE_NRIC),
+                new Nric(DANIEL_NRIC),
                 new AppointmentStartTime("2023-09-11 14:00"),
                 new AppointmentEndTime("2023-09-11 14:30")
         )));
         // other appointments are unaffected
         assertTrue(database.hasAppointment(new Appointment(
-                new Nric(BENSON_NRIC),
-                new Nric(ALICE_NRIC),
-                new AppointmentStartTime("2023-09-11 07:30"),
-                new AppointmentEndTime("2023-09-11 08:00")
+                new Nric(ELLE_NRIC),
+                new Nric(DANIEL_NRIC),
+                new AppointmentStartTime("2023-09-11 17:30"),
+                new AppointmentEndTime("2023-09-11 18:00")
         )));
     }
 
@@ -229,7 +245,9 @@ public class DatabaseTest {
         database.addPatient(TypicalPatient.FIONA);
         database.addAppointment(APPOINTMENT_6);
         database.addAppointment(APPOINTMENT_6_DIFFERENT_TIME);
-        database.addAppointment(APPOINTMENT_1);
+        database.addDoctor(ELLE);
+        database.addPatient(DANIEL);
+        database.addAppointment(APPOINTMENT_4);
         database.setDoctor(ALICE, CARL);
         // previous patient no longer exists
         assertFalse(database.hasDoctor(ALICE));
@@ -263,10 +281,10 @@ public class DatabaseTest {
         )));
         // other appointments are unaffected
         assertTrue(database.hasAppointment(new Appointment(
-                new Nric(BENSON_NRIC),
-                new Nric(ALICE_NRIC),
-                new AppointmentStartTime("2023-09-11 07:30"),
-                new AppointmentEndTime("2023-09-11 08:00")
+                new Nric(ELLE_NRIC),
+                new Nric(DANIEL_NRIC),
+                new AppointmentStartTime("2023-09-11 17:30"),
+                new AppointmentEndTime("2023-09-11 18:00")
         )));
     }
 

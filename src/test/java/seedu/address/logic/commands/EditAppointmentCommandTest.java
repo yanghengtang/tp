@@ -7,11 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_START_TIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.BENSON_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
 import static seedu.address.testutil.PersonUtil.FIONA_NRIC;
@@ -74,15 +74,15 @@ public class EditAppointmentCommandTest {
 
         AppointmentBuilder appointmentInList = new AppointmentBuilder(lastAppointment);
         Appointment editedAppointment = appointmentInList
-                .withPatientNric(VALID_PATIENT_NRIC)
-                .withDoctorNric(VALID_DOCTOR_NRIC)
+                .withPatientNric(ALICE_NRIC)
+                .withDoctorNric(BENSON_NRIC)
                 .withStartTime(VALID_APPOINTMENT_START_TIME)
                 .withEndTime(VALID_APPOINTMENT_END_TIME)
                 .build();
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder()
-                .withPatientNric(VALID_PATIENT_NRIC)
-                .withDoctorNric(VALID_DOCTOR_NRIC)
+                .withPatientNric(ALICE_NRIC)
+                .withDoctorNric(BENSON_NRIC)
                 .withStartTime(VALID_APPOINTMENT_START_TIME)
                 .withEndTime(VALID_APPOINTMENT_END_TIME)
                 .build();
@@ -118,13 +118,13 @@ public class EditAppointmentCommandTest {
         Appointment appointmentInFilteredList =
                 model.getFilteredAppointmentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Appointment editedAppointment = new AppointmentBuilder(appointmentInFilteredList)
-                .withPatientNric(VALID_PATIENT_NRIC)
+                .withPatientNric(CARL_NRIC)
                 .withStartTime(VALID_APPOINTMENT_START_TIME)
                 .withEndTime(VALID_APPOINTMENT_END_TIME)
                 .build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
                 new EditAppointmentDescriptorBuilder()
-                        .withPatientNric(VALID_PATIENT_NRIC)
+                        .withPatientNric(CARL_NRIC)
                         .withStartTime(VALID_APPOINTMENT_START_TIME)
                         .withEndTime(VALID_APPOINTMENT_END_TIME)
                         .build());

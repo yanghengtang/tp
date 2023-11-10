@@ -9,6 +9,7 @@ import static seedu.address.testutil.PersonUtil.ALICE_NRIC;
 import static seedu.address.testutil.PersonUtil.CARL_NRIC;
 import static seedu.address.testutil.TypicalAppointment.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalDoctor.ALICE;
+import static seedu.address.testutil.TypicalDoctor.BENSON;
 import static seedu.address.testutil.TypicalPatient.CARL;
 
 import java.nio.file.Path;
@@ -27,6 +28,7 @@ import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalDatabase;
+import seedu.address.testutil.TypicalPatient;
 
 public class ModelManagerTest {
     private ModelManager modelManager = new ModelManager();
@@ -145,6 +147,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasAppointment_appointmentInDatabase_returnsTrue() throws CommandException {
+        modelManager.addDoctor(BENSON);
+        modelManager.addPatient(TypicalPatient.ALICE);
         modelManager.addAppointment(APPOINTMENT_1);
         assertTrue(modelManager.hasAppointment(APPOINTMENT_1));
     }
@@ -163,6 +167,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasAppointment_appointmentRemovedFromDatabase_returnsTrue() throws CommandException {
+        modelManager.addDoctor(BENSON);
+        modelManager.addPatient(TypicalPatient.ALICE);
         modelManager.addAppointment(APPOINTMENT_1);
         modelManager.deleteAppointment(APPOINTMENT_1);
         assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
@@ -185,6 +191,8 @@ public class ModelManagerTest {
     @Test
     public void hasAppointment_appointmentWithDifferentEndTime_returnsFalse() throws CommandException {
         Appointment editedAppointment = new AppointmentBuilder(APPOINTMENT_1).withEndTime("2023-09-11 08:30").build();
+        modelManager.addDoctor(BENSON);
+        modelManager.addPatient(TypicalPatient.ALICE);
         modelManager.addAppointment(APPOINTMENT_1);
         modelManager.setAppointment(APPOINTMENT_1, editedAppointment);
         assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
@@ -223,6 +231,8 @@ public class ModelManagerTest {
 
     @Test
     public void setAppointment_nullAppointment_throwsNullPointerException() throws CommandException {
+        modelManager.addDoctor(BENSON);
+        modelManager.addPatient(TypicalPatient.ALICE);
         modelManager.addAppointment(APPOINTMENT_1);
         assertThrows(NullPointerException.class, () -> modelManager.setAppointment(APPOINTMENT_1, null));
     }

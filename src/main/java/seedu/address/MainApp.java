@@ -94,7 +94,7 @@ public class MainApp extends Application {
                     return new Database();
                 }
             });
-        } catch (DataLoadingException e) {
+        } catch (Exception e) {
             logger.warning("Data file at " + storage.getDatabaseFilePath() + " could not be loaded."
                     + " Will be starting with an empty Database.");
             initialData = new Database();
