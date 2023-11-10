@@ -705,7 +705,7 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
       Use case resumes at step 1.
 
-* 1b. MediConnect detects that patient to be added already exists in the system
+* 1b. MediConnect detects that patient to be added already exists in the system.
     * 1b1. MediConnect shows an error message.
 
       Use case ends.
@@ -764,7 +764,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2. MediConnect requests the correct input
+    * 1a2. MediConnect requests the correct input.
 
       Use case resumes at step 1.
 * 1b. MediConnect detects that the given patient does not exist in the system.
@@ -813,7 +813,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2. MediConnect requests the correct input
+    * 1a2. MediConnect requests the correct input.
       
      Use case resumes at step 1.
 * 1b. MediConnect detects that the given patient does not exist in the system.
@@ -849,7 +849,7 @@ Use case ends.
 
 1.  User requests to view a doctor's full record.
 2.  MediConnect shows the doctor’s full record.
-3.  MediConnect shows a success message to the user
+3.  MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -871,7 +871,7 @@ Use case ends.
 
 1. User requests to add a specific doctor to the system.
 2. MediConnect adds the specific doctor to the system. 
-3. MediConnect shows a success message to the user
+3. MediConnect shows a success message to the user.
 
     Use case ends.
   
@@ -879,10 +879,10 @@ Use case ends.
   
 * 1a. MediConnect detects that the arguments provided to add a doctor is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2. MediConnect requests for the correct input    
+    * 1a2. MediConnect requests for the correct input.
   
       Use case resumes at step 1.
-* 1b. MediConnect detects that doctor to be added already exists in the system
+* 1b. MediConnect detects that doctor to be added already exists in the system.
    * 1b1. MediConnect shows an error message.
   
      Use case ends.
@@ -904,7 +904,7 @@ Use case ends.
     * 1a2. MediConnect requests for the correct input.
   
       Use case resumes at step 1.
-* 1b. MediConnect detects that doctor to be edited does not exist in the system
+* 1b. MediConnect detects that doctor to be edited does not exist in the system.
     * 1b1. MediConnect shows an error message.
   
       Use case ends.
@@ -923,7 +923,7 @@ Use case ends.
 
 * 1a.MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2. MediConnect requests the correct input
+    * 1a2. MediConnect requests the correct input.
 
       Use case resumes at step 1.
 * 1b. MediConnect detects that the given doctor does not exist in the system.
@@ -973,7 +973,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid.
   * 1a1. MediConnect shows an error message.
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -999,7 +999,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. MediConnect detects that the given arguments to delete a doctor is invalid 
+* 1a. MediConnect detects that the given arguments to delete a doctor is invalid.
   * 1a1. MediConnect shows an error message. 
   * 1a2. MediConnect requests for the correct input.
 
@@ -1009,8 +1009,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view a patient’s appointments 
-2. MediConnect shows the patient’s appointment list
+1. User requests to view a patient’s appointments.
+2. MediConnect shows the patient’s appointment list.
 
     Use case ends.
 
@@ -1018,7 +1018,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the command is invalid. 
   * 1a1. MediConnect shows an error message. 
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1040,7 +1040,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the command is invalid. 
   * 1a1. MediConnect shows an error message. 
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1066,7 +1066,7 @@ Use case ends.
 
     Use case resumes at step 1.
 
-* 1b. MediConnect detects that the appointment to be added already exists in the system 
+* 1b. MediConnect detects that the appointment to be added already exists in the system.
   * 1b1. MediConnect shows an error message.
 
     Use case ends.
@@ -1097,8 +1097,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to delete an appointment from the appointment list 
-2. MediConnect deletes the appointment
+1. User requests to delete an appointment from the appointment list.
+2. MediConnect deletes the appointment.
 
     Use case ends.
 
@@ -1110,7 +1110,7 @@ Use case ends.
 
 * 1b. MediConnect detects that the given index is invalid. 
   * 1b1. MediConnect shows an error message. 
-  * 1b2. MediConnect requests the correct input
+  * 1b2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1128,7 +1128,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid. 
   * 1a1. MediConnect shows an error message.
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1151,7 +1151,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid. 
   * 1a1. MediConnect shows an error message. 
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1178,7 +1178,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid. 
   * 1a1. MediConnect shows an error message. 
-  * 1a2. MediConnect requests the correct input
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
