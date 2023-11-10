@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_p 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -114,15 +114,18 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+A detailed breakdown of the subclasses of `Data` is shown below:
+
+<img src="images/ModelDataClassDiagram.png" width="600" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the MediConnect data i.e., all `Appointment`, `Doctor` and `Patient` objects (which are contained in a `UniqueItemList<Appointment/Doctor/Appointment>` object respectively).
+* stores the currently 'selected' `Data` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Data>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -135,13 +138,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both MediConnect data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `DatabaseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -1052,13 +1055,10 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to handle at least 60,000 patients at any point of time.
+2. Should be able to handle at least 3,000 patients at any point of time.
 3. Should be able to add, view, edit and delete patients and doctors without a noticeable lag.
 4. Should be able to retrieve all appointments for a particular doctor or patient within 1 second.
-5. Should lose no more than 1-minute worth of data in case of system error. 
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -1118,6 +1118,29 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The database.json file in the data directory must exist.
+   
+   2. Test case: Delete the database.json file
+      Expected: The app launches successfully, populated with the sample data.
+   
+   3. Test case: Delete the contents of the database.json file
+      Expected: The app launches successfully, populated with no data.
+   
+   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.
+      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Dealing with wrongly edited data files
+
+   1. Prerequisites: The database.json file in the data directory must exist.
+   
+   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)
+      Expected: The app launches successfully, populated with no data.
+   
+   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)
+      Expected: Similar to previous.
+   
+   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)
+      Expected: Similar to previous. 
+   
+   5. Test case: Edit the nric of a patient without editing the corresponding appointments.
+      Expected: Similar to previous.  
