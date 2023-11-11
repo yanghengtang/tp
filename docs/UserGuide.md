@@ -200,12 +200,12 @@ Allows you to add a patient into the system.
 
 2. Enter the following command:
 ```
-add_p n\Jonathan Reese n\S8712461K p\81235833
+add_p n\Jonathan Reese ic\S8712461K p\81235833
 ```
 
 3. The result box will display the following message:
 ```
-"New patient added: Jonathan Reese NRIC: S8712461K Phone: 81235833"
+"New patient added: Jonathan Reese; Phone: 81235833; NRIC: S8712461K"
 ```
 
 4. You have successfully added the patient into the database.
@@ -267,7 +267,7 @@ edit_p 4 p\81453894
 
 3. The result box will display the following message:
 ```
-"Edited Patient: Jonathan Reese NRIC: S8712461K Phone: 81453894"
+"Edited Patient: Jonathan Reese; Phone: 81453894; NRIC: S8712461K"
 ```
 
 4. You have successfully edited the patient into the database.
@@ -411,7 +411,7 @@ add_d n\John Doe ic\T0212385J
 
 3. The result box will display the following message:
 ```
-"New doctor added: John Doe Nric: T0212385J"
+"New doctor added: John Doe; Nric: T0212385J"
 ```
 
 4. You have successfully added the doctor into the database.
@@ -469,7 +469,7 @@ edit_d 4 ic\T0212385J
 
 3. The result box will display the following message:
 ```
-"Edited Doctor: Joe Ng Nric: T0212385J"
+"Edited Doctor: Joe Ng; Nric: T0212385J"
 ```
 
 4. You have successfully edited the doctor into the database.
@@ -510,8 +510,8 @@ Allows you to delete a specific doctor from the system.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
-* Entering `list_d` followed by `delete 2` deletes the 2nd doctor in the doctor list.
-* Entering `find_d Jonathan` followed by `delete 1` deletes the 1st doctor in the results of the `find_d` command.
+* Entering `list_d` followed by `delete_d 2` deletes the 2nd doctor in the doctor list.
+* Entering `find_d Jonathan` followed by `delete_d 1` deletes the 1st doctor in the results of the `find_d` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If doctor is being removed, the appointments of the doctor's will also be deleted too!.
