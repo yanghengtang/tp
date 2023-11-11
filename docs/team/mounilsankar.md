@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#177](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/177), [#156](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/156), [#158](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/158), [103](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/103).
-  * Reported bugs and suggestions for team W08 (examples: [ped repolink](https://github.com/mounilsankar/ped/issues))
+  * Reported bugs and suggestions for team W08 during PE-D (examples: [PE-D repolink](https://github.com/mounilsankar/ped/issues))
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([]())
