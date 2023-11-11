@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -23,9 +24,9 @@ public class PatientRemarkCommand extends Command {
             + "by the index number used in the last patient listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r\\ [REMARK]\n"
+            + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Patient to follow up in 1 month.";
+            + PREFIX_REMARK + "Patient to follow up in 1 month.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Patient at index %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Patient at index %1$s";
