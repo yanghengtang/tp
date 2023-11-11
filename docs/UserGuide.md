@@ -617,7 +617,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 Allows you to edit an existing appointment in the system. This is useful to correct any mistakes made when adding or updating an appointment.
 
-**Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`
+**Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [to\END_TIME]`
 
 * Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -816,7 +816,7 @@ Back to [Table of Contents](#table-of-contents).
 | **View Appointment**         | `view_a INDEX`<br> e.g., `view_a 3`                                                                                                                           |
 | **Edit Patient**             | `edit_p INDEX [ic\NRIC] [n\NAME] [p\PHONE]`<br> e.g.,`edit_p 3 ic\T0212385J n\Joe Ng`                                                                         |
 | **Edit Doctor**              | `edit_d INDEX [ic\NRIC] [n\NAME]`<br> e.g.,`edit_d 2 ic\T0212385J n\Joe Ng`                                                                                   |
-| **Edit Appointment**         | `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [end\END_TIME]`<br> e.g.,`edit_a 2 pic\T0212385J`                                        |
+| **Edit Appointment**         | `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [to\END_TIME]`<br> e.g.,`edit_a 2 pic\T0212385J`                                         |
 | **Find Patient**             | `find_p KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_p James Jake`                                                                                                |
 | **Find Doctor**              | `find_d KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_d Jonathan Reese`                                                                                            |
 | **List Patient**             | `list_p`                                                                                                                                                      |
