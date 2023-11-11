@@ -945,7 +945,7 @@ Use case ends.
 
 * 1a. MediConnect detects that the given command is invalid.
     * 1a1. MediConnect shows an error message.
-    * 1a2. MediConnect requests the correct input
+    * 1a2. MediConnect requests the correct input。
 
       Use case resumes at step 1.
 
