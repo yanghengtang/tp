@@ -24,7 +24,7 @@ public class DeletePrescriptionCommand extends Command {
             + ": Deletes the prescription from the appointment identified "
             + "by the index number used in the last appointment listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + " [PRESCRIPTION]\n"
+            + PREFIX_TAG + "PRESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
 
