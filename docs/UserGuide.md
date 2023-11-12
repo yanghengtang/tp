@@ -26,6 +26,8 @@ If you are keen to get started on using MediConnect, click [here](#quick-start) 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # Introduction to this user guide
 
 This guide is designed for users of all level to master their use of MediConnect.
@@ -63,6 +65,8 @@ If you are experienced with MediConnect, you can head over to view the list of [
 return back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Quick start
 
@@ -107,6 +111,8 @@ return back to [Table of Contents](#table-of-contents)
 
 Back to [Table of Contents](#table-of-contents).
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating the application
 
 ![UiLayout](images/UiLayout.png)
@@ -122,6 +128,8 @@ The main window can be broken down into the following components:
 Back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Features
 
@@ -168,6 +176,8 @@ The following table gives an overview of what each parameter used in the Feature
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Patient Management Features
 
@@ -376,6 +386,8 @@ Keep your remarks concise as extremely long remarks might not be fully displayed
 
 Back to [Patient Management Features](#patient-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ## Doctor Management Features
 
 This is the list of features that help you manage the records of doctor:
@@ -577,6 +589,8 @@ Keep your remarks concise as extremely long remarks might not be fully displayed
 
 Back to [Doctor Management Features](#doctor-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ## Appointment Management Features
 
 This is the list of features that help you manage the records of appointment:
@@ -741,6 +755,8 @@ Keep your remarks concise as extremely long remarks might not be fully displayed
 
 Back to [Appointment Management Features](#appointment-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ## General Features
 
 These are the list of general features built into MediConnect:
@@ -786,6 +802,8 @@ If your changes to the data file makes its format invalid, MediConnect will disc
 Back to [General Features](#general-features).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # FAQ
 
