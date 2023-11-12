@@ -2,13 +2,13 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User enters AddXYZTagCommand with a specified index and \n tag to be added;
+:User enters AddXYZCommand with a specified index and \n tag to be added;
 floating note right
     XYZ = Medical Condition, Specialisations or Prescriptions
     ABC = Appointment, Doctor or Patient
 end note
 :MediConnectParser parses the command;
-:AddXYZTagCommandParser parses the index specified and tag provided;
+:AddXYZCommandParser parses the index specified and tag provided;
 if () then ([command is valid])
   :XYZ item is added to ABC with the specified index;
   :The Existing ABC in database is replaced with edited ABC \n and FilteredABCList is updated;
