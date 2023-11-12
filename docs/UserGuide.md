@@ -777,7 +777,7 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 * Entering `list_a pic\S9923334G` followed by `remark_a 1` or `remark_a 1 r\` removes the existing remark from the 1st appointment in the resultant appointment list of the `list_a` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
-Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window!
 </div>
 
 Back to [Appointment Management Features](#appointment-management-features).
