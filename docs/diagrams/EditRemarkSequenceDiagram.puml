@@ -27,7 +27,7 @@ activate AppointmentRemarkCommandParser
 AppointmentRemarkCommandParser --> MediConnectParser
 deactivate AppointmentRemarkCommandParser
 
-MediConnectParser -> AppointmentRemarkCommandParser : parse("remark_a 2 r\\follow up required"")
+MediConnectParser -> AppointmentRemarkCommandParser : parse("2 r\\follow up required"")
 activate AppointmentRemarkCommandParser
 
 create AppointmentRemarkCommand
