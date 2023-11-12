@@ -36,7 +36,7 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_PATIENT_NRIC + "PATIENT_NRIC] "
             + "[" + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC] "
             + "[" + PREFIX_APPOINTMENT_START_TIME + "START_TIME] "
-            + "[" + PREFIX_APPOINTMENT_END_TIME + "END_TIME]...\n"
+            + "[" + PREFIX_APPOINTMENT_END_TIME + "END_TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PATIENT_NRIC + "T0123456J "
             + PREFIX_DOCTOR_NRIC + "T5012345A "

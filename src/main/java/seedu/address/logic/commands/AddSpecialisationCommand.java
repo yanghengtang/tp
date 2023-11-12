@@ -28,7 +28,7 @@ public class AddSpecialisationCommand extends Command {
             + ": Adds a specialisation tag to the doctor identified "
             + "by the index number used in the displayed doctor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + PREFIX_TAG + "[SPECIALISATION]\n"
+            + PREFIX_TAG + "SPECIALISATION\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "Orthopaedic";
 
     public static final String MESSAGE_ADD_SPECIALISATION_SUCCESS = "New Specialisation added: %1$s";

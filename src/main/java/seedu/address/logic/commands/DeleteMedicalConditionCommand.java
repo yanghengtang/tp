@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.HashSet;
@@ -23,9 +24,9 @@ public class DeleteMedicalConditionCommand extends Command {
             + ": Deletes a medical condition of the patient "
             + "by the index number used in the last patient listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "t\\ [MEDICAL CONDITION]\n"
+            + PREFIX_TAG + "MEDICAL CONDITION\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "t\\ diabetes ";
+            + PREFIX_TAG + "diabetes";
 
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Medical condition deleted: %1$s";
     public static final String MESSAGE_DELETE_CONDITION_FAILURE = "Medical condition does not exist in patient: %1$s";

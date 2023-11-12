@@ -24,7 +24,7 @@ public class DeleteSpecialisationCommand extends Command {
             + ": Deletes a specialisation of the doctor "
             + "by the index number used in the last doctor listing. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TAG + " [SPECIALISATION]\n"
+            + PREFIX_TAG + "SPECIALISATION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + " Orthopaedic ";
 
