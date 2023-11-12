@@ -157,15 +157,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit doctor/patient/appointment feature
+### Edit Appointment / Doctor / Patient feature
 
 **Introduction**
 
-This section describes the feature that allows users to edit doctors/patients/appointments in the MediConnect database by index.
+This section describes the feature that allows users to edit appointments/doctors/patients in the MediConnect database by index.
 
 #### Implementation
 
-The proposed edit doctors/patient/appointment mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
+The proposed edit appointment/doctors/patient mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -190,25 +190,11 @@ The example usage scenario for the edit doctor and edit appointment mechanisms w
 The following sequence diagram shows how the edit patient operation would work:
 ![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
 
-The sequence diagram for editing an appointment and editing a doctor would be similar
+The sequence diagram for editing an appointment and editing a doctor would be similar.
 
 The following activity diagram summarizes what happens when a user wants to edit an appointment/patient/doctor:
 
 ![EditXYZCommandActivityDiagram](images/EditXYZActivityDiagram.png)
-
-
-#### Design considerations:
-
-**Aspect: How edit patient executes:** 
-
-* **Alternative 1 (current choice):** Having a single EditPatientCommand class that can edit all patient attributes
-    * Pros: Better scalability.
-    * Cons: Increase coupling due to the usage of Optional class.
-
-* **Alternative 2:** Creating a command class for each patient attribute (eg. EditPatientNameCommand)
-    * Pros: Straightforward, no need to handle optional parameters 
-    * Cons: Limited scalability, have to implement new command classes when attributes are added to 
-    patient/doctor/appointment classes
 
 ### Find Doctor / Patient
 
@@ -324,7 +310,7 @@ The following sequence diagram shows how the list appointment operation would wo
 The following activity diagram summarizes what happens when a user wants to list a new appointment:
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
-### Add appointment/doctor/patient feature
+### Add Appointment / Doctor / Patient feature
 
 **Introduction**
 
@@ -360,7 +346,7 @@ The sequence diagram for the add patient/doctor operations would be similar.
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
-### Delete appointment/doctor/patient feature
+### Delete Appointment / Doctor / Patient feature
 
 **Introduction**
 This section describes the delete appointment/doctor/patient features.
@@ -425,7 +411,42 @@ The following sequence diagram shows how the edit remark operation would work:
 The following activity diagram summarizes what happens when a user wants to edit the remark of an appointment/patient/doctor:
 ![EditXYZRemarkActivityDiagram](images/EditXYZRemarkActivityDiagram.png)
 
-### Delete specialisation/medical condition/prescription feature
+### Adding Specialisations / Medical conditions / Prescriptions feature
+
+**Introduction**
+
+This section describes the add specialisations/medical conditions/prescriptions features.
+
+#### Implementation
+The addition of a specialisation/medical condition/prescription to an existing doctor/patient/appointment respectively in MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+
+* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
+
+These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
+
+Given below is an example usage scenario and how the add specialisation mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
+
+Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList.
+
+Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription 'Orthopaedic' to the doctor at index 2 in the displayed doctor list.
+The add_tag_d command calls AddSpecialisationCommandParser#parse the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
+
+Step 4. The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
+`AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated specialisation.
+
+The example usage scenario for the add prescription and add medical condition mechanisms would be very similar to the above scenario.
+
+The following sequence diagram shows how the add specialisation operation would work:
+![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
+
+The sequence diagram for the add prescription and medical condition operations would be similar
+
+The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
+![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
+
+### Delete Specialisation / Medical Condition / Prescription feature
 This section describes the delete specialisation/medical condition/prescription features.
 
 #### Implementation
@@ -455,13 +476,12 @@ The following sequence diagram shows how the delete specialisation operation wou
 The following activity diagram summarizes what happens when a user wants to delete a specialisation/medical condition/prescription:
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
-### View appointment/doctor/patient feature
+### View Appointment / Doctor / Patient feature
 
-**Introduction**
 
-This section describes the feature that allows users to view the full details of doctors/patients/appointments in the MediConnect database by index.
+This section describes the feature that allows users to view the full details of appointments/doctors/patients in the MediConnect database by index.
 
-**Implementation**
+#### Implementation
 
 The View Patient mechanism is facilitated by `ModelManager`. It extends `Model` and stores the appointment, doctor
 and patient to be shown as `selectedAppointment`, `selectedDoctor` and `selectedPatient` respectively. Additionally, it implements the following operations:
@@ -538,41 +558,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Store selected Patient in `CommandResult` and retrieve directly from there.
     * Pros: No changes to the `Model` and `Logic` interface required.
     * Cons: Reduces `CommandResult` cohesiveness as it will now have the responsibility of passing the selected Patient to the Ui.
-
-### Adding specialisations/medical conditions/prescriptions feature
-
-**Introduction**
-
-This section describes the add specialisations/medical conditions/prescriptions features.
-
-#### Implementation
-The addition of a specialisation/medical condition/prescription to an existing doctor/patient/appointment respectively in MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
-
-* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
-
-These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
-
-Given below is an example usage scenario and how the add specialisation mechanism behaves at each step.
-
-Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
-
-Step 2. The user inputs `list_d `. MediConnect will display the FilteredDoctorList.
-
-Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription 'Orthopaedic' to the doctor at index 2 in the displayed doctor list.
-The add_tag_d command calls AddSpecialisationCommandParser#parse the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
-
-Step 4. The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AddSpecialisationCommand#execute` then calls `Model#setDoctor` and with the given `Index` and the doctor with the updated specialisation.
-
-The example usage scenario for the add prescription and add medical condition mechanisms would be very similar to the above scenario.
-
-The following sequence diagram shows how the add specialisation operation would work:
-![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
-
-The sequence diagram for the add prescription and medical condition operations would be similar
-
-The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
-![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
