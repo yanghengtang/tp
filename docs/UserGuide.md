@@ -101,7 +101,7 @@ return back to [Table of Contents](#table-of-contents)
 
    * `list_a` : Lists all appointments.
 
-   * `add_p n\Joe Ng ic\T0383462A p\83745623` : Adds a patient named `Joe Ng` to the list of Patient.
+   * `add_p n\Joe Ng ic\T0383462A p\83745623` : Adds a patient named `Joe Ng` to the list of patients.
 
    * `delete_d 5` : Deletes the 5th doctor in the list of doctors.
 
@@ -119,7 +119,7 @@ Back to [Table of Contents](#table-of-contents).
 
 The main window can be broken down into the following components:
 
-- **Command Box**: The command box is where you will enter your input your commands
+- **Command Box**: The command box is where you will enter your commands
 - **Result Display Box**: This box will display the output messages in response to your commands
 - **Appointment List Panel**: This panel will display the list of filtered appointments
 - **Patient List Panel**: This panel will display the list of filtered patients
@@ -133,7 +133,7 @@ Back to [Table of Contents](#table-of-contents).
 
 # Features
 
-The features are broken down to into:
+The features are broken down into:
 - [Patient Management Features](#patient-management-features)
 - [Doctor Management Features](#doctor-management-features)
 - [Appointment Management Features](#appointment-management-features)
@@ -184,7 +184,7 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 ## Patient Management Features
 
-This is the list of features that help you manage the records of patient:
+This is the list of features that help you manage the records of patients:
 - [Adding patient](#adding-a-patient-add_p)
 - [Listing patient](#listing-all-patient--list_p)
 - [Viewing patient](#viewing-a-patient--view_p)
@@ -192,7 +192,7 @@ This is the list of features that help you manage the records of patient:
 - [Finding patient](#locating-patients-by-name--find_p)
 - [Deleting patient](#deleting-a-patient--delete_p)
 - [Adding a medical condition to a patient](#adding-a-medical-condition-to-a-patient--add_tag_p)
-- [Deleting a medical condition of a patient](#deleting-a-medical-condition-from-a-patient--delete_tag_p)
+- [Deleting a medical condition from a patient](#deleting-a-medical-condition-from-a-patient--delete_tag_p)
 - [Editing the remark of a patient](#editing-the-remark-of-a-patient--remark_p)
 
 
@@ -200,7 +200,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding a patient: `add_p`
 
-Allows you to add a patient into the system.
+Allows you to add a patient to the system.
 
 **Format**: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 
@@ -268,10 +268,10 @@ Allows you to edit an existing patient in the system. This is useful to correct 
 
 **Examples**:
 *  `edit_p 1 n\Joe Ng` edits the name of 1st patient in the patient list to be `Joe Ng`.
-*  `edit_p 2 p\91234567` edits the phone of the 2nd patient  in the patient list to be `91234567`.
+*  `edit_p 2 p\91234567` edits the phone of the 2nd patient in the patient list to be `91234567`.
 
 **Sample Usage**:
-1. Assuming you want to edit the 4th Patient changing his phone from "81235833" to "81453894".
+1. Assuming you want to edit the 4th patient changing his phone from "81235833" to "81453894".
 
 2. Enter the following command:
 ```
@@ -283,7 +283,7 @@ edit_p 4 p\81453894
 Edited Patient: Jonathan Reese; Phone: 81453894; NRIC: S8712461K
 ```
 
-4. You have successfully edited the patient into the database.
+4. You have successfully edited the patient in the database.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: <b>Note:</b> Note that all appointments containing the patient's old NRIC will be updated to the new NRIC.<br>
@@ -297,16 +297,16 @@ Allows you to find patients whose name contains any of the given keywords.
 
 **Format**: `find_p KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name of the patient is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 **Examples**:
-* `find_p John` returns `john` and `John Doe`
-* `find_p alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find_p John` returns `john` and `John Doe`.
+* `find_p alex david` returns `Alex Yeoh`, `David Li`.<br>
 
 Back to [Patient Management Features](#patient-management-features).
 
@@ -325,7 +325,7 @@ Allows you to delete a specified patient from the system.
 * Entering `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the resultant patient list of the `find_p` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If patient is deleted, the patient's appointments will also be deleted.
+If a patient is being removed, the appointments of the patient will be deleted too!
 </div>
 
 
@@ -361,30 +361,30 @@ Allows you to delete a medical condition from a specified patient in the system.
 * Only one medical condition can be deleted at a time.
 
 **Examples**:
-* Entering `list_p` followed by `delete_tag_p 2 t\diabetes` deletes the medical condition `diabetes` of the 2nd patient in the patient list.
-* Entering `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` of the 1st patient in the resultant patient list of the `find_p` command.
+* Entering `list_p` followed by `delete_tag_p 2 t\diabetes` deletes the medical condition `diabetes` from the 2nd patient in the patient list.
+* Entering `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` from the 1st patient in the resultant patient list of the `find_p` command.
 
 Back to [Patient Management Features](#patient-management-features).
 
 ### Editing the remark of a patient : `remark_p`
 
-Allows you to edit the remark of a specified patient in the system. The patient's remark can be used to store temporary information such as family health history and current medications/treatments patients are on.
+Allows you to edit the remark of a specified patient in the system. The patient's remark can be used to store temporary information such as family health history and current medications/treatments the patient is on.
 
 **Format**: `remark_p INDEX [r\REMARK]`
 
 * Adds the input `REMARK` to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The remark will be updated with the input `REMARK`.
+* The patient's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
 
 **Examples**:
-* Entering `list_p` followed by `remark_p 2 r\need follow up` adds the remark to the 2nd patient in the patient list.
-* Entering `find_p Jonathan` followed by `remark_p 1` or `remark_p 1 r\` removes the remark in the 1st patient in the resultant patient list of the `find_p` command.
+* Entering `list_p` followed by `remark_p 2 r\need follow up` overwrites the existing remark of the 2nd patient in the patient list with `need follow up`.
+* Entering `find_p Jonathan` followed by `remark_p 1` or `remark_p 1 r\` removes the existing remark from the 1st patient in the resultant patient list of the `find_p` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
-Keep your remarks concise as extremely long remarks might not be fully displayed in the Patient Window
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Patient Window!
 </div>
 
 Back to [Patient Management Features](#patient-management-features).
@@ -393,7 +393,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ## Doctor Management Features
 
-This is the list of features that help you manage the records of doctor:
+This is the list of features that help you manage the records of doctors:
 - [Adding doctor](#adding-a-doctor--add_d)
 - [Listing doctor](#listing-all-doctor--list_d)
 - [Viewing doctor](#viewing-a-doctor--view_d)
@@ -487,7 +487,7 @@ edit_d 4 ic\T0212385J
 Edited Doctor: Joe Ng; Nric: T0212385J
 ```
 
-4. You have successfully edited the doctor into the database.
+4. You have successfully edited the doctor in the database.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: <b>Note:</b> Note that all appointments containing the doctor's old NRIC will be updated to the new NRIC.<br>
@@ -497,20 +497,20 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ### Locating doctors by name : `find_d`
 
-Allow you to locate doctors whose name contains any of the given keywords.
+Allows you to locate doctors whose name contains any of the given keywords.
 
 **Format**: `find_d KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name of the doctor is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Doctors matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 **Examples**:
-* `find_d John` returns `john` and `John Doe`
-* `find_d alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find_d John` returns `john` and `John Doe`.
+* `find_d alex david` returns `Alex Yeoh`, `David Li`. <br>
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -529,14 +529,14 @@ Allows you to delete a specific doctor from the system.
 * Entering `find_d Jonathan` followed by `delete_d 1` deletes the 1st doctor in the resultant doctor list of the `find_d` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If a doctor is being removed, the appointments of the doctor will also be deleted too!.
+If a doctor is being removed, the appointments of the doctor will be deleted too!
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
 
 ### Adding a specialisation to a doctor : `add_tag_d`
 
-Allows you to add a specialisation for a specified doctor in the system.
+Allows you to add a specialisation to a specified doctor in the system.
 
 **Format**: `add_tag_d INDEX t\SPECIALISATION`
 
@@ -578,16 +578,16 @@ Allows you to edit the remark of a specified doctor in the system. The doctor's 
 * Edits the remark of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
-* The remark will be updated with the input `REMARK`.
+* The doctor's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
 
 **Examples**:
-* Entering `list_d` followed by `remark_d 2 r\Doctor will not be in clinic until 30/12/2023` overwrites the remark of the 2nd doctor in the doctor list with `Doctor will not be in clinic until 30/12/2023`.
-* Entering `find_d Jonathan` followed by `remark_d 1` or `remark_d 1 r\` removes the remark of the 1st doctor in the resultant doctor list of the `find_d` command.
+* Entering `list_d` followed by `remark_d 2 r\Doctor will not be in clinic until 30/12/2023` overwrites the existing remark of the 2nd doctor in the doctor list with `Doctor will not be in clinic until 30/12/2023`.
+* Entering `find_d Jonathan` followed by `remark_d 1` or `remark_d 1 r\` removes the existing remark from the 1st doctor in the resultant doctor list of the `find_d` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
-Keep your remarks concise as extremely long remarks might not be fully displayed in the Doctor Window
+Keep your remarks concise as extremely long remarks might not be fully displayed in the Doctor Window!
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -610,12 +610,32 @@ Back to [Table of Contents](#table-of-contents).
 
 ### Adding an appointment : `add_a`
 
-Allows you to add an appointment into the system.
+Allows you to add an appointment to the system.
 
 **Format**: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
 **Examples**:
-* `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00 `
+* `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00`
+* `add_a from\2023-09-12 07:30 to\2023-09-12 08:00 dic\T0212385J pic\S9912343G`
+
+**Sample Usage**:
+1. Assuming you want to add an appointment between a patient "John Doe" with NRIC "T0212385J" and doctor "Betsy Crowe" with NRIC "S9912343G" starting from "2023-09-13 12:00" ending at "2023-09-13 12:30".
+
+2. Enter the following command:
+```
+add_d pic\T0212385J dic\S9912343G from\2023-09-13 12:00 to\2023-09-13 12:30
+```
+
+3. The result box will display the following message:
+```
+New appointment added: Patient NRIC: T0212385J; Doctor NRIC: S9912343G; From: 2023-09-13 12:00; to: 2023-09-13 12:30
+```
+
+4. You have successfully added the appointment into the database.
+
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Do ensure that there exists a patient and doctor with the NRIC that you input into this command!
+</div>
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -625,11 +645,16 @@ Allows you to either display all the appointments in the system, or the list of 
 
 **Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
-* Find any appointment of the doctor or patient with the specified `NRIC`.
+* If only `PATIENT_NRIC` is specified, all appointments belonging to the patient with the specified `PATIENT_NRIC` will be listed.
+* If only `DOCTOR_NRIC` is specified, all appointments belonging to the patient with the specified `DOCTOR_NRIC` will be listed.
+* If both `PATIENT_NRIC` and `DOCTOR_NRIC` are specified, all appointments between the patient with the specified `PATIENT_NRIC` and the doctor with the specified `DOCTOR_NRIC` will be listed.
 * List all the appointments in the system if no fields are given.
 
 **Examples**:
 * `list_a pic\S9912343G` returns all the appointments that have the patient NRIC `S9912343G`.
+* `list_a dic\T0212385J` returns all the appointments that have the doctor  NRIC `T0212385J`.
+* `list_a pic\S9912343G dic\T0212385J` returns all the appointments that have both the patient NRIC `S9912343G` and the doctor NRIC `T0212385J`.
+* 'list_a' returns all the appointments in the system.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -660,6 +685,10 @@ Edited Appointment: Patient NRIC: S9923334G; Doctor NRIC: S6912483J; From: 2023-
 ```
 
 4. You have successfully edited the appointment at index 4 in the database.
+
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+If you edit the patient or doctor NRIC of an appointment, ensure that there exists a patient or doctor with the edited NRIC!
+</div>
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -707,8 +736,8 @@ Allows you to add a prescription for an appointment in the system.
 * Only one prescription can be added at a time.
 
 **Examples**:
-* Entering `list_a` followed by `add_tag_a 2 t\Panadol` adds the prescription `Panadol` to the 2nd appointment in the appointment list.
-* Entering `list_a pic\S9923334G` followed by `add_tag_a 1 t\Panadol` adds the prescription to the 1st appointment in the resultant appointment list of the `list_a` command.
+* Entering `list_a` followed by `add_tag_a 2 t\Panadol` adds the `Panadol` prescription to the 2nd appointment in the appointment list.
+* Entering `list_a pic\S9923334G` followed by `add_tag_a 1 t\Panadol` adds the `Panadol` prescription to the 1st appointment in the resultant appointment list of the `list_a` command.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -718,7 +747,7 @@ Allows you to delete a prescription from an appointment in the system.
 
 **Format**: `delete_tag_a INDEX t\PRESCRIPTION`
 
-* Deletes the prescription of the appointment at the specified `INDEX`.
+* Deletes the prescription from the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
 * The given `PRESCRIPTION` must be a present prescription of the specified appointment.
@@ -737,20 +766,15 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 **Format**: `remark_a INDEX [r\REMARK]`
 
 * Edits the remark of the appointment at the specified `INDEX`.
-* If the specified appointment already has a remark, it will be overwritten by `REMARK`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
-* The remark will be updated with the input `REMARK`.
+* The appointment's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
-</div>
-
 **Examples**:
-* Entering `list_a` followed by `remark_a 2 r\Patient does not need any follow up` adds the remark to the 2nd appointment in the appointment list.
-* Entering `list_a pic\S9923334G` followed by `remark_a 1` or `remark_a 1 r\` removes the remark in the 1st appointment in the resultant appointment list of the `list_a` command.
+* Entering `list_a` followed by `remark_a 2 r\Patient does not need any follow up` overwrites the existing remark of the 2nd appointment in the appointment list with `Patient does not need any follow up`.
+* Entering `list_a pic\S9923334G` followed by `remark_a 1` or `remark_a 1 r\` removes the existing remark from the 1st appointment in the resultant appointment list of the `list_a` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
 Keep your remarks concise as extremely long remarks might not be fully displayed in the Appointment Window
