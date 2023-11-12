@@ -24,9 +24,9 @@ public class PatientRemarkCommand extends Command {
             + "by the index number used in the last patient listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "REMARK\n"
+            + PREFIX_REMARK + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Patient to follow up in 1 month.";
+            + PREFIX_REMARK + "Family has medical history of diabetes";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Patient at index %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Patient at index %1$s";
