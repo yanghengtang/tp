@@ -184,7 +184,7 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 ## Patient Management Features
 
-This is the list of features that help you manage the records of patients:
+This is the list of features that help you manage patient records:
 - [Adding patient](#adding-a-patient-add_p)
 - [Listing patient](#listing-all-patient--list_p)
 - [Viewing patient](#viewing-a-patient--view_p)
@@ -393,7 +393,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ## Doctor Management Features
 
-This is the list of features that help you manage the records of doctors:
+This is the list of features that help you manage doctor records:
 - [Adding doctor](#adding-a-doctor--add_d)
 - [Listing doctor](#listing-all-doctor--list_d)
 - [Viewing doctor](#viewing-a-doctor--view_d)
@@ -596,7 +596,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 
 ## Appointment Management Features
 
-This is the list of features that help you manage the records of appointment:
+This is the list of features that help you manage appointment records:
 - [Adding appointment](#adding-an-appointment--add_a)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
 - [Viewing appointment](#viewing-an-appointment--view_a)
@@ -634,7 +634,7 @@ New appointment added: Patient NRIC: T0212385J; Doctor NRIC: S9912343G; From: 20
 4. You have successfully added the appointment into the database.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-Do ensure that there exists a patient and doctor with the NRIC that you input into this command!
+Do ensure that the patient and doctor you are entering exist in the database!
 </div>
 
 Back to [Appointment Management Features](#appointment-management-features).
@@ -814,7 +814,7 @@ Back to [General Features](#general-features).
 
 ### Saving the data
 
-MediConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+MediConnect data are saved in the hard disk automatically after any command. There is no need to save manually.
 
 Back to [General Features](#general-features).
 
