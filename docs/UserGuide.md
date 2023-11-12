@@ -171,6 +171,9 @@ The following table gives an overview of what each parameter used in the Feature
 | MEDICAL_CONDITION | The medical condition of the patient                                 | Only accepts alphanumeric characters without any spaces                            |
 | SPECIALISATION    | The specialisation of the doctor                                     | Only accepts alphanumeric characters without any spaces                            |
 | PRESCRIPTION      | The prescription of the appointment                                  | Only accepts alphanumeric characters without any spaces                            |
+| START_TIME        | The start time of the appointment                                    | Only accepts valid dates in the format YYYY-MM-DD HH:MM                            |
+| END_TIME          | The end time of the appointment                                      | Only accepts valid dates in the format YYYY-MM-DD HH:MM                            |
+| REMARK            | The remark of the appointment/patient/doctor                         | Accepts all input                                                                  |
 
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
@@ -215,7 +218,7 @@ add_p n\Jonathan Reese ic\S8712461K p\81235833
 
 3. The result box will display the following message:
 ```
-"New patient added: Jonathan Reese; Phone: 81235833; NRIC: S8712461K"
+New patient added: Jonathan Reese; Phone: 81235833; NRIC: S8712461K
 ```
 
 4. You have successfully added the patient into the database.
@@ -240,7 +243,7 @@ Allows you to view details, such as basic information, medical condition and rem
 
 **Format**: `view_p INDEX`
 
-* Displays the full detail of the patient at the specified `INDEX`.
+* Displays the full details of the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -277,7 +280,7 @@ edit_p 4 p\81453894
 
 3. The result box will display the following message:
 ```
-"Edited Patient: Jonathan Reese; Phone: 81453894; NRIC: S8712461K"
+Edited Patient: Jonathan Reese; Phone: 81453894; NRIC: S8712461K
 ```
 
 4. You have successfully edited the patient into the database.
@@ -330,7 +333,7 @@ Back to [Patient Management Features](#patient-management-features).
 
 ### Adding a medical condition to a patient : `add_tag_p`
 
-Allow you to add a medical condition to a specified patient in the system.
+Allows you to add a medical condition to a specified patient in the system.
 
 **Format**: `add_tag_p INDEX t\MEDICAL_CONDITION`
 
@@ -351,7 +354,7 @@ Allows you to delete a medical condition from a specified patient in the system.
 
 **Format**: `delete_tag_p INDEX t\MEDICAL_CONDITION`
 
-* Deletes the input medical condition to the patient at the specified `INDEX`.
+* Deletes the input medical condition from the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The given `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
@@ -423,7 +426,7 @@ add_d n\John Doe ic\T0212385J
 
 3. The result box will display the following message:
 ```
-"New doctor added: John Doe; Nric: T0212385J"
+New doctor added: John Doe; Nric: T0212385J
 ```
 
 4. You have successfully added the doctor into the database.
@@ -452,7 +455,7 @@ Allows you to view details, such as basic information, specialisation and remark
 * Entering `list_d` followed by `view_d 2` shows the details of the 2nd doctor in the doctor list.
 * Entering `find_d Jonathan` followed by `view_d 1` shows the details of the 1st doctor in the resultant doctor list of the `find_d` command.
 
-Below is the image of a successful result that you should have encountered.
+Below is an example of a successful view command call.
 
 ![ViewDoctorMainWindow](images/view-doctor.jpg)
 
@@ -481,7 +484,7 @@ edit_d 4 ic\T0212385J
 
 3. The result box will display the following message:
 ```
-"Edited Doctor: Joe Ng; Nric: T0212385J"
+Edited Doctor: Joe Ng; Nric: T0212385J
 ```
 
 4. You have successfully edited the doctor into the database.
@@ -526,7 +529,7 @@ Allows you to delete a specific doctor from the system.
 * Entering `find_d Jonathan` followed by `delete_d 1` deletes the 1st doctor in the resultant doctor list of the `find_d` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If doctor is being removed, the appointments of the doctor's will also be deleted too!.
+If a doctor is being removed, the appointments of the doctor will also be deleted too!.
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -537,14 +540,14 @@ Allows you to add a specialisation for a specified doctor in the system.
 
 **Format**: `add_tag_d INDEX t\SPECIALISATION`
 
-* Adds the specialisation of doctor at the specified `INDEX`.
+* Adds the specialisation to the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Only one specialisation can be added at a time.
 
 **Examples**:
-* Entering `list_d` followed by `add_tag_d 2 t\Orthopaedic` add specialisation the 2nd doctor in the doctor list.
-* Entering `find_d Jonathan` followed by `add_tag_d 1 t\Orthopaedic` add specialisation the 1st doctor in the resultant doctor list of the `find_d` command.
+* Entering `list_d` followed by `add_tag_d 2 t\Orthopaedic` adds the `Orthopaedic` specialisation to the 2nd doctor in the doctor list.
+* Entering `find_d Jonathan` followed by `add_tag_d 1 t\Orthopaedic` adds the `Orthopaedic` specialisation to the 1st doctor in the resultant doctor list of the `find_d` command.
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -554,15 +557,15 @@ Allows you to delete a specialisation from a specific doctor in the system.
 
 **Format**: `delete_tag_d INDEX t\SPECIALISATION`
 
-* Adds the specialisation of doctor at the specified `INDEX`.
+* Deletes the specialisation from the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** 1, 2, 3, …
 * The given `SPECIALISATION` must be a present specialisation of the specified doctor.
 * Only one specialisation can be deleted at a time.
 
 **Examples**:
-* Entering `list_d` followed by `delete_tag_d 2 t\Orthopaedic` add specialisation the 2nd doctor in the doctor list.
-* Entering `find_d Jonathan` followed by `delete_tag_d 1 t\Orthopaedic` add specialisation the 1st doctor in the resultant doctor list of the `find_d` command.
+* Entering `list_d` followed by `delete_tag_d 2 t\Orthopaedic` deletes the `Orthopaedic` specialisation from the 2nd doctor in the doctor list.
+* Entering `find_d Jonathan` followed by `delete_tag_d 1 t\Orthopaedic` deletes the `Orthopaedic` specialisation from the 1st doctor in the resultant doctor list of the `find_d` command.
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -580,8 +583,8 @@ Allows you to edit the remark of a specified doctor in the system. The doctor's 
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
 
 **Examples**:
-* Entering `list_d` followed by `remark_d 2 r\Doctor will not be in clinic until 30/12/2023` add remark to the 2nd doctor in the doctor list.
-* Entering `find_d Jonathan` followed by `remark_d 1` or `remark_d 1 r\` remove the remark in the 1st doctor in the resultant doctor list of the `find_d` command.
+* Entering `list_d` followed by `remark_d 2 r\Doctor will not be in clinic until 30/12/2023` overwrites the remark of the 2nd doctor in the doctor list with `Doctor will not be in clinic until 30/12/2023`.
+* Entering `find_d Jonathan` followed by `remark_d 1` or `remark_d 1 r\` removes the remark of the 1st doctor in the resultant doctor list of the `find_d` command.
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
 Keep your remarks concise as extremely long remarks might not be fully displayed in the Doctor Window
@@ -618,7 +621,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Listing all appointments, or by patient or doctor NRIC : `list_a`
 
-Allows you to either display all the appointments in the system, or the list of appointments a specified patient/doctor has in the system.
+Allows you to either display all the appointments in the system, or the list of appointments of a specified patient/doctor has in the system.
 
 **Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
@@ -653,7 +656,7 @@ edit_a 4 pic\S9923334G
 
 3. The result box will display the following message:
 ```
-"Edited Appointment: Patient NRIC: S9923334G; Doctor NRIC: S6912483J; From: 2023-09-09 10:30; to: 2023-09-09 10:45"
+Edited Appointment: Patient NRIC: S9923334G; Doctor NRIC: S6912483J; From: 2023-09-09 10:30; to: 2023-09-09 10:45
 ```
 
 4. You have successfully edited the appointment at index 4 in the database.
@@ -733,7 +736,7 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 
 **Format**: `remark_a INDEX [r\REMARK]`
 
-* Edits the remark the appointment at the specified `INDEX`.
+* Edits the remark of the appointment at the specified `INDEX`.
 * If the specified appointment already has a remark, it will be overwritten by `REMARK`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …
@@ -849,12 +852,12 @@ Back to [Table of Contents](#table-of-contents).
 | **Add Medical Condition**    | `add_tag_p INDEX t\MEDICAL_CONDTION`  <br/> e.g., `add_tag_p 1 t\diabetes`                                                                                    |
 | **Delete Medical Condition** | `delete_tag_p INDEX t\MEDICAL_CONDITION`  <br/> e.g., `delete_tag_p 1 t\diabetes`                                                                             |
 | **Add Specialisation**       | `add_tag_d INDEX t\SPECIALISATION` <br> e.g., `add_tag_d 1 t\Orthopaedic`                                                                                     |
-| **Delete Specialisation**    | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d t\1 Orthopaedic`                                                                               |
+| **Delete Specialisation**    | `delete_tag_d INDEX t\SPECIALISATION` <br> e.g., `delete_tag_d 1 t\Orthopaedic`                                                                               |
 | **Add Prescription**         | `add_tag_a INDEX t\PRESCRIPTION` <br> e.g., `add_tag_a 1 t\Panadol`                                                                                           |
-| **Delete Prescription**      | `delete_tag_a INDEX t\PRESCRIPTION` <br> e.g., `delete_tag_a t\1 Panadol`                                                                                     |
+| **Delete Prescription**      | `delete_tag_a INDEX t\PRESCRIPTION` <br> e.g., `delete_tag_a 1 t\Panadol`                                                                                     |
 | **Edit Patient Remark**      | `remark_p INDEX [r\REMARK]`  <br/> e.g., `remark_p 2 r\family history of diabetes`                                                                            |
 | **Edit Doctor Remark**       | `remark_d INDEX [r\REMARK]` <br> e.g., `remark_d 1 r\Doctor will not be in clinic until 30/12/2023`                                                           |
-| **Edit Appointment Remark**  | `remark_a INDEX [r\REMARK]` <br> e.g., `remark_d 2 r\Patient does not need any follow up`                                                                     |
+| **Edit Appointment Remark**  | `remark_a INDEX [r\REMARK]` <br> e.g., `remark_a 2 r\Patient does not need any follow up`                                                                     |
 | **Help**                     | `help`                                                                                                                                                        |
 | **Exit**                     | `exit`                                                                                                                                                        |
 
