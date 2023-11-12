@@ -744,10 +744,6 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Note that if the `REMARK` is empty, the existing remarks of the appointment will be deleted.
-</div>
-
 **Examples**:
 * Entering `list_a` followed by `remark_a 2 r\Patient does not need any follow up` adds the remark to the 2nd appointment in the appointment list.
 * Entering `list_a pic\S9923334G` followed by `remark_a 1` or `remark_a 1 r\` removes the remark in the 1st appointment in the resultant appointment list of the `list_a` command.
