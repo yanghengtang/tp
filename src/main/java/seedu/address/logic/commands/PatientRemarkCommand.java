@@ -24,7 +24,7 @@ public class PatientRemarkCommand extends Command {
             + "by the index number used in the last patient listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[REMARK]\n"
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Family has medical history of diabetes";
 
