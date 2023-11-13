@@ -369,7 +369,7 @@ Given below is an example usage scenario and how the delete `Appointment` mechan
 
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-**Step 2**: The user inputs `delete_a 2`  to delete an appointment into MediConnect.
+**Step 2**: The user inputs `delete_a 2` to delete an appointment into MediConnect.
 The `delete_a` command calls `DeleteAppointmentCommandParser#parse(String)` which returns index of the appointment to delete.
 A new `DeleteAppointmentCommand` instance will be created
 
@@ -475,7 +475,7 @@ Given below is an example usage scenario and how the add `Specialisation` mechan
 
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-**Step 2**: The user inputs `delete_tag_d 2 t\Orthopaedic`  to delete a doctor's specialisation from MediConnect.
+**Step 2**: The user inputs `delete_tag_d 2 t\Orthopaedic` to delete a doctor's specialisation from MediConnect.
 The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which returns the index of the doctor to modify.
 A new `DeleteSpecialisationCommand` instance will be created.
 
@@ -1068,6 +1068,21 @@ Use case ends.
 
     Use case ends.
 
+* 1c.MediConnect detects that the appointment to be added, has the patient NRIC of a patient that does not already exist.
+    * 1c1. MediConnect shows an error message.
+
+      Use case ends.
+  
+* 1d.MediConnect detects that the appointment to be added, has the doctor NRIC of a doctor that does not already exist.
+    * 1d1. MediConnect shows an error message.
+
+      Use case ends.
+
+* 1e.MediConnect detects that the appointment to be added overlaps with another appointment with th same patient and/or doctor.
+    * 1e1. MediConnect shows an error message.
+
+      Use case ends.
+
 **Use case: UC20 Edit an appointment’s particulars**
 
 **MSS**
@@ -1090,6 +1105,21 @@ Use case ends.
   * 1b1. MediConnect shows an error message.
 
     Use case ends.
+
+* 1c.MediConnect detects that the edited appointment, has the patient NRIC of a patient that does not already exist.
+    * 1c1. MediConnect shows an error message.
+
+      Use case ends.
+
+* 1d.MediConnect detects that the edited appointment, has the doctor NRIC of a doctor that does not already exist.
+    * 1d1. MediConnect shows an error message.
+
+      Use case ends.
+
+* 1e.MediConnect detects that the edited appointment overlaps with another appointment with th same patient and/or doctor.
+    * 1e1. MediConnect shows an error message.
+
+      Use case ends.
 
 **Use case: UC21 Delete an appointment**
 
