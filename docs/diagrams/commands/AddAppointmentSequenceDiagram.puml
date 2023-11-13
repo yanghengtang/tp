@@ -47,15 +47,9 @@ deactivate AddAppointmentCommand
 
 AddAppointmentCommandParser --> MediConnectParser : a
 deactivate AddAppointmentCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddAppointmentCommandParser -[hidden]-> MediConnectParser
-destroy AddAppointmentCommandParser
 
 MediConnectParser --> LogicManager : a
 deactivate MediConnectParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-MediConnectParser -[hidden]-> AddAppointmentCommandParser
-destroy MediConnectParser
 
 LogicManager -> AddAppointmentCommand : execute()
 activate AddAppointmentCommand
