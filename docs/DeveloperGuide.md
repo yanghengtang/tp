@@ -75,13 +75,14 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* keeps a reference to the `Logic` component, because the `Ui
+* ` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Appointment`, `Doctor` and `Patient` object residing in the `Model`.
 
 ### Logic component
@@ -150,7 +151,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,7 +175,7 @@ Given below is an example usage scenario and how the edit patient mechanism beha
 
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-**Step 2**: The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditCommandParser#parse(String)` which parses the parameters to edit the current patient with. 
+**Step 2**: The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditPatientCommandParser#parse(String)` which parses the parameters to edit the current patient with. 
 A new `EditPatientDescriptor` instance will be created in the parse command call, and a new `EditPatientCommand` instance will be created with the `EditPatientDescriptor` and the given `Index`.
 
 **Step 3**: The created `EditPatientCommand` instance is returned to `LogicManager` and its `execute` method is called.
@@ -370,11 +371,11 @@ Given below is an example usage scenario and how the add `Appointment` mechanism
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 **Step 2**: The user inputs `delete_a 2`  to delete an appointment into MediConnect.
-The `delete_a` command calls `DeleteAppointmentCommandParser#parse(String)` which parses the index argument which is the index of the appointment to delete.
+The `delete_a` command calls `DeleteAppointmentCommandParser#parse(String)` which returns index of the appointment to delete.
 A new `DeleteAppointmentCommand` instance will be created
 
 **Step 3**: The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`DeleteAppointmentCommand#execute(Model)` then calls `Model#deleteAppointment(Appointment)` and with the given `Index`.
+`DeleteAppointmentCommand#execute(Model)` then calls `Model#deleteAppointment(Appointment)` and with the appointment to be deleted.
 
 The example usage scenario for the delete patient and delete doctor mechanisms would be similar to the scenario above.
 
@@ -445,7 +446,7 @@ Given below is an example usage scenario and how the add specialisation mechanis
 The `add_tag_d` command calls `AddSpecialisationCommandParser#parse(String)` the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
 **Step 4**: The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AddSpecialisationCommand#execute(Model)` then calls `Model#setDoctor(Doctor)` and with the given `Index` and the doctor with the updated specialisation.
+`AddSpecialisationCommand#execute(Model)` then calls `Model#setDoctor(Doctor, Doctor)` and with the doctor to update and the doctor with the updated specialisation.
 
 The example usage scenario for the add prescription and add medical condition mechanisms would be similar to the scenario above.
 
@@ -472,8 +473,8 @@ Given below is an example usage scenario and how the add `Specialisation` mechan
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 **Step 2**: The user inputs `delete_tag_d 2 t\Orthopaedic`  to delete a doctor's specialisation from MediConnect.
-The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which parses the index argument which is the index of the doctor to delete  
-A new `DeleteSpecialisationCommand` instance will be created
+The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which returns the index of the doctor to modify.
+A new `DeleteSpecialisationCommand` instance will be created.
 
 **Step 3**: The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteSpecialisationCommand#execute(Model)` then calls `Model#getFilteredDoctorList()` and retrieve the doctor with the given `Index`. 
@@ -1002,6 +1003,7 @@ Use case ends.
 
 1. User requests to view a patient’s appointments.
 2. MediConnect shows the patient’s appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1024,6 +1026,7 @@ Use case ends.
 
 1. User requests to view a doctor’s list of  appointments. 
 2. MediConnect shows the doctor’s appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1046,6 +1049,7 @@ Use case ends.
 
 1. User requests to add a specific appointment between a patient and doctor. 
 2. MediConnect adds the appointment to the appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1068,6 +1072,7 @@ Use case ends.
 
 1. User requests to edit an appointment’s particulars. 
 2. MediConnect edits the appointment particulars.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1090,6 +1095,7 @@ Use case ends.
 
 1. User requests to delete an appointment from the appointment list.
 2. MediConnect deletes the appointment.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
