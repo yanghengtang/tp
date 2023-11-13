@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   * Added the ability to list the appointments by doctor and/or patient.
     * What it does: Allows users to list appointments by doctor and/or patient. If no arguments are provided, all appointments are listed.
     * Justification: This allows the receptionists to view what appointments belong to a particular patient/doctor or simply view every appointment scheduled in the clinic.
-    * Highlights : This feature was designed to provide users with as much flexibility as possible when listing appointment. In order to to achieve this, the arguments to the command were made optional. If no arguments were specified, then every appointment would be listed.
+    * Highlights : This feature was designed to provide users with as much flexibility as possible when listing appointment. In order to achieve this, the arguments to the command were made optional. If no arguments were specified, then every appointment would be listed.
 
   * Added the ability to view details of a specific appointment in the clinic.
     * What it does: Opens a pop up window containing the full details of an appointment when the command view_a is entered.
