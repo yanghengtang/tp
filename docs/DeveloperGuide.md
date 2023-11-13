@@ -410,8 +410,8 @@ The `remark_a` command calls `AppointmentRemarkCommandParser#parse(String)` whic
 A new `AppointmentRemarkCommand` instance will be created with the correct `Remark` object to be added to the appointment specified.
 
 **Step 3**: The created `AppointmentRemarkCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AppointmentRemarkCommand#execute(Model)` then calls `Model#setAppointment(Appointment)` and with the given `Remark`.
-The edited `Appointment` is then replaced in the `Database` by calling `Database#setAppointment(Appointment)`.
+`AppointmentRemarkCommand#execute(Model)` then calls `Model#setAppointment(Appointment, Appointment)` and with the given `Remark`.
+The edited `Appointment` is then replaced in the `Database` by calling `Database#setAppointment(Appointment, Appointment)`.
 
 The example usage scenario for the edit patient remark and edit doctor remark mechanisms would be similar to the scenario above.
 
@@ -478,7 +478,7 @@ A new `DeleteSpecialisationCommand` instance will be created.
 
 **Step 3**: The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteSpecialisationCommand#execute(Model)` then calls `Model#getFilteredDoctorList()` and retrieve the doctor with the given `Index`. 
-Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor)`.
+Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
 
 The example usage scenario for delete medical condition and delete prescriptions mechanisms would be similar to the scenario above.
 
