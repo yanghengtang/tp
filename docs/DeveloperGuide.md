@@ -75,13 +75,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* keeps a reference to the `Logic` component, because the `Ui` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Appointment`, `Doctor` and `Patient` object residing in the `Model`.
 
 ### Logic component
@@ -150,7 +150,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,7 +174,7 @@ Given below is an example usage scenario and how the edit patient mechanism beha
 
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-**Step 2**: The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditCommandParser#parse(String)` which parses the parameters to edit the current patient with. 
+**Step 2**: The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditPatientCommandParser#parse(String)` which parses the parameters to edit the current patient with. 
 A new `EditPatientDescriptor` instance will be created in the parse command call, and a new `EditPatientCommand` instance will be created with the `EditPatientDescriptor` and the given `Index`.
 
 **Step 3**: The created `EditPatientCommand` instance is returned to `LogicManager` and its `execute` method is called.
@@ -250,23 +250,23 @@ The listing of all doctors/patient in the database is facilitated by `LogicManag
 
 * `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
-These operations are exposed in the Ui interface as `Ui#executeCommand(String)`.
+These operations are exposed in the Ui interface as `MainWindow#executeCommand(String)`.
 
 Given below is an example usage scenario and how the `ListDoctorCommand` mechanism behaves at each step.
 
-Step 1: The user inputs `list_d`. The application will display the `FilteredDoctorList`.
+**Step 1:** The user inputs `list_d`. The application will display the `FilteredDoctorList`.
 
 * The `list_d` command calls `MediConnectParser#parseCommand(String)` which recognizes the command word as `list_d`.
 
 * A new `ListDoctorCommand` instance will be created.
 
-Step 2: The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
+**Step 2:** The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
 
 * `ListDoctorCommand#execute(Model)` then calls `Model#updateFilteredDoctorList(Predicate<Doctor>)` with the predicate `PREDICATE_SHOW_ALL_DOCTORS`.
 
 * The `FilteredDoctorList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Doctor>)`.
 
-Step 3: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
+**Step 3:** A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 The example usage scenario for the list patients mechanisms would be similar to the scenario above.
 
@@ -293,7 +293,6 @@ The listing of appointments in MediConnect is facilitated by the `LogicManager`,
 * `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the Ui interface as `MainWindow#executeCommand(String)`.
-
 
 Given below is an example usage scenario and how the `ListAppointmentCommand` mechanism behaves at each step:
 
@@ -339,7 +338,7 @@ The `add_a` command calls `AddAppointmentCommandParser#parse(String)` which pars
 A new `AddAppointmentCommand` instance will be created with the correct `Appointment` object to be added.
 
 **Step 3**: The created `AddAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AddAppointmentCommand#execute(Model)` then calls `Model#addAppointment(Appointment)` and with the given `Appointment`.
+`AddAppointmentCommand#execute(Model)` then calls `Model#addAppointment(Appointment)` and with the newly created `Appointment`.
 
 The example usage scenario for the add patient and add doctor mechanisms would be similar to the scenario above.
 
@@ -356,6 +355,7 @@ The following activity diagram summarizes what happens when a user wants to add 
 ### Delete Appointment / Doctor / Patient feature
 
 **Introduction**
+
 This section describes the delete appointment/doctor/patient features.
 
 #### Implementation
@@ -365,16 +365,16 @@ The deletion of an appointment/doctor/patient from MediConnect is facilitated by
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
-Given below is an example usage scenario and how the add `Appointment` mechanism behaves at each step.
+Given below is an example usage scenario and how the delete `Appointment` mechanism behaves at each step.
 
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 **Step 2**: The user inputs `delete_a 2`  to delete an appointment into MediConnect.
-The `delete_a` command calls `DeleteAppointmentCommandParser#parse(String)` which parses the index argument which is the index of the appointment to delete.
+The `delete_a` command calls `DeleteAppointmentCommandParser#parse(String)` which returns index of the appointment to delete.
 A new `DeleteAppointmentCommand` instance will be created
 
 **Step 3**: The created `DeleteAppointmentCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`DeleteAppointmentCommand#execute(Model)` then calls `Model#deleteAppointment(Appointment)` and with the given `Index`.
+`DeleteAppointmentCommand#execute(Model)` then calls `Model#deleteAppointment(Appointment)` and with the appointment to be deleted.
 
 The example usage scenario for the delete patient and delete doctor mechanisms would be similar to the scenario above.
 
@@ -391,6 +391,7 @@ The following activity diagram summarizes what happens when a user wants to dele
 ### Edit remark feature
 
 **Introduction**
+
 This section describes the appointment/doctor/patient remark features.
 
 #### Implementation
@@ -406,11 +407,11 @@ Given below is an example usage scenario and how the edit `Remark` of an `Appoin
 
 **Step 2**: The user inputs `remark_a 2 r\follow up required` to edit the remark of the second appointment in the appointment list.
 The `remark_a` command calls `AppointmentRemarkCommandParser#parse(String)` which parses the parameters that is used to edit the remark of the appointment specified.
-A new `AppointmentRemarkCommand` instance will be created with the correct `Remark` object to be added to the appointment specified.
+A new `AppointmentRemarkCommand` instance will be created with the `Remark` object to be added to the appointment specified.
 
 **Step 3**: The created `AppointmentRemarkCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AppointmentRemarkCommand#execute(Model)` then calls `Model#setAppointment(Appointment)` and with the given `Remark`.
-The edited `Appointment` is then replaced in the `Database` by calling `Database#setAppointment(Appointment)`.
+`AppointmentRemarkCommand#execute(Model)` then calls `Model#setAppointment(Appointment, Appointment)` and with the given `Remark`.
+The edited `Appointment` is then replaced in the `Database` by calling `Database#setAppointment(Appointment, Appointment)`.
 
 The example usage scenario for the edit patient remark and edit doctor remark mechanisms would be similar to the scenario above.
 
@@ -441,11 +442,11 @@ Given below is an example usage scenario and how the add specialisation mechanis
 
 **Step 2**: The user inputs `list_d`. MediConnect will display the `FilteredDoctorList`.
 
-**Step 3**: The user inputs `add_tag_d 2 t\Orthopaedic` to add the prescription `Orthopaedic` to the doctor at index 2 in the displayed doctor list.
+**Step 3**: The user inputs `add_tag_d 2 t\Orthopaedic` to add the specialisation `Orthopaedic` to the doctor at index 2 in the displayed doctor list.
 The `add_tag_d` command calls `AddSpecialisationCommandParser#parse(String)` the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
 **Step 4**: The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
-`AddSpecialisationCommand#execute(Model)` then calls `Model#setDoctor(Doctor)` and with the given `Index` and the doctor with the updated specialisation.
+`AddSpecialisationCommand#execute(Model)` then calls `Model#setDoctor(Doctor, Doctor)` and with the doctor to update and the doctor with the updated specialisation.
 
 The example usage scenario for the add prescription and add medical condition mechanisms would be similar to the scenario above.
 
@@ -458,10 +459,13 @@ The following activity diagram summarizes what happens when a user wants to add 
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
 ### Delete Specialisation / Medical Condition / Prescription feature
+
+**Introduction**
+
 This section describes the delete specialisation/medical condition/prescription features.
 
 #### Implementation
-The deletion of a specialisation/medical condition/prescription to MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+The deletion of a specialisation/medical condition/prescription from MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
 
@@ -472,12 +476,12 @@ Given below is an example usage scenario and how the add `Specialisation` mechan
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 **Step 2**: The user inputs `delete_tag_d 2 t\Orthopaedic`  to delete a doctor's specialisation from MediConnect.
-The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which parses the index argument which is the index of the doctor to delete  
-A new `DeleteSpecialisationCommand` instance will be created
+The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which returns the index of the doctor to modify.
+A new `DeleteSpecialisationCommand` instance will be created.
 
 **Step 3**: The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteSpecialisationCommand#execute(Model)` then calls `Model#getFilteredDoctorList()` and retrieve the doctor with the given `Index`. 
-Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor)`.
+Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
 
 The example usage scenario for delete medical condition and delete prescriptions mechanisms would be similar to the scenario above.
 
@@ -488,6 +492,8 @@ The following activity diagram summarizes what happens when a user wants to dele
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### View Appointment / Doctor / Patient feature
+
+**Introduction**
 
 This section describes the feature that allows users to view the full details of appointments/doctors/patients in the MediConnect database by index.
 
@@ -519,9 +525,9 @@ It is also facilitated by `AppointmentWindow`, `DoctorWindow` and `PatientWindow
 
 Lastly, it is also facilitated by `CommandResult` which stores the boolean value `showAppointment`, `showDoctor` and `showPatient` and implement the following operations:
 
-- `CommandResult#isShowAppointment()`  —  Indicates if the command is View Appointment
-- `CommandResult#isShowDoctor()`  —  Indicates if the command is View Doctor
-- `CommandResult#isShowPatient()`  —  Indicates if the command is View Patient
+- `CommandResult#isShowAppointment()`  —  Indicates if the command is View Appointment.
+- `CommandResult#isShowDoctor()`  —  Indicates if the command is View Doctor.
+- `CommandResult#isShowPatient()`  —  Indicates if the command is View Patient.
 
 Given below is an example usage scenario and how the view patient mechanism behaves at each step.
 
@@ -999,6 +1005,7 @@ Use case ends.
 
 1. User requests to view a patient’s appointments.
 2. MediConnect shows the patient’s appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1021,6 +1028,7 @@ Use case ends.
 
 1. User requests to view a doctor’s list of  appointments. 
 2. MediConnect shows the doctor’s appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1043,6 +1051,7 @@ Use case ends.
 
 1. User requests to add a specific appointment between a patient and doctor. 
 2. MediConnect adds the appointment to the appointment list.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1065,6 +1074,7 @@ Use case ends.
 
 1. User requests to edit an appointment’s particulars. 
 2. MediConnect edits the appointment particulars.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1087,6 +1097,7 @@ Use case ends.
 
 1. User requests to delete an appointment from the appointment list.
 2. MediConnect deletes the appointment.
+3. MediConnect shows a success message to the User.
 
     Use case ends.
 
@@ -1150,6 +1161,7 @@ Use case ends.
     Use case ends.
 
 **Use case: UC24 Delete prescription**
+
 **MSS**
 
 1. User requests to delete a prescription from an appointment. 
@@ -1189,11 +1201,11 @@ Use case ends.
 ### Glossary
 
 * **Appointment**: A arranged meeting between a patient and a doctor at a particular date and time
-* **Doctor**: A person providing medical services at UHC
+* **Doctor**: A person providing medical services at a clinic
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of identification for patients and doctors in MediConnect
-* **Patient**: A person receiving medical services at UHC
-* **Receptionist**: A person handling administrative work at UHC, and is the target user of MediConnect
+* **Patient**: A person receiving medical services at a clinic
+* **Receptionist**: A person handling administrative work at a clinic, and is the target user of MediConnect
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1228,7 +1240,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There exist no patient with NRIC `T1258979J` in the database.
 
     2. Test case (Valid parameters): `add_p n\Bunny Cai Hong ic\T1258979J p\83425673`<br>
-       Expected: Patient successfully added into. Details of the added patient shown in the status message. The list of patient now consist of the added patient.
+       Expected: Patient successfully added into patient list. Details of the added patient shown in the status message. The list of patients now consists of the added patient.
 
     3. Test case (Missing parameter): `add_p n\Bunny Cai Hong ic\T1258979J`, `add_p ic\T1258979J p\83425673`, `add_p n\Bunny Cai Hong p\83425673` or any command with missing parameters<br>
        Expected: No patient is added. Error details shown in the status message.
@@ -1245,9 +1257,9 @@ testers are expected to do more *exploratory* testing.
     7. Test case (Repeated Parameter): `add_p n\Bunny Cai Hong ic\T1258979J p\83425673 ic\T1258979H` or any command with repeated parameter<br>
        Expected: Similar to previous.
 
-### Listing all patient
+### Listing all patients
 
-1. Listing all patient
+1. Listing all patients
 
     1. Prerequisites: Multiple patients in the patient list.
 
@@ -1257,34 +1269,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `list_p 512807`, `list_p xxfajkl`, `list_p n\Bunny Cai Hong` or any command with extra characters supplied<br>
        Expected: Similar to previous.
 
-### Listing appointments
-
-1. Listing all appointments
-
-    1. Prerequisites: Multiple patients in the patient list.
-
-    2. Test case: `list_a`<br>
-       Expected: List of appointment updates to show all appointment. Success message shown in the status message.
-
-    3. Test case (Additional characters): `list_a 512807`, `list_a xxfajkl`, `list_a n\Bunny Cai Hong` or any command with extra characters supplied<br>
-       Expected: List of appointments will not update. Error details shown in the status message.
-
-2. Listing all appointments by patient NRIC
-
-    1. Prerequisites: Multiple patients in the patient list. There exist a patient with NRIC `T1258979J` in the database.
-
-    2. Test case: `list_a pic\T1258979J`<br>
-       Expected: List of appointment with given patient NRIC shown. Success message shown in the status message.
-
-    3. Test case (Invalid NRIC): `list_a pic\2134`<br>
-       Expected: List of appointments will not update. Error details shown in the status message.
-
-    4. Test case (Repeated Parameter): `list_a pic\T1258979J pic\T1258979H`<br>
-       Expected: Similar to previous.
-
 ### Editing a patient
 
-1. Editing a patient name while all patients are being shown
+1. Editing a patient's name while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list.
 
@@ -1297,13 +1284,13 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x n\Bunny Cai Hong` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x n\Bunny Cai Hong` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
     6. Test case (Repeated Parameter): `edit_p 1 n\Bunny Cai Hong n\Cai Hong`<br>
        Expected: Similar to previous.
 
-2. Editing a patient NRIC while all patients are being shown
+2. Editing a patient's NRIC while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. There exist no patient with NRIC `T1258979J` in the database.
 
@@ -1316,7 +1303,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x ic\T1258979J` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x ic\T1258979J` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
    6. Test case (Repeated Parameter): `edit_p 1 ic\T1258979J ic\T1258979H`<br>
@@ -1335,7 +1322,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x p\83425673` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x p\83425673` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
    6. Test case (Repeated Parameter): `edit_p 1 p\83425673 p\109257290`<br>
@@ -1348,7 +1335,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. There exist a patient named `Jonathan`.
 
     2. Test case: `find_p jonathan`<br>
-       Expected: Patient list updates to show all patient named jonathan. Success message shown in the status message.
+       Expected: Patient list updates to show all patients named jonathan. Success message shown in the status message.
 
     3. Test case (Missing keyword): `find_p`<br>
        Expected: Patient list will not update. Error details shown in the status message.
@@ -1374,15 +1361,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the list.
 
-    5. Test case: `view_p 1`<br>
+    2. Test case: `view_p 1`<br>
        Expected: Patient window pop up with details of the first patient from the list. Details of the selected patient shown in the status message.
 
-    2. Test case (Invalid Index): `view_p x` (where x is smaller than one or larger than the list size)<br>
+    3. Test case (Invalid Index): `view_p x` (where x is smaller than one or larger than the list size)<br>
        Expected: Patient window does not pop up. Error details shown in the status message.
 
 ### Adding a medical condition
 
-1. Adding a medical condition to patient while all patients are being shown
+1. Adding a medical condition to a patient while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. Ensure the first patient does not have the medical condition "Depression".
 
@@ -1400,7 +1387,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a medical condition
 
-1. Deleting a medical condition from patient while all patients are being shown
+1. Deleting a medical condition from a patient while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. Ensure the first patient has the medical condition "Depression".
 
@@ -1416,9 +1403,9 @@ testers are expected to do more *exploratory* testing.
     5. Test case (Multiple parameters): `delete_tag_p 1 t\Depression t\Depression`<br>
        Expected: Similar to previous.
 
-### Editing a patient remark
+### Editing a patient's remark
 
-1. Editing a medical condition from patient while all patients are being shown
+1. Editing a patient's remark while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list.
 
@@ -1429,6 +1416,340 @@ testers are expected to do more *exploratory* testing.
        Expected: Remark successfully removed from the first patient. Success message shown in the status message.
 
     4. Test case (Missing index): `remark_p r\Patient undergoing speech therapy`<br>
+       Expected: Remark is not deleted. Error details shown in the status message.
+
+### Adding a doctor
+
+1. Adding a doctor
+
+    1. Prerequisites: There exist no doctor with NRIC `T1258979J` in the database.
+
+    2. Test case (Valid parameters): `add_d n\Bunny Cai Hong ic\T1258979J`<br>
+       Expected: Doctor successfully added into doctor list. Details of the added patient shown in the status message. The list of doctors now consists of the added doctor.
+
+    3. Test case (Missing parameter): `add_d n\Bunny Cai Hong`, `add_d ic\T1258979J` or any command with missing parameters<br>
+       Expected: No patient is added. Error details shown in the status message.
+
+    4. Test case (Invalid Name): `add_d n\ ic\T1258979J`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid NRIC): `add_d n\Bunny Cai Hong ic\S1979Y`<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `add_d n\Bunny Cai Hong ic\T1258979J ic\T1258979H` or any command with repeated parameter<br>
+       Expected: Similar to previous.
+
+### Listing all doctors
+
+1. Listing all doctors
+
+    1. Prerequisites: Multiple doctors in the doctor list.
+
+    2. Test case: `list_d`<br>
+       Expected: List of doctor updates to show all doctors. Success message shown in the status message.
+
+    3. Test case: `list_d 512807`, `list_d xxfajkl`, `list_d n\Bunny Cai Hong` or any command with extra characters supplied<br>
+       Expected: Similar to previous.
+
+
+### Editing a doctor
+
+1. Editing a doctor's name while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list.
+
+    2. Test case (Valid Name): `edit_d 1 n\Bunny Cai Hong`<br>
+       Expected: First doctor's name successfully edited. Details of the edited doctor shown in the status message.
+
+    3. Test case (Missing index): `edit_d n\Bunny Cai Hong`<br>
+       Expected: Doctor's name is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_d x n\Bunny Cai Hong` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_d 1 n\Bunny Cai Hong n\Cai Hong`<br>
+       Expected: Similar to previous.
+
+2. Editing a doctor's NRIC while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. There exist no doctor with NRIC `T1258979J` in the database.
+
+    2. Test case (Valid NRIC): `edit_d 1 ic\T1258979J`<br>
+       Expected: First doctor's NRIC successfully edited. Details of the edited doctor shown in the status message. Appointments with doctor's old NRIC will be updated to the new doctor's NRIC.
+
+    3. Test case (Missing index): `edit_d ic\T1258979J`<br>
+       Expected: Doctor's NRIC is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_d x ic\T1258979J` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_d 1 ic\T1258979J ic\T1258979H`<br>
+       Expected: Similar to previous.
+
+### Finding a doctor
+
+1. Finding a doctor with a given name `Jonathan`
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. There exist a doctor named `Jonathan`.
+
+    2. Test case: `find_d jonathan`<br>
+       Expected: Doctor list updates to show all doctors named jonathan. Success message shown in the status message.
+
+    3. Test case (Missing keyword): `find_d`<br>
+       Expected: Doctor list will not update. Error details shown in the status message.
+
+### Deleting a doctor
+
+1. Deleting a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the list.
+
+    2. Test case: `delete_d 1`<br>
+       Expected: First doctor is deleted from the list. Details of the deleted doctor shown in the status message.
+
+    3. Test case (Missing Index): `delete_d`<br>
+       Expected: No doctor is deleted. Error details shown in the status message.
+
+    4. Test case (Invalid Index): `delete_d x`(where x is smaller than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Viewing a doctor
+
+1. Viewing a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the list.
+
+    2. Test case: `view_d 1`<br>
+       Expected: Doctor window pop up with details of the first doctor from the list. Details of the selected doctor shown in the status message.
+
+    3. Test case (Invalid Index): `view_d x` (where x is smaller than one or larger than the list size)<br>
+       Expected: Doctor window does not pop up. Error details shown in the status message.
+
+### Adding a specialisation
+
+1. Adding a specialisation to a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. Ensure the first doctor does not have the specialisation "Orthopaedic".
+
+    2. Test case: `add_tag_d 1 t\Orthopaedic`<br>
+       Expected: Specialisation successfully added to first doctor. Details of the specialisation shown in the status message.
+
+    3. Test case (Missing index): `add_tag_d t\Orthopaedic`<br>
+       Expected: Specialisation is not added. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `add_tag_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `add_tag_d 1 t\Orthopaedic t\Orthopaedic`<br>
+       Expected: Similar to previous.
+
+### Deleting a specialisation
+
+1. Deleting a specialisation from a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. Ensure the first doctor has the specialisation "Orthopaedic".
+
+    2. Test case: `delete_tag_d 1 t\Orthopaedic`<br>
+       Expected: Specialisation successfully deleted from the first doctor. Details of the specialisation shown in the status message.
+
+    3. Test case (Missing index): `delete_tag_d t\Orthopaedic`<br>
+       Expected: Specialisation is not deleted. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `delete_tag_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `delete_tag_d 1 t\Orthopaedic t\Orthopaedic`<br>
+       Expected: Similar to previous.
+
+### Editing a doctor's remark
+
+1. Editing a doctor's remark while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list.
+
+    2. Test case: `remark_d 1 r\Doctor away from 2023-11-01 to 2023-11-15`<br>
+       Expected: Remark successfully added to the first doctor. Success message shown in the status message.
+
+    3. Test case: `remark_d 1 r\` or `remark_d 1`<br>
+       Expected: Remark successfully removed from the first doctor. Success message shown in the status message.
+
+    4. Test case (Missing index): `remark_d r\Doctor away from 2023-11-01 to 2023-11-15`<br>
+       Expected: Remark is not deleted. Error details shown in the status message.
+
+### Adding an appointment
+
+1. Adding an appointment
+
+    1. Prerequisites: There exist no appointment with patient's NRIC `S8712461K`, doctor's NRIC `T1258979J` from `2023-09-11 07:30` to `2023-09-11 08:00` in the database. There exists a doctor with NRIC `T1258979J` in the doctor list and a patient with NRIC `S8712461K`.
+
+    2. Test case (Valid parameters): `add_a dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Appointment successfully added into appointment list. Details of the added appointment shown in the status message. The list of appointments now consists of the added appointment.
+
+    3. Test case (Missing parameter): `add_a dic\T1258979J pic\S8712461K`, `add_a dic\T1258979J from\2023-09-11 07:30 to\2023-09-11 08:00` or any command with missing parameters<br>
+       Expected: No appointment is added. Error details shown in the status message.
+
+    4. Test case (Invalid patient NRIC): `add_a dic\T1258979J pic\S871461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid doctor NRIC): `add_a dic\T125899J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    6. Test case (Invalid start time): `add_a dic\T1258979J pic\S8712461K from\2023-13-09 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    7. Test case (Invalid end time): `add_a dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-13-11 08:00`<br>
+      Expected: Similar to previous.
+
+    8. Test case (Repeated Parameter): `add_a dic\T1258979J dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00` or any command with repeated parameter<br>
+       Expected: Similar to previous.
+
+### Listing appointments
+
+1. Listing all appointments
+
+    1. Prerequisites: Multiple appointments in the appointment list.
+
+    2. Test case: `list_a`<br>
+       Expected: List of appointments updates to show all appointment. Success message shown in the status message.
+
+    3. Test case (Additional characters): `list_a 512807`, `list_a xxfajkl`, `list_a n\Bunny Cai Hong` or any command with extra characters supplied<br>
+       Expected: List of appointments will not update. Error details shown in the status message.
+
+2. Listing all appointments by patient NRIC
+
+    1. Prerequisites: Multiple patients in the patient list. There exist a patient with NRIC `T1258979J` in the database.
+
+    2. Test case: `list_a pic\T1258979J`<br>
+       Expected: List of appointment with given patient NRIC shown. Success message shown in the status message.
+
+    3. Test case (Invalid NRIC): `list_a pic\2134`<br>
+       Expected: List of appointments will not update. Error details shown in the status message.
+
+    4. Test case (Repeated Parameter): `list_a pic\T1258979J pic\T1258979H`<br>
+       Expected: Similar to previous.
+
+### Editing an appointment
+
+1. Editing the doctor's NRIC of an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. There exists a doctor with NRIC `T0123456N` in the database.
+
+    2. Test case (Valid doctor's NRIC): `edit_a 1 dic\T0123456N`<br>
+       Expected: Doctor's NRIC of the first appointment successfully edited. Details of the edited appointment shown in the status message.
+
+    3. Test case (Missing index): `edit_a dic\T0123456N`<br>
+       Expected: Doctor's NRIC of the first appointment is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_a x dic\T0123456N` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_a 1 dic\T0123456N dic\T0123456N`<br>
+       Expected: Similar to previous.
+
+2. Editing a patient's NRIC of an appointment while all appointments are being shown
+
+    1. Prerequisites: List all doctors using the `list_a` command. Multiple appointments in the appointment list. There exist a patient with NRIC `T0123456N` in the database.
+
+    2. Test case (Valid patient's NRIC): `edit_a 1 pic\T0123456N`<br>
+       Expected: Patient's NRIC of the first appointment successfully edited. Details of the edited appointment shown in the status message.
+
+    3. Test case (Missing index): `edit_a pic\T0123456N`<br>
+       Expected: Patient's NRIC of the first appointment is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_a x pic\T0123456N` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_a 1 pic\T0123456N pic\T0123456N`<br>
+       Expected: Similar to previous.
+
+### Deleting an appointment
+
+1. Deleting an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the list.
+
+    2. Test case: `delete_a 1`<br>
+       Expected: First appointment is deleted from the list. Details of the deleted appointment shown in the status message.
+
+    3. Test case (Missing Index): `delete_a`<br>
+       Expected: No appointment is deleted. Error details shown in the status message.
+
+    4. Test case (Invalid Index): `delete_a x`(where x is smaller than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Viewing an appointment
+
+1. Viewing an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the list.
+
+    2. Test case: `view_a 1`<br>
+       Expected: Appointment window pop up with details of the first appointment from the list. Details of the selected appointment shown in the status message.
+
+    3. Test case (Invalid Index): `view_a x` (where x is smaller than one or larger than the list size)<br>
+       Expected: Appointment window does not pop up. Error details shown in the status message.
+
+### Adding a prescription
+
+1. Adding a prescription to an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment does not have the prescription "Panadol".
+
+    2. Test case: `add_tag_a 1 t\Panadolc`<br>
+       Expected: Prescription successfully added to first appointment. Details of the prescription shown in the status message.
+
+    3. Test case (Missing index): `add_tag_a t\Panadol`<br>
+       Expected: Prescription is not added. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `add_tag_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `add_tag_a 1 t\Panadol t\Panadol`<br>
+       Expected: Similar to previous.
+
+### Deleting a prescription
+
+1. Deleting a prescription from an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment has the prescription "Panadol".
+
+    2. Test case: `delete_tag_a 1 t\Panadol`<br>
+       Expected: Prescription successfully deleted from the first appointment. Details of the prescription shown in the status message.
+
+    3. Test case (Missing index): `delete_tag_a t\Panadol`<br>
+       Expected: Prescription is not deleted. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `delete_tag_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `delete_tag_a 1 t\Panadol t\Panadol`<br>
+       Expected: Similar to previous.
+
+### Editing an appointment's remark
+
+1. Editing an appointment's remark while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list.
+
+    2. Test case: `remark_a 1 r\Patient needs to follow-up`<br>
+       Expected: Remark successfully added to the first appointment. Success message shown in the status message.
+
+    3. Test case: `remark_a 1 r\` or `remark_a 1`<br>
+       Expected: Remark successfully removed from the first appointment. Success message shown in the status message.
+
+    4. Test case (Missing index): `remark_a r\Patient needs to follow-up`<br>
        Expected: Remark is not deleted. Error details shown in the status message.
 
 ### Saving data
