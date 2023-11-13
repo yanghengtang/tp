@@ -178,6 +178,10 @@ The following table gives an overview of what each parameter used in the Feature
 | REMARK            | The remark of the appointment/patient/doctor                         | Accepts all input                                                                                                                           |
 | KEYWORD           | The keyword of doctor/patient                                        | Accepts all input                                                                                                                           |
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+For medical conditions with more than 1 word, users can concatenate the words of the condition!
+</div>
+
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
 </div>
