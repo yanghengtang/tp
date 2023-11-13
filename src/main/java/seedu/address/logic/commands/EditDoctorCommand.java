@@ -29,7 +29,7 @@ public class EditDoctorCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the doctor identified "
             + "by the index number used in the displayed doctor list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_NRIC + "NRIC]\n"
             + "Example: " + COMMAND_WORD + " 1 "

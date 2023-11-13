@@ -23,7 +23,7 @@ public class AddMedicalConditionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a medical condition to the patient identified "
             + "by the index number used in the last patient listing. "
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + PREFIX_TAG + "MEDICAL CONDITION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "diabetes";

@@ -23,7 +23,7 @@ public class DeleteMedicalConditionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a medical condition of the patient "
             + "by the index number used in the last patient listing. "
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + PREFIX_TAG + "MEDICAL CONDITION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "diabetes";

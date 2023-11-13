@@ -25,7 +25,7 @@ public class DoctorRemarkCommand extends Command {
             + ": Edits the remark of the doctor identified "
             + "by the index number used in the last doctor listing. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Doctor will not be in clinic until  30/12/2023.";
