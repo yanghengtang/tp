@@ -35,3 +35,5 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [PR #161](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/161#discussion_r1372966211), [PR #189](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/189#discussion_r1379868408), [PR #269](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/269#discussion_r1385095244)
   * Contributed to forum discussions (examples: [#255](https://github.com/nus-cs2103-AY2324S1/forum/issues/225), [#376](https://github.com/nus-cs2103-AY2324S1/forum/issues/376), [#444](https://github.com/nus-cs2103-AY2324S1/forum/issues/444))
   * Reported bugs and suggestions for other teams in the class (examples: [PE-Dry Run](https://github.com/yanghengtang/ped))
+  * Some parts of the history feature I added was adopted by several other classmates ([Inaccuracy in error messages bug](https://github.com/AY2324S1-CS2103T-F12-2/tp/issues/149), [Invalid inputs not throwing errors bug](https://github.com/AY2324S1-CS2103T-F12-2/tp/issues/146))
+  * 
