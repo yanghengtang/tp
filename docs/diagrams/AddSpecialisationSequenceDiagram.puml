@@ -32,7 +32,7 @@ activate AddSpecialisationCommandParser
 
 
 create AddSpecialisationCommand
-AddSpecialisationCommandParser -> AddSpecialisationCommand : AddSpecialisationCommand(2, Orthopaedic)
+AddSpecialisationCommandParser -> AddSpecialisationCommand : AddSpecialisationCommand()
 activate AddSpecialisationCommand
 
 AddSpecialisationCommand --> AddSpecialisationCommandParser : a
