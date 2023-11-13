@@ -42,10 +42,10 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonDatabaseStorage .up.|> DatabaseStorage
 JsonDatabaseStorage ..> JsonSerializableDatabase
 JsonSerializableDatabase --> "*" JsonAdaptedData
-JsonAdaptedAppointment .up.|> JsonAdaptedData
-JsonAdaptedPerson .up.|> JsonAdaptedData
-JsonAdaptedPatient .up.|> JsonAdaptedPerson
-JsonAdaptedDoctor .up.|> JsonAdaptedPerson
+JsonAdaptedAppointment -up-|> JsonAdaptedData
+JsonAdaptedPerson -up-|> JsonAdaptedData
+JsonAdaptedPatient -up-|> JsonAdaptedPerson
+JsonAdaptedDoctor -up-|> JsonAdaptedPerson
 JsonAdaptedData --> "*" JsonAdaptedTag
 
 @enduml
