@@ -1821,3 +1821,11 @@ Only the last supplied parameter is taken as the new remark while the others are
 
 Since there can only be 1 remark for each appointment/doctor/patient, it would be useful to limit the command to only accept 1 new remark.
 This is done by checking for multiple occurrences of `r\ ` and displaying an error message if there are more than 1.
+
+### Making medical conditions/prescriptions/specialisations case-insensitive
+
+Currently, in MediConnect, medical conditions/prescriptions/specialisations are case-sensitive. For example, if patient `John Doe` has the medical condition `depression`,
+adding a medical condition `Depression` to `John Doe` would not cause any errors. 
+
+To enhance usability, it would be useful if the medical conditions/prescriptions/specialisations are treated in a case-insensitive manner. This can be done by converting each medical condition/specialisation/prescription
+to lowercase first before checking for duplicates.
