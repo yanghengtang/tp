@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete_tag_d 2 t\Orthopaedic")
+[-> LogicManager : execute("delete_tag_d \n2 t\Orthopaedic")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("delete_tag_d 2 t\Orthopaedic")
+LogicManager -> MediConnectParser : parseCommand("delete_tag_d \n2 t\Orthopaedic")
 activate MediConnectParser
 
 create DeleteSpecialisationCommandParser

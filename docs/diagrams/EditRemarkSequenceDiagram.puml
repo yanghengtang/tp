@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remark_a 2 r\\follow up required")
+[-> LogicManager : execute("remark_a 2 \nr\\follow up required")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("remark_a 2 r\\follow up required")
+LogicManager -> MediConnectParser : parseCommand("remark_a 2 \nr\\follow up required")
 activate MediConnectParser
 
 create AppointmentRemarkCommandParser

@@ -21,7 +21,7 @@ activate MediConnectParser
 
 create ListDoctorCommand
 
-MediConnectParser -> ListDoctorCommand : ListDoctorsCommand()
+MediConnectParser -> ListDoctorCommand
 activate ListDoctorCommand
 
 ListDoctorCommand --> MediConnectParser : d
