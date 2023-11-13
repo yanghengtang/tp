@@ -658,7 +658,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Listing all appointments, or by patient or doctor NRIC : `list_a`
 
-Allows you to either display all the appointments in the system, or the list of appointments of a specified patient/doctor has in the system.
+Allows you to either display all the appointments in the system or the list of appointments of a specified patient/doctor in the system.
 
 **Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
@@ -681,7 +681,10 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 
 **Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [to\END_TIME]`
 
-* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the appointment at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed appointment list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -689,7 +692,7 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 *  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` edits the patient and doctor NRIC of the 1st appointment in the appointment list to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
 
 **Sample Usage**:
-1. Assuming you want to edit the 4th Appointment, changing the doctor NRIC from "S9823343G" to "S9923334G".
+1. Assuming you want to edit the 4th Appointment, change the doctor NRIC from "S9823343G" to "S9923334G".
 
 2. Enter the following command:
 ```
@@ -711,13 +714,14 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ### Viewing details of an appointment : `view_a`
 
-Allows you to view details, such as basic information, prescription given and remark, of a specific appointment in the system.
+Allows you to view details, such as basic information, prescription given, and remark, of a specific appointment in the system.
 
 **Format**: `view_a INDEX`
 
 * Displays the full details of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed appointment list.
 
 **Examples**:
 * Entering `list_a` followed by `view_a 2` shows the details of the 2nd appointment in the appointment list.
@@ -735,6 +739,9 @@ Allows you to delete the specified appointment from the system.
 **Format**: `delete_a INDEX`
 
 * Deletes the appointment with the specified `INDEX`.
+* The index refers to the index number shown in the appointment list.
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 
 **Examples**:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
@@ -749,7 +756,8 @@ Allows you to add a prescription for an appointment in the system.
 
 * Adds a prescription to the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * Only one prescription can be added at a time.
 
 **Examples**:
@@ -766,7 +774,8 @@ Allows you to delete a prescription from an appointment in the system.
 
 * Deletes the prescription from the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * The given `PRESCRIPTION` must be a present prescription of the specified appointment.
 * Only one prescription can be deleted at a time.
 
@@ -784,7 +793,8 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 
 * Edits the remark of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * The appointment's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -803,7 +813,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ## General Features
 
-These are the list of general features built into MediConnect:
+This is the list of general features built into MediConnect:
 - [Help](#viewing-help--help)
 - [Exit](#exiting-the-program--exit)
 - [Saving the data](#saving-the-data)
@@ -840,7 +850,7 @@ Back to [General Features](#general-features).
 MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: :information_source:
-If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file make its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 Back to [General Features](#general-features).
@@ -852,7 +862,8 @@ Back to [General Features](#general-features).
 # FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediConnect home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous MediConnect home folder.
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -861,7 +872,7 @@ Back to [Table of Contents](#table-of-contents).
 # Known issues
 
 ### 1. Refreshing the View Window after updating details
-If you have any of the Appointment/Doctor/Patient window opened, and you update any of the details of the selected 
+If you have any of the Appointment/Doctor/Patient windows opened, and you update any of the details of the selected 
 appointment/doctor/patient, the view window will not reflect the changes. To refresh and see the updated details,
 run the respective view appointment/doctor/patient command again.
 
