@@ -1771,29 +1771,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The database.json file in the data directory must exist.
    
-   2. Test case: Delete the database.json file
+   2. Test case: Delete the database.json file.<br>
       Expected: The app launches successfully, populated with the sample data.
    
-   3. Test case: Delete the contents of the database.json file
+   3. Test case: Delete the contents of the database.json file.<br>
       Expected: The app launches successfully, populated with no data.
    
-   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.
+   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.<br>
       Expected: Similar to previous.
 
 2. Dealing with wrongly edited data files
 
    1. Prerequisites: The database.json file in the data directory must exist.
    
-   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)
+   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)<br>
       Expected: The app launches successfully, populated with no data.
    
-   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)
+   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)<br>
       Expected: Similar to previous.
    
-   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)
+   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)<br>
       Expected: Similar to previous. 
    
-   5. Test case: Edit the nric of a patient without editing the corresponding appointments.
+   5. Test case: Edit the nric of a patient without editing the corresponding appointments.<br>
       Expected: Similar to previous.
 
 
