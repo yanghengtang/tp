@@ -2,16 +2,16 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User enters DeleteXYZCommand with a specified index;
+:User enters DeleteXYZCommand with a specified index and \ntag to be deleted;
 floating note right
-    XYZ = Medical Condition, Specialisations or Prescriptions
+    XYZ = MedicalCondition, Specialisation or Prescription
     ABC = Appointment, Doctor or Patient
 end note
 :MediConnectParser parses the command;
-:DeleteXYZCommandParser parses the index specified provided;
+:DeleteXYZCommandParser parses the index specified and tag provided;
 if () then ([command is valid])
   :XYZ item is removed from ABC with the specified index;
-  :The Existing ABC in database is replaced with edited ABC \n and FilteredABCList is updated;
+  :The existing ABC in database is replaced with edited ABC \n and FilteredABCList is updated;
 else ([command is invalid])
   :Outputs error message;
 endif

@@ -7,7 +7,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":ViewPatientCommandParser" as ViewPatientCommandParser LOGIC_COLOR
 participant "vp:ViewPatientCommand" as ViewPatientCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -59,12 +59,12 @@ create CommandResult
 ViewPatientCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewPatientCommand
+CommandResult --> ViewPatientCommand : result
 deactivate CommandResult
 
 ViewPatientCommand --> LogicManager : result
 deactivate ViewPatientCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
