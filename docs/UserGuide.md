@@ -188,8 +188,8 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 This is the list of features that help you manage patient records:
 - [Adding patient](#adding-a-patient-add_p)
-- [Listing patient](#listing-all-patient--list_p)
-- [Viewing patient details](#viewing-details-of-a-patient--view_p)
+- [Listing patient](#listing-all-patients--list_p)
+- [Viewing patient](#viewing-details-of-a-patient--view_p)
 - [Editing patient](#editing-a-patient--edit_p)
 - [Finding patient](#locating-patients-by-name--find_p)
 - [Deleting patient](#deleting-a-patient--delete_p)
@@ -405,8 +405,8 @@ Back to [Patient Management Features](#patient-management-features).
 
 This is the list of features that help you manage doctor records:
 - [Adding doctor](#adding-a-doctor--add_d)
-- [Listing doctor](#listing-all-doctor--list_d)
-- [Viewing doctor](#viewing-a-doctor--view_d)
+- [Listing doctor](#listing-all-doctors--list_d)
+- [Viewing doctor](#viewing-details-of-a-doctor--view_d)
 - [Editing doctor](#editing-a-doctor--edit_d)
 - [Finding doctor](#locating-doctors-by-name--find_d)
 - [Deleting doctor](#deleting-a-doctor--delete_d)
@@ -617,7 +617,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 This is the list of features that help you manage appointment records:
 - [Adding appointment](#adding-an-appointment--add_a)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
-- [Viewing appointment](#viewing-an-appointment--view_a)
+- [Viewing appointment](#viewing-details-of-an-appointment--view_a)
 - [Editing appointment](#editing-an-appointment--edit_a)
 - [Deleting appointment](#deleting-an-appointment--delete_a)
 - [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--add_tag_a)
