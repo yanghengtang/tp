@@ -471,7 +471,7 @@ The following activity diagram summarizes what happens when a user wants to add 
 
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
-### Delete Specialisation / Medical Condition / Prescription feature
+### Delete Specialisation / Medical condition / Prescription feature
 
 **Introduction**
 
@@ -489,19 +489,21 @@ Given below is an example usage scenario and how the add `Specialisation` mechan
 **Step 1**: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 **Step 2**: The user inputs `delete_tag_d 2 t\Orthopaedic`  to delete a doctor's specialisation from MediConnect.
-The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which returns the index of the doctor to modify.
+The `delete_tag_d` command calls `DeleteSpecialisationCommandParser#parse(String)` which returns the index and specialisation of the doctor to be deleted.
 A new `DeleteSpecialisationCommand` instance will be created.
 
 **Step 3**: The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteSpecialisationCommand#execute(Model)` then calls `Model#getFilteredDoctorList()` and retrieve the doctor with the given `Index`. 
-Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
+Then, the specified specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
 
-The example usage scenario for delete medical condition and delete prescriptions mechanisms would be similar to the scenario above.
+The example usage scenario for delete medical condition and delete prescription mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the delete specialisation operation would work and will be similar to deletion of medical condition and prescription:
+
 ![DeleteSpecialisationSequenceDiagram](images/DeleteSpecialisationSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user wants to delete a specialisation/medical condition/prescription:
+
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### View Appointment / Doctor / Patient feature
