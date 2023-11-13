@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Highlights: When a doctor's/patient's NRIC is edited, the changes are reflected in the appointments.
     When a doctor/patient is removed, the corresponding appointments are also removed.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=derek&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=derekjxtan&tabRepo=AY2324S1-CS2103T-T08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=derekjxtan&breakdown=true)
 
 * **Project management**:
   * Release Management
