@@ -2,7 +2,7 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-box NewLogic LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":ListAppointmentCommandParser" as ListAppointmentCommandParser LOGIC_COLOR
@@ -39,19 +39,19 @@ ListAppointmentCommandParser -> ListAppointment :
 activate ListAppointment
 
 create AppointmentEqualPatientNricPredicate
-ListAppointment -> AppointmentEqualPatientNricPredicate : AppointmentEqualPatientNricPredicate("S9912343G")
+ListAppointment -> AppointmentEqualPatientNricPredicate
 activate  AppointmentEqualPatientNricPredicate
 AppointmentEqualPatientNricPredicate --> ListAppointment : patientPredicate
 deactivate AppointmentEqualPatientNricPredicate
 
 create AppointmentEqualDoctorNricPredicate
-ListAppointment -> AppointmentEqualDoctorNricPredicate : AppointmentEqualDoctorNricPredicate("S0548254G")
+ListAppointment -> AppointmentEqualDoctorNricPredicate
 activate AppointmentEqualDoctorNricPredicate
 AppointmentEqualDoctorNricPredicate --> ListAppointment : doctorPredicate
 deactivate AppointmentEqualDoctorNricPredicate
 
 create AppointmentFilterByNricPredicate
-ListAppointment -> AppointmentFilterByNricPredicate : AppointmentFilterByNricPredicate(patientPredicate, doctorPredicate)
+ListAppointment -> AppointmentFilterByNricPredicate
 activate AppointmentFilterByNricPredicate
 AppointmentFilterByNricPredicate --> ListAppointment : predicate
 deactivate AppointmentFilterByNricPredicate
