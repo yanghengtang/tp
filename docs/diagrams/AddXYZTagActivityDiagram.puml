@@ -11,7 +11,7 @@ end note
 :AddXYZCommandParser parses the index specified and tag provided;
 if () then ([command is valid])
   :XYZ item is added to ABC with the specified index;
-  :The Existing ABC in database is replaced with edited ABC \n and FilteredABCList is updated;
+  :The existing ABC in database is replaced with edited ABC \nand FilteredABCList is updated;
 else ([command is invalid])
   :Parser throws error message;
 endif
