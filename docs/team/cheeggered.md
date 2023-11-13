@@ -20,12 +20,23 @@ Given below are my contributions to the project.
     * Justification: Allows receptionists to remove patients from the database and also amend errors made when adding a patient.
     * Highlights: To maximise the convenience of the edit patient feature, the inputs to the edit patient command are optional (minimally 1 input required)
 
+  * Added the ability to add/delete a patient's tag through the add/delete medical condition command.
+    * What it does: Allows users to add/delete a tag to/from an existing patient in the database.
+    * Justification: Allows receptionists to add/delete medical conditions to the patient.
+    * Highlights: Receptionists are able to record the medical conditions of their patient.
+
+  * Edit Patient's Remark
+    * What it does: Edit the remark of a patient
+    * Justification: It allows us to edit the remark of a patient in the database.
+    * Highlights: We are able to edit a patients remark to store additional information about the patient.
+
+
   * Added the ability to find the patient by keyword.
     * What it does: Allows users to find patients by the entered keyword. If no arguments are provided, an error message is returned.
     * Justification: This allows the receptionists to find a patient through their name.
     * Highlights: To maximise the flexibility of this feature, the keyword is case-insensitive.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=cheeggered&breakdown=true)
 
 * **Project management**:
   * 
