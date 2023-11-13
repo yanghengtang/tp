@@ -207,7 +207,7 @@ This section describes the feature that allows users to find doctors/patients in
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` — Executes the given user String input and returns a CommandResult
+* `LogicManager#execute(String)` — Executes the given user String input and returns a CommandResult.
 
 These operations are exposed in the UI interface as `MainWindow#executeCommand(String)`.
 
@@ -233,9 +233,9 @@ The following sequence diagram shows how the find doctor operation would work:
 
 ![FindDoctorSequence](images/FindDoctorSequence.png)
 
-The sequence diagram for the find patient operation would be similar
+The sequence diagram for the find patient operation would be similar.
 
-The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
+The following activity diagram summarizes what happens when a user wants to find doctors/patients:
 
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
@@ -287,7 +287,7 @@ The following activity diagram summarizes what happens when a user wants to list
 
 **Introduction**
 
-This section describes the feature that allows users to list appointments in the MediConnect database. Users can either list all appointments or filter them based on the NRIC of doctors or patients.
+This section describes the feature that allows users to list appointments in the MediConnect database. Users can either list all appointments or filter them based on the NRIC of the doctor or/and patient.
 
 #### Implementation
 
@@ -302,14 +302,15 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
 **Step 1**: The user inputs `list_a` to list all appointments or `list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC` to filter appointments.
 * The `list_a` command triggers `MediConnectParser#parseCommand(String)`, which identifies the command word and calls `ListAppointmentCommandParser#parse(String)` to handle the arguments.
 
-**Step 2**: The `ListAppointmentCommandParser#parse(String)` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC. Based on these, it creates appropriate `Predicate` objects.
+**Step 2**: The `ListAppointmentCommandParser#parse(String)` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC. Based on the presence of the doctor/patient's NRIC, it will affect whether their predicate `AppointmentEqualDoctorNricPredicate`/`AppointmentEqualPatientNricPredicate` is `PREDICATE_SHOW_ALL_DOCTORS`/`PREDICATE_SHOW_ALL_PATIENTS` or the predicate of the specified doctor/patient's NRIC.
 
-**Step 3**: A new `ListAppointmentCommand` instance is created using the `Predicate` object(s).
+**Step 3**: A new `ListAppointmentCommand` instance is created using the `AppointmentFilterByNricPredicate` that is constructed with `AppointmentEqualDoctorNricPredicate` and `AppointmentEqualPatientNricPredicate`.
 
 **Step 4**: The created `ListAppointmentCommand` instance is returned to `LogicManager`, and its execute method is called.
-* `ListAppointmentCommand#execute(Model)` filters the list of appointments in `Model` using the specified predicate(s).
+* `ListAppointmentCommand#execute(Model)` filters the list of appointments in `Model` using the `AppointmentFilterByNricPredicate` predicate.
+* The `FilteredAppointmentList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Appointment>)`.
 
-**Step 5**: The filtered list is displayed to the user through the UI.
+**Step 5:** A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 **UML Diagrams**
 
@@ -317,7 +318,7 @@ The following sequence diagram shows how the list appointment operation would wo
 
 ![ListPatientSequence](images/ListAppointmentSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to list a new appointment:
+The following activity diagram summarizes what happens when a user wants to list appointment(s):
 
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
