@@ -2,7 +2,7 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-box NewLogic LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":FindDoctorCommandParser" as FindDoctorCommandParser LOGIC_COLOR
@@ -37,7 +37,7 @@ FindDoctorCommandParser -> FindDoctor :
 activate FindDoctor
 
 create NameContainsKeywordsDoctorPredicate
-FindDoctor -> NameContainsKeywordsDoctorPredicate : NameContainsKeywordsDoctorPredicate([John])
+FindDoctor -> NameContainsKeywordsDoctorPredicate
 activate NameContainsKeywordsDoctorPredicate
 NameContainsKeywordsDoctorPredicate --> FindDoctor : predicate
 deactivate NameContainsKeywordsDoctorPredicate
