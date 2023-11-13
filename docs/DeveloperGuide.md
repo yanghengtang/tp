@@ -46,7 +46,7 @@ The bulk of the app's work is done by the following four components:
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -166,7 +166,7 @@ This section describes the feature that allows users to edit appointments/doctor
 
 #### Implementation
 
-The proposed edit appointment/doctors/patient mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
+The proposed edit appointment/doctors/patients mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -201,7 +201,7 @@ The following activity diagram summarizes what happens when a user wants to edit
 
 **Introduction**
 
-This section describes the feature that allows users to find doctors/patient in the MediConnect database by name.
+This section describes the feature that allows users to find doctors/patients in the MediConnect database by name.
 
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
@@ -238,7 +238,7 @@ The following activity diagram summarizes what happens when a user wants to find
 
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
-### List Doctors / Patients
+### List Doctor / Patients
 
 **Introduction**
 
@@ -246,7 +246,7 @@ This section describes the feature that allows users to list doctors/patients in
 
 #### Implementation
 
-The listing of all doctors/patient in the database is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+The listing of all doctors/patients in the database is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
@@ -388,7 +388,7 @@ The sequence diagram for the delete patient and doctor operations would be simil
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
 ![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
-### Edit remark feature
+### Edit Remark feature
 
 **Introduction**
 
