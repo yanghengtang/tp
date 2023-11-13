@@ -2,9 +2,9 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User enters AddXYZCommand with a specified index and \n tag to be added;
+:User enters AddXYZCommand with a specified index and \ntag to be added;
 floating note right
-    XYZ = Medical Condition, Specialisations or Prescriptions
+    XYZ = MedicalCondition, Specialisation or Prescription
     ABC = Appointment, Doctor or Patient
 end note
 :MediConnectParser parses the command;
