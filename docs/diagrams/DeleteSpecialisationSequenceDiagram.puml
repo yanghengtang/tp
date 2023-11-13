@@ -32,7 +32,7 @@ activate DeleteSpecialisationCommandParser
 
 
 create DeleteSpecialisationCommand
-DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand : DeleteSpecialisationCommand(2, Orthopaedic)
+DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand : DeleteSpecialisationCommand()
 activate DeleteSpecialisationCommand
 
 DeleteSpecialisationCommand --> DeleteSpecialisationCommandParser : d
