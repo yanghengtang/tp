@@ -1829,6 +1829,3 @@ adding a medical condition `Depression` to `John Doe` would not cause any errors
 
 To enhance usability, it would be useful if the medical conditions/prescriptions/specialisations are treated in a case-insensitive manner. This can be done by converting each medical condition/specialisation/prescription
 to lowercase first before checking for duplicates.
-
-
-
