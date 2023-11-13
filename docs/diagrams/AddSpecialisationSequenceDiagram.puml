@@ -27,7 +27,7 @@ activate AddSpecialisationCommandParser
 AddSpecialisationCommandParser --> MediConnectParser
 deactivate AddSpecialisationCommandParser
 
-MediConnectParser -> AddSpecialisationCommandParser : parse("add_tag_d 2 t\Orthopaedic")
+MediConnectParser -> AddSpecialisationCommandParser : parse("2 t\Orthopaedic")
 activate AddSpecialisationCommandParser
 
 
