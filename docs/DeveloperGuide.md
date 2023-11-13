@@ -81,8 +81,7 @@ The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `Ui
-* ` relies on the `Logic` to execute commands.
+* keeps a reference to the `Logic` component, because the `Ui` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Appointment`, `Doctor` and `Patient` object residing in the `Model`.
 
 ### Logic component
@@ -295,7 +294,6 @@ The listing of appointments in MediConnect is facilitated by the `LogicManager`,
 
 These operations are exposed in the Ui interface as `MainWindow#executeCommand(String)`.
 
-
 Given below is an example usage scenario and how the `ListAppointmentCommand` mechanism behaves at each step:
 
 **Step 1**: The user inputs `list_a` to list all appointments or `list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC` to filter appointments.
@@ -357,6 +355,7 @@ The following activity diagram summarizes what happens when a user wants to add 
 ### Delete Appointment / Doctor / Patient feature
 
 **Introduction**
+
 This section describes the delete appointment/doctor/patient features.
 
 #### Implementation
@@ -392,6 +391,7 @@ The following activity diagram summarizes what happens when a user wants to dele
 ### Edit remark feature
 
 **Introduction**
+
 This section describes the appointment/doctor/patient remark features.
 
 #### Implementation
@@ -459,6 +459,9 @@ The following activity diagram summarizes what happens when a user wants to add 
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
 ### Delete Specialisation / Medical Condition / Prescription feature
+
+**Introduction**
+
 This section describes the delete specialisation/medical condition/prescription features.
 
 #### Implementation
@@ -489,6 +492,8 @@ The following activity diagram summarizes what happens when a user wants to dele
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### View Appointment / Doctor / Patient feature
+
+**Introduction**
 
 This section describes the feature that allows users to view the full details of appointments/doctors/patients in the MediConnect database by index.
 
@@ -1156,6 +1161,7 @@ Use case ends.
     Use case ends.
 
 **Use case: UC24 Delete prescription**
+
 **MSS**
 
 1. User requests to delete a prescription from an appointment. 
