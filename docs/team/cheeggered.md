@@ -39,20 +39,18 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=cheeggered&breakdown=true)
 
 * **Project management**:
-  * Version control
-  * Documentation Management
-  * Team Communication
-
-* **Enhancements to existing features**:
-  * 
+  * Version control.
+  * Documentation Management.
+  * Team Communication.
 
 * **Documentation**:
   * User Guide:
-    * 
+    * Added documentation for the features `remark_p`, `add_tag_p`, `delete_tag_p` (Pull request [#193](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/193)).
+    * Fix bugs (Pull request [#323](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/323)).
   * Developer Guide:
-    * 
+    * Added second half of use cases (Pull request [#296](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/296)).
+    * Added documentation for the edit command and edit remark command (Pull request [#158](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/158)), (Pull request [#269](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/269)).
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#248](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/248), [#297](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/297), [#314](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/314)
-  * Reported bugs and suggestions for other teams in the class (examples: [PE-Dry Run](https://github.com/cheeggered/ped))
-  * Some parts of the history feature I added was adopted by several other class mates ([]())
+  * PRs reviewed (with non-trivial review comments): [#248](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/248), [#297](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/297), [#314](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/314).
+  * Reported bugs and suggestions for other teams (eg. [PE-Dry Run](https://github.com/cheeggered/ped)).
