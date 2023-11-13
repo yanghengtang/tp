@@ -5,7 +5,7 @@ title: User Guide
 
 Welcome to the user guide of MediConnect!
 
-MediConnect is a clinic management system (CMS) application designed for clinic receptionists. It aims to help them to be more efficient and effective at accomplishing their administrative tasks.
+MediConnect is a clinic management system (CMS) application designed for clinic receptionists. It aims to help them to be more efficient and effective at accomplishing administrative tasks.
 
 These administrative tasks can include:
 - Scheduling an appointment
@@ -15,7 +15,7 @@ These administrative tasks can include:
 
 If you are new to this guide, click [here](#introduction-to-this-user-guide) for a quick introduction to this user guide.
 
-If you are keen to get started on using MediConnect, click [here](#quick-start) for our quick start guide.
+If you are keen to start using MediConnect, click [here](#quick-start) for our quick start guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ This guide is designed for users of all level to master their use of MediConnect
 
 ## Icons used in this guide
 
-Here are some common icons that are used throughout this user guide
+Here are some common icons used throughout this user guide.
 
 | Icons                          | Representation                                    |
 |--------------------------------|---------------------------------------------------|
@@ -45,24 +45,26 @@ Here are some common icons that are used throughout this user guide
 
 ## Terms used in this guide
 
-Here are some common terms that are used throughout this user guide
+Here are some common terms used throughout this user guide.
 
-| Icons       | Representation                                                                 |
-|-------------|--------------------------------------------------------------------------------|
-| Command     | The instruction you enter into the application                                 |
-| Parameter   | The additional information you provide for the instruction you intend to enter |
-| Appointment | A scheduled medical consultation between the patient and the doctor            |
+| Terms            | Representation                                                                                          |
+|------------------|---------------------------------------------------------------------------------------------------------|
+| Command          | The instruction you enter into the application                                                          |
+| Parameter        | The additional information you provide for the instruction you intend to enter                          |
+| Appointment      | A scheduled medical consultation between the patient and the doctor                                     |
+| MAX_INT          | Integer value 2147483647                                                                                |
+| Command Terminal | A window into which users can type commands that are then executed by their computer's operating system |
 
 ## Navigating this user guide
 
-As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide to be overwhelming.
+As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide overwhelming.
 Fret not, you can utilise the [Table of Content](#table-of-contents) to find the information you are looking for.
 
 If you are new to MediConnect, you can head over to our [quick start](#quick-start) to learn the basics of this application.
 
-If you are experienced with MediConnect, you can head over to view the list of [features](#features) or view the [command summary](#command-summary) to hone your MediConnect skills.
+If you are familiar with MediConnect, you can head over to view the list of [features](#features) or the [command summary](#command-summary) to hone your MediConnect skills.
 
-return back to [Table of Contents](#table-of-contents)
+Return back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +119,7 @@ Back to [Table of Contents](#table-of-contents).
 
 ![UiLayout](images/UiLayout.png)
 
-The main window can be broken down into the following components:
+The main window has the following components:
 
 - **Command Box**: The command box is where you will enter your commands
 - **Result Display Box**: This box will display the output messages in response to your commands
@@ -133,7 +135,7 @@ Back to [Table of Contents](#table-of-contents).
 
 # Features
 
-The features are broken down into:
+The features are categorised into:
 - [Patient Management Features](#patient-management-features)
 - [Doctor Management Features](#doctor-management-features)
 - [Appointment Management Features](#appointment-management-features)
@@ -162,19 +164,23 @@ The features are broken down into:
 
 The following table gives an overview of what each parameter used in the Features section is for.
 
-| Parameter         | Description                                                          | Valid Parameter Input                                                              |
-|-------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| NAME              | The full name of the doctor/patient                                  | Only accepts alphanumeric characters and spaces                                    |
-| NRIC              | The National Registration Identity Card number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and ends with an uppercase alphabet |
-| PHONE_NUMBER      | The phone number of the doctor/patient                               | Only contain numbers, and it should be at least 3 digits long.                     |
-| INDEX             | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                          |
-| MEDICAL_CONDITION | The medical condition of the patient                                 | Only accepts alphanumeric characters without any spaces                            |
-| SPECIALISATION    | The specialisation of the doctor                                     | Only accepts alphanumeric characters without any spaces                            |
-| PRESCRIPTION      | The prescription of the appointment                                  | Only accepts alphanumeric characters without any spaces                            |
-| START_TIME        | The start time of the appointment                                    | Only accepts valid dates in the format YYYY-MM-DD HH:MM                            |
-| END_TIME          | The end time of the appointment                                      | Only accepts valid dates in the format YYYY-MM-DD HH:MM                            |
-| REMARK            | The remark of the appointment/patient/doctor                         | Accepts all input                                                                  |
+| Parameter         | Description                                                                                           | Valid Parameter Input                                                                                                                       |
+|-------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| NAME              | The full name of the doctor/patient                                                                   | Only accepts alphanumeric characters and spaces                                                                                             |
+| NRIC              | The National Registration Identity Card number or Foreign Identification Number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and ends with an alphabet                                                                    |
+| PHONE_NUMBER      | The phone number of the doctor/patient                                                                | Only contain numbers, and it should be at least 3 digits long.                                                                              |
+| INDEX             | The position of the appointment/doctor/patient in the filtered list                                   | Must be a positive integer (1, 2, 3, ...) and should not be larger than the length of the list and have a maximum possible value of MAX_INT |
+| MEDICAL_CONDITION | The medical condition of the patient                                                                  | Only accepts alphanumeric characters without any spaces                                                                                     |
+| SPECIALISATION    | The specialisation of the doctor                                                                      | Only accepts alphanumeric characters without any spaces                                                                                     |
+| PRESCRIPTION      | The prescription of the appointment                                                                   | Only accepts alphanumeric characters without any spaces                                                                                     |
+| START_TIME        | The start time of the appointment                                                                     | Only accepts valid dates in the format YYYY-MM-DD HH:MM                                                                                     |
+| END_TIME          | The end time of the appointment                                                                       | Only accepts valid dates in the format YYYY-MM-DD HH:MM                                                                                     |
+| REMARK            | The remark of the appointment/patient/doctor                                                          | Accepts all input                                                                                                                           |
+| KEYWORD           | The keyword of doctor/patient                                                                         | Accepts all input                                                                                                                           |
 
+<div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
+For medical conditions with more than 1 word, users can concatenate the words of the condition!
+</div>
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
@@ -186,8 +192,8 @@ An "alphanumeric" character is a character that can be either a letter (A to Z, 
 
 This is the list of features that help you manage patient records:
 - [Adding patient](#adding-a-patient-add_p)
-- [Listing patient](#listing-all-patient--list_p)
-- [Viewing patient](#viewing-a-patient--view_p)
+- [Listing patient](#listing-all-patients--list_p)
+- [Viewing patient](#viewing-details-of-a-patient--view_p)
 - [Editing patient](#editing-a-patient--edit_p)
 - [Finding patient](#locating-patients-by-name--find_p)
 - [Deleting patient](#deleting-a-patient--delete_p)
@@ -208,6 +214,10 @@ Allows you to add a patient to the system.
 * `add_p n\John Doe ic\T0212385J p\98765432`
 * `add_p ic\S9912343G n\Betsy Crowe p\81235833`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Ensure that the new patient's NRIC does not exist in the database.
+</div>
+
 **Sample Usage**:
 1. Assuming you want to add a Patient named "Jonathan Reese" with NRIC "S8712461K" and phone number "81573238". 
 
@@ -221,7 +231,7 @@ add_p n\Jonathan Reese ic\S8712461K p\81235833
 New patient added: Jonathan Reese; Phone: 81235833; NRIC: S8712461K
 ```
 
-4. You have successfully added the patient into the database.
+4. You have successfully added the patient to the database.
 
 Back to [Patient Management Features](#patient-management-features).
 
@@ -229,7 +239,7 @@ Back to [Patient Management Features](#patient-management-features).
 Double check the phone number before pressing enter! Extremely long phone numbers may not be displayed fully in the Patient window.
 </div>
 
-### Listing all patient : `list_p`
+### Listing all patients : `list_p`
 
 Allows you to list all patients in the system.
 
@@ -237,15 +247,16 @@ Allows you to list all patients in the system.
 
 Back to [Patient Management Features](#patient-management-features).
 
-### Viewing a patient : `view_p`
+### Viewing details of a patient : `view_p`
 
-Allows you to view details, such as basic information, medical condition and remark, of a specific patient in the system.
+Allows you to view details, such as basic information, medical condition, and remark, of a specific patient in the system.
 
 **Format**: `view_p INDEX`
 
 * Displays the full details of the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 
 **Examples**:
 * Entering `list_p` followed by `view_p 2` shows the details of the 2nd patient in the patient list.
@@ -262,7 +273,10 @@ Allows you to edit an existing patient in the system. This is useful to correct 
 
 **Format**: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -318,14 +332,15 @@ Allows you to delete a specified patient from the system.
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 
 **Examples**:
 * Entering `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
 * Entering `find_p Jonathan` followed by `delete_p 1` deletes the 1st patient in the resultant patient list of the `find_p` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If a patient is being removed, the appointments of the patient will be deleted too!
+If a patient is removed, the appointments of the patient will be deleted too!
 </div>
 
 
@@ -339,7 +354,8 @@ Allows you to add a medical condition to a specified patient in the system.
 
 * Adds the given medical condition to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 * Only one medical condition can be added at a time.
 
 **Examples**:
@@ -356,7 +372,8 @@ Allows you to delete a medical condition from a specified patient in the system.
 
 * Deletes the input medical condition from the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 * The given `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
 * Only one medical condition can be deleted at a time.
 
@@ -372,9 +389,10 @@ Allows you to edit the remark of a specified patient in the system. The patient'
 
 **Format**: `remark_p INDEX [r\REMARK]`
 
-* Adds the input `REMARK` to the patient at the specified `INDEX`.
+* Edits the remark of the patient at the specified INDEX.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed patient list.
 * The patient's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -395,8 +413,8 @@ Back to [Patient Management Features](#patient-management-features).
 
 This is the list of features that help you manage doctor records:
 - [Adding doctor](#adding-a-doctor--add_d)
-- [Listing doctor](#listing-all-doctor--list_d)
-- [Viewing doctor](#viewing-a-doctor--view_d)
+- [Listing doctor](#listing-all-doctors--list_d)
+- [Viewing doctor](#viewing-details-of-a-doctor--view_d)
 - [Editing doctor](#editing-a-doctor--edit_d)
 - [Finding doctor](#locating-doctors-by-name--find_d)
 - [Deleting doctor](#deleting-a-doctor--delete_d)
@@ -416,6 +434,10 @@ Allows you to add a doctor to the system.
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Ensure that the new doctor's NRIC does not exist in the database.
+</div>
+
 **Sample Usage**:
 1. Assuming you want to add a doctor named "John Doe" with NRIC "T0212385J".
 
@@ -429,11 +451,11 @@ add_d n\John Doe ic\T0212385J
 New doctor added: John Doe; Nric: T0212385J
 ```
 
-4. You have successfully added the doctor into the database.
+4. You have successfully added the doctor to the database.
 
 Back to [Doctor Management Features](#doctor-management-features).
 
-### Listing all doctor : `list_d`
+### Listing all doctors : `list_d`
 
 Allows you to list all the doctors in the system.
 
@@ -441,15 +463,16 @@ Allows you to list all the doctors in the system.
 
 Back to [Doctor Management Features](#doctor-management-features).
 
-### Viewing a doctor : `view_d`
+### Viewing details of a doctor : `view_d`
 
-Allows you to view details, such as basic information, specialisation and remark, of a specific doctor in the system.
+Allows you to view details, such as basic information, specialisation, and remark, of a specific doctor in the system.
 
 **Format**: `view_d INDEX`
 
 * Displays the full details of the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 
 **Examples**:
 * Entering `list_d` followed by `view_d 2` shows the details of the 2nd doctor in the doctor list.
@@ -457,7 +480,7 @@ Allows you to view details, such as basic information, specialisation and remark
 
 Below is an example of a successful view command call.
 
-![ViewDoctorMainWindow](images/view-doctor.jpg)
+![ViewDoctorMainWindow](images/view-doctor.png)
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -467,7 +490,10 @@ Allows you to edit an existing doctor in the system. This is useful to correct a
 
 **Format**: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
-* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the doctor at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed doctor list. 
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -522,14 +548,15 @@ Allows you to delete a specific doctor from the system.
 
 * Deletes the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 
 **Examples**:
 * Entering `list_d` followed by `delete_d 2` deletes the 2nd doctor in the doctor list.
 * Entering `find_d Jonathan` followed by `delete_d 1` deletes the 1st doctor in the resultant doctor list of the `find_d` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If a doctor is being removed, the appointments of the doctor will be deleted too!
+If a doctor is removed, the appointments of the doctor will be deleted too!
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
@@ -542,7 +569,8 @@ Allows you to add a specialisation to a specified doctor in the system.
 
 * Adds the specialisation to the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 * Only one specialisation can be added at a time.
 
 **Examples**:
@@ -559,7 +587,8 @@ Allows you to delete a specialisation from a specific doctor in the system.
 
 * Deletes the specialisation from the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 * The given `SPECIALISATION` must be a present specialisation of the specified doctor.
 * Only one specialisation can be deleted at a time.
 
@@ -575,9 +604,10 @@ Allows you to edit the remark of a specified doctor in the system. The doctor's 
 
 **Format**: `remark_d INDEX [r\REMARK]`
 
-* Edits the remark of doctor at the specified `INDEX`.
+* Edits the remark of the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed doctor list.
 * The doctor's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -599,7 +629,7 @@ Back to [Doctor Management Features](#doctor-management-features).
 This is the list of features that help you manage appointment records:
 - [Adding appointment](#adding-an-appointment--add_a)
 - [Listing appointment](#listing-all-appointments-or-by-patient-or-doctor-nric--list_a)
-- [Viewing appointment](#viewing-an-appointment--view_a)
+- [Viewing appointment](#viewing-details-of-an-appointment--view_a)
 - [Editing appointment](#editing-an-appointment--edit_a)
 - [Deleting appointment](#deleting-an-appointment--delete_a)
 - [Adding a prescription to an appointment](#adding-a-prescription-to-an-appointment--add_tag_a)
@@ -623,7 +653,7 @@ Allows you to add an appointment to the system.
 
 2. Enter the following command:
 ```
-add_d pic\T0212385J dic\S9912343G from\2023-09-13 12:00 to\2023-09-13 12:30
+add_a pic\T0212385J dic\S9912343G from\2023-09-13 12:00 to\2023-09-13 12:30
 ```
 
 3. The result box will display the following message:
@@ -634,19 +664,19 @@ New appointment added: Patient NRIC: T0212385J; Doctor NRIC: S9912343G; From: 20
 4. You have successfully added the appointment into the database.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-Do ensure that the patient and doctor you are entering exist in the database!
+Do ensure that the patient and doctor you are entering exist in the database! Ensure that the end time is not any earlier than the start time. However, the start time and end time can be the same.
 </div>
 
 Back to [Appointment Management Features](#appointment-management-features).
 
 ### Listing all appointments, or by patient or doctor NRIC : `list_a`
 
-Allows you to either display all the appointments in the system, or the list of appointments of a specified patient/doctor has in the system.
+Allows you to either display all the appointments in the system or the list of appointments of a specified patient/doctor in the system.
 
 **Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
 * If only `PATIENT_NRIC` is specified, all appointments belonging to the patient with the specified `PATIENT_NRIC` will be listed.
-* If only `DOCTOR_NRIC` is specified, all appointments belonging to the patient with the specified `DOCTOR_NRIC` will be listed.
+* If only `DOCTOR_NRIC` is specified, all appointments belonging to the doctor with the specified `DOCTOR_NRIC` will be listed.
 * If both `PATIENT_NRIC` and `DOCTOR_NRIC` are specified, all appointments between the patient with the specified `PATIENT_NRIC` and the doctor with the specified `DOCTOR_NRIC` will be listed.
 * List all the appointments in the system if no fields are given.
 
@@ -654,7 +684,7 @@ Allows you to either display all the appointments in the system, or the list of 
 * `list_a pic\S9912343G` returns all the appointments that have the patient NRIC `S9912343G`.
 * `list_a dic\T0212385J` returns all the appointments that have the doctor  NRIC `T0212385J`.
 * `list_a pic\S9912343G dic\T0212385J` returns all the appointments that have both the patient NRIC `S9912343G` and the doctor NRIC `T0212385J`.
-* 'list_a' returns all the appointments in the system.
+* `list_a` returns all the appointments in the system.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
@@ -664,7 +694,10 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 
 **Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [to\END_TIME]`
 
-* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the appointment at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed appointment list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -672,7 +705,7 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 *  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` edits the patient and doctor NRIC of the 1st appointment in the appointment list to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
 
 **Sample Usage**:
-1. Assuming you want to edit the 4th Appointment, changing the doctor NRIC from "S9823343G" to "S9923334G".
+1. Assuming you want to edit the 4th Appointment, change the doctor NRIC from "S9823343G" to "S9923334G".
 
 2. Enter the following command:
 ```
@@ -692,15 +725,16 @@ If you edit the patient or doctor NRIC of an appointment, ensure that there exis
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-### Viewing an appointment : `view_a`
+### Viewing details of an appointment : `view_a`
 
-Allows you to view details, such as basic information, prescription given and remark, of a specific appointment in the system.
+Allows you to view details, such as basic information, prescription given, and remark, of a specific appointment in the system.
 
 **Format**: `view_a INDEX`
 
 * Displays the full details of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the displayed appointment list.
 
 **Examples**:
 * Entering `list_a` followed by `view_a 2` shows the details of the 2nd appointment in the appointment list.
@@ -718,6 +752,9 @@ Allows you to delete the specified appointment from the system.
 **Format**: `delete_a INDEX`
 
 * Deletes the appointment with the specified `INDEX`.
+* The index refers to the index number shown in the appointment list.
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 
 **Examples**:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
@@ -732,7 +769,8 @@ Allows you to add a prescription for an appointment in the system.
 
 * Adds a prescription to the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * Only one prescription can be added at a time.
 
 **Examples**:
@@ -749,7 +787,8 @@ Allows you to delete a prescription from an appointment in the system.
 
 * Deletes the prescription from the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * The given `PRESCRIPTION` must be a present prescription of the specified appointment.
 * Only one prescription can be deleted at a time.
 
@@ -767,7 +806,8 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 
 * Edits the remark of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** (i.e. 1 to MAX_INT).
+* The index should not be larger than the length of the appointment list.
 * The appointment's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -786,7 +826,7 @@ Back to [Appointment Management Features](#appointment-management-features).
 
 ## General Features
 
-These are the list of general features built into MediConnect:
+This is the list of general features built into MediConnect:
 - [Help](#viewing-help--help)
 - [Exit](#exiting-the-program--exit)
 - [Saving the data](#saving-the-data)
@@ -823,7 +863,7 @@ Back to [General Features](#general-features).
 MediConnect data are saved automatically as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: :information_source:
-If your changes to the data file makes its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file make its format invalid, MediConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 Back to [General Features](#general-features).
@@ -835,7 +875,8 @@ Back to [General Features](#general-features).
 # FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediConnect home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous MediConnect home folder.
 
 Back to [Table of Contents](#table-of-contents).
 
@@ -844,7 +885,7 @@ Back to [Table of Contents](#table-of-contents).
 # Known issues
 
 ### 1. Refreshing the View Window after updating details
-If you have any of the Appointment/Doctor/Patient window opened, and you update any of the details of the selected 
+If you have any of the Appointment/Doctor/Patient windows opened, and you update any of the details of the selected 
 appointment/doctor/patient, the view window will not reflect the changes. To refresh and see the updated details,
 run the respective view appointment/doctor/patient command again.
 
