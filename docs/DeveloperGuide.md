@@ -442,7 +442,7 @@ Given below is an example usage scenario and how the add specialisation mechanis
 
 **Step 2**: The user inputs `list_d`. MediConnect will display the `FilteredDoctorList`.
 
-**Step 3**: The user inputs `add_tag_d 2 t\Orthopaedic` to add the prescription `Orthopaedic` to the doctor at index 2 in the displayed doctor list.
+**Step 3**: The user inputs `add_tag_d 2 t\Orthopaedic` to add the specialisation `Orthopaedic` to the doctor at index 2 in the displayed doctor list.
 The `add_tag_d` command calls `AddSpecialisationCommandParser#parse(String)` the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
 
 **Step 4**: The created `AddSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
