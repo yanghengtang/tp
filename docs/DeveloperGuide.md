@@ -1235,7 +1235,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There exist no patient with NRIC `T1258979J` in the database.
 
     2. Test case (Valid parameters): `add_p n\Bunny Cai Hong ic\T1258979J p\83425673`<br>
-       Expected: Patient successfully added into. Details of the added patient shown in the status message. The list of patient now consist of the added patient.
+       Expected: Patient successfully added into patient list. Details of the added patient shown in the status message. The list of patients now consists of the added patient.
 
     3. Test case (Missing parameter): `add_p n\Bunny Cai Hong ic\T1258979J`, `add_p ic\T1258979J p\83425673`, `add_p n\Bunny Cai Hong p\83425673` or any command with missing parameters<br>
        Expected: No patient is added. Error details shown in the status message.
@@ -1252,9 +1252,9 @@ testers are expected to do more *exploratory* testing.
     7. Test case (Repeated Parameter): `add_p n\Bunny Cai Hong ic\T1258979J p\83425673 ic\T1258979H` or any command with repeated parameter<br>
        Expected: Similar to previous.
 
-### Listing all patient
+### Listing all patients
 
-1. Listing all patient
+1. Listing all patients
 
     1. Prerequisites: Multiple patients in the patient list.
 
@@ -1291,7 +1291,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a patient
 
-1. Editing a patient name while all patients are being shown
+1. Editing a patient's name while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list.
 
@@ -1310,7 +1310,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case (Repeated Parameter): `edit_p 1 n\Bunny Cai Hong n\Cai Hong`<br>
        Expected: Similar to previous.
 
-2. Editing a patient NRIC while all patients are being shown
+2. Editing a patient's NRIC while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. There exist no patient with NRIC `T1258979J` in the database.
 
@@ -1355,7 +1355,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. There exist a patient named `Jonathan`.
 
     2. Test case: `find_p jonathan`<br>
-       Expected: Patient list updates to show all patient named jonathan. Success message shown in the status message.
+       Expected: Patient list updates to show all patients named jonathan. Success message shown in the status message.
 
     3. Test case (Missing keyword): `find_p`<br>
        Expected: Patient list will not update. Error details shown in the status message.
@@ -1381,15 +1381,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the list.
 
-    5. Test case: `view_p 1`<br>
+    2. Test case: `view_p 1`<br>
        Expected: Patient window pop up with details of the first patient from the list. Details of the selected patient shown in the status message.
 
-    2. Test case (Invalid Index): `view_p x` (where x is smaller than one or larger than the list size)<br>
+    3. Test case (Invalid Index): `view_p x` (where x is smaller than one or larger than the list size)<br>
        Expected: Patient window does not pop up. Error details shown in the status message.
 
 ### Adding a medical condition
 
-1. Adding a medical condition to patient while all patients are being shown
+1. Adding a medical condition to a patient while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. Ensure the first patient does not have the medical condition "Depression".
 
@@ -1407,7 +1407,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a medical condition
 
-1. Deleting a medical condition from patient while all patients are being shown
+1. Deleting a medical condition from a patient while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list. Ensure the first patient has the medical condition "Depression".
 
@@ -1423,9 +1423,9 @@ testers are expected to do more *exploratory* testing.
     5. Test case (Multiple parameters): `delete_tag_p 1 t\Depression t\Depression`<br>
        Expected: Similar to previous.
 
-### Editing a patient remark
+### Editing a patient's remark
 
-1. Editing a medical condition from patient while all patients are being shown
+1. Editing a patient's remark while all patients are being shown
 
     1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the patient list.
 
@@ -1436,6 +1436,170 @@ testers are expected to do more *exploratory* testing.
        Expected: Remark successfully removed from the first patient. Success message shown in the status message.
 
     4. Test case (Missing index): `remark_p r\Patient undergoing speech therapy`<br>
+       Expected: Remark is not deleted. Error details shown in the status message.
+
+### Adding a doctor
+
+1. Adding a doctor
+
+    1. Prerequisites: There exist no doctor with NRIC `T1258979J` in the database.
+
+    2. Test case (Valid parameters): `add_d n\Bunny Cai Hong ic\T1258979J`<br>
+       Expected: Doctor successfully added into doctor list. Details of the added patient shown in the status message. The list of doctors now consists of the added doctor.
+
+    3. Test case (Missing parameter): `add_d n\Bunny Cai Hong`, `add_d ic\T1258979J` or any command with missing parameters<br>
+       Expected: No patient is added. Error details shown in the status message.
+
+    4. Test case (Invalid Name): `add_d n\ ic\T1258979J`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid NRIC): `add_d n\Bunny Cai Hong ic\S1979Y`<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `add_d n\Bunny Cai Hong ic\T1258979J ic\T1258979H` or any command with repeated parameter<br>
+       Expected: Similar to previous.
+
+### Listing all doctors
+
+1. Listing all doctors
+
+    1. Prerequisites: Multiple doctors in the doctor list.
+
+    2. Test case: `list_d`<br>
+       Expected: List of doctor updates to show all doctors. Success message shown in the status message.
+
+    3. Test case: `list_d 512807`, `list_d xxfajkl`, `list_d n\Bunny Cai Hong` or any command with extra characters supplied<br>
+       Expected: Similar to previous.
+
+
+### Editing a doctor
+
+1. Editing a doctor's name while all doctorss are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctorss in the doctor list.
+
+    2. Test case (Valid Name): `edit_d 1 n\Bunny Cai Hong`<br>
+       Expected: First doctor's name successfully edited. Details of the edited doctor shown in the status message.
+
+    3. Test case (Missing index): `edit_d n\Bunny Cai Hong`<br>
+       Expected: doctor's name is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_d x n\Bunny Cai Hong` (where x is lesser than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_d 1 n\Bunny Cai Hong n\Cai Hong`<br>
+       Expected: Similar to previous.
+
+2. Editing a doctor's NRIC while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. There exist no doctor with NRIC `T1258979J` in the database.
+
+    2. Test case (Valid NRIC): `edit_d 1 ic\T1258979J`<br>
+       Expected: First doctor's NRIC successfully edited. Details of the edited doctor shown in the status message. Appointments with doctor's old NRIC will be updated to the new doctor's NRIC.
+
+    3. Test case (Missing index): `edit_d ic\T1258979J`<br>
+       Expected: Doctor's NRIC is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_d x ic\T1258979J` (where x is lesser than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_d 1 ic\T1258979J ic\T1258979H`<br>
+       Expected: Similar to previous.
+
+### Finding a doctor
+
+1. Finding a doctor with a given name `Jonathan`
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. There exist a doctor named `Jonathan`.
+
+    2. Test case: `find_d jonathan`<br>
+       Expected: Doctor list updates to show all doctors named jonathan. Success message shown in the status message.
+
+    3. Test case (Missing keyword): `find_p`<br>
+       Expected: Doctor list will not update. Error details shown in the status message.
+
+### Deleting a doctor
+
+1. Deleting a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the list.
+
+    2. Test case: `delete_d 1`<br>
+       Expected: First doctor is deleted from the list. Details of the deleted doctor shown in the status message.
+
+    3. Test case (Missing Index): `delete_d`<br>
+       Expected: No doctor is deleted. Error details shown in the status message.
+
+    4. Test case (Invalid Index): `delete_d x`(where x is smaller than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Viewing a doctor
+
+1. Viewing a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the list.
+
+    2. Test case: `view_d 1`<br>
+       Expected: Doctor window pop up with details of the first doctor from the list. Details of the selected doctor shown in the status message.
+
+    3. Test case (Invalid Index): `view_d x` (where x is smaller than one or larger than the list size)<br>
+       Expected: Doctor window does not pop up. Error details shown in the status message.
+
+### Adding a specialisation
+
+1. Adding a specialisation to a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. Ensure the first doctor does not have the specialisation "Orthopaedic".
+
+    2. Test case: `add_tag_d 1 t\Orthopaedic`<br>
+       Expected: Specialisation successfully added to first doctor. Details of the specialisation shown in the status message.
+
+    3. Test case (Missing index): `add_tag_d t\Orthopaedic`<br>
+       Expected: Specialisation is not added. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `add_tag_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `add_tag_d 1 t\Orthopaedic t\Orthopaedic`<br>
+       Expected: Similar to previous.
+
+### Deleting a medical condition
+
+1. Deleting a specialisation from a doctor while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list. Ensure the first doctor has the specialisation "Orthopaedic".
+
+    2. Test case: `delete_tag_d 1 t\Orthopaedic`<br>
+       Expected: Specialisation successfully deleted from the first doctor. Details of the specialisation shown in the status message.
+
+    3. Test case (Missing index): `delete_tag_d t\Orthopaedic`<br>
+       Expected: Specialisation is not deleted. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `delete_tag_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `delete_tag_d 1 t\Orthopaedic t\Orthopaedic`<br>
+       Expected: Similar to previous.
+
+### Editing a doctor's remark
+
+1. Editing a doctor's remark while all doctors are being shown
+
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list.
+
+    2. Test case: `remark_d 1 r\Doctor away from 2023-11-01 to 2023-11-15`<br>
+       Expected: Remark successfully added to the first doctor. Success message shown in the status message.
+
+    3. Test case: `remark_d 1 r\` or `remark_d 1`<br>
+       Expected: Remark successfully removed from the first doctor. Success message shown in the status message.
+
+    4. Test case (Missing index): `remark_d r\Doctor away from 2023-11-01 to 2023-11-15`<br>
        Expected: Remark is not deleted. Error details shown in the status message.
 
 ### Saving data
