@@ -189,6 +189,7 @@ The example usage scenario for the edit doctor and edit appointment mechanisms w
 **UML Diagrams**
 
 The following sequence diagram shows how the edit patient operation would work:
+
 ![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
 
 The sequence diagram for editing an appointment and editing a doctor would be similar.
@@ -273,11 +274,13 @@ The example usage scenario for the list patients mechanisms would be similar to 
 **UML Diagrams**
 
 The following sequence diagram shows how the list doctor operation would work:
+
 ![ListDoctorSequence](images/ListDoctorSequence.png)
 
 The sequence diagram for the list patient operation would be similar
 
 The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
+
 ![ListCommandActivity](images/ListCommandActivityDiagram.png)
 
 ### List Appointments
@@ -311,9 +314,11 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
 **UML Diagrams**
 
 The following sequence diagram shows how the list appointment operation would work:
+
 ![ListPatientSequence](images/ListAppointmentSequence.png)
 
 The following activity diagram summarizes what happens when a user wants to list a new appointment:
+
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
 ### Add Appointment / Doctor / Patient feature
@@ -345,11 +350,13 @@ The example usage scenario for the add patient and add doctor mechanisms would b
 **UML Diagrams**
 
 The following sequence diagram shows how the add appointment operation would work:
+
 ![AddAppoointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 The sequence diagram for the add patient and add doctor operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
+
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
 ### Delete Appointment / Doctor / Patient feature
@@ -381,11 +388,13 @@ The example usage scenario for the delete patient and delete doctor mechanisms w
 **UML Diagrams**
 
 The following sequence diagram shows how the delete appointment operation would work:
+
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
 The sequence diagram for the delete patient and doctor operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
+
 ![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
 ### Edit Remark feature
@@ -416,11 +425,13 @@ The edited `Appointment` is then replaced in the `Database` by calling `Database
 The example usage scenario for the edit patient remark and edit doctor remark mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the edit appointment remark operation would work:
+
 ![EditRemarkSequenceDiagram](images/EditRemarkSequenceDiagram.png)
 
 The sequence diagram for the editing patient and doctor remark would be similar.
 
 The following activity diagram summarizes what happens when a user wants to edit the remark of an appointment/patient/doctor:
+
 ![EditXYZRemarkActivityDiagram](images/EditXYZRemarkActivityDiagram.png)
 
 ### Add Specialisation / Medical condition / Prescription feature
@@ -451,11 +462,13 @@ The `add_tag_d` command calls `AddSpecialisationCommandParser#parse(String)` the
 The example usage scenario for the add prescription and add medical condition mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the add specialisation operation would work:
+
 ![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
 
 The sequence diagram for the add prescription and medical condition operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
+
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
 ### Delete Specialisation / Medical Condition / Prescription feature
