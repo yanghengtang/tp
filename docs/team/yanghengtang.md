@@ -15,6 +15,18 @@ Given below are my contributions to the project.
   * Highlights: Whenever the view feature is called, a window consisting of the appointment/doctor/patient will pop up.
   * Credits: This feature was enabled with the JavaFX and Jackson library given the amount of GUI involved.
 
+* **Patient, Doctor and Appointment Model**:
+  * What it does: Models the actual entities that is related to a small GP clinic. These three key entities are the main representation of the entities in our problem domain we are attempting to address.
+  * Justification: Adapting and morphing our entities based on the Person model in AB3 was crucial to maintain the strong OOP design.
+
+* **Update the Logic and Database**:
+  * What it does: The API Logic can now handle all operations to handle appointment, doctor and patients. The Database can also now handle these three entities.
+  * Justification: To handle all three entities (appointment, doctor and patient), the Database and Logic requires new attributes and method to facilitate the operations of the application.
+
+* **Implement the UI**:
+  * What it does: The new UI now is able to show three list, each for appointment, doctor and patient respectively
+  * Justification: Since we had three entites we had to deal with, the optimal way forward was to display all three entities list instead of having one list panel and changing constantly between the three entities.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=yanghengtang&breakdown=true)
 
 * **Project management**:
