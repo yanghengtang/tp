@@ -1264,31 +1264,6 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `list_p 512807`, `list_p xxfajkl`, `list_p n\Bunny Cai Hong` or any command with extra characters supplied<br>
        Expected: Similar to previous.
 
-### Listing appointments
-
-1. Listing all appointments
-
-    1. Prerequisites: Multiple patients in the patient list.
-
-    2. Test case: `list_a`<br>
-       Expected: List of appointment updates to show all appointment. Success message shown in the status message.
-
-    3. Test case (Additional characters): `list_a 512807`, `list_a xxfajkl`, `list_a n\Bunny Cai Hong` or any command with extra characters supplied<br>
-       Expected: List of appointments will not update. Error details shown in the status message.
-
-2. Listing all appointments by patient NRIC
-
-    1. Prerequisites: Multiple patients in the patient list. There exist a patient with NRIC `T1258979J` in the database.
-
-    2. Test case: `list_a pic\T1258979J`<br>
-       Expected: List of appointment with given patient NRIC shown. Success message shown in the status message.
-
-    3. Test case (Invalid NRIC): `list_a pic\2134`<br>
-       Expected: List of appointments will not update. Error details shown in the status message.
-
-    4. Test case (Repeated Parameter): `list_a pic\T1258979J pic\T1258979H`<br>
-       Expected: Similar to previous.
-
 ### Editing a patient
 
 1. Editing a patient's name while all patients are being shown
@@ -1482,7 +1457,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First doctor's name successfully edited. Details of the edited doctor shown in the status message.
 
     3. Test case (Missing index): `edit_d n\Bunny Cai Hong`<br>
-       Expected: doctor's name is not edited. Error details shown in the status message.
+       Expected: Doctor's name is not edited. Error details shown in the status message.
 
     4. Test case (Missing Parameter): `edit_d 1`<br>
        Expected: Similar to previous.
@@ -1569,7 +1544,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case (Multiple parameters): `add_tag_d 1 t\Orthopaedic t\Orthopaedic`<br>
        Expected: Similar to previous.
 
-### Deleting a medical condition
+### Deleting a specialisation
 
 1. Deleting a specialisation from a doctor while all doctors are being shown
 
@@ -1600,6 +1575,176 @@ testers are expected to do more *exploratory* testing.
        Expected: Remark successfully removed from the first doctor. Success message shown in the status message.
 
     4. Test case (Missing index): `remark_d r\Doctor away from 2023-11-01 to 2023-11-15`<br>
+       Expected: Remark is not deleted. Error details shown in the status message.
+
+### Adding an appointment
+
+1. Adding an appointment
+
+    1. Prerequisites: There exist no appointment with patient's NRIC `S8712461K`, doctor's NRIC `T1258979J` from `2023-09-11 07:30` to `2023-09-11 08:00` in the database.
+
+    2. Test case (Valid parameters): `add_a dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Appointment successfully added into appointment list. Details of the added appointment shown in the status message. The list of appointments now consists of the added appointment.
+
+    3. Test case (Missing parameter): `add_a dic\T1258979J pic\S8712461K`, `add_a dic\T1258979J from\2023-09-11 07:30 to\2023-09-11 08:00` or any command with missing parameters<br>
+       Expected: No appointment is added. Error details shown in the status message.
+
+    4. Test case (Invalid patient NRIC): `add_a dic\T1258979J pic\S871461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid doctor NRIC): `add_a dic\T125899J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    6. Test case (Invalid start time): `add_a dic\T1258979J pic\S8712461K from\2023-13-09 07:30 to\2023-09-11 08:00`<br>
+       Expected: Similar to previous.
+
+    7. Test case (Invalid end time): `add_a dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-13-11 08:00`<br>
+      Expected: Similar to previous.
+
+    8. Test case (Repeated Parameter): `add_a dic\T1258979J dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00` or any command with repeated parameter<br>
+       Expected: Similar to previous.
+
+### Listing appointments
+
+1. Listing all appointments
+
+    1. Prerequisites: Multiple patients in the patient list.
+
+    2. Test case: `list_a`<br>
+       Expected: List of appointment updates to show all appointment. Success message shown in the status message.
+
+    3. Test case (Additional characters): `list_a 512807`, `list_a xxfajkl`, `list_a n\Bunny Cai Hong` or any command with extra characters supplied<br>
+       Expected: List of appointments will not update. Error details shown in the status message.
+
+2. Listing all appointments by patient NRIC
+
+    1. Prerequisites: Multiple patients in the patient list. There exist a patient with NRIC `T1258979J` in the database.
+
+    2. Test case: `list_a pic\T1258979J`<br>
+       Expected: List of appointment with given patient NRIC shown. Success message shown in the status message.
+
+    3. Test case (Invalid NRIC): `list_a pic\2134`<br>
+       Expected: List of appointments will not update. Error details shown in the status message.
+
+    4. Test case (Repeated Parameter): `list_a pic\T1258979J pic\T1258979H`<br>
+       Expected: Similar to previous.
+
+### Editing an appointment
+
+1. Editing the doctor's NRIC of an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. There exists a doctor with NRIC `T0123456N` in the database.
+
+    2. Test case (Valid doctor's NRIC): `edit_a 1 dic\T0123456N`<br>
+       Expected: Doctor's NRIC of the first appointment successfully edited. Details of the edited appointment shown in the status message.
+
+    3. Test case (Missing index): `edit_a dic\T0123456N`<br>
+       Expected: Doctor's NRIC of the first appointment is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_a x dic\T0123456N` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_a 1 dic\T0123456N dic\T0123456N`<br>
+       Expected: Similar to previous.
+
+2. Editing a patient's NRIC of an appointment while all appointments are being shown
+
+    1. Prerequisites: List all doctors using the `list_a` command. Multiple appointments in the appointment list. There exist a patient with NRIC `T0123456N` in the database.
+
+    2. Test case (Valid patient's NRIC): `edit_a 1 pic\T0123456N`<br>
+       Expected: Patient's NRIC of the first appointment successfully edited. Details of the edited appointment shown in the status message.
+
+    3. Test case (Missing index): `edit_a pic\T0123456N`<br>
+       Expected: Patient's NRIC of the first appointment is not edited. Error details shown in the status message.
+
+    4. Test case (Missing Parameter): `edit_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Invalid Index): `edit_a x pic\T0123456N` (where x is less than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+    6. Test case (Repeated Parameter): `edit_a 1 pic\T0123456N pic\T0123456N`<br>
+       Expected: Similar to previous.
+
+### Deleting an appointment
+
+1. Deleting an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the list.
+
+    2. Test case: `delete_a 1`<br>
+       Expected: First appointment is deleted from the list. Details of the deleted appointment shown in the status message.
+
+    3. Test case (Missing Index): `delete_a`<br>
+       Expected: No appointment is deleted. Error details shown in the status message.
+
+    4. Test case (Invalid Index): `delete_a x`(where x is smaller than one or larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Viewing an appointment
+
+1. Viewing an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the list.
+
+    2. Test case: `view_a 1`<br>
+       Expected: Appointment window pop up with details of the first appointment from the list. Details of the selected appointment shown in the status message.
+
+    3. Test case (Invalid Index): `view_a x` (where x is smaller than one or larger than the list size)<br>
+       Expected: Appointment window does not pop up. Error details shown in the status message.
+
+### Adding a prescription
+
+1. Adding a prescription to an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment does not have the prescription "Panadol".
+
+    2. Test case: `add_tag_a 1 t\Panadolc`<br>
+       Expected: Prescription successfully added to first appointment. Details of the prescription shown in the status message.
+
+    3. Test case (Missing index): `add_tag_a t\Panadol`<br>
+       Expected: Prescription is not added. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `add_tag_d 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `add_tag_d 1 t\Panadol t\Panadol`<br>
+       Expected: Similar to previous.
+
+### Deleting a prescription
+
+1. Deleting a prescription from an appointment while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment has the specialisation "Panadol".
+
+    2. Test case: `delete_tag_a 1 t\Panadol`<br>
+       Expected: Prescription successfully deleted from the first appointment. Details of the prescription shown in the status message.
+
+    3. Test case (Missing index): `delete_tag_a t\Panadol`<br>
+       Expected: Prescription is not deleted. Error details shown in the status message.
+
+    4. Test case (Missing parameter): `delete_tag_a 1`<br>
+       Expected: Similar to previous.
+
+    5. Test case (Multiple parameters): `delete_tag_a 1 t\Panadol t\Panadol`<br>
+       Expected: Similar to previous.
+
+### Editing an appointment's remark
+
+1. Editing an appointment's remark while all appointments are being shown
+
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list.
+
+    2. Test case: `remark_a 1 r\Patient needs to follow-up`<br>
+       Expected: Remark successfully added to the first appointment. Success message shown in the status message.
+
+    3. Test case: `remark_d 1 r\` or `remark_d 1`<br>
+       Expected: Remark successfully removed from the first appointment. Success message shown in the status message.
+
+    4. Test case (Missing index): `remark_d r\Patient needs to follow-up`<br>
        Expected: Remark is not deleted. Error details shown in the status message.
 
 ### Saving data
