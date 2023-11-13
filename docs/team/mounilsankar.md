@@ -5,7 +5,7 @@ title: Mounil's Project Portfolio Page
 
 ### Project: MediConnect
 
-MediConnect - MediConnect is a desktop address book application used for managing hospital staff and patients. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+MediConnect - MediConnect is a desktop clinic management application used for managing clinic staff and patients. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
