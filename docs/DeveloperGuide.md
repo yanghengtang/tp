@@ -1581,7 +1581,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an appointment
 
-    1. Prerequisites: There exist no appointment with patient's NRIC `S8712461K`, doctor's NRIC `T1258979J` from `2023-09-11 07:30` to `2023-09-11 08:00` in the database.
+    1. Prerequisites: There exist no appointment with patient's NRIC `S8712461K`, doctor's NRIC `T1258979J` from `2023-09-11 07:30` to `2023-09-11 08:00` in the database. There exists a doctor with NRIC `T1258979J` in the doctor list and a patient with NRIC `S8712461K`.
 
     2. Test case (Valid parameters): `add_a dic\T1258979J pic\S8712461K from\2023-09-11 07:30 to\2023-09-11 08:00`<br>
        Expected: Appointment successfully added into appointment list. Details of the added appointment shown in the status message. The list of appointments now consists of the added appointment.
@@ -1608,10 +1608,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all appointments
 
-    1. Prerequisites: Multiple patients in the patient list.
+    1. Prerequisites: Multiple appointments in the appointment list.
 
     2. Test case: `list_a`<br>
-       Expected: List of appointment updates to show all appointment. Success message shown in the status message.
+       Expected: List of appointments updates to show all appointment. Success message shown in the status message.
 
     3. Test case (Additional characters): `list_a 512807`, `list_a xxfajkl`, `list_a n\Bunny Cai Hong` or any command with extra characters supplied<br>
        Expected: List of appointments will not update. Error details shown in the status message.
@@ -1708,17 +1708,17 @@ testers are expected to do more *exploratory* testing.
     3. Test case (Missing index): `add_tag_a t\Panadol`<br>
        Expected: Prescription is not added. Error details shown in the status message.
 
-    4. Test case (Missing parameter): `add_tag_d 1`<br>
+    4. Test case (Missing parameter): `add_tag_a 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Multiple parameters): `add_tag_d 1 t\Panadol t\Panadol`<br>
+    5. Test case (Multiple parameters): `add_tag_a 1 t\Panadol t\Panadol`<br>
        Expected: Similar to previous.
 
 ### Deleting a prescription
 
 1. Deleting a prescription from an appointment while all appointments are being shown
 
-    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment has the specialisation "Panadol".
+    1. Prerequisites: List all appointments using the `list_a` command. Multiple appointments in the appointment list. Ensure the first appointment has the prescription "Panadol".
 
     2. Test case: `delete_tag_a 1 t\Panadol`<br>
        Expected: Prescription successfully deleted from the first appointment. Details of the prescription shown in the status message.
@@ -1741,10 +1741,10 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `remark_a 1 r\Patient needs to follow-up`<br>
        Expected: Remark successfully added to the first appointment. Success message shown in the status message.
 
-    3. Test case: `remark_d 1 r\` or `remark_d 1`<br>
+    3. Test case: `remark_a 1 r\` or `remark_a 1`<br>
        Expected: Remark successfully removed from the first appointment. Success message shown in the status message.
 
-    4. Test case (Missing index): `remark_d r\Patient needs to follow-up`<br>
+    4. Test case (Missing index): `remark_a r\Patient needs to follow-up`<br>
        Expected: Remark is not deleted. Error details shown in the status message.
 
 ### Saving data
