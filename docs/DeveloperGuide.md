@@ -732,12 +732,9 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
 **Extensions**
 
-* 1a. MediConnect detects that the patient list is empty.
-
-  Use case ends.
-* 1b. MediConnect detects that the given index is invalid.
-    * 1b1. MediConnect shows an error message.
-    * 1b2. MediConnect requests for the correct input.
+* 1a. MediConnect detects that the given index is invalid.
+    * 1a1. MediConnect shows an error message.
+    * 1a2. MediConnect requests for the correct input.
 
       Use case resumes at step 1.
 
@@ -1095,13 +1092,9 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-
-    Use case ends.
-
-* 1b. MediConnect detects that the given index is invalid. 
-  * 1b1. MediConnect shows an error message. 
-  * 1b2. MediConnect requests the correct input.
+* 1a. MediConnect detects that the given index is invalid. 
+  * 1a1. MediConnect shows an error message. 
+  * 1a2. MediConnect requests the correct input.
 
     Use case resumes at step 1.
 
@@ -1499,3 +1492,11 @@ the view window might truncate the remark, resulting in the user not being able 
 To overcome this, we proposed to wrap the text of remark in the view window, so instead of the text getting truncated, it
 will continue on the next line. Since we also intended for remarks to be a short note initially, we would like to restrict
 the maximum characters entered for a remark to be 100 characters.
+
+### Checking for repeated parameters in the edit remark features
+
+Currently, the edit remark features for appointment, doctor and patient accepts repeated parameters with the prefix `r\ `.
+Only the last supplied parameter is taken as the new remark while the others are all ignored.
+
+Since there can only be 1 remark for each appointment/doctor/patient, it would be useful to limit the command to only accept 1 new remark.
+This is done by checking for multiple occurrences of `r\ ` and displaying an error message if there are more than 1.
