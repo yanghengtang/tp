@@ -21,7 +21,7 @@ public class ViewPatientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the specified patient from the system.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "View Patient: %1$s";

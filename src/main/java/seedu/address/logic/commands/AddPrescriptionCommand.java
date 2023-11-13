@@ -24,7 +24,7 @@ public class AddPrescriptionCommand extends Command {
             + ": Adds the prescription to the appointment identified "
             + "by the index number used in the last appointment listing. "
             + "Existing tags will not be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + PREFIX_TAG + "PRESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
