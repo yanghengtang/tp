@@ -167,7 +167,7 @@ The following table gives an overview of what each parameter used in the Feature
 | NAME              | The full name of the doctor/patient                                  | Only accepts alphanumeric characters and spaces                                    |
 | NRIC              | The National Registration Identity Card number of the doctor/patient | Starts with S/T/F/G/M and followed by 7 digits and ends with an uppercase alphabet |
 | PHONE_NUMBER      | The phone number of the doctor/patient                               | Only contain numbers, and it should be at least 3 digits long.                     |
-| INDEX             | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer less than 2147483648 (1, 2, 3, ... , 2147483647)        |
+| INDEX             | The position of the appointment/doctor/patient in the filtered list  | Must be a positive integer (1, 2, 3, ...)                                          |
 | MEDICAL_CONDITION | The medical condition of the patient                                 | Only accepts alphanumeric characters without any spaces                            |
 | SPECIALISATION    | The specialisation of the doctor                                     | Only accepts alphanumeric characters without any spaces                            |
 | PRESCRIPTION      | The prescription of the appointment                                  | Only accepts alphanumeric characters without any spaces                            |
@@ -245,7 +245,7 @@ Allows you to view details, such as basic information, medical condition and rem
 
 * Displays the full details of the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * Entering `list_p` followed by `view_p 2` shows the details of the 2nd patient in the patient list.
@@ -262,7 +262,7 @@ Allows you to edit an existing patient in the system. This is useful to correct 
 
 **Format**: `edit_p INDEX [n\NAME] [ic\NRIC] [p\PHONE]`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -318,7 +318,7 @@ Allows you to delete a specified patient from the system.
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * Entering `list_p` followed by `delete_p 2` deletes the 2nd patient in the patient list.
@@ -339,7 +339,7 @@ Allows you to add a medical condition to a specified patient in the system.
 
 * Adds the given medical condition to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 * Only one medical condition can be added at a time.
 
 **Examples**:
@@ -356,7 +356,7 @@ Allows you to delete a medical condition from a specified patient in the system.
 
 * Deletes the input medical condition from the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 * The given `MEDICAL_CONDITION` must be a present medical condition of the specified patient.
 * Only one medical condition can be deleted at a time.
 
@@ -374,7 +374,7 @@ Allows you to edit the remark of a specified patient in the system. The patient'
 
 * Adds the input `REMARK` to the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 * The patient's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -449,7 +449,7 @@ Allows you to view details, such as basic information, specialisation and remark
 
 * Displays the full details of the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * Entering `list_d` followed by `view_d 2` shows the details of the 2nd doctor in the doctor list.
@@ -467,7 +467,7 @@ Allows you to edit an existing doctor in the system. This is useful to correct a
 
 **Format**: `edit_d INDEX [ic\NRIC] [n\NAME]`
 
-* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -522,7 +522,7 @@ Allows you to delete a specific doctor from the system.
 
 * Deletes the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * Entering `list_d` followed by `delete_d 2` deletes the 2nd doctor in the doctor list.
@@ -542,7 +542,7 @@ Allows you to add a specialisation to a specified doctor in the system.
 
 * Adds the specialisation to the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * Only one specialisation can be added at a time.
 
 **Examples**:
@@ -559,7 +559,7 @@ Allows you to delete a specialisation from a specific doctor in the system.
 
 * Deletes the specialisation from the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The given `SPECIALISATION` must be a present specialisation of the specified doctor.
 * Only one specialisation can be deleted at a time.
 
@@ -577,7 +577,7 @@ Allows you to edit the remark of a specified doctor in the system. The doctor's 
 
 * Edits the remark of doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The doctor's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.
@@ -664,7 +664,7 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 
 **Format**: `edit_a INDEX [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC] [from\START_TIME] [to\END_TIME]`
 
-* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -700,7 +700,7 @@ Allows you to view details, such as basic information, prescription given and re
 
 * Displays the full details of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
 * Entering `list_a` followed by `view_a 2` shows the details of the 2nd appointment in the appointment list.
@@ -732,7 +732,7 @@ Allows you to add a prescription for an appointment in the system.
 
 * Adds a prescription to the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * Only one prescription can be added at a time.
 
 **Examples**:
@@ -749,7 +749,7 @@ Allows you to delete a prescription from an appointment in the system.
 
 * Deletes the prescription from the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The given `PRESCRIPTION` must be a present prescription of the specified appointment.
 * Only one prescription can be deleted at a time.
 
@@ -767,7 +767,7 @@ Allows you to edit the remark of a specified appointment in the system. The appo
 
 * Edits the remark of the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer less than 2147483648** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The appointment's existing remark will be overwritten with the input `REMARK`.
 * An empty `REMARK` input will delete the previously stored remark.
 * Similarly, if the `REMARK` parameter is not given, it will delete the previously stored remark.

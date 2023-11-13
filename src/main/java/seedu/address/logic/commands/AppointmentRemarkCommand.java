@@ -23,7 +23,7 @@ public class AppointmentRemarkCommand extends Command {
             + ": Edits the remark of the appointment identified "
             + "by the index number used in the last appointment listing. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Patient to follow up in 1 month.";

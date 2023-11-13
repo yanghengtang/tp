@@ -21,7 +21,7 @@ public class ViewAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the specified appointment from the system.\n"
-            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_VIEW_APPOINTMENT_SUCCESS = "View Appointment: %1$s";
