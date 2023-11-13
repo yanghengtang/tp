@@ -2,7 +2,7 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-box NewLogic LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant "d:ListDoctorCommand" as ListDoctorCommand LOGIC_COLOR
@@ -21,7 +21,7 @@ activate MediConnectParser
 
 create ListDoctorCommand
 
-MediConnectParser -> ListDoctorCommand : ListDoctorsCommand()
+MediConnectParser -> ListDoctorCommand
 activate ListDoctorCommand
 
 ListDoctorCommand --> MediConnectParser : d
@@ -33,7 +33,7 @@ deactivate MediConnectParser
 LogicManager -> ListDoctorCommand : execute()
 activate ListDoctorCommand
 
-ListDoctorCommand -> Model : updateFilteredDoctorList(\nPREDICATE_SHOW_ALL\n_DOCTORS)
+ListDoctorCommand -> Model : updateFilteredDoctorList(\nPREDICATE_SHOW_ALL_DOCTORS)
 activate Model
 
 Model --> ListDoctorCommand
@@ -49,6 +49,6 @@ deactivate CommandResult
 ListDoctorCommand --> LogicManager : result
 deactivate ListDoctorCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

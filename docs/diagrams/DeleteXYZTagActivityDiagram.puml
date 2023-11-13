@@ -2,12 +2,12 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User enters DeleteXYZCommand with a specified index and parameter;
+:User enters DeleteXYZCommand with a specified index and \ntag to be added;
 floating note right
-    XYZ = Specialisation, Medical Condition or Prescriptions
+    XYZ = Specialisation, MedicalCondition or Prescription
 end note
 :MediConnectParser parses the command;
-:DeleteXYZCommandParser parses the arguments provided;
+:DeleteXYZCommandParser parses the index specified and tag provided;
 if () then ([command is valid])
   :New DeleteXYZCommand instance is created;
   if () then ([XYZ object already exists])

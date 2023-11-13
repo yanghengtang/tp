@@ -2,13 +2,13 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-box NewLogic LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":FindDoctorCommandParser" as FindDoctorCommandParser LOGIC_COLOR
-participant "d:FindDoctor" as FindDoctor LOGIC_COLOR
+participant "d:FindDoctorCommand" as FindDoctorCommand LOGIC_COLOR
 participant ":NameContainsKeywordsDoctorPredicate" as NameContainsKeywordsDoctorPredicate LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -32,19 +32,19 @@ deactivate FindDoctorCommandParser
 MediConnectParser -> FindDoctorCommandParser : parse("John")
 activate FindDoctorCommandParser
 
-create FindDoctor
-FindDoctorCommandParser -> FindDoctor :
-activate FindDoctor
+create FindDoctorCommand
+FindDoctorCommandParser -> FindDoctorCommand :
+activate FindDoctorCommand
 
 create NameContainsKeywordsDoctorPredicate
-FindDoctor -> NameContainsKeywordsDoctorPredicate : NameContainsKeywordsDoctorPredicate([John])
+FindDoctorCommand -> NameContainsKeywordsDoctorPredicate
 activate NameContainsKeywordsDoctorPredicate
-NameContainsKeywordsDoctorPredicate --> FindDoctor : predicate
+NameContainsKeywordsDoctorPredicate --> FindDoctorCommand : predicate
 deactivate NameContainsKeywordsDoctorPredicate
 
 
-FindDoctor --> FindDoctorCommandParser : d
-deactivate FindDoctor
+FindDoctorCommand --> FindDoctorCommandParser : d
+deactivate FindDoctorCommand
 
 FindDoctorCommandParser --> MediConnectParser : d
 deactivate FindDoctorCommandParser
@@ -55,25 +55,25 @@ destroy FindDoctorCommandParser
 MediConnectParser --> LogicManager : d
 deactivate MediConnectParser
 
-LogicManager -> FindDoctor : execute()
-activate FindDoctor
+LogicManager -> FindDoctorCommand : execute()
+activate FindDoctorCommand
 
-FindDoctor -> Model : getFilteredDoctorList(predicate)
+FindDoctorCommand -> Model : getFilteredDoctorList(predicate)
 activate Model
 
-Model --> FindDoctor
+Model --> FindDoctorCommand
 deactivate Model
 
 create CommandResult
-FindDoctor -> CommandResult
+FindDoctorCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindDoctor
+CommandResult --> FindDoctorCommand : result
 deactivate CommandResult
 
-FindDoctor --> LogicManager : result
-deactivate FindDoctor
+FindDoctorCommand --> LogicManager : result
+deactivate FindDoctorCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

@@ -46,7 +46,7 @@ The bulk of the app's work is done by the following four components:
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -166,7 +166,7 @@ This section describes the feature that allows users to edit appointments/doctor
 
 #### Implementation
 
-The proposed edit appointment/doctors/patient mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
+The proposed edit appointment/doctors/patients mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)` —  Executes the given user String input and returns a 'CommandResult'
 
@@ -189,6 +189,7 @@ The example usage scenario for the edit doctor and edit appointment mechanisms w
 **UML Diagrams**
 
 The following sequence diagram shows how the edit patient operation would work:
+
 ![SortSequenceDiagram](images/EditPatientSequenceDiagram.png)
 
 The sequence diagram for editing an appointment and editing a doctor would be similar.
@@ -201,7 +202,7 @@ The following activity diagram summarizes what happens when a user wants to edit
 
 **Introduction**
 
-This section describes the feature that allows users to find doctors/patient in the MediConnect database by name.
+This section describes the feature that allows users to find doctors/patients in the MediConnect database by name.
 
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
@@ -238,7 +239,7 @@ The following activity diagram summarizes what happens when a user wants to find
 
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
-### List Doctors / Patients
+### List Doctor / Patients
 
 **Introduction**
 
@@ -246,7 +247,7 @@ This section describes the feature that allows users to list doctors/patients in
 
 #### Implementation
 
-The listing of all doctors/patient in the database is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
+The listing of all doctors/patients in the database is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
@@ -273,11 +274,13 @@ The example usage scenario for the list patients mechanisms would be similar to 
 **UML Diagrams**
 
 The following sequence diagram shows how the list doctor operation would work:
+
 ![ListDoctorSequence](images/ListDoctorSequence.png)
 
 The sequence diagram for the list patient operation would be similar
 
 The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
+
 ![ListCommandActivity](images/ListCommandActivityDiagram.png)
 
 ### List Appointments
@@ -311,9 +314,11 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
 **UML Diagrams**
 
 The following sequence diagram shows how the list appointment operation would work:
+
 ![ListPatientSequence](images/ListAppointmentSequence.png)
 
 The following activity diagram summarizes what happens when a user wants to list a new appointment:
+
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
 ### Add Appointment / Doctor / Patient feature
@@ -345,11 +350,13 @@ The example usage scenario for the add patient and add doctor mechanisms would b
 **UML Diagrams**
 
 The following sequence diagram shows how the add appointment operation would work:
+
 ![AddAppoointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 The sequence diagram for the add patient and add doctor operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to add a new appointment/patient/doctor:
+
 ![AddXYZCommandActivityDiagram](images/AddXYZActivityDiagram.png)
 
 ### Delete Appointment / Doctor / Patient feature
@@ -381,14 +388,16 @@ The example usage scenario for the delete patient and delete doctor mechanisms w
 **UML Diagrams**
 
 The following sequence diagram shows how the delete appointment operation would work:
+
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
 The sequence diagram for the delete patient and doctor operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to delete an appointment/patient/doctor:
+
 ![DeleteXYZCommandActivityDiagram](images/DeleteXYZActivityDiagram.png)
 
-### Edit remark feature
+### Edit Remark feature
 
 **Introduction**
 
@@ -416,11 +425,13 @@ The edited `Appointment` is then replaced in the `Database` by calling `Database
 The example usage scenario for the edit patient remark and edit doctor remark mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the edit appointment remark operation would work:
+
 ![EditRemarkSequenceDiagram](images/EditRemarkSequenceDiagram.png)
 
 The sequence diagram for the editing patient and doctor remark would be similar.
 
 The following activity diagram summarizes what happens when a user wants to edit the remark of an appointment/patient/doctor:
+
 ![EditXYZRemarkActivityDiagram](images/EditXYZRemarkActivityDiagram.png)
 
 ### Add Specialisation / Medical condition / Prescription feature
@@ -451,11 +462,13 @@ The `add_tag_d` command calls `AddSpecialisationCommandParser#parse(String)` the
 The example usage scenario for the add prescription and add medical condition mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the add specialisation operation would work:
+
 ![AddSpecialisationSequenceDiagram](images/AddSpecialisationSequenceDiagram.png)
 
 The sequence diagram for the add prescription and medical condition operations would be similar.
 
 The following activity diagram summarizes what happens when a user wants to add a specialisation/medical condition/prescription:
+
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
 ### Delete Specialisation / Medical Condition / Prescription feature
@@ -1788,29 +1801,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The database.json file in the data directory must exist.
    
-   2. Test case: Delete the database.json file
+   2. Test case: Delete the database.json file.<br>
       Expected: The app launches successfully, populated with the sample data.
    
-   3. Test case: Delete the contents of the database.json file
+   3. Test case: Delete the contents of the database.json file.<br>
       Expected: The app launches successfully, populated with no data.
    
-   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.
+   4. Test case: Add random characters to anywhere in the json file within the first set of curly brackets.<br>
       Expected: Similar to previous.
 
 2. Dealing with wrongly edited data files
 
    1. Prerequisites: The database.json file in the data directory must exist.
    
-   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)
+   2. Test case: Remove a field from any one of the doctors (e.g. nric, name, etc.)<br>
       Expected: The app launches successfully, populated with no data.
    
-   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)
+   3. Test case: Remove a field from any one of the patients (e.g. nric, name, etc.)<br>
       Expected: Similar to previous.
    
-   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)
+   4. Test case: Remove a field from any one of the appointments (e.g. patientNric, doctorNric, etc.)<br>
       Expected: Similar to previous. 
    
-   5. Test case: Edit the nric of a patient without editing the corresponding appointments.
+   5. Test case: Edit the nric of a patient without editing the corresponding appointments.<br>
       Expected: Similar to previous.
 
 

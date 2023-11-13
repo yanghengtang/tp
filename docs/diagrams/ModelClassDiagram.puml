@@ -31,9 +31,9 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Database *--> "3" UniqueItemList
-UniqueItemList --> "~* all" Data
+UniqueItemList --> "~*" Data
 
 UniqueItemList -[hidden]right-> I
 
-ModelManager --> "~* filtered" Data
+ModelManager --> "~*" Data
 @enduml
