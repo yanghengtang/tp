@@ -6,19 +6,19 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":EditPatientCommandParser" as EditPatientCommandParser LOGIC_COLOR
+participant "d:EditPatientDescriptor" as EditPatientDescriptor LOGIC_COLOR
 participant "e:EditPatientCommand" as EditPatientCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-participant "d:EditPatientDescriptor" as EditPatientDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_p 5 p\23456789")
+[-> LogicManager : execute("edit_p 5 \np\23456789")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("edit_p 5 p\23456789")
+LogicManager -> MediConnectParser : parseCommand("edit_p 5 \np\23456789")
 activate MediConnectParser
 
 create EditPatientCommandParser
@@ -28,7 +28,7 @@ activate EditPatientCommandParser
 EditPatientCommandParser --> MediConnectParser
 deactivate EditPatientCommandParser
 
-MediConnectParser -> EditPatientCommandParser : parse("edit_p 5 p\23456789")
+MediConnectParser -> EditPatientCommandParser : parse("edit_p 5 \np\23456789")
 activate EditPatientCommandParser
 
 create EditPatientDescriptor
@@ -71,12 +71,14 @@ deactivate Model
 
 create CommandResult
 EditPatientCommand -> CommandResult
+
 activate CommandResult
 
 CommandResult --> EditPatientCommand : result
 deactivate CommandResult
 
 EditPatientCommand --> LogicManager : result
-[<--LogicManager : result
 deactivate EditPatientCommand
+[<--LogicManager : result
+deactivate LogicManager
 @enduml

@@ -7,7 +7,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":AppointmentRemarkCommandParser" as AppointmentRemarkCommandParser LOGIC_COLOR
 participant "a:AppointmentRemarkCommand" as AppointmentRemarkCommand LOGIC_COLOR
-participant "c:CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -31,7 +31,7 @@ MediConnectParser -> AppointmentRemarkCommandParser : parse("2 r\\follow up requ
 activate AppointmentRemarkCommandParser
 
 create AppointmentRemarkCommand
-AppointmentRemarkCommandParser -> AppointmentRemarkCommand : AppointmentRemarkCommand()
+AppointmentRemarkCommandParser -> AppointmentRemarkCommand
 activate AppointmentRemarkCommand
 
 AppointmentRemarkCommand --> AppointmentRemarkCommandParser : a
@@ -49,13 +49,13 @@ deactivate MediConnectParser
 LogicManager -> AppointmentRemarkCommand : execute()
 activate AppointmentRemarkCommand
 
-AppointmentRemarkCommand -> Model : setAppointment(appointmentToEdit, editedAppointment)
+AppointmentRemarkCommand -> Model : setAppointment(2, editedAppointment)
 activate Model
 
 Model --> AppointmentRemarkCommand
 deactivate Model
 
-AppointmentRemarkCommand -> Model : updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS)
+AppointmentRemarkCommand -> Model : updateFilteredAppointmentList(\nPREDICATE_SHOW_ALL_APPOINTMENTS)
 activate Model
 
 Model --> AppointmentRemarkCommand
@@ -65,9 +65,12 @@ create CommandResult
 AppointmentRemarkCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AppointmentRemarkCommand : c
+CommandResult --> AppointmentRemarkCommand : result
 deactivate CommandResult
 
-AppointmentRemarkCommand --> LogicManager : c
+AppointmentRemarkCommand --> LogicManager : result
 deactivate AppointmentRemarkCommand
+
+[<--LogicManager : result
+deactivate LogicManager
 @enduml

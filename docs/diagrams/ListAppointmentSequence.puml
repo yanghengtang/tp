@@ -8,17 +8,17 @@ participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":ListAppointmentCommandParser" as ListAppointmentCommandParser LOGIC_COLOR
 participant "a:ListAppointmentCommand" as ListAppointmentCommand LOGIC_COLOR
 participant ":AppointmentFilterByNricPredicate" as AppointmentFilterByNricPredicate LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("list_a pic\S9912343G \ndic\S0548254G")
+[-> LogicManager : execute("list_a \npic\S9912343G dic\S0548254G")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("list_a pic\S9912343G \ndic\S0548254G")
+LogicManager -> MediConnectParser : parseCommand("list_a \npic\S9912343G dic\S0548254G")
 activate MediConnectParser
 
 create ListAppointmentCommandParser
@@ -69,12 +69,12 @@ create CommandResult
 ListAppointmentCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListAppointmentCommand
+CommandResult --> ListAppointmentCommand : result
 deactivate CommandResult
 
 ListAppointmentCommand --> LogicManager : result
 deactivate ListAppointmentCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
