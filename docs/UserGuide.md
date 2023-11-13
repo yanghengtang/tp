@@ -186,6 +186,8 @@ For medical conditions with more than 1 word, users can concatenate the words of
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
 </div>
 
+Back to [Table of Contents](#table-of-contents).
+
 <div style="page-break-after: always;"></div>
 
 ## Patient Management Features
