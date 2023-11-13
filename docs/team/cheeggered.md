@@ -5,15 +5,25 @@ title: Chee Teng's Project Portfolio Page
 
 ### Project: MediConnect
 
-AddressBook - MediConnect is a desktop address book application used for managing hospital staff and patients. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+MediConnect - MediConnect is a desktop clinic management application used for managing clinic staff and patients. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * What it does: 
-  * Justification: 
-  * Highlights: 
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**:
+  * Added the ability to add patients through the add patient command.
+    * What it does: Allows users to add a patient to the database.
+    * Justification: This allows receptionists to add new patients.
+    * Highlights: The challenge in this feature came in the strict validity checks that had to be enforced. In particular, before the said patient could be added, a patient with the same NRIC must not be in the database.
+
+  * Added the ability to delete/edit a patient through the delete/edit patient command.
+    * What it does: Allows users to delete/edit a patient from the database.
+    * Justification: Allows receptionists to remove patients from the database and also amend errors made when adding a patient.
+    * Highlights: To maximise the convenience of the edit patient feature, the inputs to the edit patient command are optional (minimally 1 input required)
+
+  * Added the ability to find the patient by keyword.
+    * What it does: Allows users to find patients by the entered keyword. If no arguments are provided, an error message is returned.
+    * Justification: This allows the receptionists to find a patient through their name.
+    * Highlights: To maximise the flexibility of this feature, the keyword is case-insensitive.
 
 * **Code contributed**: [RepoSense link]()
 
