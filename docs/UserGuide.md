@@ -214,6 +214,10 @@ Allows you to add a patient to the system.
 * `add_p n\John Doe ic\T0212385J p\98765432`
 * `add_p ic\S9912343G n\Betsy Crowe p\81235833`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Ensure that the new patient's NRIC does not exist in the database.
+</div>
+
 **Sample Usage**:
 1. Assuming you want to add a Patient named "Jonathan Reese" with NRIC "S8712461K" and phone number "81573238". 
 
