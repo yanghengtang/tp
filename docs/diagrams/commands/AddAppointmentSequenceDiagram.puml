@@ -39,7 +39,7 @@ Appointment --> AddAppointmentCommandParser : toAdd
 deactivate
 
 create AddAppointmentCommand
-AddAppointmentCommandParser -> AddAppointmentCommand : AddAppointmentCommand(toAdd))
+AddAppointmentCommandParser -> AddAppointmentCommand :
 activate AddAppointmentCommand
 
 AddAppointmentCommand --> AddAppointmentCommandParser : a
