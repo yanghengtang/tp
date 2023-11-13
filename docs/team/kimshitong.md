@@ -46,11 +46,6 @@ Given below are my contributions to the project.
     * Justification: It allows us to leave a remark of the doctor which can be used to indicate doctor's availability.
     * Highlights: We are able to edit doctor remark whenever there is a new update on availability.
 
-  * View Doctor
-    * What it does: View doctor's details 
-    * Justification: We can see doctor's detail like his specialisations, nric and remarks.
-    * Highlights: A clean window will be prompt out with all the doctor's details.
-
   * List Doctor
     * What it does: List all the existing doctors in database
     * Justification: you are able to see all the existing doctors along with their name and nric
@@ -77,7 +72,6 @@ Given below are my contributions to the project.
   * Developer Guide:
     * User Stories
     * Document Features for List Patient/Doctor/Appointments with Activity/Sequence UML Diagram
-    * Document Features for View Patient/Doctor/Appointments with Activity/Sequence UML Diagram
     * Document Features for Delete Specialisation/Medical Conditions/Prescriptions with Activity/Sequence UML Diagram
 
 * **Community**:
