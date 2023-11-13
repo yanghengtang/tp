@@ -39,7 +39,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=cheeggered&breakdown=true)
 
 * **Project management**:
-  * 
+  * Version control
+  * Documentation Management
+  * Team Communication
 
 * **Enhancements to existing features**:
   * 
