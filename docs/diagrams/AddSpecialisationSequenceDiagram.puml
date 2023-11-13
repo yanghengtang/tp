@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add_tag_d 2 Orthopaedic")
+[-> LogicManager : execute("add_tag_d 2 t\Orthopaedic")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("add_tag_d 2 Orthopaedic")
+LogicManager -> MediConnectParser : parseCommand("add_tag_d 2 t\Orthopaedic")
 activate MediConnectParser
 
 create AddSpecialisationCommandParser
@@ -27,12 +27,12 @@ activate AddSpecialisationCommandParser
 AddSpecialisationCommandParser --> MediConnectParser
 deactivate AddSpecialisationCommandParser
 
-MediConnectParser -> AddSpecialisationCommandParser : parse("add_tag_d 2 Orthopaedic")
+MediConnectParser -> AddSpecialisationCommandParser : parse("add_tag_d 2 t\Orthopaedic")
 activate AddSpecialisationCommandParser
 
 
 create AddSpecialisationCommand
-AddSpecialisationCommandParser -> AddSpecialisationCommand : AddSpecialisationCommand(2, Orthopaedic)
+AddSpecialisationCommandParser -> AddSpecialisationCommand : AddSpecialisationCommand()
 activate AddSpecialisationCommand
 
 AddSpecialisationCommand --> AddSpecialisationCommandParser : a
