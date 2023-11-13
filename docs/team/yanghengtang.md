@@ -36,4 +36,3 @@ Given below are my contributions to the project.
   * Contributed to forum discussions (examples: [#255](https://github.com/nus-cs2103-AY2324S1/forum/issues/225), [#376](https://github.com/nus-cs2103-AY2324S1/forum/issues/376), [#444](https://github.com/nus-cs2103-AY2324S1/forum/issues/444))
   * Reported bugs and suggestions for other teams in the class (examples: [PE-Dry Run](https://github.com/yanghengtang/ped))
   * Some parts of the history feature I added was adopted by several other classmates ([Inaccuracy in error messages bug](https://github.com/AY2324S1-CS2103T-F12-2/tp/issues/149), [Invalid inputs not throwing errors bug](https://github.com/AY2324S1-CS2103T-F12-2/tp/issues/146))
-  * 
