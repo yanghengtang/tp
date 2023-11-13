@@ -25,7 +25,7 @@ Given below are my contributions to the project.
     * Justification: This allows receptionists to see full details about an appointment so that they can see any remarks that doctors have made as well as prescriptions.
     * Highlights: The main challenge of this feature was to update the right attribute in the model so that the ui would be able to display the right appointment in the pop up window that is showed to the receptionist
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=mounilsankar&tabRepo=AY2324S1-CS2103T-T08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=mounilsankar&breakdown=true)
 
 * **Project management**:
   * Setup GitHub Team Organisation and Repository
