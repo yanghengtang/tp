@@ -51,10 +51,6 @@ Given below are my contributions to the project.
     * 
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): []()
-  * Contributed to forum discussions (examples: []())
-  * Reported bugs and suggestions for other teams in the class (examples: []())
+  * PRs reviewed (with non-trivial review comments): [#248](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/248), [#297](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/297), [#314](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/314)
+  * Reported bugs and suggestions for other teams in the class (examples: [PE-Dry Run](https://github.com/cheeggered/ped))
   * Some parts of the history feature I added was adopted by several other class mates ([]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([]())
