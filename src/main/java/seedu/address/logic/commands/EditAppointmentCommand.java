@@ -32,7 +32,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PATIENT_NRIC + "PATIENT_NRIC] "
             + "[" + PREFIX_DOCTOR_NRIC + "DOCTOR_NRIC] "
             + "[" + PREFIX_APPOINTMENT_START_TIME + "START_TIME] "

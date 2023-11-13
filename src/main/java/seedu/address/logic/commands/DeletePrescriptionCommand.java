@@ -23,7 +23,7 @@ public class DeletePrescriptionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the prescription from the appointment identified "
             + "by the index number used in the last appointment listing. "
-            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "PRESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CoughSyrup";
