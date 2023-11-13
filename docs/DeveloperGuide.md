@@ -1304,7 +1304,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x n\Bunny Cai Hong` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x n\Bunny Cai Hong` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
     6. Test case (Repeated Parameter): `edit_p 1 n\Bunny Cai Hong n\Cai Hong`<br>
@@ -1323,7 +1323,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x ic\T1258979J` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x ic\T1258979J` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
    6. Test case (Repeated Parameter): `edit_p 1 ic\T1258979J ic\T1258979H`<br>
@@ -1342,7 +1342,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_p 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_p x p\83425673` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_p x p\83425673` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
    6. Test case (Repeated Parameter): `edit_p 1 p\83425673 p\109257290`<br>
@@ -1474,9 +1474,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a doctor
 
-1. Editing a doctor's name while all doctorss are being shown
+1. Editing a doctor's name while all doctors are being shown
 
-    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctorss in the doctor list.
+    1. Prerequisites: List all doctors using the `list_d` command. Multiple doctors in the doctor list.
 
     2. Test case (Valid Name): `edit_d 1 n\Bunny Cai Hong`<br>
        Expected: First doctor's name successfully edited. Details of the edited doctor shown in the status message.
@@ -1487,7 +1487,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_d 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_d x n\Bunny Cai Hong` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_d x n\Bunny Cai Hong` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
     6. Test case (Repeated Parameter): `edit_d 1 n\Bunny Cai Hong n\Cai Hong`<br>
@@ -1506,7 +1506,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case (Missing Parameter): `edit_d 1`<br>
        Expected: Similar to previous.
 
-    5. Test case (Invalid Index): `edit_d x ic\T1258979J` (where x is lesser than one or larger than the list size)<br>
+    5. Test case (Invalid Index): `edit_d x ic\T1258979J` (where x is less than one or larger than the list size)<br>
        Expected: Similar to previous.
 
     6. Test case (Repeated Parameter): `edit_d 1 ic\T1258979J ic\T1258979H`<br>
@@ -1521,7 +1521,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `find_d jonathan`<br>
        Expected: Doctor list updates to show all doctors named jonathan. Success message shown in the status message.
 
-    3. Test case (Missing keyword): `find_p`<br>
+    3. Test case (Missing keyword): `find_d`<br>
        Expected: Doctor list will not update. Error details shown in the status message.
 
 ### Deleting a doctor
