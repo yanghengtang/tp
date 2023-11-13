@@ -27,12 +27,12 @@ activate DeleteSpecialisationCommandParser
 DeleteSpecialisationCommandParser --> MediConnectParser
 deactivate DeleteSpecialisationCommandParser
 
-MediConnectParser -> DeleteSpecialisationCommandParser : parse("delete_tag_d 2 t\Orthopaedic")
+MediConnectParser -> DeleteSpecialisationCommandParser : parse("2 t\Orthopaedic")
 activate DeleteSpecialisationCommandParser
 
 
 create DeleteSpecialisationCommand
-DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand : DeleteSpecialisationCommand()
+DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand
 activate DeleteSpecialisationCommand
 
 DeleteSpecialisationCommand --> DeleteSpecialisationCommandParser : d
@@ -57,7 +57,7 @@ activate Model
 Model --> DeleteSpecialisationCommand
 deactivate Model
 
-DeleteSpecialisationCommand -> Model : setDoctor(doctorToEdit, editedDoctor)
+DeleteSpecialisationCommand -> Model : setDoctor(2, editedDoctor)
 activate Model
 
 Model --> DeleteSpecialisationCommand
