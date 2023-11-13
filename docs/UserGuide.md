@@ -434,6 +434,10 @@ Allows you to add a doctor to the system.
 * `add_d n\John Doe ic\T0212385J`
 * `add_d ic\S9912343G n\Betsy Crowe`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Ensure that the new doctor's NRIC does not exist in the database.
+</div>
+
 **Sample Usage**:
 1. Assuming you want to add a doctor named "John Doe" with NRIC "T0212385J".
 
