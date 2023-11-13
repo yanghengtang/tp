@@ -47,12 +47,13 @@ Here are some common icons used throughout this user guide.
 
 Here are some common terms used throughout this user guide.
 
-| Terms       | Representation                                                                 |
-|-------------|--------------------------------------------------------------------------------|
-| Command     | The instruction you enter into the application                                 |
-| Parameter   | The additional information you provide for the instruction you intend to enter |
-| Appointment | A scheduled medical consultation between the patient and the doctor            |
-| MAX_INT     | Integer value 2147483648                                                       |
+| Terms            | Representation                                                                                          |
+|------------------|---------------------------------------------------------------------------------------------------------|
+| Command          | The instruction you enter into the application                                                          |
+| Parameter        | The additional information you provide for the instruction you intend to enter                          |
+| Appointment      | A scheduled medical consultation between the patient and the doctor                                     |
+| MAX_INT          | Integer value 2147483647                                                                                |
+| Command Terminal | A window into which users can type commands that are then executed by their computer's operating system |
 
 ## Navigating this user guide
 
@@ -63,7 +64,7 @@ If you are new to MediConnect, you can head over to our [quick start](#quick-sta
 
 If you are familiar with MediConnect, you can head over to view the list of [features](#features) or the [command summary](#command-summary) to hone your MediConnect skills.
 
-return back to [Table of Contents](#table-of-contents)
+Return back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -467,7 +468,7 @@ Allows you to view details, such as basic information, specialisation, and remar
 
 Below is an example of a successful view command call.
 
-![ViewDoctorMainWindow](images/view-doctor.jpg)
+![ViewDoctorMainWindow](images/view-doctor.png)
 
 Back to [Doctor Management Features](#doctor-management-features).
 
@@ -640,7 +641,7 @@ Allows you to add an appointment to the system.
 
 2. Enter the following command:
 ```
-add_d pic\T0212385J dic\S9912343G from\2023-09-13 12:00 to\2023-09-13 12:30
+add_a pic\T0212385J dic\S9912343G from\2023-09-13 12:00 to\2023-09-13 12:30
 ```
 
 3. The result box will display the following message:
@@ -651,7 +652,7 @@ New appointment added: Patient NRIC: T0212385J; Doctor NRIC: S9912343G; From: 20
 4. You have successfully added the appointment into the database.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-Do ensure that the patient and doctor you are entering exist in the database!
+Do ensure that the patient and doctor you are entering exist in the database! Ensure that the end time is not any earlier than the start time. However, the start time and end time can be the same.
 </div>
 
 Back to [Appointment Management Features](#appointment-management-features).
