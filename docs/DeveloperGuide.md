@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* This project is based on [AddressBook Level 3 (AB3)](https://github.com/se-edu/addressbook-level3) by [SE-EDU initiative](https://se-education.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,7 +175,7 @@ Given below is an example usage scenario and how the edit patient mechanism beha
 Step 1: The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
 Step 2: The user inputs `edit_p 5 p\23456789` command to edit the phone number of the 5th patient in the MediConnect database. The `edit_p` command calls `EditCommandParser#parse()` which parses the parameters to edit the current patient with. 
-A new `EditPatientDescriptor` instance will be created in the parse command call, and a new `EditPatientCommand` instance will be created with the `EditPatientDescriptor` and the given `index`.
+A new `EditPatientDescriptor` instance will be created in the parse command call, and a new `EditPatientCommand` instance will be created with the `EditPatientDescriptor` and the given `Index`.
 
 Step 3: The created `EditPatientCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `EditPatientCommand#execute` then calls `Model#setPatient` and with the patient of the given `Index` and the target patient created by the `EditPatientDescriptor`.
@@ -205,32 +206,34 @@ This section describes the feature that allows users to find doctors/patient in 
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a Model where the command is executed. Additionally, it implements the following operations:
 
-* LogicManager#execute() — Executes the given user String input and returns a CommandResult
+* `LogicManager#execute()` — Executes the given user String input and returns a CommandResult
 
 These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
 Given below is an example usage scenario and how the ListDoctorCommand/ListPatientCommand mechanism behaves at each step.
 
-Step 1: The user inputs find_d/find_p John to search for doctors/patients named "John" in MediConnect.
-* The find_d/find_p command triggers MediConnectParser#parseCommand, which identifies the command word and calls FindDoctorCommandParser/FindPatientCommandParser#parse to handle the arguments.
+Step 1: The user inputs `find_d/find_p John` to search for doctors/patients named "John" in MediConnect.
+* The `find_d/find_p` command triggers `MediConnectParser#parseCommand`, which identifies the command word and calls `FindDoctorCommandParser/FindPatientCommandParser#parse` to handle the arguments.
 
-Step 2: The FindDoctorCommandParser/FindPatientCommandParser#parse method splits the argument "John" into a list of keywords. It then creates a NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object, using the list of keywords.
+Step 2: The `FindDoctorCommandParser/FindPatientCommandParser#parse` method splits the argument "John" into a list of keywords. It then creates a `NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate` object, using the list of keywords.
 
-Step 3: A new FindDoctorCommand/FindPatientCommand instance is created using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate object.
+Step 3: A new `FindDoctorCommand/FindPatientCommand` instance is created using the `NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate` object.
 
-Step 4: The created FindDoctorCommand/FindPatientCommand instance is returned to LogicManager, and its execute method is called.
-FindDoctorCommand/FindPatientCommand#execute filters the list of doctors/patients in Model using the NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate.
+Step 4: The created `FindDoctorCommand/FindPatientCommand` instance is returned to `LogicManager`, and its `execute` method is called.
+`FindDoctorCommand/FindPatientCommand#execute` filters the list of doctors/patients in `Model` using the `NameContainsKeywordsDoctorPredicate/NameContainsKeywordsPatientPredicate`.
 
 Step 5: The filtered list is displayed to the user through the UI.
 
 **UML Diagrams**
 
 The following sequence diagram shows how the find doctor operation would work:
+
 ![FindDoctorSequence](images/FindDoctorSequence.png)
 
 The sequence diagram for the find patient operation would be similar
 
 The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
+
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
 ### List Doctors / Patients
@@ -243,7 +246,7 @@ This section describes the feature that allows users to list doctors/patients in
 
 The listing of all doctors/patient in the database is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute` — Executes the given user String input and returns a CommandResult.
+* `LogicManager#execute` — Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
@@ -285,19 +288,19 @@ This section describes the feature that allows users to list appointments in the
 
 The listing of appointments in MediConnect is facilitated by the `LogicManager`, which implements the `Logic` interface. It holds a `MediConnectParser` that parses the user input, and a model where the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute()` — Executes the given user String input and returns a CommandResult.
+* `LogicManager#execute()` — Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the Ui interface as `Ui#executeCommand()`.
 
 
-Given below is an example usage scenario and how the ListAppointmentCommand mechanism behaves at each step:
+Given below is an example usage scenario and how the `ListAppointmentCommand` mechanism behaves at each step:
 
 Step 1: The user inputs `list_a` to list all appointments or `list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC` to filter appointments.
-* The `list_a` command triggers `MediConnectParser#parseCommand`, which identifies the command word and calls ListAppointmentCommandParser#parse to handle the arguments.
+* The `list_a` command triggers `MediConnectParser#parseCommand`, which identifies the command word and calls `ListAppointmentCommandParser#parse` to handle the arguments.
 
-Step 2: The `ListAppointmentCommandParser#parse` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC. Based on these, it creates appropriate Predicate objects.
+Step 2: The `ListAppointmentCommandParser#parse` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC. Based on these, it creates appropriate `Predicate` objects.
 
-Step 3: A new `ListAppointmentCommand` instance is created using the Predicate object(s).
+Step 3: A new `ListAppointmentCommand` instance is created using the `Predicate` object(s).
 
 Step 4: The created `ListAppointmentCommand` instance is returned to `LogicManager`, and its execute method is called.
 * `ListAppointmentCommand#execute` filters the list of appointments in `Model` using the specified predicate(s).
@@ -321,7 +324,7 @@ This section describes the add appointment/doctor/patient features.
 #### Implementation
 The adding of an appointment/doctor/patient to MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
@@ -417,7 +420,7 @@ The sequence diagram for the editing patient and doctor remark would be similar.
 The following activity diagram summarizes what happens when a user wants to edit the remark of an appointment/patient/doctor:
 ![EditXYZRemarkActivityDiagram](images/EditXYZRemarkActivityDiagram.png)
 
-### Add Specialisations / Medical conditions / Prescriptions feature
+### Add Specialisation / Medical condition / Prescription feature
 
 **Introduction**
 
@@ -434,7 +437,7 @@ Given below is an example usage scenario and how the add specialisation mechanis
 
 Step 1. The user launches the application. The `Database` will be initialized with all data in the order that it was stored in.
 
-Step 2. The user inputs `list_d`. MediConnect will display the FilteredDoctorList.
+Step 2. The user inputs `list_d`. MediConnect will display the `FilteredDoctorList`.
 
 Step 3. The user inputs `add_tag_d 2 t\Orthopaedic`  to add the prescription `Orthopaedic` to the doctor at index 2 in the displayed doctor list.
 The `add_tag_d` command calls `AddSpecialisationCommandParser#parse` the index argument which is the index of the doctor we are adding the tag into. It also parses the tag argument which contains the specialisation to be added.
@@ -458,7 +461,7 @@ This section describes the delete specialisation/medical condition/prescription 
 #### Implementation
 The deletion of a specialisation/medical condition/prescription to MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally it implements the following operations:
 
-* `LogicManager#execute()` —  Executes the given user String input and returns a 'CommandResult'
+* `LogicManager#execute()` —  Executes the given user String input and returns a `CommandResult`
 
 These operations are exposed in the `Ui` interface as `Ui#executeCommand()`.
 
@@ -628,8 +631,6 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 | *         | user    | view the list of doctor sorted by name                 | look through the list of doctors logically.                                         |
 | *         | user    | view the list of patient sorted by name                | look through the list of patient in a logical manner.                               |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -1180,8 +1181,6 @@ Use case ends.
 
     Use case ends.
 
-*{More to be added}*
-
 
 
 ### Non-Functional Requirements
@@ -1227,24 +1226,20 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting a patient
 
-### Deleting a person
+1. Deleting a patient while all patients are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all patients using the `list_p` command. Multiple patients in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `delete_p 1`<br>
+      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete_p 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete_p`, `delete_p x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
