@@ -176,7 +176,7 @@ The following table gives an overview of what each parameter used in the Feature
 | START_TIME        | The start time of the appointment                                    | Only accepts valid dates in the format YYYY-MM-DD HH:MM                                                                                     |
 | END_TIME          | The end time of the appointment                                      | Only accepts valid dates in the format YYYY-MM-DD HH:MM                                                                                     |
 | REMARK            | The remark of the appointment/patient/doctor                         | Accepts all input                                                                                                                           |
-
+| KEYWORD           | The keyword of doctor/patient                                        | Accepts all input                                                                                                                           |
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
 An "alphanumeric" character is a character that can be either a letter (A to Z, both uppercase and lowercase) or a number (0 to 9).
@@ -664,7 +664,7 @@ Allows you to either display all the appointments in the system or the list of a
 **Format**: `list_a [pic\PATIENT_NRIC] [dic\DOCTOR_NRIC]`
 
 * If only `PATIENT_NRIC` is specified, all appointments belonging to the patient with the specified `PATIENT_NRIC` will be listed.
-* If only `DOCTOR_NRIC` is specified, all appointments belonging to the patient with the specified `DOCTOR_NRIC` will be listed.
+* If only `DOCTOR_NRIC` is specified, all appointments belonging to the doctor with the specified `DOCTOR_NRIC` will be listed.
 * If both `PATIENT_NRIC` and `DOCTOR_NRIC` are specified, all appointments between the patient with the specified `PATIENT_NRIC` and the doctor with the specified `DOCTOR_NRIC` will be listed.
 * List all the appointments in the system if no fields are given.
 
@@ -672,7 +672,7 @@ Allows you to either display all the appointments in the system or the list of a
 * `list_a pic\S9912343G` returns all the appointments that have the patient NRIC `S9912343G`.
 * `list_a dic\T0212385J` returns all the appointments that have the doctor  NRIC `T0212385J`.
 * `list_a pic\S9912343G dic\T0212385J` returns all the appointments that have both the patient NRIC `S9912343G` and the doctor NRIC `T0212385J`.
-* 'list_a' returns all the appointments in the system.
+* `list_a` returns all the appointments in the system.
 
 Back to [Appointment Management Features](#appointment-management-features).
 
