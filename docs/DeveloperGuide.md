@@ -303,12 +303,12 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
 * The `list_a` command triggers `MediConnectParser#parseCommand(String)`, which identifies the command word and calls `ListAppointmentCommandParser#parse(String)` to handle the arguments.
 
 **Step 2**: The `ListAppointmentCommandParser#parse(String)` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC.
- * Based on the presence of the doctor/patient's NRIC, it will affect whether their predicate `AppointmentEqualDoctorNricPredicate`/`AppointmentEqualPatientNricPredicate` is `PREDICATE_SHOW_ALL_DOCTORS`/`PREDICATE_SHOW_ALL_PATIENTS` or the predicate of the specified doctor/patient's NRIC.
+ * Based on the presence of the doctor/patient NRIC flags, it will affect whether their predicate `AppointmentEqualDoctorNricPredicate`/`AppointmentEqualPatientNricPredicate` is `PREDICATE_SHOW_ALL_DOCTORS`/`PREDICATE_SHOW_ALL_PATIENTS` or the predicate of the specified doctor/patient's NRIC.
  * A new `ListAppointmentCommand` instance is created using the `AppointmentFilterByNricPredicate` that is constructed with `AppointmentEqualDoctorNricPredicate` and `AppointmentEqualPatientNricPredicate`.
 
 **Step 3**: The created `ListAppointmentCommand` instance is returned to `LogicManager`, and its execute method is called.
  * `ListAppointmentCommand#execute(Model)` then calls `Model#updateFilteredAppointmentList(Predicate<Appointment>)` with the predicate `AppointmentFilterByNricPredicate`.
- * The `FilteredAppointmentList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Appointment>)`.
+ * The `FilteredAppointmentList` is updated to show all doctors by calling `Model#setPredicate(Predicate<Appointment>)`.
 
 **Step 4**: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
