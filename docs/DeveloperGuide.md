@@ -1876,4 +1876,4 @@ to lowercase first before checking for duplicates.
 Currently, when an appointment/doctor/patient is displayed in the View window and the user updates any of its fields, the details on the View window does not update instantly unless the user type the View command again.
 
 To improve the user experience, we plan to make MediConnect automatically update the details on the View window should there be any new changes made. 
-This can be done by making the `selectedAppointment`, `selectedDoctor` and `selectedAppointment` observable, whenever there is a change in the details of the selected entity, the `UI` will be able to update accordingly.
+This can be done by making the `selectedAppointment`, `selectedDoctor` and `selectedAppointment` observable, whenever there is a change in the details of the selected entity, the `Ui` will be able to update accordingly.
