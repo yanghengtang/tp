@@ -64,7 +64,7 @@ If you are new to MediConnect, you can head over to our [quick start](#quick-sta
 
 If you are familiar with MediConnect, you can head over to view the list of [features](#features) or the [command summary](#command-summary) to hone your MediConnect skills.
 
-Return back to [Table of Contents](#table-of-contents).
+Back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
