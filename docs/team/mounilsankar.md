@@ -23,7 +23,12 @@ Given below are my contributions to the project.
   * Added the ability to view details of a specific appointment in the clinic.
     * What it does: Opens a pop up window containing the full details of an appointment when the command view_a is entered.
     * Justification: This allows receptionists to see full details about an appointment so that they can see any remarks that doctors have made as well as prescriptions.
-    * Highlights: The main challenge of this feature was to update the right attribute in the model so that the ui would be able to display the right appointment in the pop up window that is showed to the receptionist
+    * Highlights: The main challenge of this feature was to update the right attribute in the model so that the ui would be able to display the right appointment in the pop up window that is showed to the receptionist.
+  
+  * Added the ability to delete a specific appointment
+    * What it does: Deletes a specific appointment from the current list of appointments.
+    * Justification: This allows receptionists to delete any appointments mistakenly added.
+    * Highlights: This feature identifies the appointment to delete through its index in the appointment list.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=mounilsankar&breakdown=true)
 
@@ -37,10 +42,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added first half of use cases (Pull requests [#86](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/86), [#294](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/294)).
     * Added implementation for `add` `delete` and `addTag` features (Pull requests [#165](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/165), [#267](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/267)).
+    * Added part of instruction for manual testing (Pull requests [#318](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/318)).
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#177](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/177), [#156](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/156), [#158](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/158), [103](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/103).
   * Reported bugs and suggestions for team W08 during PE-D (examples: [PE-D repolink](https://github.com/mounilsankar/ped/issues))
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([]())
+  * Contributed to forum discussion (examples: [#455](https://github.com/nus-cs2103-AY2324S1/forum/issues/455), [#446](https://github.com/nus-cs2103-AY2324S1/forum/issues/446))
