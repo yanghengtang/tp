@@ -233,11 +233,11 @@ New patient added: Jonathan Reese; Phone: 81235833; NRIC: S8712461K
 
 4. You have successfully added the patient to the database.
 
-Back to [Patient Management Features](#patient-management-features).
-
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
 Double check the phone number before pressing enter! Extremely long phone numbers may not be displayed fully in the Patient window.
 </div>
+
+Back to [Patient Management Features](#patient-management-features).
 
 ### Listing all patients : `list_p`
 
@@ -257,6 +257,10 @@ Allows you to view details, such as basic information, medical condition, and re
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** (i.e. 1 to MAX_INT).
 * The index should not be larger than the length of the displayed patient list.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: <b>Note:</b> If you update any field of a patient that is already in the Patient Window, remember to enter the `view_p` to update the Patient Window.<br>
+</div>
 
 **Examples**:
 * Entering `list_p` followed by `view_p 2` shows the details of the 2nd patient in the patient list.
@@ -473,6 +477,10 @@ Allows you to view details, such as basic information, specialisation, and remar
 * The index refers to the index number shown in the displayed doctor list.
 * The index **must be a positive integer** (i.e. 1 to MAX_INT).
 * The index should not be larger than the length of the displayed doctor list.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: <b>Note:</b> If you update any field of a doctor that is already in the Doctor Window, remember to enter the `view_d` to update the Doctor Window.<br>
+</div>
 
 **Examples**:
 * Entering `list_d` followed by `view_d 2` shows the details of the 2nd doctor in the doctor list.
@@ -735,6 +743,10 @@ Allows you to view details, such as basic information, prescription given, and r
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** (i.e. 1 to MAX_INT).
 * The index should not be larger than the length of the displayed appointment list.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: <b>Note:</b> If you update any field of an appointment that is already in the Appointment Window, remember to enter the `view_a` to update the Appointment Window.<br>
+</div>
 
 **Examples**:
 * Entering `list_a` followed by `view_a 2` shows the details of the 2nd appointment in the appointment list.
