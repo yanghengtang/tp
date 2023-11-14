@@ -255,19 +255,19 @@ These operations are exposed in the Ui interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the `ListDoctorCommand` mechanism behaves at each step.
 
-**Step 1:** The user inputs `list_d`. The application will display the `FilteredDoctorList`.
+**Step 1**: The user inputs `list_d`. The application will display the `FilteredDoctorList`.
 
 * The `list_d` command calls `MediConnectParser#parseCommand(String)` which recognizes the command word as `list_d`.
 
 * A new `ListDoctorCommand` instance will be created.
 
-**Step 2:** The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
+**Step 2**: The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
 
 * `ListDoctorCommand#execute(Model)` then calls `Model#updateFilteredDoctorList(Predicate<Doctor>)` with the predicate `PREDICATE_SHOW_ALL_DOCTORS`.
 
 * The `FilteredDoctorList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Doctor>)`.
 
-**Step 3:** A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
+**Step 3**: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 The example usage scenario for the list patients mechanisms would be similar to the scenario above.
 
@@ -310,7 +310,7 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
  * `ListAppointmentCommand#execute(Model)` then calls `Model#updateFilteredAppointmentList(Predicate<Appointment>)` with the predicate `AppointmentFilterByNricPredicate`.
  * The `FilteredAppointmentList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Appointment>)`.
 
-**Step 5:** A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
+**Step 4**: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 **UML Diagrams**
 
