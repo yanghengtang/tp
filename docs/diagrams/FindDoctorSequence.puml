@@ -6,8 +6,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":FindDoctorCommandParser" as FindDoctorCommandParser LOGIC_COLOR
-participant "d:FindDoctorCommand" as FindDoctorCommand LOGIC_COLOR
 participant ":NameContainsKeywordsDoctorPredicate" as NameContainsKeywordsDoctorPredicate LOGIC_COLOR
+participant "d:FindDoctorCommand" as FindDoctorCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -32,15 +32,16 @@ deactivate FindDoctorCommandParser
 MediConnectParser -> FindDoctorCommandParser : parse("John")
 activate FindDoctorCommandParser
 
+create NameContainsKeywordsDoctorPredicate
+FindDoctorCommandParser -> NameContainsKeywordsDoctorPredicate
+activate NameContainsKeywordsDoctorPredicate
+NameContainsKeywordsDoctorPredicate --> FindDoctorCommandParser : predicate
+deactivate NameContainsKeywordsDoctorPredicate
+
 create FindDoctorCommand
 FindDoctorCommandParser -> FindDoctorCommand :
 activate FindDoctorCommand
 
-create NameContainsKeywordsDoctorPredicate
-FindDoctorCommand -> NameContainsKeywordsDoctorPredicate
-activate NameContainsKeywordsDoctorPredicate
-NameContainsKeywordsDoctorPredicate --> FindDoctorCommand : predicate
-deactivate NameContainsKeywordsDoctorPredicate
 
 
 FindDoctorCommand --> FindDoctorCommandParser : d
