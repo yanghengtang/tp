@@ -55,6 +55,8 @@ Here are some common terms used throughout this user guide.
 | MAX_INT          | Integer value 2147483647                                                                                |
 | Command Terminal | A window into which users can type commands that are then executed by their computer's operating system |
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating this user guide
 
 As this guide aims to be as comprehensive as possible, you might find the amount of information in this user guide overwhelming.
@@ -94,6 +96,8 @@ Back to [Table of Contents](#table-of-contents).
     
     The commands you give should look similar to what is shown below:
    ![Terminal](images/terminalcommand.png)
+
+<div style="page-break-after: always;"></div>
 
     A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -273,6 +277,8 @@ Below is an example of a successful view command call.
 
 Back to [Patient Management Features](#patient-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a patient : `edit_p`
 
 Allows you to edit an existing patient in the system. This is useful to correct any mistakes made when adding or updating a patient.
@@ -310,6 +316,8 @@ Edited Patient: Jonathan Reese; Phone: 81453894; NRIC: S8712461K
 </div>
 
 Back to [Patient Management Features](#patient-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Locating patients by name : `find_p`
 
@@ -352,6 +360,8 @@ If a patient is removed, the appointments of the patient will be deleted too!
 
 Back to [Patient Management Features](#patient-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a medical condition to a patient : `add_tag_p`
 
 Allows you to add a medical condition to a specified patient in the system.
@@ -388,6 +398,8 @@ Allows you to delete a medical condition from a specified patient in the system.
 * Entering `find_p Jonathan` followed by `delete_tag_p 1 t\cancer` deletes the medical condition `cancer` from the 1st patient in the resultant patient list of the `find_p` command.
 
 Back to [Patient Management Features](#patient-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Editing the remark of a patient : `remark_p`
 
@@ -461,6 +473,8 @@ New doctor added: John Doe; Nric: T0212385J
 
 Back to [Doctor Management Features](#doctor-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all doctors : `list_d`
 
 Allows you to list all the doctors in the system.
@@ -488,11 +502,15 @@ Allows you to view details, such as basic information, specialisation, and remar
 * Entering `list_d` followed by `view_d 2` shows the details of the 2nd doctor in the doctor list.
 * Entering `find_d Jonathan` followed by `view_d 1` shows the details of the 1st doctor in the resultant doctor list of the `find_d` command.
 
+<div style="page-break-after: always;"></div>
+
 Below is an example of a successful view command call.
 
 ![ViewDoctorMainWindow](images/view-doctor.png)
 
 Back to [Doctor Management Features](#doctor-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a doctor : `edit_d`
 
@@ -530,6 +548,8 @@ Edited Doctor: Joe Ng; Nric: T0212385J
 </div>
 
 Back to [Doctor Management Features](#doctor-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Locating doctors by name : `find_d`
 
@@ -571,6 +591,8 @@ If a doctor is removed, the appointments of the doctor will be deleted too!
 
 Back to [Doctor Management Features](#doctor-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a specialisation to a doctor : `add_tag_d`
 
 Allows you to add a specialisation to a specified doctor in the system.
@@ -607,6 +629,8 @@ Allows you to delete a specialisation from a specific doctor in the system.
 * Entering `find_d Jonathan` followed by `delete_tag_d 1 t\Orthopaedic` deletes the `Orthopaedic` specialisation from the 1st doctor in the resultant doctor list of the `find_d` command.
 
 Back to [Doctor Management Features](#doctor-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Editing the remark of a doctor : `remark_d`
 
@@ -698,6 +722,8 @@ Allows you to either display all the appointments in the system or the list of a
 
 Back to [Appointment Management Features](#appointment-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an appointment : `edit_a`
 
 Allows you to edit an existing appointment in the system. This is useful to correct any mistakes made when adding or updating an appointment.
@@ -735,6 +761,8 @@ If you edit the patient or doctor NRIC of an appointment, ensure that there exis
 
 Back to [Appointment Management Features](#appointment-management-features).
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing details of an appointment : `view_a`
 
 Allows you to view details, such as basic information, prescription given, and remark, of a specific appointment in the system.
@@ -758,6 +786,8 @@ Below is the image of a successful result that you should have encountered.
 ![ViewAppointmentMainWindow](images/ViewAppointment.png)
 
 Back to [Appointment Management Features](#appointment-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an appointment : `delete_a`
 
@@ -792,6 +822,8 @@ Allows you to add a prescription for an appointment in the system.
 * Entering `list_a pic\S9923334G` followed by `add_tag_a 1 t\Panadol` adds the `Panadol` prescription to the 1st appointment in the resultant appointment list of the `list_a` command.
 
 Back to [Appointment Management Features](#appointment-management-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a prescription from an appointment : `delete_tag_a`
 
@@ -871,6 +903,8 @@ Back to [General Features](#general-features).
 MediConnect data are saved in the hard disk automatically after any command. There is no need to save manually.
 
 Back to [General Features](#general-features).
+
+<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
