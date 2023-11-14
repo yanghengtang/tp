@@ -56,10 +56,10 @@ destroy FindDoctorCommandParser
 MediConnectParser --> LogicManager : d
 deactivate MediConnectParser
 
-LogicManager -> FindDoctorCommand : execute()
+LogicManager -> FindDoctorCommand : execute() 
 activate FindDoctorCommand
 
-FindDoctorCommand -> Model : getFilteredDoctorList(predicate)
+FindDoctorCommand -> Model : updateFilteredDoctorList(predicate)
 activate Model
 
 Model --> FindDoctorCommand
