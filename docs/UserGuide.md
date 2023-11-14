@@ -217,8 +217,8 @@ Allows you to add a patient to the system.
 **Format**: `add_p n\NAME ic\NRIC p\PHONE_NUMBER`
 
 **Examples**:
-* `add_p n\John Doe ic\T0212385J p\98765432`
-* `add_p ic\S9912343G n\Betsy Crowe p\81235833`
+* `add_p n\John Doe ic\T0212385J p\98765432` adds a new patient named `John Doe` with NRIC `T0212385J` and phone `98765432` into the database.
+* `add_p ic\S9912343G n\Betsy Crowe p\81235833` adds a new patient named `Betsy Crowe` with NRIC `S9912343G` and phone `81235833` into the database.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 Ensure that the new patient's NRIC does not exist in the database.
@@ -449,8 +449,8 @@ Allows you to add a doctor to the system.
 **Format**: `add_d n\NAME ic\NRIC`
 
 **Examples**:
-* `add_d n\John Doe ic\T0212385J`
-* `add_d ic\S9912343G n\Betsy Crowe`
+* `add_d n\John Doe ic\T0212385J` adds a new doctor named `John Doe` with NRIC `T0212385J` into the database.
+* `add_d ic\S9912343G n\Betsy Crowe` adds a new doctor named `Betsy Crowe` with NRIC `S9912343G` into the database.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 Ensure that the new doctor's NRIC does not exist in the database.
@@ -525,7 +525,7 @@ Allows you to edit an existing doctor in the system. This is useful to correct a
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-**Examples**:
+**Example**:
 *  `edit_d 1 n\Joe Ng ic\T0212385J` edits the name and NRIC of the 1st doctor in the doctor list to be `Joe Ng` and `T0212385J` respectively.
 
 **Sample Usage**:
@@ -679,8 +679,8 @@ Allows you to add an appointment to the system.
 **Format**: `add_a pic\PATIENT_NRIC dic\DOCTOR_NRIC from\START_TIME to\END_TIME`
 
 **Examples**:
-* `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00`
-* `add_a from\2023-09-12 07:30 to\2023-09-12 08:00 dic\T0212385J pic\S9912343G`
+* `add_a pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` adds an appointment between doctor with NRIC `T0212385J` and patient with NRIC `S9912343G` from `2023-09-11 07:30` to `2023-09-11 08:00`.
+* `add_a from\2023-09-12 07:30 to\2023-09-12 08:00 dic\T0212385J pic\S9912343G` adds an appointment between doctor with NRIC `T0212385J` and patient with NRIC `S9912343G` from `2023-09-12 07:30` to `2023-09-12 08:00`.
 
 **Sample Usage**:
 1. Assuming you want to add an appointment between a patient "John Doe" with NRIC "T0212385J" and doctor "Betsy Crowe" with NRIC "S9912343G" starting from "2023-09-13 12:00" ending at "2023-09-13 12:30".
@@ -737,8 +737,8 @@ Allows you to edit an existing appointment in the system. This is useful to corr
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-**Examples**:
-*  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` edits the patient and doctor NRIC of the 1st appointment in the appointment list to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively
+**Example**:
+*  `edit_a 1 pic\S9912343G dic\T0212385J from\2023-09-11 07:30 to\2023-09-11 08:00` edits the patient and doctor NRIC of the 1st appointment in the appointment list to be `S9912343G` and `T0212385J` respectively and the start time and end time of the appointment to be `2023-09-11 07:30` and `2023-09-11 08:00` respectively.
 
 **Sample Usage**:
 1. Assuming you want to edit the 4th Appointment, change the doctor NRIC from "S9823343G" to "S9923334G".
@@ -778,7 +778,7 @@ Allows you to view details, such as basic information, prescription given, and r
 :information_source: <b>Note:</b> If you update any field of an appointment that is already in the Appointment Window, remember to enter the `view_a` to update the Appointment Window.<br>
 </div>
 
-**Examples**:
+**Example**:
 * Entering `list_a` followed by `view_a 2` shows the details of the 2nd appointment in the appointment list.
 
 Below is the image of a successful result that you should have encountered.
@@ -800,7 +800,7 @@ Allows you to delete the specified appointment from the system.
 * The index **must be a positive integer** (i.e. 1 to MAX_INT).
 * The index should not be larger than the length of the appointment list.
 
-**Examples**:
+**Example**:
 * `delete_a 2` deletes the 2nd appointment in the appointment list.
 
 Back to [Appointment Management Features](#appointment-management-features).
