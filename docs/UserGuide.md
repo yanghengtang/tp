@@ -64,7 +64,7 @@ If you are new to MediConnect, you can head over to our [quick start](#quick-sta
 
 If you are familiar with MediConnect, you can head over to view the list of [features](#features) or the [command summary](#command-summary) to hone your MediConnect skills.
 
-Return back to [Table of Contents](#table-of-contents).
+Back to [Table of Contents](#table-of-contents).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -876,7 +876,7 @@ Back to [General Features](#general-features).
 
 # FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous MediConnect home folder.
 
