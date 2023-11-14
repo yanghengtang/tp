@@ -1091,7 +1091,7 @@ Use case ends.
 
       Use case ends.
 
-* 1e.MediConnect detects that the appointment to be added overlaps with another appointment with th same patient and/or doctor.
+* 1e.MediConnect detects that the appointment to be added overlaps with another appointment with the same patient and/or doctor.
     * 1e1. MediConnect shows an error message.
 
       Use case ends.
@@ -1129,7 +1129,7 @@ Use case ends.
 
       Use case ends.
 
-* 1e.MediConnect detects that the edited appointment overlaps with another appointment with th same patient and/or doctor.
+* 1e.MediConnect detects that the edited appointment overlaps with another appointment with the same patient and/or doctor.
     * 1e1. MediConnect shows an error message.
 
       Use case ends.
@@ -1229,9 +1229,7 @@ Use case ends.
 * 1c. MediConnect detects that the given prescription does not exist in the appointment. 
   * 1c1. MediConnect shows an error message.
 
-    Use case ends.
-
-
+    Use case ends. 
 
 ### Non-Functional Requirements
 
