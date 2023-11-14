@@ -183,7 +183,7 @@ The following table gives an overview of what each parameter used in the Feature
 | KEYWORD           | The keyword of doctor/patient                                                                         | Accepts all input                                                                                                                           |
 
 <div markdown="span" class="alert alert-info">:bulb: <b>Tip:</b>
-For medical conditions with more than 1 word, users can concatenate the words of the condition!
+For medical conditions with more than 1 word, you can concatenate the words of the condition!
 </div>
 
 <div markdown="span" class="alert alert-primary">:information_source: <b>Note:</b>
