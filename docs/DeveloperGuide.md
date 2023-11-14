@@ -235,7 +235,7 @@ The following sequence diagram shows how the find doctor operation would work:
 
 The sequence diagram for the find patient operation would be similar.
 
-The following activity diagram summarizes what happens when a user wants to find a new doctor/patient:
+The following activity diagram summarizes what happens when a user wants to find doctors/patients:
 
 ![FindCommandActivity](images/FindCommandActivityDiagram.png)
 
@@ -255,19 +255,19 @@ These operations are exposed in the Ui interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the `ListDoctorCommand` mechanism behaves at each step.
 
-**Step 1:** The user inputs `list_d`. The application will display the `FilteredDoctorList`.
+**Step 1**: The user inputs `list_d`. The application will display the `FilteredDoctorList`.
 
 * The `list_d` command calls `MediConnectParser#parseCommand(String)` which recognizes the command word as `list_d`.
 
 * A new `ListDoctorCommand` instance will be created.
 
-**Step 2:** The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
+**Step 2**: The created `ListDoctorCommand` instance is returned to `LogicManager` and its execute method is called.
 
 * `ListDoctorCommand#execute(Model)` then calls `Model#updateFilteredDoctorList(Predicate<Doctor>)` with the predicate `PREDICATE_SHOW_ALL_DOCTORS`.
 
 * The `FilteredDoctorList` is updated to show all doctors by calling `ObservableList#setPredicate(Predicate<Doctor>)`.
 
-**Step 3:** A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
+**Step 3**: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 The example usage scenario for the list patients mechanisms would be similar to the scenario above.
 
@@ -287,7 +287,7 @@ The following activity diagram summarizes what happens when a user wants to list
 
 **Introduction**
 
-This section describes the feature that allows users to list appointments in the MediConnect database. Users can either list all appointments or filter them based on the NRIC of doctors or patients.
+This section describes the feature that allows users to list appointments in the MediConnect database. Users can either list all appointments or filter them based on the NRIC of the doctor or/and patient.
 
 #### Implementation
 
@@ -302,14 +302,14 @@ Given below is an example usage scenario and how the `ListAppointmentCommand` me
 **Step 1**: The user inputs `list_a` to list all appointments or `list_a pic\PATIENT_NRIC dic\DOCTOR_NRIC` to filter appointments.
 * The `list_a` command triggers `MediConnectParser#parseCommand(String)`, which identifies the command word and calls `ListAppointmentCommandParser#parse(String)` to handle the arguments.
 
-**Step 2**: The `ListAppointmentCommandParser#parse(String)` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC. Based on these, it creates appropriate `Predicate` objects.
+**Step 2**: The `ListAppointmentCommandParser#parse(String)` method checks for the presence of optional flags like `dic\` for doctor NRIC and `pic\` for patient NRIC.
+ * A new `ListAppointmentCommand` instance is then created with the predicate `AppointmentFilterByNricPredicate`.
 
-**Step 3**: A new `ListAppointmentCommand` instance is created using the `Predicate` object(s).
+**Step 3**: The created `ListAppointmentCommand` instance is returned to `LogicManager`, and its execute method is called.
+ * `ListAppointmentCommand#execute(Model)` then calls `Model#updateFilteredAppointmentList(Predicate)` with the predicate `AppointmentFilterByNricPredicate`.
+ * The `FilteredAppointmentList` is updated to show all doctors by calling `Model#updateFilteredAppointmentList(Predicate<Appointment>)`.
 
-**Step 4**: The created `ListAppointmentCommand` instance is returned to `LogicManager`, and its execute method is called.
-* `ListAppointmentCommand#execute(Model)` filters the list of appointments in `Model` using the specified predicate(s).
-
-**Step 5**: The filtered list is displayed to the user through the UI.
+**Step 4**: A `CommandResult` object is created with a message indicating success, and this result is returned to the UI to be displayed to the user.
 
 **UML Diagrams**
 
@@ -317,7 +317,7 @@ The following sequence diagram shows how the list appointment operation would wo
 
 ![ListPatientSequence](images/ListAppointmentSequence.png)
 
-The following activity diagram summarizes what happens when a user wants to list a new appointment:
+The following activity diagram summarizes what happens when a user wants to list appointment(s):
 
 ![ListCommandActivity](images/ListAppointmentCommandActivityDiagram.png)
 
@@ -471,7 +471,7 @@ The following activity diagram summarizes what happens when a user wants to add 
 
 ![AddXYZTagActivityDiagram](images/AddXYZTagActivityDiagram.png)
 
-### Delete Specialisation / Medical Condition / Prescription feature
+### Delete Specialisation / Medical condition / Prescription feature
 
 **Introduction**
 
@@ -494,14 +494,16 @@ A new `DeleteSpecialisationCommand` instance will be created.
 
 **Step 3**: The created `DeleteSpecialisationCommand` instance is returned to `LogicManager` and its `execute` method is called.
 `DeleteSpecialisationCommand#execute(Model)` then calls `Model#getFilteredDoctorList()` and retrieve the doctor with the given `Index`. 
-Then, the specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
+Then, the specified specialisation will be removed from the doctor if exists and replace the existing doctor in Model with the command of `Model#setDoctor(Doctor, Doctor)`.
 
-The example usage scenario for delete medical condition and delete prescriptions mechanisms would be similar to the scenario above.
+The example usage scenario for delete medical condition and delete prescription mechanisms would be similar to the scenario above.
 
 The following sequence diagram shows how the delete specialisation operation would work and will be similar to deletion of medical condition and prescription:
+
 ![DeleteSpecialisationSequenceDiagram](images/DeleteSpecialisationSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user wants to delete a specialisation/medical condition/prescription:
+
 ![DeleteXYZTagActivityDiagram](images/DeleteXYZTagActivityDiagram.png)
 
 ### View Appointment / Doctor / Patient feature

@@ -6,8 +6,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":ListAppointmentCommandParser" as ListAppointmentCommandParser LOGIC_COLOR
-participant "a:ListAppointmentCommand" as ListAppointmentCommand LOGIC_COLOR
 participant ":AppointmentFilterByNricPredicate" as AppointmentFilterByNricPredicate LOGIC_COLOR
+participant "a:ListAppointmentCommand" as ListAppointmentCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -32,16 +32,17 @@ deactivate ListAppointmentCommandParser
 MediConnectParser -> ListAppointmentCommandParser : parse("pic\S9912343G \ndic\S0548254G")
 activate ListAppointmentCommandParser
 
+create AppointmentFilterByNricPredicate
+ListAppointmentCommandParser -> AppointmentFilterByNricPredicate
+activate AppointmentFilterByNricPredicate
+AppointmentFilterByNricPredicate --> ListAppointmentCommandParser : predicate
+deactivate AppointmentFilterByNricPredicate
+
 create ListAppointmentCommand
 ListAppointmentCommandParser -> ListAppointmentCommand :
 activate ListAppointmentCommand
 
 
-create AppointmentFilterByNricPredicate
-ListAppointmentCommand -> AppointmentFilterByNricPredicate
-activate AppointmentFilterByNricPredicate
-AppointmentFilterByNricPredicate --> ListAppointmentCommand : predicate
-deactivate AppointmentFilterByNricPredicate
 
 
 ListAppointmentCommand --> ListAppointmentCommandParser : a
