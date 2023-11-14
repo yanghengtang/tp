@@ -761,7 +761,6 @@ If you edit the patient or doctor NRIC of an appointment, ensure that there exis
 
 Back to [Appointment Management Features](#appointment-management-features).
 
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing details of an appointment : `view_a`
