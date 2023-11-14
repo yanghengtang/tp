@@ -207,7 +207,7 @@ This section describes the feature that allows users to find doctors/patients in
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` — Executes the given user String input and returns a CommandResult.
+* `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the UI interface as `MainWindow#executeCommand(String)`.
 
