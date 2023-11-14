@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
-* This project is based on [AddressBook Level 3 (AB3)](https://github.com/se-edu/addressbook-level3) by [SE-EDU initiative](https://se-education.org/)
+* This project is based on [AddressBook Level 3 (AB3)](https://github.com/se-edu/addressbook-level3) by [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-1/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `Ui` component,
 
@@ -146,7 +146,7 @@ The `Model` component,
 The `Storage` component,
 * can save both MediConnect data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `DatabaseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -168,7 +168,7 @@ This section describes the feature that allows users to edit appointments/doctor
 
 The proposed edit appointment/doctors/patients mechanism is facilitated by `LogicManager` and it extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a 'CommandResult'
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 Given below is an example usage scenario and how the edit patient mechanism behaves at each step.
 
@@ -207,7 +207,7 @@ This section describes the feature that allows users to find doctors/patients in
 #### Implementation
 The finding of a doctor/patient in MediConnect is facilitated by `LogicManager`, which extends `Logic`. It holds a `MediConnectParser` that parses the user input, and a `Model` where the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` — Executes the given user String input and returns a CommandResult.
+* `LogicManager#execute(String)` — Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the UI interface as `MainWindow#executeCommand(String)`.
 
@@ -277,7 +277,7 @@ The following sequence diagram shows how the list doctor operation would work:
 
 ![ListDoctorSequence](images/ListDoctorSequence.png)
 
-The sequence diagram for the list patient operation would be similar
+The sequence diagram for the list patient operation would be similar.
 
 The following activity diagram summarizes what happens when a user wants to list a new patient/doctor:
 
@@ -330,7 +330,7 @@ This section describes the add appointment/doctor/patient features.
 #### Implementation
 The adding of an appointment/doctor/patient to MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
@@ -368,7 +368,7 @@ This section describes the delete appointment/doctor/patient features.
 #### Implementation
 The deletion of an appointment/doctor/patient from MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
@@ -406,7 +406,7 @@ This section describes the appointment/doctor/patient remark features.
 #### Implementation
 The adding/deleting/editing of a remark for an appointment/doctor/patient in MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
@@ -443,7 +443,7 @@ This section describes the add specialisations/medical conditions/prescriptions 
 #### Implementation
 The addition of a specialisation/medical condition/prescription to an existing doctor/patient/appointment respectively in MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
@@ -480,7 +480,7 @@ This section describes the delete specialisation/medical condition/prescription 
 #### Implementation
 The deletion of a specialisation/medical condition/prescription from MediConnect is facilitated by `LogicManager`. It extends `Logic` and stores the `MediConnectParser` that parses the user input, and the model in which the command is executed. Additionally, it implements the following operations:
 
-* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`
+* `LogicManager#execute(String)` —  Executes the given user String input and returns a `CommandResult`.
 
 These operations are exposed in the `Ui` interface as `MainWindow#executeCommand(String)`.
 
@@ -608,51 +608,51 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* has a need to manage a significant number of patients and doctors
-* has a need to manage appointments between the patients and doctors
-* prefers desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage a significant number of patients and doctors.
+* has a need to manage appointments between the patients and doctors.
+* prefers desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
 
 **Value proposition**:
-* provides easy storage and management of patients' and doctors' profiles
-* provides convenient management of appointments of doctors and patients
+* provides easy storage and management of patients' and doctors' profiles.
+* provides convenient management of appointments of doctors and patients.
 
 
 ### User stories
 
 Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo) - *
 
-| Priority  | As a …  | I want to …                                            | So that I can…                                                                      |
-|-----------|---------|--------------------------------------------------------|-------------------------------------------------------------------------------------|
-| * * *     | user    | add appointment into the system                        | keep track of a new appointment                                                     |
-| * * *     | user    | add doctor's profile into the system                   | keep track of a new doctor working in the clinic                                    |
-| * * *     | user    | add patient's data into the system                     | keep track of a new patient visiting the clinic                                     |
-| * * *     | user    | delete an appointment from the system                  | remove any appointment that has been cancelled from the system                      |
-| * * *     | user    | delete doctor profile from the system                  | remove any doctor no longer working for the clinic                                  |
-| * * *     | user    | delete patients' data from the system                  | remove any patient no longer visiting the clinic                                    |
-| * * *     | user    | view the list of appointment in the system             | see all the appointments currently in the system                                    |
-| * * *     | user    | view the list of doctor in the system                  | see all the doctors currently in the system                                         |
-| * * *     | user    | view the list of patient in the system                 | see all the patients currently in the system                                        |
-| * * *     | user    | edit an appointment in the system                      | correct any mistake made when adding or updating the appointment previously         |
-| * * *     | user    | edit a doctor's details in the system                  | correct any mistake made when adding or updating the doctor previously              |
-| * * *     | user    | edit a patient’s data in the system                    | correct any mistake made when adding or updating the patient previously             |
-| * *       | user    | view the full details of an appointment                | retrieve the medicine prescribed or information discovered during that appointment. |
-| * *       | user    | view the full details of an doctor                     | retrieve the doctor's availability and specialisation.                              |
-| * *       | user    | view the full details of an patient                    | retrieve the specified patient's full medical history and any ongoing treatment     |
-| * *       | user    | add remarks for an appointment                         | note down any significant finding during the appointment                            |
-| * *       | user    | add remarks for a doctor                               | note down the availability of the specified doctor                                  |
-| * *       | user    | add remarks for a patient                              | note down any ongoing treatment of the specified patient                            |
-| * *       | user    | add prescription for an appointment                    | keep track of the medicine prescribed during the specified appointment.             |
-| * *       | user    | remove prescription for an appointment                 | update the medicine prescribed during the specified appointment.                    |
-| * *       | user    | add specialisation for a doctor                        | keep track of the specified  doctor's specialisation.                               |
-| * *       | user    | remove specialisation for a doctor                     | update the specified doctor's specialisation.                                       |
-| * *       | user    | add medical condition for a patient                    | keep track of the medical condition the specified patient has.                      |
-| * *       | user    | remove medical condition for a patient                 | update the specified patient's medical condition.                                   |
-| *         | user    | view the list of appointment sorted by start date time | look through the list of appointment in a chronological manner.                     |
-| *         | user    | view the list of doctor sorted by name                 | look through the list of doctors logically.                                         |
-| *         | user    | view the list of patient sorted by name                | look through the list of patient in a logical manner.                               |
+| Priority  | As a …  | I want to …                                            | So that I can…                                                                     |
+|-----------|---------|--------------------------------------------------------|------------------------------------------------------------------------------------|
+| * * *     | user    | add appointment into the system                        | keep track of a new appointment                                                    |
+| * * *     | user    | add doctor's profile into the system                   | keep track of a new doctor working in the clinic                                   |
+| * * *     | user    | add patient's data into the system                     | keep track of a new patient visiting the clinic                                    |
+| * * *     | user    | delete an appointment from the system                  | remove any appointment that has been cancelled from the system                     |
+| * * *     | user    | delete doctor profile from the system                  | remove any doctor no longer working for the clinic                                 |
+| * * *     | user    | delete patients' data from the system                  | remove any patient no longer visiting the clinic                                   |
+| * * *     | user    | view the list of appointment in the system             | see all the appointments currently in the system                                   |
+| * * *     | user    | view the list of doctor in the system                  | see all the doctors currently in the system                                        |
+| * * *     | user    | view the list of patient in the system                 | see all the patients currently in the system                                       |
+| * * *     | user    | edit an appointment in the system                      | correct any mistake made when adding or updating the appointment previously        |
+| * * *     | user    | edit a doctor's details in the system                  | correct any mistake made when adding or updating the doctor previously             |
+| * * *     | user    | edit a patient’s data in the system                    | correct any mistake made when adding or updating the patient previously            |
+| * *       | user    | view the full details of an appointment                | retrieve the medicine prescribed or information discovered during that appointment |
+| * *       | user    | view the full details of an doctor                     | retrieve the doctor's availability and specialisation                              |
+| * *       | user    | view the full details of an patient                    | retrieve the specified patient's full medical history and any ongoing treatment    |
+| * *       | user    | add remarks for an appointment                         | note down any significant finding during the appointment                           |
+| * *       | user    | add remarks for a doctor                               | note down the availability of the specified doctor                                 |
+| * *       | user    | add remarks for a patient                              | note down any ongoing treatment of the specified patient                           |
+| * *       | user    | add prescription for an appointment                    | keep track of the medicine prescribed during the specified appointment             |
+| * *       | user    | remove prescription for an appointment                 | update the medicine prescribed during the specified appointment                    |
+| * *       | user    | add specialisation for a doctor                        | keep track of the specified  doctor's specialisation                               |
+| * *       | user    | remove specialisation for a doctor                     | update the specified doctor's specialisation                                       |
+| * *       | user    | add medical condition for a patient                    | keep track of the medical condition the specified patient has                      |
+| * *       | user    | remove medical condition for a patient                 | update the specified patient's medical condition                                   |
+| *         | user    | view the list of appointment sorted by start date time | look through the list of appointment in a chronological manner                     |
+| *         | user    | view the list of doctor sorted by name                 | look through the list of doctors logically                                         |
+| *         | user    | view the list of patient sorted by name                | look through the list of patient in a logical manner                               |
 
 
 ### Use cases
@@ -765,7 +765,7 @@ Priorities: High (Must-Have) - * * *, Medium (Good-To-Have) - * *, Low (To-Forgo
 
 1.  User requests to edit a patient’s remarks.
 2.  MediConnect edits the patient’s remarks.
-3.  MediConnect shows a success message to the User.
+3.  MediConnect shows a success message to the user.
 
 Use case ends.
 
@@ -814,7 +814,7 @@ Extensions
 
 1.  User requests to delete a medical condition from a patient.
 2.  MediConnect deletes the medical condition from the patient.
-3.  MediConnect shows a success message to the User.
+3.  MediConnect shows a success message to the user.
 
 Use case ends.
 
@@ -1002,7 +1002,7 @@ Use case ends.
 
 1. User requests to delete a specific doctor in the list.
 2. MediConnect deletes the doctor.
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -1020,7 +1020,7 @@ Use case ends.
 
 1. User requests to view a patient’s appointments.
 2. MediConnect shows the patient’s appointment list.
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -1043,7 +1043,7 @@ Use case ends.
 
 1. User requests to view a doctor’s list of  appointments. 
 2. MediConnect shows the doctor’s appointment list.
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -1066,7 +1066,7 @@ Use case ends.
 
 1. User requests to add a specific appointment between a patient and doctor. 
 2. MediConnect adds the appointment to the appointment list.
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -1104,7 +1104,7 @@ Use case ends.
 
 1. User requests to edit an appointment’s particulars. 
 2. MediConnect edits the appointment particulars.
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
@@ -1211,7 +1211,7 @@ Use case ends.
 
 1. User requests to delete a prescription from an appointment. 
 2. MediConnect deletes a prescription from an appointment. 
-3. MediConnect shows a success message to the User.
+3. MediConnect shows a success message to the user.
 
     Use case ends.
 
