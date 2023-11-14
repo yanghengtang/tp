@@ -2,7 +2,7 @@
 start
 :User enters ListYZCommand;
 floating note right
-    YZ = Doctor or Patient
+    YZ = Doctor or Patients
 endnote
 :MediConnectParser parses command;
 :Update YZ list with PREDICATE_SHOW_ALL_YZ;

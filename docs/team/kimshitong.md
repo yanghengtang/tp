@@ -46,41 +46,31 @@ Given below are my contributions to the project.
     * Justification: It allows us to leave a remark of the doctor which can be used to indicate doctor's availability.
     * Highlights: We are able to edit doctor remark whenever there is a new update on availability.
 
-  * View Doctor
-    * What it does: View doctor's details 
-    * Justification: We can see doctor's detail like his specialisations, nric and remarks.
-    * Highlights: A clean window will be prompt out with all the doctor's details.
-
   * List Doctor
     * What it does: List all the existing doctors in database
     * Justification: you are able to see all the existing doctors along with their name and nric
     * Highlights: All doctors will be shown in a list of box form along with the name and nric.
 
-
-* **Code contributed**:  ~4kLOC [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=kimshitong&tabRepo=AY2324S1-CS2103T-T08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false%23%2F)
-  *  Test Code : 2126 LOC
-  *  Functional Code : 1046 LOC
-  *  Docs : 725 LOC
-
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=kimshitong&breakdown=true)
 
 * **Project management**:
   * Version control 
   * Documentation Management
-  * Team Communication 
-
 
 * **Documentation**:
   * User Guide:
-    * Document New Features 
-    * Updated Command Summary
-    * Updated Parameter Table 
+    * Documented Features for Add Doctor's Specialisation [#189](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/189)
+    * Documented Features for Delete Doctor's Specialisation [#189](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/189)
+    * Documented Edit Doctor's Remark [#189](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/189)
+    * Updated Command Summary  [#189](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/189) [#245](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/245)
+    * Updated Parameter Table [#248](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/248)
   * Developer Guide:
-    * User Stories
-    * Document Features for List Patient/Doctor/Appointments with Activity/Sequence UML Diagram
-    * Document Features for View Patient/Doctor/Appointments with Activity/Sequence UML Diagram
-    * Document Features for Delete Specialisation/Medical Conditions/Prescriptions with Activity/Sequence UML Diagram
+    * Added User Stories [#57](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/57)
+    * Documented Features for Find Patient/Doctor/Appointment with Activity/Sequence Diagram [#156](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/156)
+    * Documented Features for List Patient/Doctor/Appointment with Activity/Sequence Diagram [#156](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/156)
+    * Documented Features for Delete Specialisation/MedicalCondition/Prescription with Activity/Sequence Diagram [#264](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/264)
+    * Improved and Standardised Features' Activity/Sequence Diagram [#327](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/327)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)
-  * Contributed to forum discussions
+  * PRs reviewed (with non-trivial review comments) [#298](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/298) [#290](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/290) [#287](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/287) [#192](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/192) [#119](https://github.com/AY2324S1-CS2103T-T08-1/tp/pull/118)
   * Reported bugs and suggestions for other teams in the class

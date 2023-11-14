@@ -2,10 +2,10 @@
 !include style.puml
 skinparam ArrowFontStyle plain
 
-box NewLogic LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
-participant "d:ListDoctor" as ListDoctor LOGIC_COLOR
+participant "d:ListDoctorCommand" as ListDoctorCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -19,37 +19,36 @@ activate LogicManager
 LogicManager -> MediConnectParser : parseCommand("list_d")
 activate MediConnectParser
 
-create ListDoctor
+create ListDoctorCommand
 
-MediConnectParser -> ListDoctor : ListPatientsCommand()
-[<--LogicManager : result
-activate ListDoctor
+MediConnectParser -> ListDoctorCommand
+activate ListDoctorCommand
 
-ListDoctor --> MediConnectParser : d
-deactivate ListDoctor
+ListDoctorCommand --> MediConnectParser : d
+deactivate ListDoctorCommand
 
 MediConnectParser --> LogicManager : d
 deactivate MediConnectParser
 
-LogicManager -> ListDoctor : execute()
-activate ListDoctor
+LogicManager -> ListDoctorCommand : execute()
+activate ListDoctorCommand
 
-ListDoctor -> Model : updateFilteredDoctorList(\nPREDICATE_SHOW_ALL\n_DOCTORS)
+ListDoctorCommand -> Model : updateFilteredDoctorList(\nPREDICATE_SHOW_ALL_DOCTORS)
 activate Model
 
-Model --> ListDoctor
+Model --> ListDoctorCommand
 deactivate Model
 
 create CommandResult
-ListDoctor -> CommandResult
+ListDoctorCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListDoctor : result
+CommandResult --> ListDoctorCommand : result
 deactivate CommandResult
 
-ListDoctor --> LogicManager : result
-deactivate ListDoctor
+ListDoctorCommand --> LogicManager : result
+deactivate ListDoctorCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

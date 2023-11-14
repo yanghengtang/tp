@@ -7,17 +7,17 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MediConnectParser" as MediConnectParser LOGIC_COLOR
 participant ":DeleteSpecialisationCommandParser" as DeleteSpecialisationCommandParser LOGIC_COLOR
 participant "d:DeleteSpecialisationCommand" as DeleteSpecialisationCommand LOGIC_COLOR
-participant "c:CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete_tag_d 2 Orthopaedic")
+[-> LogicManager : execute("delete_tag_d \n2 t\Orthopaedic")
 activate LogicManager
 
-LogicManager -> MediConnectParser : parseCommand("delete_tag_d 2 Orthopaedic")
+LogicManager -> MediConnectParser : parseCommand("delete_tag_d \n2 t\Orthopaedic")
 activate MediConnectParser
 
 create DeleteSpecialisationCommandParser
@@ -27,12 +27,12 @@ activate DeleteSpecialisationCommandParser
 DeleteSpecialisationCommandParser --> MediConnectParser
 deactivate DeleteSpecialisationCommandParser
 
-MediConnectParser -> DeleteSpecialisationCommandParser : parse("delete_tag_d 2 Orthopaedic")
+MediConnectParser -> DeleteSpecialisationCommandParser : parse("2 t\Orthopaedic")
 activate DeleteSpecialisationCommandParser
 
 
 create DeleteSpecialisationCommand
-DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand : DeleteSpecialisationCommand(2, Orthopaedic)
+DeleteSpecialisationCommandParser -> DeleteSpecialisationCommand
 activate DeleteSpecialisationCommand
 
 DeleteSpecialisationCommand --> DeleteSpecialisationCommandParser : d
@@ -57,7 +57,7 @@ activate Model
 Model --> DeleteSpecialisationCommand
 deactivate Model
 
-DeleteSpecialisationCommand -> Model : setDoctor(doctorToEdit, editedDoctor)
+DeleteSpecialisationCommand -> Model : setDoctor(2, editedDoctor)
 activate Model
 
 Model --> DeleteSpecialisationCommand
@@ -73,9 +73,12 @@ create CommandResult
 DeleteSpecialisationCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteSpecialisationCommand : c
+CommandResult --> DeleteSpecialisationCommand : result
 deactivate CommandResult
 
-DeleteSpecialisationCommand --> LogicManager : c
+DeleteSpecialisationCommand --> LogicManager : result
 deactivate DeleteSpecialisationCommand
+
+[<--LogicManager : result
+deactivate LogicManager
 @enduml
