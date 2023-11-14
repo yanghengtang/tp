@@ -1870,3 +1870,10 @@ adding a medical condition `Depression` to `John Doe` would not cause any errors
 
 To enhance usability, it would be useful if the medical conditions/prescriptions/specialisations are treated in a case-insensitive manner. This can be done by converting each medical condition/specialisation/prescription
 to lowercase first before checking for duplicates.
+
+### Making the View window update whenever there is a change in details of the appointment/doctor/patient
+
+Currently, when an appointment/doctor/patient is displayed in the View window and the user updates any of its fields, the details on the View window does not update instantly unless the user type the View command again.
+
+To improve the user experience, we plan to make MediConnect automatically update the details on the View window should there be any new changes made. 
+This can be done by making the `selectedAppointment`, `selectedDoctor` and `selectedAppointment` observable, whenever there is a change in the details of the selected entity, the `Ui` will be able to update accordingly.
